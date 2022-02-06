@@ -1,5 +1,5 @@
 <script setup>
-import ButtonRepo from '@/components/ButtonRepo.vue'
+import ButtonRepo from "@/components/ButtonRepo.vue";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import ButtonRepo from '@/components/ButtonRepo.vue'
       >
         About Page
         <br />
-        <span class="text-indigo-600">Vite + Vue 3 + Tailwind CSS</span>
+        <span class="text-indigo-600">Vite + Vue 3 + Tailwind CSS123</span>
       </h2>
       <div class="flex mt-8 lg:flex-shrink-0 lg:mt-0">
         <div class="inline-flex rounded-md shadow">

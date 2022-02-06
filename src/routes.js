@@ -18,6 +18,7 @@ export const routes = [
   {
     path: "/test",
     name: "test",
+    meta: { title: "Test" },
     component: () => import("@/views/Test.vue"),
   },
   { path: "/:path(.*)", component: NotFound },
