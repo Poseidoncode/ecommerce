@@ -1,15 +1,43 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import { minifyHtml, injectHtml } from "vite-plugin-html";
+import path from 'path'
 
-export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
+export default defineConfig(({ mode }) => {
+  require("dotenv").config({ path: "./.env" });
+  const plugins = [
+    vue(),
+    minifyHtml(),
+    injectHtml({
+      injectData: {
+        version: new Date(),
+      },
+    }),
+  ];
+
+  return {
+    plugins,
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+        comps: path.resolve(__dirname, "src/components/"),
+        views: path.resolve(__dirname, "src/views/"),
+        styles: path.resolve(__dirname, "src/styles/"),
+        Service: path.resolve(__dirname, "./src/service/"),
+      },
     },
-  },
-  server: {
-    open: true,
-  },
+    server: {
+      port: process.env.VUE_APP_PORT || 8014,
+      open: true,
+      proxy: {
+        "^/rest": {
+          target: process.env.VUE_APP_PROXY || "http://172.16.16.76/cs_scada/rest/",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/rest/, ""),
+        },
+      },
+      host: true,
+    },
+    base: "./",
+  }
 })
