@@ -15,7 +15,7 @@
     "mitt": "^3.0.0",
     "pixi.js": "^6.2.0",
     "primeicons": "^5.0.0",
-    "primevue": "^3.8.2",
+    "primevue": "^3.12.0",
     "vue": "^3.2.16",
     "vue-draggable-next": "^2.1.1",
     "vue-router": "^4.0.12",
