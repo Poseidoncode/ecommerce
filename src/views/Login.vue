@@ -1,9 +1,9 @@
 <template>
   <section class="min-h-screen flex items-stretch text-white">
-    <Toast />
+    <!-- <Toast />
     <Toast position="top-left" group="tl" />
     <Toast position="bottom-left" group="bl" />
-    <Toast position="bottom-right" group="br" />
+    <Toast position="bottom-right" group="br" /> -->
     <div
       class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
       style="
@@ -214,6 +214,7 @@ export default {
       try {
         const res = await axios.post(`${baseUrl}/admin/signin`, obj);
         const isFail = res.data.message == "登入失敗" ? true : false;
+        console.log("res", res);
 
         if (isFail) {
           //   toast.add({
