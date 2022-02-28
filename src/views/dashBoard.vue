@@ -19,18 +19,7 @@ export default {
             key: "0_0",
             label: "New",
             icon: "pi pi-fw pi-plus",
-            // items: [
-            //   {
-            //     key: "0_0_0",
-            //     label: "Bookmark",
-            //     icon: "pi pi-fw pi-bookmark",
-            //   },
-            //   {
-            //     key: "0_0_1",
-            //     label: "Video",
-            //     icon: "pi pi-fw pi-video",
-            //   },
-            // ],
+            command: () => testFunction(),
           },
           {
             key: "0_1",
@@ -150,7 +139,11 @@ export default {
       },
     ]);
 
-    return { items };
+    const testFunction = () => {
+      alert(123);
+    };
+
+    return { items, testFunction };
   },
 };
 </script>
