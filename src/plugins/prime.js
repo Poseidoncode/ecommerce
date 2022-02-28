@@ -1,4 +1,3 @@
-
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import Paginator from "primevue/paginator";
@@ -15,6 +14,8 @@ import AutoComplete from "primevue/autocomplete";
 import Textarea from "primevue/textarea";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+
+import PanelMenu from "primevue/panelmenu";
 import InputNumber from "primevue/inputnumber";
 import Password from "primevue/password";
 import PrimeVue from "primevue/config";
@@ -25,7 +26,7 @@ export default (app) => {
   app.component("Button", Button);
   app.component("Paginator", Paginator);
   app.component("Dropdown", Dropdown);
-
+  app.component("PanelMenu", PanelMenu);
   app.component("Dialog", Dialog);
   app.component("Menubar", Menubar);
   app.component("OverlayPanel", OverlayPanel);
@@ -40,6 +41,6 @@ export default (app) => {
   app.component("InputNumber", InputNumber);
   app.component("Password", Password);
   // .use(ToastService);
-  app.use(PrimeVue)
+  app.use(PrimeVue);
   return app;
 };

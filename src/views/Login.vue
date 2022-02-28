@@ -1,9 +1,5 @@
 <template>
   <section class="min-h-screen flex items-stretch text-white">
-    <!-- <Toast />
-    <Toast position="top-left" group="tl" />
-    <Toast position="bottom-left" group="bl" />
-    <Toast position="bottom-right" group="br" /> -->
     <div
       class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
       style="
@@ -233,7 +229,7 @@ export default {
           const token = res.data.token;
           const expired = res.data.expired;
           document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
-          router.push("/test");
+          router.push("/dashboard");
         }
       } catch (e) {
         // toast.add({
