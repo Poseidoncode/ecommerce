@@ -19,28 +19,28 @@ export default {
             key: "0_0",
             label: "New",
             icon: "pi pi-fw pi-plus",
-            items: [
-              {
-                key: "0_0_0",
-                label: "Bookmark",
-                icon: "pi pi-fw pi-bookmark",
-              },
-              {
-                key: "0_0_1",
-                label: "Video",
-                icon: "pi pi-fw pi-video",
-              },
-            ],
+            // items: [
+            //   {
+            //     key: "0_0_0",
+            //     label: "Bookmark",
+            //     icon: "pi pi-fw pi-bookmark",
+            //   },
+            //   {
+            //     key: "0_0_1",
+            //     label: "Video",
+            //     icon: "pi pi-fw pi-video",
+            //   },
+            // ],
           },
           {
             key: "0_1",
-            label: "Delete",
-            icon: "pi pi-fw pi-trash",
+            label: "View",
+            icon: "pi pi-fw pi-external-link",
           },
           {
             key: "0_2",
-            label: "Export",
-            icon: "pi pi-fw pi-external-link",
+            label: "Delete",
+            icon: "pi pi-fw pi-trash",
           },
         ],
       },
