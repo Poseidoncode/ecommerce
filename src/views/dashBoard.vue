@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <PanelMenu :model="items" />
+  <div class="main-content">
+    <div class="left-bar"><PanelMenu :model="items" /></div>
+
+    <router-view class="right-content"></router-view>
   </div>
 </template>
 
@@ -149,7 +151,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.p-panelmenu {
-  width: 22rem;
+// .p-panelmenu {
+//   width: 22rem;
+// }
+.main-content {
+  display: flex;
+  .left-bar {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    left: 0;
+    // background: black;
+    box-shadow: 0px 10px 40px rgb(41 50 65 / 6%);
+  }
+  .right-content {
+    padding-left: 160px;
+  }
 }
 </style>

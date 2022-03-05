@@ -1,6 +1,6 @@
 <template>
   <!-- <Layout> -->
-  <router-view class="overflow-y-auto" />
+  <router-view />
   <!-- </Layout> -->
 </template>
 

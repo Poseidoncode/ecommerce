@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import store from "../store";
 import Home from "@/App.vue";
+import Dashboard from "@/views/dashBoard.vue";
 const routes = [
   {
     path: "/",
@@ -10,7 +11,8 @@ const routes = [
       keepAlive: true,
       name: "Home",
     },
-    component: Home,
+    component: () => import("@/views/Login.vue"),
+    // component: Home,
   },
   {
     path: "/login",
@@ -19,8 +21,18 @@ const routes = [
   },
   {
     path: "/dashboard",
-    name: "dashboard",
     component: () => import("@/views/dashBoard.vue"),
+    name: "dashboard",
+    redirect: "/dashboard/products",
+    meta: { title: "後臺管理" },
+    children: [
+      {
+        path: "products",
+        component: () => import("@/views/dashboard/products.vue"),
+        name: "products",
+        meta: { title: "產品資料設定" },
+      },
+    ],
   },
 ];
 
