@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">功能代碼</span>
+          <span class="p-inputgroup-addon">產品代碼</span>
           <InputText
             type="text"
             v-model="selectedNo"
@@ -30,7 +30,7 @@
           />
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">功能名稱</span>
+          <span class="p-inputgroup-addon">產品名稱</span>
           <InputText
             type="text"
             v-model="selectedName"
@@ -60,28 +60,14 @@
           style="background: #f9be4a"
           @click="showEditModal(1)"
         >
-          +新增功能
+          +新增產品
         </button>
       </div>
     </section>
 
     <header class="dtc-grid my-dark">
-      <div
-        v-for="(item, i) in headers"
-        :key="`headers${i}`"
-        @click="sortData(item)"
-        class="header"
-      >
+      <div v-for="(item, i) in headers" :key="`headers${i}`" class="header">
         {{ item.name }}
-        <span v-show="item.sortDesc === null" v-if="item.key">
-          <i class="pi pi-sort"></i>
-        </span>
-        <span v-show="item.sortDesc === false" v-if="item.key">
-          <i class="pi pi-caret-up"></i>
-        </span>
-        <span v-show="item.sortDesc" v-if="item.key">
-          <i class="pi pi-caret-down"></i>
-        </span>
       </div>
     </header>
     <main
@@ -99,37 +85,66 @@
         <button
           class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-2 mb-1 text-sm"
           type="button"
-          style="background: #2a97f0"
+          style="background: #0d4a9e"
           @click="showEditModal(2, item)"
         >
-          編輯功能
+          編輯
         </button>
         <button
           class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 text-sm"
           type="button"
-          style="background: #fc5792"
+          style="background: #218be1"
           @click="showEditModal(3, item)"
         >
-          刪除功能
+          刪除
         </button>
       </div>
 
-      <div class="content">
-        {{ item.No || "" }}
+      <div class="content" :title="item.category">
+        {{ item.category || "" }}
       </div>
-      <div class="content">
-        {{ item.Name || "" }}
+      <div class="content" :title="item.content">
+        {{ item.content || "" }}
       </div>
-      <div class="content">
-        {{ item.Seq || "" }}
+      <div class="content" :title="item.description">
+        {{ item.description || "" }}
       </div>
-      <div class="content" style="padding-top: 0px">
+      <div class="content" :title="item.imageUrl">
+        {{ item.imageUrl || "" }}
+      </div>
+      <div class="content" :title="item.imagesUrl">
+        {{ item.imagesUrl || "" }}
+      </div>
+      <div class="content" :title="item.is_enabled">
+        <Checkbox
+          :binary="true"
+          v-model="item.is_enabled"
+          @change="changeActivate(item)"
+        />
+      </div>
+      <div class="content" :title="item.num">
+        {{ item.num || "" }}
+      </div>
+      <div class="content" :title="item.origin_price">
+        {{ item.origin_price || "" }}
+      </div>
+      <div class="content" :title="item.price">
+        {{ item.price || "" }}
+      </div>
+      <div class="content" :title="item.title">
+        {{ item.title || "" }}
+      </div>
+      <div class="content" :title="item.unit">
+        {{ item.unit || "" }}
+      </div>
+
+      <!-- <div class="content" style="padding-top: 0px">
         <Checkbox
           :binary="true"
           v-model="item.IsActivated"
           @change="changeActivate(item)"
         />
-      </div>
+      </div> -->
     </main>
     <main
       v-if="!items.length"
@@ -159,16 +174,16 @@
       <template #header>
         <h3>
           {{
-            nowType == 1 ? "新增功能" : nowType == 2 ? "編輯功能" : "刪除功能"
+            nowType == 1 ? "新增產品" : nowType == 2 ? "編輯產品" : "刪除產品"
           }}
         </h3>
       </template>
       <section>
         <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          是否確定要刪除此功能?
+          是否確定要刪除此產品?
         </h2>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">功能代碼</span>
+          <span class="p-inputgroup-addon red-star">產品代碼</span>
           <InputText
             type="text"
             v-model.trim="modalItem.No"
@@ -177,7 +192,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">功能名稱</span>
+          <span class="p-inputgroup-addon red-star">產品名稱</span>
           <InputText
             type="text"
             v-model.trim="modalItem.Name"
@@ -244,10 +259,17 @@ export default defineComponent({
     //for list
     const headers = ref([
       { name: "操作", key: "", sortDesc: null },
-      { name: "功能代碼", key: "No", sortDesc: null },
-      { name: "功能名稱", key: "Name", sortDesc: null },
-      { name: "顯示順序", key: "Seq", sortDesc: null },
-      { name: "啟用狀態", key: "IsActivated", sortDesc: null },
+      { name: "分類", key: "category", sortDesc: null }, //必填
+      { name: "說明", key: "content", sortDesc: null },
+      { name: "描述", key: "description", sortDesc: null },
+      { name: "主圖", key: "imageUrl", sortDesc: null },
+      { name: "其他圖片", key: "imagesUrl", sortDesc: null },
+      { name: "是否啟用", key: "is_enabled", sortDesc: null },
+      { name: "數量", key: "num", sortDesc: null },
+      { name: "原價", key: "origin_price", sortDesc: null }, //必填
+      { name: "售價", key: "price", sortDesc: null }, //必填
+      { name: "標題", key: "title", sortDesc: null }, //必填
+      { name: "單位", key: "unit", sortDesc: null }, //必填
     ]);
 
     const items = ref([]);
@@ -307,10 +329,11 @@ export default defineComponent({
         //top:筆數、skip:跳過幾筆
 
         const res = await getProducts(`${qs}`);
+
         console.log("res", res);
         // let { Items, Count } = res.data;
 
-        // items.value = [...Items];
+        items.value = [...res.data?.products];
         // totalItemsCount.value = Count;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
@@ -399,7 +422,7 @@ export default defineComponent({
 
     async function saveEditModal() {
       if (!Boolean(modalItem.value.No) || !Boolean(modalItem.value.Name)) {
-        toast.error(`功能代碼和功能名稱為必填欄位`, {
+        toast.error(`產品代碼和產品名稱為必填欄位`, {
           timeout: 4000,
           hideProgressBar: true,
         });
@@ -460,7 +483,7 @@ export default defineComponent({
       };
       try {
         // await modifyFunctionItem(obj);
-        toast.success("功能調整成功", {
+        toast.success("產品調整成功", {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -553,7 +576,7 @@ export default defineComponent({
 }
 .dtc-grid {
   display: grid;
-  grid-template-columns: 244px 1fr 1fr 1fr 1fr;
+  grid-template-columns: 180px repeat(11, 1fr);
 
   text-align: center;
 

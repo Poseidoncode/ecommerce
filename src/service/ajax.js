@@ -7,8 +7,6 @@ export default function ajax({ url, method = "get", data = null }) {
   return new Promise((resolve, reject) => {
     let headers = Object.assign({
       "Content-Type": "application/json",
-      // dateTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-      // 'timeZoneCode': Math.round(new Date().getTimezoneOffset() / 60),
       Authorization: `${
         sessionStorage.getItem("token")
           ? sessionStorage.getItem("token").replace(/\"/g, "")

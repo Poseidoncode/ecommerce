@@ -155,7 +155,7 @@ export default {
 //   width: 22rem;
 // }
 .main-content {
-  display: flex;
+  // display: flex;
   .left-bar {
     height: 100%;
     position: fixed;
