@@ -229,6 +229,7 @@ export default {
           const token = res.data.token;
           const expired = res.data.expired;
           document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
+          sessionStorage.setItem("token", JSON.stringify(token));
           router.push("/dashboard");
         }
       } catch (e) {
