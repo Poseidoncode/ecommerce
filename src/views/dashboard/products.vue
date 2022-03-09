@@ -246,7 +246,7 @@
         </div>
         <div
           class="p-inputgroup mt-2"
-          v-for="(item, i) in modalItem.imagesUrl"
+          v-for="(item, i) in modalItem.imagesArr"
           :key="`headers${i}`"
         >
           <span class="p-inputgroup-addon">輸入圖片網址 {{ i + 1 }}</span>
@@ -456,13 +456,16 @@ export default defineComponent({
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
+        modalItem.value.imagesArr = item.imagesUrl.map((s) => ({
+          url: s,
+        }));
       } else {
         modalItem.value = {
           category: "",
           content: "",
           description: "",
           imageUrl: "",
-          imagesUrl: imgArr,
+          imagesArr: imgArr,
           is_enabled: true,
           num: 0,
           origin_price: 0,
