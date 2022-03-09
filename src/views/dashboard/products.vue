@@ -65,13 +65,13 @@
       </div>
     </section>
 
-    <header class="dtc-grid my-dark">
+    <header class="ecommerce-grid my-dark">
       <div v-for="(item, i) in headers" :key="`headers${i}`" class="header">
         {{ item.name }}
       </div>
     </header>
     <main
-      class="dtc-grid"
+      class="ecommerce-grid"
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
@@ -137,14 +137,6 @@
       <div class="content" :title="item.unit">
         {{ item.unit || "" }}
       </div>
-
-      <!-- <div class="content" style="padding-top: 0px">
-        <Checkbox
-          :binary="true"
-          v-model="item.IsActivated"
-          @change="changeActivate(item)"
-        />
-      </div> -->
     </main>
     <main
       v-if="!items.length"
@@ -166,7 +158,7 @@
     <!-- //EditModal -->
     <Dialog
       v-model:visible="editModal"
-      style="width: 800px"
+      style="width: 85vw"
       :draggable="false"
       :modal="true"
       class="custom-modal"
@@ -178,46 +170,99 @@
           }}
         </h3>
       </template>
-      <section>
+      <section class="modal-main-content">
+        <!-- {{ modalItem }} -->
         <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
           是否確定要刪除此產品?
         </h2>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">產品代碼</span>
+          <span class="p-inputgroup-addon red-star">標題</span>
           <InputText
             type="text"
-            v-model.trim="modalItem.No"
-            :disabled="nowType == 2 || nowType == 3"
+            v-model.trim="modalItem.title"
+            :disabled="nowType == 3"
             class="custom-search"
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">產品名稱</span>
-          <InputText
-            type="text"
-            v-model.trim="modalItem.Name"
+          <span class="p-inputgroup-addon red-star">描述</span>
+          <Textarea
+            v-model.trim="modalItem.description"
             class="custom-search"
             :disabled="nowType == 3"
-            autofocus
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">顯示順序</span>
+          <span class="p-inputgroup-addon red-star">說明</span>
+          <Textarea
+            v-model.trim="modalItem.content"
+            class="custom-search"
+            :disabled="nowType == 3"
+          />
+        </div>
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon red-star">分類</span>
+          <InputText
+            v-model.trim="modalItem.category"
+            class="custom-search"
+            :disabled="nowType == 3"
+          />
+        </div>
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon red-star">單位</span>
+          <InputText
+            v-model.trim="modalItem.unit"
+            class="custom-search"
+            :disabled="nowType == 3"
+          />
+        </div>
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon red-star">原價</span>
           <InputText
             type="Number"
-            v-model.trim="modalItem.Seq"
+            v-model.trim="modalItem.origin_price"
             class="custom-search"
             :disabled="nowType == 3"
-            autofocus
+          />
+        </div>
+
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon red-star">售價</span>
+          <InputText
+            type="Number"
+            v-model.trim="modalItem.price"
+            class="custom-search"
+            :disabled="nowType == 3"
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon special-addon">啟用狀態</span>
-          <Checkbox
-            :binary="true"
-            v-model="modalItem.IsActivated"
-            style="margin-left: 8px !important; margin-top: 8px !important"
+          <span class="p-inputgroup-addon">主圖網址</span>
+          <InputText
+            type="Number"
+            v-model.trim="modalItem.imageUrl"
+            class="custom-search"
             :disabled="nowType == 3"
+          />
+        </div>
+        <div
+          class="p-inputgroup mt-2"
+          v-for="(item, i) in modalItem.imagesUrl"
+          :key="`headers${i}`"
+        >
+          <span class="p-inputgroup-addon">輸入圖片網址 {{ i + 1 }}</span>
+          <InputText
+            v-model="item.url"
+            class="custom-search"
+            :disabled="nowType == 3"
+          />
+        </div>
+
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon">是否啟用</span>
+          <Checkbox
+            style="margin: 12px 0 0 10px"
+            :binary="true"
+            v-model="modalItem.is_enabled"
           />
         </div>
       </section>
@@ -405,22 +450,32 @@ export default defineComponent({
 
     function showEditModal(type, item) {
       //type- 1新增、2編輯、3刪除
+      let imgArr = new Array(5).fill().map((s) => ({
+        url: "",
+      }));
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
       } else {
         modalItem.value = {
-          No: "",
-          Name: "",
-          Seq: "",
-          IsActivated: true,
+          category: "",
+          content: "",
+          description: "",
+          imageUrl: "",
+          imagesUrl: imgArr,
+          is_enabled: true,
+          num: 0,
+          origin_price: 0,
+          price: 0,
+          title: "",
+          unit: "",
         };
       }
       nowType.value = type;
       editModal.value = true;
     }
 
-    async function saveEditModal() {
+    const saveEditModal = async () => {
       if (!Boolean(modalItem.value.No) || !Boolean(modalItem.value.Name)) {
         toast.error(`產品代碼和產品名稱為必填欄位`, {
           timeout: 4000,
@@ -473,7 +528,7 @@ export default defineComponent({
       }
       getData();
       editModal.value = false;
-    }
+    };
 
     async function changeActivate(item) {
       const obj = {
@@ -560,21 +615,19 @@ export default defineComponent({
 
 .p-inputgroup-addon {
   width: 135px;
-  background: #f1f9e7;
-  color: #1f2d56;
+  background: #3b86f2;
+  color: #ffffff;
   font-weight: bold;
   border: 0px !important;
 }
-.special-addon {
-  border-right: 0.5px solid #dbdcdd;
-}
+
 .custom-search {
   // height: 42px;
 }
 .p-dropdown {
   line-height: 12px;
 }
-.dtc-grid {
+.ecommerce-grid {
   display: grid;
   grid-template-columns: 180px repeat(11, 1fr);
 
@@ -613,9 +666,15 @@ export default defineComponent({
   }
 }
 
+.modal-main-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+}
+
 .my-dark {
   > div {
-    background: #e9e9e9;
+    background: #e0fbfc;
     color: #f3f3f3;
     font-weight: bolder;
   }

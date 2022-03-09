@@ -35,7 +35,7 @@ export default (app) => {
   app.component("RadioButton", RadioButton);
   app.component("MultiSelect", MultiSelect);
   app.component("AutoComplete", AutoComplete);
-  app.component("Textareaprime", Textarea);
+  app.component("Textarea", Textarea);
   app.component("DataTable", DataTable);
   app.component("Column", Column);
   app.component("InputNumber", InputNumber);
