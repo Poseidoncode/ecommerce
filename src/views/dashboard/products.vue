@@ -100,15 +100,28 @@
         </button>
       </div>
 
-      <div class="content" :title="item.category">
-        {{ item.category || "" }}
-      </div>
-      <div class="content" :title="item.content">
-        {{ item.content || "" }}
+      <div class="content" :title="item.title">
+        {{ item.title || "" }}
       </div>
       <div class="content" :title="item.description">
         {{ item.description || "" }}
       </div>
+      <div class="content" :title="item.content">
+        {{ item.content || "" }}
+      </div>
+      <div class="content" :title="item.category">
+        {{ item.category || "" }}
+      </div>
+      <div class="content" :title="item.unit">
+        {{ item.unit || "" }}
+      </div>
+      <div class="content" :title="item.origin_price">
+        {{ item.origin_price || "" }}
+      </div>
+      <div class="content" :title="item.price">
+        {{ item.price || "" }}
+      </div>
+
       <div class="content" :title="item.imageUrl">
         {{ item.imageUrl || "" }}
       </div>
@@ -121,21 +134,6 @@
           v-model="item.is_enabled"
           @change="changeActivate(item)"
         />
-      </div>
-      <div class="content" :title="item.num">
-        {{ item.num || "" }}
-      </div>
-      <div class="content" :title="item.origin_price">
-        {{ item.origin_price || "" }}
-      </div>
-      <div class="content" :title="item.price">
-        {{ item.price || "" }}
-      </div>
-      <div class="content" :title="item.title">
-        {{ item.title || "" }}
-      </div>
-      <div class="content" :title="item.unit">
-        {{ item.unit || "" }}
       </div>
     </main>
     <main
@@ -265,12 +263,14 @@
             v-model="modalItem.is_enabled"
           />
         </div>
-        <div class="col-span-full flex justify-center">
+
+        <div class="col-span-full flex justify-center mt-2">
           <Galleria
+            :circular="true"
             :showItemNavigators="true"
             :value="modalItem.imagesArr"
             :responsiveOptions="responsiveOptions"
-            :numVisible="5"
+            :numVisible="6"
             containerStyle="max-width: 640px"
             :showThumbnails="false"
             :showIndicators="true"
@@ -302,7 +302,12 @@
 import { defineComponent, ref, onMounted, watch } from "vue";
 import { useToast } from "vue-toastification";
 
-import { getProducts } from "Service/apis.js";
+import {
+  getProducts,
+  postProducts,
+  deleteProducts,
+  putProducts,
+} from "Service/apis.js";
 // import buildQuery from "odata-query";
 // import {
 //   arrFilter,
@@ -323,17 +328,18 @@ export default defineComponent({
     //for list
     const headers = ref([
       { name: "操作", key: "", sortDesc: null },
-      { name: "分類", key: "category", sortDesc: null }, //必填
-      { name: "說明", key: "content", sortDesc: null },
+
+      { name: "標題", key: "title", sortDesc: null }, //必填
       { name: "描述", key: "description", sortDesc: null },
+      { name: "說明", key: "content", sortDesc: null },
+      { name: "分類", key: "category", sortDesc: null }, //必填
+      { name: "單位", key: "unit", sortDesc: null }, //必填
+      { name: "原價", key: "origin_price", sortDesc: null }, //必填
+      { name: "售價", key: "price", sortDesc: null }, //必填
+
       { name: "主圖", key: "imageUrl", sortDesc: null },
       { name: "其他圖片", key: "imagesUrl", sortDesc: null },
       { name: "是否啟用", key: "is_enabled", sortDesc: null },
-      { name: "數量", key: "num", sortDesc: null },
-      { name: "原價", key: "origin_price", sortDesc: null }, //必填
-      { name: "售價", key: "price", sortDesc: null }, //必填
-      { name: "標題", key: "title", sortDesc: null }, //必填
-      { name: "單位", key: "unit", sortDesc: null }, //必填
     ]);
 
     const items = ref([]);
@@ -365,7 +371,7 @@ export default defineComponent({
         const obj = { top, skip, orderBy };
         // let qs = buildQuery(obj);
         let bQs = false;
-        let qs = "";
+        let qs = "?page=1";
 
         // if (typeof selectedActivate.value === "boolean") {
         //   qs = equalNumFilter("IsActivated", qs, selectedActivate.value);
@@ -476,14 +482,22 @@ export default defineComponent({
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
-        modalItem.value.imagesArr = item.imagesUrl.map((s, i) => ({
-          url: s,
-          index: `網址${i + 1}`,
-        }));
-        modalItem.value.imagesArr.unshift({
-          url: item.imageUrl,
-          index: `主圖網址`,
-        });
+        if (item?.imagesUrl) {
+          modalItem.value.imagesArr = item.imagesUrl.map((s, i) => ({
+            url: s,
+            index: `網址${i + 1}`,
+          }));
+          modalItem.value.imagesArr.unshift({
+            url: item.imageUrl,
+            index: `主圖網址`,
+          });
+        } else {
+          modalItem.value.imagesArr = imgArr;
+          modalItem.value.imagesArr.unshift({
+            url: item.imageUrl,
+            index: `主圖網址`,
+          });
+        }
       } else {
         modalItem.value = {
           category: "",
@@ -492,7 +506,7 @@ export default defineComponent({
           imageUrl: "",
           imagesArr: imgArr,
           is_enabled: true,
-          num: 0,
+
           origin_price: 0,
           price: 0,
           title: "",
@@ -504,39 +518,32 @@ export default defineComponent({
     }
 
     const saveEditModal = async () => {
-      if (!Boolean(modalItem.value.No) || !Boolean(modalItem.value.Name)) {
-        toast.error(`產品代碼和產品名稱為必填欄位`, {
-          timeout: 4000,
-          hideProgressBar: true,
-        });
-        return;
-      }
-
-      if (+modalItem.value.Seq < 100 || +modalItem.value.Seq > 300) {
-        toast.error(`顯示順序數值只能介於100~300`, {
-          timeout: 4000,
-          hideProgressBar: true,
-        });
-        return;
-      }
+      // if (!Boolean(modalItem.value.No) || !Boolean(modalItem.value.Name)) {
+      //   toast.error(`產品代碼和產品名稱為必填欄位`, {
+      //     timeout: 4000,
+      //     hideProgressBar: true,
+      //   });
+      //   return;
+      // }
 
       const obj = {
-        No: modalItem.value.No,
-        Name: modalItem.value.Name,
-        Seq: +modalItem.value.Seq,
-        IsActivated: modalItem.value.IsActivated,
+        ...modalItem.value,
       };
+
+      obj.imagesUrl = obj.imagesArr.slice(1).map((s) => `${s.url}`);
+      obj.imageUrl = obj.imagesArr[0].url;
+      delete obj.imagesArr;
 
       try {
         // const res = await putInstitutionList(obj);
         if (nowType.value == 1) {
-          //   const res1 = await addFunctionItem(obj);
+          const res1 = await postProducts({ data: obj });
         }
         if (nowType.value == 2) {
-          //   const res2 = await modifyFunctionItem(obj);
+          const res2 = await putProducts({ data: obj }, obj.id);
         }
         if (nowType.value == 3) {
-          //   const res3 = await removeFunctionItem(modalItem.value.No);
+          const res3 = await deleteProducts(obj.id);
         }
 
         toast.success(
@@ -614,6 +621,7 @@ export default defineComponent({
 
     return {
       images,
+      responsiveOptions,
       //for list data variable
       headers,
       items,
@@ -692,7 +700,7 @@ export default defineComponent({
 }
 .ecommerce-grid {
   display: grid;
-  grid-template-columns: 180px repeat(11, 1fr);
+  grid-template-columns: 180px repeat(10, 1fr);
 
   text-align: center;
 
