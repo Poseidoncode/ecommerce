@@ -1,5 +1,5 @@
 <template>
-  <section class="dtc-main-section px-3">
+  <section class="main-section px-3">
     <section class="search-block">
       <h5 class="big-title">產品管理</h5>
       <div class="p-2 search-section">
@@ -175,7 +175,7 @@
         <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
           是否確定要刪除此產品?
         </h2>
-        <div class="p-inputgroup mt-2">
+        <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">標題</span>
           <InputText
             type="text"
@@ -184,7 +184,7 @@
             class="custom-search"
           />
         </div>
-        <div class="p-inputgroup mt-2">
+        <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">描述</span>
           <Textarea
             v-model.trim="modalItem.description"
@@ -192,7 +192,7 @@
             :disabled="nowType == 3"
           />
         </div>
-        <div class="p-inputgroup mt-2">
+        <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">說明</span>
           <Textarea
             v-model.trim="modalItem.content"
@@ -238,18 +238,18 @@
         <div class="p-inputgroup mt-2">
           <span class="p-inputgroup-addon">主圖網址</span>
           <InputText
-            type="Number"
-            v-model.trim="modalItem.imageUrl"
+            v-model.trim="modalItem.imagesArr[0].url"
             class="custom-search"
             :disabled="nowType == 3"
           />
         </div>
         <div
           class="p-inputgroup mt-2"
-          v-for="(item, i) in modalItem.imagesArr"
+          v-for="(item, i) in modalItem.imagesArr.slice(1)"
           :key="`headers${i}`"
         >
           <span class="p-inputgroup-addon">輸入圖片網址 {{ i + 1 }}</span>
+
           <InputText
             v-model="item.url"
             class="custom-search"
@@ -264,6 +264,25 @@
             :binary="true"
             v-model="modalItem.is_enabled"
           />
+        </div>
+        <div class="col-span-full flex justify-center">
+          <Galleria
+            :showItemNavigators="true"
+            :value="modalItem.imagesArr"
+            :responsiveOptions="responsiveOptions"
+            :numVisible="5"
+            containerStyle="max-width: 640px"
+            :showThumbnails="false"
+            :showIndicators="true"
+          >
+            <template #item="slotProps">
+              <img
+                :src="slotProps.item.url"
+                style="width: 100%; display: block"
+                :title="slotProps.item.index"
+              />
+            </template>
+          </Galleria>
         </div>
       </section>
 
@@ -450,15 +469,21 @@ export default defineComponent({
 
     function showEditModal(type, item) {
       //type- 1新增、2編輯、3刪除
-      let imgArr = new Array(5).fill().map((s) => ({
+      let imgArr = new Array(6).fill().map((s, i) => ({
         url: "",
+        index: `網址${i + 1}`,
       }));
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
-        modalItem.value.imagesArr = item.imagesUrl.map((s) => ({
+        modalItem.value.imagesArr = item.imagesUrl.map((s, i) => ({
           url: s,
+          index: `網址${i + 1}`,
         }));
+        modalItem.value.imagesArr.unshift({
+          url: item.imageUrl,
+          index: `主圖網址`,
+        });
       } else {
         modalItem.value = {
           category: "",
@@ -553,7 +578,42 @@ export default defineComponent({
       }
     }
 
+    const images = ref([
+      {
+        itemImageSrc:
+          "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+        thumbnailImageSrc:
+          "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+        alt: "Description for Image 1",
+        title: "Title 1",
+      },
+      {
+        itemImageSrc:
+          "https://www.primefaces.org/primevue/demo/images/galleria/galleria2.jpg",
+        thumbnailImageSrc:
+          "https://www.primefaces.org/primevue/demo/images/galleria/galleria2s.jpg",
+        alt: "Description for Image 2",
+        title: "Title 2",
+      },
+    ]);
+
+    const responsiveOptions = ref([
+      {
+        breakpoint: "1024px",
+        numVisible: 5,
+      },
+      {
+        breakpoint: "768px",
+        numVisible: 3,
+      },
+      {
+        breakpoint: "560px",
+        numVisible: 1,
+      },
+    ]);
+
     return {
+      images,
       //for list data variable
       headers,
       items,

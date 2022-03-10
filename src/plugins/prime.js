@@ -19,6 +19,7 @@ import PanelMenu from "primevue/panelmenu";
 import InputNumber from "primevue/inputnumber";
 import Password from "primevue/password";
 import PrimeVue from "primevue/config";
+import Galleria from "primevue/galleria";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -40,6 +41,7 @@ export default (app) => {
   app.component("Column", Column);
   app.component("InputNumber", InputNumber);
   app.component("Password", Password);
+  app.component("Galleria", Galleria);
   // .use(ToastService);
   app.use(PrimeVue);
   return app;
