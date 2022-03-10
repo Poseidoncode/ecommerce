@@ -280,7 +280,17 @@
                 :src="slotProps.item.url"
                 style="width: 100%; display: block"
                 :title="slotProps.item.index"
+                v-if="
+                  !!slotProps.item.url &&
+                  (`${slotProps.item.url}.`.includes('jpg') ||
+                    `${slotProps.item.url}.`.includes('png') ||
+                    `${slotProps.item.url}.`.includes('jpeg'))
+                "
               />
+              <div
+                v-else
+                style="width: 500px; height: 310px; border: 1px solid #e1e0e0"
+              ></div>
             </template>
           </Galleria>
         </div>
@@ -585,24 +595,7 @@ export default defineComponent({
       }
     }
 
-    const images = ref([
-      {
-        itemImageSrc:
-          "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-        thumbnailImageSrc:
-          "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-        alt: "Description for Image 1",
-        title: "Title 1",
-      },
-      {
-        itemImageSrc:
-          "https://www.primefaces.org/primevue/demo/images/galleria/galleria2.jpg",
-        thumbnailImageSrc:
-          "https://www.primefaces.org/primevue/demo/images/galleria/galleria2s.jpg",
-        alt: "Description for Image 2",
-        title: "Title 2",
-      },
-    ]);
+    const images = ref("");
 
     const responsiveOptions = ref([
       {
