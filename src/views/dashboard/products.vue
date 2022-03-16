@@ -280,12 +280,7 @@
                 :src="slotProps.item.url"
                 style="width: 100%; display: block"
                 :title="slotProps.item.index"
-                v-if="
-                  !!slotProps.item.url &&
-                  (`${slotProps.item.url}.`.includes('jpg') ||
-                    `${slotProps.item.url}.`.includes('png') ||
-                    `${slotProps.item.url}.`.includes('jpeg'))
-                "
+                v-if="!!slotProps.item.url"
               />
               <div
                 v-else
