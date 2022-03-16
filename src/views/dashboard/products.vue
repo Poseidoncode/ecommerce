@@ -261,6 +261,7 @@
             style="margin: 12px 0 0 10px"
             :binary="true"
             v-model="modalItem.is_enabled"
+            @change="setStatus(item)"
           />
         </div>
 
@@ -313,17 +314,6 @@ import {
   deleteProducts,
   putProducts,
 } from "Service/apis.js";
-// import buildQuery from "odata-query";
-// import {
-//   arrFilter,
-//   appendArrFilter,
-//   substringofFilter,
-//   appendSubstringofFilter,
-//   equalFilter,
-//   appendEqualFilter,
-//   equalNumFilter,
-//   appendEqualNumFilter,
-// } from "Service/searchFunction.js";
 
 export default defineComponent({
   name: "function",
@@ -377,29 +367,6 @@ export default defineComponent({
         // let qs = buildQuery(obj);
         let bQs = false;
         let qs = "?page=1";
-
-        // if (typeof selectedActivate.value === "boolean") {
-        //   qs = equalNumFilter("IsActivated", qs, selectedActivate.value);
-        //   bQs = true;
-        // }
-
-        // if (selectedNo.value) {
-        //   if (bQs) {
-        //     qs = appendSubstringofFilter("No", qs, selectedNo.value);
-        //   } else {
-        //     qs = substringofFilter("No", qs, selectedNo.value);
-        //   }
-        //   bQs = true;
-        // }
-
-        // if (selectedName.value) {
-        //   if (bQs) {
-        //     qs = appendSubstringofFilter("Name", qs, selectedName.value);
-        //   } else {
-        //     qs = substringofFilter("Name", qs, selectedName.value);
-        //   }
-        //   bQs = true;
-        // }
 
         //top:筆數、skip:跳過幾筆
 
@@ -570,6 +537,17 @@ export default defineComponent({
       editModal.value = false;
     };
 
+    const setStatus = (item) => {
+      const obj = {
+        ...item,
+      };
+      const res2 = await putProducts({ data: obj }, obj.id);
+      toast.success(`編輯成功`, {
+        timeout: 2000,
+        hideProgressBar: true,
+      });
+    };
+
     async function changeActivate(item) {
       const obj = {
         No: item.No,
@@ -642,6 +620,7 @@ export default defineComponent({
       //editModal Function
       showEditModal,
       saveEditModal,
+      setStatus,
 
       changeActivate,
     };
