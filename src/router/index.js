@@ -8,8 +8,6 @@ const routes = [
     name: "Home",
     meta: {
       title: "home page",
-      keepAlive: true,
-      name: "Home",
     },
     component: () => import("@/views/Login.vue"),
     // component: Home,
@@ -33,6 +31,16 @@ const routes = [
         meta: { title: "產品資料設定" },
       },
     ],
+  },
+  {
+    path: "/home",
+    name: "home",
+    meta: {
+      title: "home page",
+      name: "home",
+    },
+    component: () => import("@/views/landingpage.vue"),
+    // component: Home,
   },
 ];
 
