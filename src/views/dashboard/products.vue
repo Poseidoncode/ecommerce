@@ -537,7 +537,7 @@ export default defineComponent({
       editModal.value = false;
     };
 
-    const setStatus = (item) => {
+    const setStatus = async (item) => {
       const obj = {
         ...item,
       };
