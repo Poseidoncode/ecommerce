@@ -1,4 +1,4 @@
-<template></template>
+<template>123555</template>
 <script>
 import { inject, ref, defineComponent } from "vue";
 

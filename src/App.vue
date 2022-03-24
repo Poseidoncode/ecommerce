@@ -1,14 +1,15 @@
 <template>
   <!-- <Layout> -->
-  123
+  <headercart></headercart>
   <router-view />
   <!-- </Layout> -->
 </template>
 
 <script>
-// import Layout from "./components/layout/index.vue";
+import headercart from "@/components/cartHeader.vue";
+
 export default {
-  components: {},
+  components: { headercart },
   setup() {
     return {};
   },
