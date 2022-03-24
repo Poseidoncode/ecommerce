@@ -1,10 +1,10 @@
 <template>
   <div class="bg-white main-content">
-    <header class="header-content">
+    <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
       <div class="container mx-auto px-6 py-3">
         <div class="flex items-center justify-between">
           <div class="hidden w-full text-gray-600 md:flex md:items-center">
-            <svg
+            <!-- <svg
               class="h-5 w-5"
               viewBox="0 0 24 24"
               fill="none"
@@ -22,7 +22,7 @@
                 d="M5.79417 16.5183C2.19424 13.0909 2.05438 7.39409 5.48178 3.79417C8.90918 0.194243 14.6059 0.054383 18.2059 3.48178C21.8058 6.90918 21.9457 12.6059 18.5183 16.2059L12.3124 22.7241L5.79417 16.5183ZM17.0698 14.8268L12.243 19.8965L7.17324 15.0698C4.3733 12.404 4.26452 7.97318 6.93028 5.17324C9.59603 2.3733 14.0268 2.26452 16.8268 4.93028C19.6267 7.59603 19.7355 12.0268 17.0698 14.8268Z"
                 fill="currentColor"
               />
-            </svg>
+            </svg> -->
             <!-- <span class="mx-1 text-sm">NY</span> -->
           </div>
           <div
@@ -99,7 +99,7 @@
             >
           </div>
         </nav>
-        <div class="relative mt-6 max-w-lg mx-auto">
+        <!-- <div class="relative mt-6 max-w-lg mx-auto">
           <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
             <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
               <path
@@ -117,7 +117,7 @@
             type="text"
             placeholder="Search"
           />
-        </div>
+        </div> -->
       </div>
     </header>
     <section>
@@ -768,6 +768,7 @@ export default {
   setup() {
     const isOpen = ref(false);
     const cartOpen = ref(false);
+    const scrollIsZero = ref(false);
 
     // const windowscrollyData = computed(() => window.scrollY);
 
@@ -784,11 +785,17 @@ export default {
         "document.body.scrollHeight",
         document.body.scrollHeight
       );
+
+      if (window.scrollY == 0) {
+        scrollIsZero.value = true;
+      } else {
+        scrollIsZero.value = false;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, true);
     // window.addEventListener("scroll", handleScroll());
-    return { isOpen, cartOpen, handleScroll };
+    return { isOpen, cartOpen, handleScroll, scrollIsZero };
   },
 };
 </script>
@@ -800,6 +807,11 @@ export default {
     position: fixed;
     top: 0;
     width: 100%;
+  }
+  .addBg {
+    background: #fff;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+      rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   }
 }
 </style>
