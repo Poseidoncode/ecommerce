@@ -9,7 +9,7 @@ const routes = [
     meta: {
       title: "home page",
     },
-    component: () => import("@/views/Login.vue"),
+    component: () => import("@/views/landingpage.vue"),
     // component: Home,
   },
   {

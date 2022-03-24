@@ -763,14 +763,33 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 export default {
-  data() {
+  setup() {
     const isOpen = ref(false);
     const cartOpen = ref(false);
-    return { isOpen, cartOpen };
+
+    // const windowscrollyData = computed(() => window.scrollY);
+
+    const handleScroll = () => {
+      //垂直位移量 + 可見螢幕高度 ≥ 網頁內文高度
+      // if (window.scrollY + window.screen.height >= document.body.scrollHeight) {
+      //   alert(123);
+      // }
+      console.log(
+        "window.scrollY",
+        window.scrollY,
+        " window.screen.height",
+        window.screen.height,
+        "document.body.scrollHeight",
+        document.body.scrollHeight
+      );
+    };
+
+    window.addEventListener("scroll", handleScroll, true);
+    // window.addEventListener("scroll", handleScroll());
+    return { isOpen, cartOpen, handleScroll };
   },
-  mounted() {},
 };
 </script>
 
