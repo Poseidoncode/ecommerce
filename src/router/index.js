@@ -9,7 +9,7 @@ const routes = [
     meta: {
       title: "home page",
     },
-    redirect: "/home",
+    // redirect: "/home",
     component: () => import("@/views/landingpage.vue"),
     // component: Home,
   },
@@ -33,16 +33,16 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/home",
-    name: "home",
-    meta: {
-      title: "home page",
-      name: "home",
-    },
-    component: () => import("@/views/landingpage.vue"),
-    // component: Home,
-  },
+  // {
+  //   path: "/home",
+  //   name: "home",
+  //   meta: {
+  //     title: "home page",
+  //     name: "home",
+  //   },
+  //   component: () => import("@/views/landingpage.vue"),
+  //   // component: Home,
+  // },
 ];
 
 const router = createRouter({

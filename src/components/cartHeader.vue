@@ -1,5 +1,8 @@
 <template>
-  <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
+  <header
+    class="header-content"
+    :class="!scrollIsZero || $route.name != 'Home' ? 'addBg' : ''"
+  >
     <div class="container mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
         <div class="hidden w-full text-gray-600 md:flex md:items-center">
@@ -33,11 +36,31 @@
 
         <div class="flex items-center justify-end w-full">
           <button
-            @click="cartOpen = !cartOpen"
-            class="text-gray-600 focus:outline-none mx-4 sm:mx-0"
+            @click="$router.push('/login')"
+            style="margin-right: 8px"
+            class="text-gray-400 focus:outline-none mx-8 sm:mx-0"
+            :class="!scrollIsZero ? 'text-gray-600' : ''"
           >
             <svg
-              class="h-5 w-5"
+              class="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+          <button
+            @click="cartOpen = !cartOpen"
+            class="text-gray-400 focus:outline-none mx-4 sm:mx-0"
+            :class="!scrollIsZero ? 'text-gray-600' : ''"
+          >
+            <svg
+              class="h-6 w-6"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
