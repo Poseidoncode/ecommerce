@@ -24,9 +24,13 @@
             </svg> -->
           <!-- <span class="mx-1 text-sm">NY</span> -->
         </div>
-        <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
-          Brand
+        <div
+          class="w-full text-gray-700 md:text-center text-2xl font-semibold flex justify-center"
+        >
+          <!-- Brand -->
+          <img class="mr-2" style="height: 78px" src="/assets/brandfinal.png" />
         </div>
+
         <div class="flex items-center justify-end w-full">
           <button
             @click="cartOpen = !cartOpen"
@@ -69,19 +73,19 @@
         class="sm:flex sm:justify-center sm:items-center mt-4"
       >
         <div class="flex flex-col sm:flex-row">
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >Home</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >Shop</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >Categories</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >Contact</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >About</a
           >
         </div>
@@ -336,7 +340,7 @@ export default defineComponent({
 });
 </script>
 <style scoped lang="scss"></style>
-<style>
+<style lang="scss">
 .header-content {
   position: fixed;
   top: 0;
@@ -347,5 +351,13 @@ export default defineComponent({
   background: #fff;
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
     rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  > div.container {
+    > nav {
+      a {
+        color: #4b5562 !important;
+      }
+    }
+  }
+  /* // header.addBg > div > nav > div > a:nth-child(5) */
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white main-content">
     <section>
-      <div class="bg-black text-white py-20">
+      <div class="text-white py-20 bg-setting">
         <div
           class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24"
         >
@@ -30,7 +30,7 @@
           <div
             class="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center"
           >
-            <div class="h-48 flex flex-wrap content-center">
+            <!-- <div class="h-48 flex flex-wrap content-center">
               <div>
                 <img
                   class="inline-block mt-28 hidden xl:block"
@@ -49,7 +49,7 @@
                   src="https://user-images.githubusercontent.com/54521023/116969939-c1d5f180-acd4-11eb-8ad4-9ab9143bdb50.png"
                 />
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -431,14 +431,24 @@
       </div>
     </main>
 
-    <footer class="bg-gray-200">
+    <footer
+      class="bg-gray-200"
+      style="font-family: Microsoft JhengHei, Helvetica"
+    >
       <div
         class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
         <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
-          >Brand</a
+          >Vigilero</a
         >
-        <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
+        <p class="py-2 text-gray-500 sm:py-0 text-sm">
+          本網站為Vigilero所有，未經允許不得以任何形式複製和採用，圖片僅供學習使用，無商業用途。<br />Copyright
+          © 2022 Vigilero All rights resevered.
+        </p>
+        <!-- <p class="py-2 text-gray-500 sm:py-0">
+          本網站為Vigilero權所有，未經允許不得以任何形式複製和採用，圖片僅供學習使用，無商業用途。Copyright
+          © 2022 Vigilero All rights resevered.
+        </p> -->
       </div>
     </footer>
   </div>
@@ -463,5 +473,13 @@ export default {
 <style lang="scss" scoped>
 .main-content {
   // position: relative;
+}
+.bg-setting {
+  // background: url("https://images.unsplash.com/photo-1617317376997-8748e6862c01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
+  background: url("https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
+    no-repeat;
+  // position: relative;
+  background-position: 50% 65%;
+  background-size: cover;
 }
 </style>
