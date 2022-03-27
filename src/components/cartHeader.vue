@@ -371,9 +371,16 @@ export default defineComponent({
 }
 
 .addBg {
-  background: #fff;
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
-    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  // background: #fff;
+  // -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(70%);
+  // backdrop-filter: blur(20px) saturate(170%) brightness(70%);
+  background-color: rgb(255 255 255 / 89%);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px
+    1px 1px 0px;
+  border-bottom: 1px solid #2d3858;
+  box-shadow: 0 0 10px rgb(4 7 14 / 80%);
   > div.container {
     > nav {
       a {
