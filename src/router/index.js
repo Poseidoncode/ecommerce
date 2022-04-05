@@ -5,17 +5,17 @@ import Dashboard from "@/views/dashBoard.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     meta: {
       title: "home page",
     },
     // redirect: "/home",
-    component: () => import("@/views/landingpage.vue"),
+    component: () => import("@/views/homePage.vue"),
     // component: Home,
   },
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: () => import("@/views/Login.vue"),
   },
   {
@@ -33,16 +33,16 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/home",
-  //   name: "home",
-  //   meta: {
-  //     title: "home page",
-  //     name: "home",
-  //   },
-  //   component: () => import("@/views/landingpage.vue"),
-  //   // component: Home,
-  // },
+  {
+    path: "/about",
+    name: "about",
+    meta: {
+      title: "about page",
+      name: "about",
+    },
+    component: () => import("@/views/about.vue"),
+    // component: Home,
+  },
 ];
 
 const router = createRouter({
