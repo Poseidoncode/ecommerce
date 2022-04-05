@@ -9,12 +9,12 @@
             class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8"
           >
             <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">
-              TechFest
+              Luxury
             </h1>
             <h2
               class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2"
             >
-              Space : The Timeless Infinity
+              Watches : The Timeless Infinity
             </h2>
             <p class="text-sm md:text-base text-gray-50 mb-4">
               Explore your favourite events and register now to showcase your
@@ -60,16 +60,15 @@
         <div
           class="h-64 rounded-md overflow-hidden bg-cover bg-center"
           style="
-            background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144');
+            background-image: url('https://images.unsplash.com/photo-1641471979402-0d40f068e06f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80');
           "
         >
           <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
             <div class="px-10 max-w-xl">
-              <h2 class="text-2xl text-white font-semibold">Sport Shoes</h2>
+              <h2 class="text-2xl text-white font-semibold">TAG Heuer</h2>
               <p class="mt-2 text-gray-400">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Tempore facere provident molestias ipsam sint voluptatum
-                pariatur.
+                The ultimate reference in luxury chronograph watches, TAG
+                Heuer's high-precision timing innovations since 1860.
               </p>
               <button
                 class="flex items-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
@@ -94,16 +93,18 @@
           <div
             class="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2"
             style="
-              background-image: url('https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
+              background-image: url('https://images.unsplash.com/photo-1600897425543-5369a38bd193?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1203&q=80');
             "
           >
             <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
               <div class="px-10 max-w-xl">
-                <h2 class="text-2xl text-white font-semibold">Back Pack</h2>
+                <h2 class="text-2xl text-white font-semibold">
+                  Patek Philippe
+                </h2>
                 <p class="mt-2 text-gray-400">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Tempore facere provident molestias ipsam sint voluptatum
-                  pariatur.
+                  Patek Philippe SA is a Swiss luxury watch and clock
+                  manufacturer founded in 1839, located in Canton of Geneva and
+                  the Vallée de Joux.
                 </p>
                 <button
                   class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
@@ -127,16 +128,15 @@
           <div
             class="w-full h-64 mt-8 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:mt-0 md:w-1/2"
             style="
-              background-image: url('https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+              background-image: url('https://images.unsplash.com/photo-1579172260981-30de4eabb80c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
             "
           >
             <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
               <div class="px-10 max-w-xl">
-                <h2 class="text-2xl text-white font-semibold">Games</h2>
+                <h2 class="text-2xl text-white font-semibold">Nordgreen</h2>
                 <p class="mt-2 text-gray-400">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Tempore facere provident molestias ipsam sint voluptatum
-                  pariatur.
+                  In the Nordic region, there’s a strong connection to nature
+                  and its ability to endure the challenges of time.
                 </p>
                 <button
                   class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
