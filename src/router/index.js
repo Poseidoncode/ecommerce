@@ -8,22 +8,26 @@ const routes = [
     name: "home",
     meta: {
       title: "home page",
+      needNav: true,
     },
     // redirect: "/home",
     component: () => import("@/views/homePage.vue"),
-    // component: Home,
   },
   {
     path: "/login",
     name: "login",
     component: () => import("@/views/Login.vue"),
+    meta: {
+      title: "home page",
+      needNav: false,
+    },
   },
   {
     path: "/dashboard",
     component: () => import("@/views/dashBoard.vue"),
     name: "dashboard",
     redirect: "/dashboard/products",
-    meta: { title: "後臺管理" },
+    meta: { title: "後臺管理", needNav: false },
     children: [
       {
         path: "products",
@@ -38,10 +42,16 @@ const routes = [
     name: "about",
     meta: {
       title: "about page",
-      name: "about",
     },
     component: () => import("@/views/about.vue"),
-    // component: Home,
+  },
+  {
+    path: "/news",
+    name: "news",
+    meta: {
+      title: "news page",
+    },
+    component: () => import("@/views/news.vue"),
   },
 ];
 

@@ -1,8 +1,8 @@
 <template>
-  <!-- <Layout> -->
-  <headercart></headercart>
+  <headercart v-if="$route.meta.needNav"></headercart>
+
   <router-view />
-  <!-- </Layout> -->
+  <div>123 {{ $route.meta.needNav }}</div>
 </template>
 
 <script>
