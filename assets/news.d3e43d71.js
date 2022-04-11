@@ -1,0 +1,1 @@
+import{_ as o}from"./index.e2620ad3.js";import{d as s}from"./vendor.33d75dc2.js";const t=s({props:{},setup(e,{emit:r}){return{}}});function n(e,r,p,d,a,c){return"123"}var i=o(t,[["render",n]]);export{i as default};
