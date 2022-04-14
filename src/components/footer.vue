@@ -1,6 +1,7 @@
 <template>
   <footer>
-    <div class="pt-8 bg-gradient-to-b from-gray-900 to-sky-900 md:pt-20">
+    <!-- <div class="pt-8 bg-gradient-to-b from-gray-900 to-sky-900 md:pt-20"> -->
+    <div class="pt-8 bg-gradient-to-b from-gray-100 to-sky-900 md:pt-20">
       <div
         class="container m-auto px-6 space-y-8 text-gray-400 md:px-12 lg:px-20"
       >
