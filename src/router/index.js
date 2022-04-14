@@ -42,6 +42,7 @@ const routes = [
     name: "about",
     meta: {
       title: "about page",
+      needNav: true,
     },
     component: () => import("@/views/about.vue"),
   },
@@ -62,6 +63,15 @@ const routes = [
       needNav: true,
     },
     component: () => import("@/views/article.vue"),
+  },
+  {
+    path: "/faq",
+    name: "faq",
+    meta: {
+      title: "faq page",
+      needNav: true,
+    },
+    component: () => import("@/views/faq.vue"),
   },
 ];
 

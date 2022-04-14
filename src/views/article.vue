@@ -106,10 +106,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.news {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -1,86 +1,347 @@
 <template>
-  <div class="w-full md:w-1/2">
-    <div
-      class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100"
-    >
-      <div class="rounded-t-lg bg-blueGray-800 mb-0 px-6 py-6">
-        <div class="text-center mb-3">
-          <h6 class="text-blueGray-300 text-sm font-bold">Signup with</h6>
-        </div>
-        <div class="text-center">
-          <a
-            href="javascript:;"
-            class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2 text-white bg-twitter-regular border-twitter-regular active:bg-twitter-active active:border-twitter-active text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"
-            ><i class="mr-1 fab fa-twitter"></i> twitter</a
-          ><a
-            href="javascript:;"
-            class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2 text-white bg-facebook-regular border-facebook-regular active:bg-facebook-active active:border-facebook-active text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"
-            ><i class="mr-1 fab fa-facebook"></i> facebook</a
-          >
-        </div>
+  <!-- component -->
+  <div class="2xl:container 2xl:mx-auto">
+    <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+
+    <div class="lg:px-20 md:px-6 px-4 md:py-12 py-8">
+      <div>
+        <h1
+          class="text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-white text-center dark:text-gray-50"
+        >
+          Top Selling
+        </h1>
       </div>
-      <div class="flex-auto px-4 lg:px-10 py-6">
-        <div class="text-blueGray-500 text-center mb-3 font-bold">
-          <small>Or Register with credentials</small>
-        </div>
-        <form>
-          <div class="relative w-full">
-            <label
-              class="block uppercase text-blueGray-700 text-xs font-bold mb-2 ml-1"
-              >Email</label
-            >
-            <div class="mb-3 pt-0">
-              <input
-                placeholder="Email"
-                type="email"
-                class="border-transparent shadow px-3 py-2 text-sm w-full placeholder-blueGray-200 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
-              />
-            </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 md:mt-10"
+      >
+        <div class="bg-gray-50 dark:bg-gray-800 p-8">
+          <div class="">
+            <h2 class="text-xl text-gray-600 dark:text-white">Lounge Chair</h2>
+            <p
+              class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+            ></p>
           </div>
-          <div class="relative w-full">
-            <label
-              class="block uppercase text-blueGray-700 text-xs font-bold mb-2 ml-1"
-              >Password</label
-            >
-            <div class="mb-3 pt-0">
-              <input
-                placeholder="Password"
-                type="password"
-                class="border-transparent shadow px-3 py-2 text-sm w-full placeholder-blueGray-200 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
-              />
-            </div>
+          <div class="flex justify-center items-center mt-8 md:mt-24">
+            <img
+              class=""
+              src="https://i.ibb.co/8403ZFZ/pexels-hormel-2762247-removebg-preview-2-1.png"
+              alt="A chair with designed back"
+              role="img"
+            />
           </div>
-          <div class="relative w-full">
-            <label
-              class="block uppercase text-blueGray-700 text-xs font-bold mb-2 ml-1"
-              >Password Confirmation</label
-            >
-            <div class="mb-3 pt-0">
-              <input
-                placeholder="Password again"
-                type="password"
-                class="border-transparent shadow px-3 py-2 text-sm w-full placeholder-blueGray-200 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
-              />
-            </div>
-          </div>
-          <div class="mt-2 inline-block">
-            <label class="inline-flex items-center cursor-pointer"
-              ><input
-                type="checkbox"
-                class="form-checkbox appearance-none ml-1 w-5 h-5 ease-linear transition-all duration-150 border border-blueGray-300 rounded checked:bg-blueGray-700 checked:border-blueGray-700 focus:border-blueGray-300"
-              /><span class="ml-2 text-sm font-semibold text-blueGray-500"
-                >Subscribe to Newsletter</span
-              ></label
-            >
-          </div>
-          <div class="text-center mt-6">
+          <div class="flex justify-end items-center space-x-2 mt-16 md:mt-32">
             <button
-              class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2 text-white bg-blueGray-800 border-blueGray-800 active:bg-blueGray-900 active:border-blueGray-900 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"
+              aria-label="show in red color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
             >
-              Register
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#DC2626"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="show in white color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="white"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="show in black color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#111827"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
             </button>
           </div>
-        </form>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-8">
+          <div class="">
+            <h2 class="text-xl text-gray-600 dark:text-white">Lounge Chair</h2>
+            <p
+              class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+            ></p>
+          </div>
+          <div class="flex justify-center items-center mt-8 md:mt-24">
+            <img
+              class=""
+              src="https://i.ibb.co/WBdnRqb/eugene-chystiakov-3ne-Swyntb-Q8-unsplash-1-removebg-preview-2-1.png"
+              alt="A chair with wooden legs"
+              role="img"
+            />
+          </div>
+          <div class="flex justify-end items-center space-x-2 mt-8 md:mt-24">
+            <button
+              aria-label="show in white color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="white"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="show in black color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#111827"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-8">
+          <div class="">
+            <h2 class="text-xl text-gray-600 dark:text-white">Lounge Chair</h2>
+            <p
+              class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+            ></p>
+          </div>
+          <div class="flex justify-center items-center mt-8 md:mt-24">
+            <img
+              class=""
+              src="https://i.ibb.co/R2fbCvj/kari-shea-It-Mgg-D0-Egu-Y-unsplash-removebg-preview-2-1.png"
+              alt="A sofa chair with wooden legs"
+              role="img"
+            />
+          </div>
+          <div class="flex justify-end items-center space-x-2 mt-16 md:mt-32">
+            <button
+              aria-label="show in green color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#047857"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="show in brown color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#92400E"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8 mt-4 md:mt-6 lg:mt-8"
+      >
+        <div class="bg-gray-50 dark:bg-gray-800 p-8">
+          <div>
+            <h2 class="text-xl leading-tight text-gray-600 dark:text-white">
+              Sectional Sofa
+            </h2>
+            <p
+              class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+            ></p>
+          </div>
+          <div class="flex justify-center items-center mt-28 md:mt-3">
+            <img
+              src="https://i.ibb.co/CPdBFwZ/pexels-pixabay-276583-removebg-preview-1-1.png"
+              alt="A large sectional sofa"
+              role="img"
+            />
+          </div>
+          <div class="flex justify-end items-center space-x-2 mt-36 md:mt-12">
+            <button
+              aria-label="show in yellow color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#F59E0B"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="show in light gray color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#9CA3AF"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-8">
+          <div>
+            <h2 class="text-xl leading-tight text-gray-600 dark:text-white">
+              Two Seater Sofa
+            </h2>
+            <p
+              class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+            ></p>
+          </div>
+          <div class="flex justify-center items-center mt-28 md:mt-1">
+            <img
+              src="https://i.ibb.co/238nZzf/pexels-andrea-piacquadio-3757055-removebg-preview-1-1.png"
+              alt="A beautiful two seater sofa"
+              role="img"
+            />
+          </div>
+          <div class="flex justify-end items-center space-x-2 mt-36 md:mt-12">
+            <button
+              aria-label="show in black color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#111827"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="show in green color"
+              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  fill="#047857"
+                  stroke="#6B7280"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

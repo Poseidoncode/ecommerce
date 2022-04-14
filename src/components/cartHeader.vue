@@ -106,7 +106,7 @@
             >Categories</a
           >
           <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
-            >Contact</a
+            >FAQ</a
           >
           <a
             class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0"
@@ -114,7 +114,10 @@
             @click.prevent="$router.push('/news')"
             >News</a
           >
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a
+            class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0"
+            href="#"
+            @click.prevent="$router.push('/about')"
             >About</a
           >
         </div>
