@@ -105,19 +105,31 @@
           <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >Categories</a
           >
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a
+            class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0"
+            @click.prevent="
+              isOpen = false;
+              $router.push('/faq');
+            "
+            href="#"
             >FAQ</a
           >
           <a
             class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0"
             href="#"
-            @click.prevent="$router.push('/news')"
+            @click.prevent="
+              isOpen = false;
+              $router.push('/news');
+            "
             >News</a
           >
           <a
             class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0"
             href="#"
-            @click.prevent="$router.push('/about')"
+            @click.prevent="
+              isOpen = false;
+              $router.push('/about');
+            "
             >About</a
           >
         </div>
