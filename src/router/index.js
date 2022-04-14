@@ -73,6 +73,15 @@ const routes = [
     },
     component: () => import("@/views/faq.vue"),
   },
+  {
+    path: "/productslist",
+    name: "productslist",
+    meta: {
+      title: "productslist",
+      needNav: true,
+    },
+    component: () => import("@/views/productsList.vue"),
+  },
 ];
 
 const router = createRouter({
