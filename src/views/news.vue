@@ -1,9 +1,9 @@
 <template>
   <!-- component -->
-  <div v-for="(item, i) in 50" :key="`news${i}`" class="news">
-    <div class="max-w-lg mx-auto">
+  <div class="news">
+    <div v-for="(item, i) in 50" :key="`news${i}`">
       <div
-        class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5"
+        class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5 mx-3"
       >
         <a href="#">
           <img
@@ -46,4 +46,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+</style>
