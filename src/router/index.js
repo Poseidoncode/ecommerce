@@ -54,6 +54,15 @@ const routes = [
     },
     component: () => import("@/views/news.vue"),
   },
+  {
+    path: "/article",
+    name: "article",
+    meta: {
+      title: "article page",
+      needNav: true,
+    },
+    component: () => import("@/views/article.vue"),
+  },
 ];
 
 const router = createRouter({
