@@ -50,6 +50,7 @@ const routes = [
     name: "news",
     meta: {
       title: "news page",
+      needNav: true,
     },
     component: () => import("@/views/news.vue"),
   },

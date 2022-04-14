@@ -1,8 +1,8 @@
 <template>
   <headercart v-if="$route.meta.needNav"></headercart>
-
-  <router-view />
-  <div>123 {{ $route.meta.needNav }}</div>
+  <div :class="$route.meta.needNav && $route.name != 'home' ? 'content' : ''">
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -18,4 +18,7 @@ export default {
 
 <style lang="scss">
 @import "./styles/main.scss";
+.content {
+  margin-top: 160px;
+}
 </style>

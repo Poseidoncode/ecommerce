@@ -1,5 +1,8 @@
 <template>
-  <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
+  <header
+    class="header-content"
+    :class="!scrollIsZero || $route.name != 'home' ? 'addBg' : ''"
+  >
     <div class="container mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
         <div class="hidden w-full text-gray-600 md:flex md:items-center">
@@ -104,6 +107,12 @@
           >
           <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >Contact</a
+          >
+          <a
+            class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0"
+            href="#"
+            @click.prevent="$router.push('/news')"
+            >News</a
           >
           <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#"
             >About</a
