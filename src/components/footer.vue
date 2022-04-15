@@ -9,13 +9,13 @@
           <div
             class="mb-6 gap-6 items-center justify-between py-6 sm:flex md:mb-16 md:py-0 md:space-y-6"
           >
-            <img
+            <!-- <img
               width="100"
               height="42"
               src="images/logo.svg"
               alt="logo tailus"
               class="w-32"
-            />
+            /> -->
             <div
               class="flex flex-wrap flex-col-reverse gap-6 mt-6 sm:flex-row sm:mt-0 sm:items-center"
             >

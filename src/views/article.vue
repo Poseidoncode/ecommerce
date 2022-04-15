@@ -65,11 +65,11 @@
           </svg>
         </a>
       </div>
-      <img
+      <!-- <img
         src="/brand/og.png"
         class="object-cover w-full h-64 bg-center rounded"
         alt="Kutty"
-      />
+      /> -->
     </div>
 
     <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
