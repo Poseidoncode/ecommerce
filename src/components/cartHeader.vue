@@ -416,6 +416,7 @@ export default defineComponent({
   position: fixed;
   top: 0;
   width: 100%;
+  transition: all 0.55s;
 }
 
 .addBg {
@@ -427,7 +428,7 @@ export default defineComponent({
   backdrop-filter: saturate(180%) blur(20px);
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px
     1px 1px 0px;
-  border-bottom: 1px solid #2d3858;
+  // border-bottom: 1px solid #2d3858;
   box-shadow: 0 0 10px rgb(4 7 14 / 80%);
   z-index: 99;
   > div.container {
