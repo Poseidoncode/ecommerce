@@ -164,6 +164,7 @@
   <div
     :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
     class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
+    style="z-index: 100"
   >
     <div class="flex items-center justify-between">
       <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
@@ -408,6 +409,7 @@ export default defineComponent({
     1px 1px 0px;
   border-bottom: 1px solid #2d3858;
   box-shadow: 0 0 10px rgb(4 7 14 / 80%);
+  z-index: 99;
   > div.container {
     > nav {
       a {

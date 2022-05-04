@@ -226,6 +226,20 @@
         </div>
       </div>
     </div>
+
+    <div class="bg-gray-200" style="font-family: Microsoft JhengHei, Helvetica">
+      <div class="container mx-auto px-6 py-3 flex justify-center items-center">
+        <!-- <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
+          >Vigilero</a
+        > -->
+        <p class="py-2 text-gray-500 sm:py-0 text-sm">
+          <a href="#">
+            Copyright © 2022 Vigilero All rights resevered. Images are for
+            educational use only, no commercial use.
+          </a>
+        </p>
+      </div>
+    </div>
   </footer>
 </template>
 
