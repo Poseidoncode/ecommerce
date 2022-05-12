@@ -416,7 +416,7 @@ export default defineComponent({
   position: fixed;
   top: 0;
   width: 100%;
-  transition: all 0.55s;
+  transition: all 0.6s;
 }
 
 .addBg {

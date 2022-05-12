@@ -122,12 +122,12 @@
         {{ item.price || "" }}
       </div>
 
-      <div class="content" :title="item.imageUrl">
+      <!-- <div class="content" :title="item.imageUrl">
         {{ item.imageUrl || "" }}
       </div>
       <div class="content" :title="item.imagesUrl">
         {{ item.imagesUrl || "" }}
-      </div>
+      </div> -->
       <div class="content" :title="item.is_enabled">
         <Checkbox
           :binary="true"
@@ -148,9 +148,8 @@
         v-model:first="offset"
         v-model:rows="rows"
         :totalRecords="totalItemsCount"
-        :rowsPerPageOptions="[5, 10, 50]"
       ></Paginator>
-      <div class="mt-4">共{{ totalItemsCount }}筆</div>
+      <!-- <div class="mt-4">共{{ totalItemsCount }}筆</div> -->
     </footer>
 
     <!-- //EditModal -->
@@ -332,8 +331,8 @@ export default defineComponent({
       { name: "原價", key: "origin_price", sortDesc: null }, //必填
       { name: "售價", key: "price", sortDesc: null }, //必填
 
-      { name: "主圖", key: "imageUrl", sortDesc: null },
-      { name: "其他圖片", key: "imagesUrl", sortDesc: null },
+      // { name: "主圖", key: "imageUrl", sortDesc: null },
+      // { name: "其他圖片", key: "imagesUrl", sortDesc: null },
       { name: "是否啟用", key: "is_enabled", sortDesc: null },
     ]);
 
@@ -352,21 +351,8 @@ export default defineComponent({
         const page = +offset.value / +rows.value + +1;
         const skip = (page - 1) * rows.value;
         const top = rows.value;
-        const orderBy = orderByArr.value;
 
-        if (
-          !(
-            orderByArr.value.includes("Seq") ||
-            orderByArr.value.includes("Seq desc")
-          )
-        ) {
-          orderBy.push("Seq");
-        }
-
-        const obj = { top, skip, orderBy };
-        // let qs = buildQuery(obj);
-        let bQs = false;
-        let qs = "?page=1";
+        let qs = `?page=${page}`;
 
         //top:筆數、skip:跳過幾筆
 
@@ -376,7 +362,7 @@ export default defineComponent({
         // let { Items, Count } = res.data;
 
         items.value = [...res.data?.products];
-        // totalItemsCount.value = Count;
+        totalItemsCount.value = res.data.pagination.total_pages * 10;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -667,7 +653,7 @@ export default defineComponent({
 }
 .ecommerce-grid {
   display: grid;
-  grid-template-columns: 180px repeat(10, 1fr);
+  grid-template-columns: 180px repeat(8, 1fr);
 
   text-align: center;
 

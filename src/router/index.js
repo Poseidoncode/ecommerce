@@ -9,6 +9,7 @@ const routes = [
     meta: {
       title: "home page",
       needNav: true,
+      needFooter: true,
     },
     // redirect: "/home",
     component: () => import("@/views/homePage.vue"),
@@ -20,6 +21,7 @@ const routes = [
     meta: {
       title: "home page",
       needNav: false,
+      needFooter: false,
     },
   },
   {
@@ -27,13 +29,13 @@ const routes = [
     component: () => import("@/views/dashBoard.vue"),
     name: "dashboard",
     redirect: "/dashboard/products",
-    meta: { title: "後臺管理", needNav: false },
+    meta: { title: "後臺管理", needNav: false, needFooter: false },
     children: [
       {
         path: "products",
         component: () => import("@/views/dashboard/products.vue"),
         name: "products",
-        meta: { title: "產品資料設定" },
+        meta: { title: "產品資料設定", needFooter: false },
       },
     ],
   },

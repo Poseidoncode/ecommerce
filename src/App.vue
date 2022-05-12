@@ -1,9 +1,13 @@
 <template>
-  <headercontent v-if="$route.meta.needNav"></headercontent>
-  <div :class="$route.meta.needNav && $route.name != 'home' ? 'content' : ''">
+  <header-content v-if="$route.meta.needNav"></header-content>
+  <div
+    :class="
+      $route.meta.needNav && $route.name != 'home' ? 'content-section' : ''
+    "
+  >
     <router-view />
   </div>
-  <footercontent></footercontent>
+  <footer-content v-if="$route.meta.needFooter"></footer-content>
 </template>
 
 <script>
@@ -20,7 +24,7 @@ export default {
 
 <style lang="scss">
 @import "./styles/main.scss";
-.content {
+.content-section {
   margin-top: 160px;
 }
 </style>
