@@ -4,7 +4,9 @@ import store from "../store";
 
 // import dayjs from "dayjs";
 
-export const getProducts = (qs = "") => ajax({ url: "admin/products" + qs });
+// export const getProducts = (qs = "") => ajax({ url: "admin/products" + qs });
+export const getProductsAll = (qs = "") =>
+  ajax({ url: "admin/products/all" + qs });
 
 export const postProducts = (data) =>
   ajax({

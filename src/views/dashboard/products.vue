@@ -15,26 +15,35 @@
               name="item"
               :value="item.value"
               v-model="selectedActivate"
-              @change="getData"
+              @change="filterItems"
             />
             <label :for="item.text">{{ item.text }}</label>
           </div>
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品代碼</span>
+          <span class="p-inputgroup-addon">產品標題</span>
           <InputText
             type="text"
-            v-model="selectedNo"
-            @keydown.enter="getData"
+            v-model="selectedTitle"
+            @keydown.enter="filterItems"
             class="custom-search"
           />
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品名稱</span>
+          <span class="p-inputgroup-addon">產品描述 </span>
           <InputText
             type="text"
-            v-model="selectedName"
-            @keydown.enter="getData"
+            v-model="selectedContent"
+            @keydown.enter="filterItems"
+            class="custom-search"
+          />
+        </div>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">產品分類</span>
+          <InputText
+            type="text"
+            v-model="selectedCat"
+            @keydown.enter="filterItems"
             class="custom-search"
           />
         </div>
@@ -42,7 +51,7 @@
           class="text-white font-bold uppercase text-base px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none custom-search"
           type="button"
           style="background: #0c69e1"
-          @click="getData"
+          @click="filterItems"
         >
           查詢
         </button>
@@ -66,13 +75,27 @@
     </section>
 
     <header class="ecommerce-grid my-dark">
-      <div v-for="(item, i) in headers" :key="`headers${i}`" class="header">
+      <div
+        v-for="(item, i) in headers"
+        :key="`headers${i}`"
+        class="header"
+        @click="sort(item)"
+      >
         {{ item.name }}
+        <span v-show="item.sortDesc === null" v-if="item.key">
+          <i class="pi pi-sort"></i>
+        </span>
+        <span v-show="item.sortDesc === false" v-if="item.key">
+          <i class="pi pi-caret-up"></i>
+        </span>
+        <span v-show="item.sortDesc" v-if="item.key">
+          <i class="pi pi-caret-down"></i>
+        </span>
       </div>
     </header>
     <main
       class="ecommerce-grid"
-      v-for="(item, idx) in items"
+      v-for="(item, idx) in itemsForShow"
       :key="`content${idx}`"
       style="color: #39312e"
       :style="
@@ -132,7 +155,7 @@
         <Checkbox
           :binary="true"
           v-model="item.is_enabled"
-          @change="changeActivate(item)"
+          @change="setStatus(item)"
         />
       </div>
     </main>
@@ -149,7 +172,7 @@
         v-model:rows="rows"
         :totalRecords="totalItemsCount"
       ></Paginator>
-      <!-- <div class="mt-4">共{{ totalItemsCount }}筆</div> -->
+      <div class="mt-4">共{{ totalItemsCount }}筆</div>
     </footer>
 
     <!-- //EditModal -->
@@ -260,7 +283,6 @@
             style="margin: 12px 0 0 10px"
             :binary="true"
             v-model="modalItem.is_enabled"
-            @change="setStatus(item)"
           />
         </div>
 
@@ -308,7 +330,7 @@ import { defineComponent, ref, onMounted, watch, inject } from "vue";
 import { useToast } from "vue-toastification";
 
 import {
-  getProducts,
+  getProductsAll,
   postProducts,
   deleteProducts,
   putProducts,
@@ -336,12 +358,11 @@ export default defineComponent({
       { name: "原價", key: "origin_price", sortDesc: null }, //必填
       { name: "售價", key: "price", sortDesc: null }, //必填
 
-      // { name: "主圖", key: "imageUrl", sortDesc: null },
-      // { name: "其他圖片", key: "imagesUrl", sortDesc: null },
       { name: "是否啟用", key: "is_enabled", sortDesc: null },
     ]);
 
     const items = ref([]);
+    const itemsForShow = ref([]);
 
     const offset = ref(0);
     const rows = ref(10);
@@ -352,22 +373,20 @@ export default defineComponent({
 
     async function getData() {
       try {
-        //odata3 qs
-        const page = +offset.value / +rows.value + +1;
-        const skip = (page - 1) * rows.value;
-        const top = rows.value;
-
-        let qs = `?page=${page}`;
-
         //top:筆數、skip:跳過幾筆
 
-        const res = await getProducts(`${qs}`);
+        const res = await getProductsAll();
 
-        // console.log("res", res);
+        let arr = Object.values(res.data?.products);
+        console.log("res", res, res.data?.products, arr);
+
         // let { Items, Count } = res.data;
 
-        items.value = [...res.data?.products];
-        totalItemsCount.value = res.data.pagination.total_pages * 10;
+        items.value = [...arr];
+        itemsForShow.value = [...arr];
+        filterItems();
+
+        // totalItemsCount.value = arr.length;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -375,9 +394,41 @@ export default defineComponent({
         });
       }
     }
+    const filterItems = () => {
+      //top & skip
+      const page = +offset.value / +rows.value + +1;
+      const skip = (page - 1) * rows.value;
+      const top = rows.value;
+
+      //search Filter
+      let arr = JSON.parse(JSON.stringify(items.value));
+
+      if (typeof selectedActivate.value == "boolean") {
+        arr = arr.filter((s) => s.is_enabled == selectedActivate.value);
+      }
+
+      if (selectedTitle.value) {
+        arr = arr.filter((s) => s.title.includes(selectedTitle.value));
+      }
+
+      if (selectedContent.value) {
+        arr = arr.filter((s) => s.content.includes(selectedContent.value));
+      }
+
+      if (selectedCat.value) {
+        arr = arr.filter((s) => s.category.includes(selectedCat.value));
+      }
+
+      // this.rowCount = arr.length;
+      totalItemsCount.value = arr.length;
+
+      //pageNow
+      arr = arr.slice(skip, top + skip);
+      itemsForShow.value = JSON.parse(JSON.stringify(arr));
+    };
 
     //sort
-    function sortData(item) {
+    const sort = (item) => {
       if (!item.key) {
         return;
       }
@@ -395,13 +446,35 @@ export default defineComponent({
           orderByArr.value.push(s.sortDesc ? `${s.key} desc` : `${s.key}`);
         }
       });
-      getData();
-    }
+
+      let sortBy = orderByArr.value.map((s) => ({
+        prop: s.includes("desc") ? s.split(" ")[0] : s,
+        direction: s.includes("desc") ? 1 : -1,
+      }));
+
+      items.value.sort(function (a, b) {
+        let i = 0,
+          result = 0;
+        while (i < sortBy.length && result === 0) {
+          result =
+            sortBy[i].direction *
+            (a[sortBy[i].prop].toString() < b[sortBy[i].prop].toString()
+              ? -1
+              : a[sortBy[i].prop].toString() > b[sortBy[i].prop].toString()
+              ? 1
+              : 0);
+          i++;
+        }
+        return result;
+      });
+      filterItems();
+    };
 
     //for search
     const selectedActivate = ref(null);
-    const selectedNo = ref("");
-    const selectedName = ref("");
+    const selectedTitle = ref("");
+    const selectedContent = ref("");
+    const selectedCat = ref("");
 
     const activates = ref([
       { value: true, text: "啟用" },
@@ -410,8 +483,9 @@ export default defineComponent({
 
     function clearSearch() {
       selectedActivate.value = "";
-      selectedNo.value = "";
-      selectedName.value = "";
+      selectedTitle.value = "";
+      selectedContent.value = "";
+      selectedCat.value = "";
       getData();
     }
 
@@ -420,21 +494,17 @@ export default defineComponent({
     });
 
     watch(offset, (v, pv) => {
-      getData();
+      filterItems();
     });
 
     watch(rows, (v, pv) => {
-      getData();
+      filterItems();
     });
 
     //-----------editModal----------------
     const editModal = ref(false);
     const nowType = ref(1);
-    const modalItem = ref({
-      No: "",
-      Name: "",
-      IsActivated: true,
-    });
+    const modalItem = ref({});
 
     function showEditModal(type, item) {
       //type- 1新增、2編輯、3刪除
@@ -469,7 +539,6 @@ export default defineComponent({
           imageUrl: "",
           imagesArr: imgArr,
           is_enabled: true,
-
           origin_price: 0,
           price: 0,
           title: "",
@@ -481,14 +550,6 @@ export default defineComponent({
     }
 
     const saveEditModal = async () => {
-      // if (!Boolean(modalItem.value.No) || !Boolean(modalItem.value.Name)) {
-      //   toast.error(`產品代碼和產品名稱為必填欄位`, {
-      //     timeout: 4000,
-      //     hideProgressBar: true,
-      //   });
-      //   return;
-      // }
-
       const obj = {
         ...modalItem.value,
       };
@@ -533,31 +594,12 @@ export default defineComponent({
         ...item,
       };
       const res2 = await putProducts({ data: obj }, obj.id);
-      toast.success(`編輯成功`, {
+      getData();
+      toast.success(`產品調整成功`, {
         timeout: 2000,
         hideProgressBar: true,
       });
     };
-
-    async function changeActivate(item) {
-      const obj = {
-        No: item.No,
-        Name: item.Name,
-        IsActivated: item.IsActivated,
-      };
-      try {
-        // await modifyFunctionItem(obj);
-        toast.success("產品調整成功", {
-          timeout: 2000,
-          hideProgressBar: true,
-        });
-      } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
-          timeout: 2000,
-          hideProgressBar: true,
-        });
-      }
-    }
 
     const images = ref("");
 
@@ -582,11 +624,13 @@ export default defineComponent({
       //for list data variable
       headers,
       items,
+      itemsForShow,
       toast,
 
       //list data Function
       getData,
-      sortData,
+      filterItems,
+      sort,
 
       //paginator
       offset, //目前在第幾筆
@@ -596,8 +640,9 @@ export default defineComponent({
 
       //for search
       selectedActivate,
-      selectedNo,
-      selectedName,
+      selectedTitle,
+      selectedContent,
+      selectedCat,
 
       activates,
 
@@ -612,8 +657,6 @@ export default defineComponent({
       showEditModal,
       saveEditModal,
       setStatus,
-
-      changeActivate,
     };
   },
 });
