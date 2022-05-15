@@ -3,6 +3,7 @@ import App from "./App.vue";
 import store from "./store";
 import router from "./router";
 import usePrime from "./plugins/prime";
+import mitt from "mitt";
 // import ToastService from "primevue/toastservice";
 // import PrimeVue from "primevue/config";
 // .use(PrimeVue).use(ToastService)
@@ -18,9 +19,12 @@ const options = {
   newestOnTop: true,
 };
 
+const emitter = mitt();
+
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "./styles/index.scss";
 const app = usePrime(createApp(App).use(store).use(router).use(Toast, options));
 app.mount("#app");
+app.provide("emitter", emitter);

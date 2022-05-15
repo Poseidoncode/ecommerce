@@ -1,5 +1,5 @@
 <template>
-  <header-content v-if="$route.meta.needNav"></header-content>
+  <headercontent v-if="$route.meta.needNav"></headercontent>
   <div
     :class="
       $route.meta.needNav && $route.name != 'home' ? 'content-section' : ''
@@ -7,7 +7,7 @@
   >
     <router-view />
   </div>
-  <footer-content v-if="$route.meta.needFooter"></footer-content>
+  <footercontent v-if="$route.meta.needFooter"></footercontent>
 </template>
 
 <script>

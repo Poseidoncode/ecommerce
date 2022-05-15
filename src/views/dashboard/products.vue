@@ -278,7 +278,7 @@
             <template #item="slotProps">
               <img
                 :src="slotProps.item.url"
-                style="width: 100%; display: block"
+                style="height: 400px; display: block"
                 :title="slotProps.item.index"
                 v-if="!!slotProps.item.url"
               />
@@ -304,7 +304,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch } from "vue";
+import { defineComponent, ref, onMounted, watch, inject } from "vue";
 import { useToast } from "vue-toastification";
 
 import {
@@ -318,6 +318,11 @@ export default defineComponent({
   name: "function",
   components: {},
   setup() {
+    const emitter = inject("emitter"); // Inject `emitter`
+    emitter.on("addProducts", (value) => {
+      // *Listen* for event
+      showEditModal(1);
+    });
     //-----------ListData----------------
     //for list
     const headers = ref([
@@ -358,7 +363,7 @@ export default defineComponent({
 
         const res = await getProducts(`${qs}`);
 
-        console.log("res", res);
+        // console.log("res", res);
         // let { Items, Count } = res.data;
 
         items.value = [...res.data?.products];

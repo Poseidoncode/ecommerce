@@ -7,10 +7,11 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 
 export default {
   setup() {
+    const emitter = inject("emitter"); // Inject `emitter`
     const items = ref([
       {
         key: "0",
@@ -27,11 +28,7 @@ export default {
             key: "0_1",
             label: "View",
             icon: "pi pi-fw pi-external-link",
-          },
-          {
-            key: "0_2",
-            label: "Delete",
-            icon: "pi pi-fw pi-trash",
+            to: "/dashboard/products",
           },
         ],
       },
@@ -44,6 +41,7 @@ export default {
             key: "1_0",
             label: "Left",
             icon: "pi pi-fw pi-align-left",
+            to: "/login",
           },
           {
             key: "1_1",
@@ -142,7 +140,8 @@ export default {
     ]);
 
     const testFunction = () => {
-      alert(123);
+      // alert(123);
+      emitter.emit("addProducts");
     };
 
     return { items, testFunction };
