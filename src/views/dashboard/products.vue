@@ -378,7 +378,7 @@ export default defineComponent({
         const res = await getProductsAll();
 
         let arr = Object.values(res.data?.products);
-        console.log("res", res, res.data?.products, arr);
+        arr = arr.filter((s) => s.title != "測試的產品s");
 
         // let { Items, Count } = res.data;
 
@@ -701,7 +701,7 @@ export default defineComponent({
 }
 .ecommerce-grid {
   display: grid;
-  grid-template-columns: 180px repeat(8, 1fr);
+  grid-template-columns: 180px 720px repeat(7, 1fr);
 
   text-align: center;
 
