@@ -20,6 +20,7 @@ import InputNumber from "primevue/inputnumber";
 import Password from "primevue/password";
 import PrimeVue from "primevue/config";
 import Galleria from "primevue/galleria";
+import FileUpload from "primevue/fileupload";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -42,6 +43,7 @@ export default (app) => {
   app.component("InputNumber", InputNumber);
   app.component("Password", Password);
   app.component("Galleria", Galleria);
+  app.component("FileUpload", FileUpload);
   // .use(ToastService);
   app.use(PrimeVue);
   return app;

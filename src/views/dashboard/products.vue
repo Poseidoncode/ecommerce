@@ -285,6 +285,38 @@
             v-model="modalItem.is_enabled"
           />
         </div>
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon">上傳主圖圖片</span>
+
+          <Button
+            @click.stop="uploadNewFile"
+            title="上傳主圖圖片"
+            label="Submit"
+            icon="pi pi-box"
+            iconPos="left"
+            style="margin-left: 10px"
+          />
+          <input
+            id="file-upload"
+            type="file"
+            @change="fileChange($event)"
+            ref="inputFile"
+            accept="image/bmp,image/x-bmp,image/jpeg,image/png,.pdf"
+            hidden
+          />
+          <!-- <FileUpload
+            name="file"
+            url="https://vue-course-api.hexschool.io/api/poseidoncode/admin/upload"
+            @upload="onUpload"
+            :multiple="true"
+            accept="image/*"
+            :maxFileSize="1000000"
+          >
+            <template #empty>
+              <p>Drag and drop files to here to upload.</p>
+            </template>
+          </FileUpload> -->
+        </div>
 
         <div class="col-span-full flex justify-center mt-2">
           <Galleria
@@ -334,6 +366,7 @@ import {
   postProducts,
   deleteProducts,
   putProducts,
+  addFileImage,
 } from "Service/apis.js";
 
 export default defineComponent({
@@ -456,13 +489,24 @@ export default defineComponent({
         let i = 0,
           result = 0;
         while (i < sortBy.length && result === 0) {
-          result =
-            sortBy[i].direction *
-            (a[sortBy[i].prop].toString() < b[sortBy[i].prop].toString()
-              ? -1
-              : a[sortBy[i].prop].toString() > b[sortBy[i].prop].toString()
-              ? 1
-              : 0);
+          if (isNaN(+b[sortBy[i].prop].toString())) {
+            result =
+              sortBy[i].direction *
+              (a[sortBy[i].prop].toString() < b[sortBy[i].prop].toString()
+                ? -1
+                : a[sortBy[i].prop].toString() > b[sortBy[i].prop].toString()
+                ? 1
+                : 0);
+          } else {
+            result =
+              sortBy[i].direction *
+              (+a[sortBy[i].prop].toString() < +b[sortBy[i].prop].toString()
+                ? -1
+                : +a[sortBy[i].prop].toString() > +b[sortBy[i].prop].toString()
+                ? 1
+                : 0);
+          }
+
           i++;
         }
         return result;
@@ -618,7 +662,62 @@ export default defineComponent({
       },
     ]);
 
+    const onUpload = () => {
+      toast.success(`圖片上傳成功`, {
+        timeout: 3000,
+        hideProgressBar: true,
+      });
+    };
+
+    const uploadNewFile = async () => {
+      document.getElementById("file-upload").click();
+    };
+    const fileChange = async (e) => {
+      const currentFile = e.target.files[0];
+      const currentFileName = Boolean(e.target.files[0])
+        ? e.target.files[0].name.split(".")[0]
+        : "";
+
+      try {
+        if (!Boolean(currentFileName)) {
+          toast.error("請先選擇檔案", {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+          return;
+        }
+
+        let form = new FormData();
+
+        form.append("File", currentFile);
+        const res = await addFileImage(form);
+        console.log("res", res);
+
+        if (res.data?.success) {
+          modalItem.value.imagesArr[0].url = res.data.imageUrl;
+          toast.success(`上傳圖片成功`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+        } else {
+          toast.error(`上傳圖片失敗: ${res.data?.message?.code}`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+        }
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+      document.getElementById("file-upload").value = "";
+    };
+
     return {
+      onUpload,
+      uploadNewFile,
+      fileChange,
       images,
       responsiveOptions,
       //for list data variable
@@ -672,6 +771,7 @@ export default defineComponent({
     font-size: 20px;
     font-weight: bold;
   }
+
   margin-bottom: 6px;
   margin-top: 10px;
   background: #fbfcf9;
@@ -696,9 +796,11 @@ export default defineComponent({
 .custom-search {
   // height: 42px;
 }
+
 .p-dropdown {
   line-height: 12px;
 }
+
 .ecommerce-grid {
   display: grid;
   grid-template-columns: 180px 720px repeat(7, 1fr);
@@ -720,19 +822,23 @@ export default defineComponent({
     font-size: 16px;
     color: rgb(46, 45, 45);
   }
+
   > div:first-child {
     border-left: 2px solid #ffffff;
   }
+
   > .header {
     line-height: 2rem;
     font-weight: 700;
     color: #1c2a54;
   }
+
   > .content {
     padding: 6px;
     padding-top: 4px;
     height: 43px;
   }
+
   > .full-content {
     grid-column: 1 / -1;
   }

@@ -28,6 +28,13 @@ export const putProducts = (data, id) =>
     data,
   });
 
+export const addFileImage = (data) =>
+  ajax({
+    url: "admin/upload",
+    method: "post",
+    data,
+  });
+
 // (data) =>
 //   ajax({
 //     url: `admin/products/${data.id}`,
