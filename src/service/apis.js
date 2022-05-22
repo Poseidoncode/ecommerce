@@ -35,8 +35,69 @@ export const addFileImage = (data) =>
     data,
   });
 
-// (data) =>
-//   ajax({
-//     url: `admin/products/${data.id}`,
-//     method: "put",
-//   });
+export const getOrders = (qs = "") => ajax({ url: "admin/orders" + qs });
+
+export const putOrders = (data, id) =>
+  ajax({
+    url: `admin/order/${id}`,
+    method: "put",
+    data,
+  });
+
+export const deleteOneOrders = (id) =>
+  ajax({
+    url: `admin/order/${id}`,
+    method: "delete",
+  });
+
+export const deleteAllOrders = (id) =>
+  ajax({
+    url: `admin/ordes/all`,
+    method: "delete",
+  });
+
+export const getCoupons = (qs = "") => ajax({ url: "admin/coupons" + qs });
+
+export const postCoupons = (data) =>
+  ajax({
+    url: "admin/coupon",
+    method: "post",
+    data,
+  });
+
+export const putCoupons = (data, id) =>
+  ajax({
+    url: `admin/coupon/${id}`,
+    method: "put",
+    data,
+  });
+
+export const deleteCoupons = (id) =>
+  ajax({
+    url: `admin/coupon/${id}`,
+    method: "delete",
+  });
+
+export const getArticles = (qs = "") => ajax({ url: "admin/article" + qs });
+
+export const getSingleArticle = (id) => ajax({ url: `admin/article/${id}` });
+
+export const postArticles = (data) =>
+  ajax({
+    url: "admin/article",
+    method: "post",
+    data,
+  });
+
+export const putArticles = (data, id) =>
+  ajax({
+    url: `admin/article/${id}`,
+    method: "put",
+    data,
+  });
+
+export const deleteArticles = (id) =>
+  ajax({
+    url: `admin/article/${id}`,
+    method: "delete",
+  });

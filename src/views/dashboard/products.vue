@@ -170,6 +170,7 @@
       <Paginator
         v-model:first="offset"
         v-model:rows="rows"
+        :rowsPerPageOptions="[5, 10, 50]"
         :totalRecords="totalItemsCount"
       ></Paginator>
       <div class="mt-4">共{{ totalItemsCount }}筆</div>
