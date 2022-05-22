@@ -1,7 +1,7 @@
 <template>
   <section class="main-section px-3">
     <section class="search-block">
-      <h5 class="big-title">產品管理</h5>
+      <h5 class="big-title">優惠券管理</h5>
       <div class="p-2 search-section">
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon">啟用狀態</span>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品標題</span>
+          <span class="p-inputgroup-addon">優惠券標題</span>
           <InputText
             type="text"
             v-model="selectedTitle"
@@ -30,7 +30,7 @@
           />
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品描述 </span>
+          <span class="p-inputgroup-addon">優惠券描述 </span>
           <InputText
             type="text"
             v-model="selectedContent"
@@ -39,7 +39,7 @@
           />
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品分類</span>
+          <span class="p-inputgroup-addon">優惠券分類</span>
           <InputText
             type="text"
             v-model="selectedCat"
@@ -69,7 +69,7 @@
           style="background: #f9be4a"
           @click="showEditModal(1)"
         >
-          新增產品
+          新增優惠券
         </button>
       </div>
     </section>
@@ -187,14 +187,18 @@
       <template #header>
         <h3>
           {{
-            nowType == 1 ? "新增產品" : nowType == 2 ? "編輯產品" : "刪除產品"
+            nowType == 1
+              ? "新增優惠券"
+              : nowType == 2
+              ? "編輯優惠券"
+              : "刪除優惠券"
           }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
         <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          是否確定要刪除此產品?
+          是否確定要刪除此優惠券?
         </h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">標題</span>
@@ -412,7 +416,7 @@ export default defineComponent({
         const res = await getProductsAll();
 
         let arr = Object.values(res.data?.products);
-        arr = arr.filter((s) => s.title != "測試的產品s");
+        arr = arr.filter((s) => s.title != "測試的優惠券s");
 
         // let { Items, Count } = res.data;
 
@@ -640,7 +644,7 @@ export default defineComponent({
       };
       const res2 = await putProducts({ data: obj }, obj.id);
       getData();
-      toast.success(`產品調整成功`, {
+      toast.success(`優惠券調整成功`, {
         timeout: 2000,
         hideProgressBar: true,
       });

@@ -37,6 +37,12 @@ const routes = [
         name: "products",
         meta: { title: "產品資料設定", needFooter: false },
       },
+      {
+        path: "coupons",
+        component: () => import("@/views/dashboard/coupons.vue"),
+        name: "coupons",
+        meta: { title: "優惠券資料設定", needFooter: false },
+      },
     ],
   },
   {

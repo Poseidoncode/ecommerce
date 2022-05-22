@@ -22,7 +22,7 @@ export default {
             key: "0_0",
             label: "New",
             icon: "pi pi-fw pi-plus",
-            command: () => testFunction(),
+            command: () => callFunction("addProducts"),
           },
           {
             key: "0_1",
@@ -66,38 +66,16 @@ export default {
         icon: "pi pi-fw pi-user",
         items: [
           {
-            key: "2_0",
+            key: "0_0",
             label: "New",
-            icon: "pi pi-fw pi-user-plus",
+            icon: "pi pi-fw pi-plus",
+            command: () => callFunction("addCoupons"),
           },
           {
-            key: "2_1",
-            label: "Delete",
-            icon: "pi pi-fw pi-user-minus",
-          },
-          {
-            key: "2_2",
-            label: "Search",
-            icon: "pi pi-fw pi-users",
-            items: [
-              {
-                key: "2_2_0",
-                label: "Filter",
-                icon: "pi pi-fw pi-filter",
-                items: [
-                  {
-                    key: "2_2_0_0",
-                    label: "Print",
-                    icon: "pi pi-fw pi-print",
-                  },
-                ],
-              },
-              {
-                key: "2_2_1",
-                icon: "pi pi-fw pi-bars",
-                label: "List",
-              },
-            ],
+            key: "0_1",
+            label: "View",
+            icon: "pi pi-fw pi-external-link",
+            to: "/dashboard/coupons",
           },
         ],
       },
@@ -139,12 +117,12 @@ export default {
       },
     ]);
 
-    const testFunction = () => {
+    const callFunction = () => {
       // alert(123);
       emitter.emit("addProducts");
     };
 
-    return { items, testFunction };
+    return { items, callFunction };
   },
 };
 </script>
