@@ -79,33 +79,16 @@ export default {
         icon: "pi pi-fw pi-calendar",
         items: [
           {
-            key: "3_0",
-            label: "Edit",
-            icon: "pi pi-fw pi-pencil",
-            items: [
-              {
-                key: "3_0_0",
-                label: "Save",
-                icon: "pi pi-fw pi-calendar-plus",
-              },
-              {
-                key: "3_0_0",
-                label: "Delete",
-                icon: "pi pi-fw pi-calendar-minus",
-              },
-            ],
+            key: "0_0",
+            label: "New",
+            icon: "pi pi-fw pi-plus",
+            command: () => callFunction("addArticles"),
           },
           {
-            key: "3_1",
-            label: "Archieve",
-            icon: "pi pi-fw pi-calendar-times",
-            items: [
-              {
-                key: "3_1_0",
-                label: "Remove",
-                icon: "pi pi-fw pi-calendar-minus",
-              },
-            ],
+            key: "0_1",
+            label: "View",
+            icon: "pi pi-fw pi-external-link",
+            to: "/dashboard/articles",
           },
         ],
       },
