@@ -41,25 +41,16 @@ export default {
         icon: "pi pi-fw pi-pencil",
         items: [
           {
-            key: "1_0",
-            label: "Left",
-            icon: "pi pi-fw pi-align-left",
-            to: "/login",
+            key: "0_0",
+            label: "Delete",
+            icon: "pi pi-fw pi-trash",
+            command: () => callFunction("deleteOrders"),
           },
           {
-            key: "1_1",
-            label: "Right",
-            icon: "pi pi-fw pi-align-right",
-          },
-          {
-            key: "1_2",
-            label: "Center",
-            icon: "pi pi-fw pi-align-center",
-          },
-          {
-            key: "1_3",
-            label: "Justify",
-            icon: "pi pi-fw pi-align-justify",
+            key: "0_1",
+            label: "View",
+            icon: "pi pi-fw pi-external-link",
+            to: "/dashboard/orders",
           },
         ],
       },
@@ -121,7 +112,6 @@ export default {
     ]);
 
     const callFunction = async (type) => {
-      emitter.emit("addCoupons");
       // console.log('type', type);
       if (type == "addProducts") {
         if (route.name != "products") {
@@ -132,7 +122,9 @@ export default {
         } else {
           emitter.emit("addProducts");
         }
-      } else {
+      } else if (type == "deleteOrders") {
+        emitter.emit("deleteOrders");
+      } else if (type == "addCoupons") {
         if (route.name != "coupons") {
           router.push({ name: "coupons" });
           setTimeout(() => {

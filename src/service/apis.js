@@ -52,7 +52,7 @@ export const deleteOneOrders = (id) =>
 
 export const deleteAllOrders = (id) =>
   ajax({
-    url: `admin/ordes/all`,
+    url: `admin/orders/all`,
     method: "delete",
   });
 
