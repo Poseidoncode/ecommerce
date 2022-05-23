@@ -54,25 +54,16 @@
       </div>
 
       <div class="content" :title="item.title">
-        {{ item.title || '' }}
+        {{ item.title || "" }}
       </div>
-      <div class="content" :title="item.description">
-        {{ item.description || '' }}
+      <div class="content" :title="item.percent">
+        {{ item.percent || "" }}
       </div>
-      <div class="content" :title="item.content">
-        {{ item.content || '' }}
+      <div class="content" :title="item.due_date">
+        {{ item.due_date || "" }}
       </div>
-      <div class="content" :title="item.category">
-        {{ item.category || '' }}
-      </div>
-      <div class="content" :title="item.unit">
-        {{ item.unit || '' }}
-      </div>
-      <div class="content" :title="item.origin_price">
-        {{ item.origin_price || '' }}
-      </div>
-      <div class="content" :title="item.price">
-        {{ item.price || '' }}
+      <div class="content" :title="item.code">
+        {{ item.code || "" }}
       </div>
 
       <div class="content" :title="item.is_enabled">
@@ -112,10 +103,10 @@
         <h3>
           {{
             nowType == 1
-              ? '新增優惠券'
+              ? "新增優惠券"
               : nowType == 2
-              ? '編輯優惠券'
-              : '刪除優惠券'
+              ? "編輯優惠券"
+              : "刪除優惠券"
           }}
         </h3>
       </template>
@@ -152,6 +143,7 @@
             dateFormat="yy-mm-dd"
             style="height: 40px"
             class="hidden-item"
+            :disabled="nowType == 3"
           />
         </div>
         <div class="p-inputgroup mt-2">
@@ -207,8 +199,8 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from 'vue';
-import { useToast } from 'vue-toastification';
+import { defineComponent, ref, onMounted, watch, inject } from "vue";
+import { useToast } from "vue-toastification";
 
 import {
   getCoupons,
@@ -216,32 +208,27 @@ import {
   deleteCoupons,
   postCoupons,
   addFileImage,
-} from 'Service/apis.js';
-import dayjs from 'dayjs';
+} from "Service/apis.js";
+import dayjs from "dayjs";
 
 export default defineComponent({
-  name: 'function',
+  name: "function",
   components: {},
   setup() {
-    const emitter = inject('emitter'); // Inject `emitter`
-    emitter.on('addCoupons', (value) => {
+    const emitter = inject("emitter"); // Inject `emitter`
+    emitter.on("addCoupons", (value) => {
       // *Listen* for event
       showEditModal(1);
     });
     //-----------ListData----------------
     //for list
     const headers = ref([
-      { name: '操作', key: '', sortDesc: null },
-
-      { name: '標題', key: 'title', sortDesc: null }, //必填
-      { name: '描述', key: 'description', sortDesc: null },
-      { name: '說明', key: 'content', sortDesc: null },
-      { name: '分類', key: 'category', sortDesc: null }, //必填
-      { name: '單位', key: 'unit', sortDesc: null }, //必填
-      { name: '原價', key: 'origin_price', sortDesc: null }, //必填
-      { name: '售價', key: 'price', sortDesc: null }, //必填
-
-      { name: '是否啟用', key: 'is_enabled', sortDesc: null },
+      { name: "操作", key: "", sortDesc: null },
+      { name: "標題", key: "title", sortDesc: null }, //必填
+      { name: "Percent", key: "percent", sortDesc: null }, //必填
+      { name: "到期日", key: "due_date", sortDesc: null }, //必填
+      { name: "折扣碼", key: "code", sortDesc: null }, //必填
+      { name: "是否啟用", key: "is_enabled", sortDesc: null },
     ]);
 
     const items = ref([]);
@@ -249,7 +236,6 @@ export default defineComponent({
     const offset = ref(0);
     const rows = ref(10);
     const totalItemsCount = ref(1);
-    const orderByArr = ref([]);
 
     const toast = useToast();
 
@@ -262,7 +248,7 @@ export default defineComponent({
 
         const res = await getCoupons(`?page=${page}`);
 
-        console.log('res', res);
+        console.log("res", res);
 
         // let { Items, Count } = ;
 
@@ -300,11 +286,11 @@ export default defineComponent({
         modalItem.value = { ...item };
       } else {
         modalItem.value = {
-          title: '',
+          title: "",
           is_enabled: true,
           percent: 90,
           due_date: null,
-          code: '',
+          code: "",
         };
       }
       nowType.value = type;
@@ -315,7 +301,7 @@ export default defineComponent({
       const obj = {
         ...modalItem.value,
       };
-      obj.due_date = dayjs(obj.due_date).format('YYYY-MM-DD');
+      obj.due_date = dayjs(obj.due_date).format("YYYY-MM-DD");
 
       try {
         // const res = await putInstitutionList(obj);
@@ -331,7 +317,7 @@ export default defineComponent({
 
         toast.success(
           `${
-            nowType.value == 1 ? '新增' : nowType.value == 2 ? '編輯' : '刪除'
+            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
           }成功`,
           {
             timeout: 2000,
@@ -352,7 +338,7 @@ export default defineComponent({
       const obj = {
         ...item,
       };
-      const res2 = await postCoupons({ data: obj }, obj.id);
+      const res2 = await putCoupons({ data: obj }, obj.id);
       getData();
       toast.success(`優惠券調整成功`, {
         timeout: 2000,
@@ -360,22 +346,7 @@ export default defineComponent({
       });
     };
 
-    const images = ref('');
-
-    const responsiveOptions = ref([
-      {
-        breakpoint: '1024px',
-        numVisible: 5,
-      },
-      {
-        breakpoint: '768px',
-        numVisible: 3,
-      },
-      {
-        breakpoint: '560px',
-        numVisible: 1,
-      },
-    ]);
+    const images = ref("");
 
     const onUpload = () => {
       toast.success(`圖片上傳成功`, {
@@ -385,17 +356,17 @@ export default defineComponent({
     };
 
     const uploadNewFile = async () => {
-      document.getElementById('file-upload').click();
+      document.getElementById("file-upload").click();
     };
     const fileChange = async (e) => {
       const currentFile = e.target.files[0];
       const currentFileName = Boolean(e.target.files[0])
-        ? e.target.files[0].name.split('.')[0]
-        : '';
+        ? e.target.files[0].name.split(".")[0]
+        : "";
 
       try {
         if (!Boolean(currentFileName)) {
-          toast.error('請先選擇檔案', {
+          toast.error("請先選擇檔案", {
             timeout: 2000,
             hideProgressBar: true,
           });
@@ -404,9 +375,9 @@ export default defineComponent({
 
         let form = new FormData();
 
-        form.append('File', currentFile);
+        form.append("File", currentFile);
         const res = await addFileImage(form);
-        console.log('res', res);
+        console.log("res", res);
 
         if (res.data?.success) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;
@@ -426,7 +397,7 @@ export default defineComponent({
           hideProgressBar: true,
         });
       }
-      document.getElementById('file-upload').value = '';
+      document.getElementById("file-upload").value = "";
     };
 
     return {
@@ -434,7 +405,7 @@ export default defineComponent({
       uploadNewFile,
       fileChange,
       images,
-      responsiveOptions,
+
       //for list data variable
       headers,
       items,
@@ -448,7 +419,6 @@ export default defineComponent({
       offset, //目前在第幾筆
       rows, //1頁顯示筆數
       totalItemsCount,
-      orderByArr,
 
       //editModal variable
       editModal,
@@ -506,7 +476,7 @@ export default defineComponent({
 
 .ecommerce-grid {
   display: grid;
-  grid-template-columns: 180px 720px repeat(7, 1fr);
+  grid-template-columns: 180px repeat(5, 1fr);
 
   text-align: center;
 

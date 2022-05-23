@@ -3,3 +3,39 @@
 html, body {
   @apply p-0 m-0;
 }
+
+$modalBlue: #1f3fb3;
+
+.custom-modal.p-dialog {
+  @apply rounded-2xl overflow-hidden;
+  border: 3px solid $modalBlue;
+
+  .p-dialog-header {
+    background-color: $modalBlue;
+    @apply py-1 text-white text-left;
+
+    .p-dialog-header-icons {
+
+      // background: #e6e1e1;
+      // border-radius: 50%;
+      .p-dialog-header-icon {
+        color: aliceblue !important;
+
+        &:hover {
+          color: #4162d5 !important;
+          // rgb(24, 123, 209)
+        }
+      }
+    }
+  }
+
+  .p-dialog-content {
+    @apply p-3;
+    min-height: 120px;
+  }
+
+  .p-dialog-footer {
+    border-top: 1px solid #ccc;
+    @apply p-2;
+  }
+}
