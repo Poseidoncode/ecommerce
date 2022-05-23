@@ -7,109 +7,109 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
+import { ref, inject } from 'vue';
 
 export default {
   setup() {
-    const emitter = inject("emitter"); // Inject `emitter`
+    const emitter = inject('emitter'); // Inject `emitter`
     const items = ref([
       {
-        key: "0",
-        label: "Products",
-        icon: "pi pi-fw pi-file",
+        key: '0',
+        label: 'Products',
+        icon: 'pi pi-fw pi-file',
         items: [
           {
-            key: "0_0",
-            label: "New",
-            icon: "pi pi-fw pi-plus",
-            command: () => callFunction("addProducts"),
+            key: '0_0',
+            label: 'New',
+            icon: 'pi pi-fw pi-plus',
+            command: () => callFunction('addProducts'),
           },
           {
-            key: "0_1",
-            label: "View",
-            icon: "pi pi-fw pi-external-link",
-            to: "/dashboard/products",
+            key: '0_1',
+            label: 'View',
+            icon: 'pi pi-fw pi-external-link',
+            to: '/dashboard/products',
           },
         ],
       },
       {
-        key: "1",
-        label: "Orders",
-        icon: "pi pi-fw pi-pencil",
+        key: '1',
+        label: 'Orders',
+        icon: 'pi pi-fw pi-pencil',
         items: [
           {
-            key: "1_0",
-            label: "Left",
-            icon: "pi pi-fw pi-align-left",
-            to: "/login",
+            key: '1_0',
+            label: 'Left',
+            icon: 'pi pi-fw pi-align-left',
+            to: '/login',
           },
           {
-            key: "1_1",
-            label: "Right",
-            icon: "pi pi-fw pi-align-right",
+            key: '1_1',
+            label: 'Right',
+            icon: 'pi pi-fw pi-align-right',
           },
           {
-            key: "1_2",
-            label: "Center",
-            icon: "pi pi-fw pi-align-center",
+            key: '1_2',
+            label: 'Center',
+            icon: 'pi pi-fw pi-align-center',
           },
           {
-            key: "1_3",
-            label: "Justify",
-            icon: "pi pi-fw pi-align-justify",
+            key: '1_3',
+            label: 'Justify',
+            icon: 'pi pi-fw pi-align-justify',
           },
         ],
       },
       {
-        key: "2",
-        label: "Coupons",
-        icon: "pi pi-fw pi-user",
+        key: '2',
+        label: 'Coupons',
+        icon: 'pi pi-fw pi-user',
         items: [
           {
-            key: "0_0",
-            label: "New",
-            icon: "pi pi-fw pi-plus",
-            command: () => callFunction("addCoupons"),
+            key: '0_0',
+            label: 'New',
+            icon: 'pi pi-fw pi-plus',
+            command: () => callFunction('addCoupons'),
           },
           {
-            key: "0_1",
-            label: "View",
-            icon: "pi pi-fw pi-external-link",
-            to: "/dashboard/coupons",
+            key: '0_1',
+            label: 'View',
+            icon: 'pi pi-fw pi-external-link',
+            to: '/dashboard/coupons',
           },
         ],
       },
       {
-        key: "3",
-        label: "Articles",
-        icon: "pi pi-fw pi-calendar",
+        key: '3',
+        label: 'Articles',
+        icon: 'pi pi-fw pi-calendar',
         items: [
           {
-            key: "3_0",
-            label: "Edit",
-            icon: "pi pi-fw pi-pencil",
+            key: '3_0',
+            label: 'Edit',
+            icon: 'pi pi-fw pi-pencil',
             items: [
               {
-                key: "3_0_0",
-                label: "Save",
-                icon: "pi pi-fw pi-calendar-plus",
+                key: '3_0_0',
+                label: 'Save',
+                icon: 'pi pi-fw pi-calendar-plus',
               },
               {
-                key: "3_0_0",
-                label: "Delete",
-                icon: "pi pi-fw pi-calendar-minus",
+                key: '3_0_0',
+                label: 'Delete',
+                icon: 'pi pi-fw pi-calendar-minus',
               },
             ],
           },
           {
-            key: "3_1",
-            label: "Archieve",
-            icon: "pi pi-fw pi-calendar-times",
+            key: '3_1',
+            label: 'Archieve',
+            icon: 'pi pi-fw pi-calendar-times',
             items: [
               {
-                key: "3_1_0",
-                label: "Remove",
-                icon: "pi pi-fw pi-calendar-minus",
+                key: '3_1_0',
+                label: 'Remove',
+                icon: 'pi pi-fw pi-calendar-minus',
               },
             ],
           },
@@ -117,9 +117,18 @@ export default {
       },
     ]);
 
-    const callFunction = () => {
+    const callFunction = (type) => {
+      console.log('type', type);
+      if (type == 'addProducts') {
+        emitter.emit('addProducts');
+      } else {
+        console.log('type2222', type);
+        emitter.emit('addCoupons');
+      }
       // alert(123);
-      emitter.emit("addProducts");
+
+      // emitter.emit("addProducts");
+      //       addCoupons
     };
 
     return { items, callFunction };

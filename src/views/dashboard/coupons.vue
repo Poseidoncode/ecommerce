@@ -2,76 +2,6 @@
   <section class="main-section px-3">
     <section class="search-block">
       <h5 class="big-title">優惠券管理</h5>
-      <div class="p-2 search-section">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">啟用狀態</span>
-          <div
-            v-for="item of activates"
-            :key="item.text"
-            class="p-field-radiobutton mr-3 mt-2"
-          >
-            <RadioButton
-              :id="item.text"
-              name="item"
-              :value="item.value"
-              v-model="selectedActivate"
-              @change="filterItems"
-            />
-            <label :for="item.text">{{ item.text }}</label>
-          </div>
-        </div>
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">優惠券標題</span>
-          <InputText
-            type="text"
-            v-model="selectedTitle"
-            @keydown.enter="filterItems"
-            class="custom-search"
-          />
-        </div>
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">優惠券描述 </span>
-          <InputText
-            type="text"
-            v-model="selectedContent"
-            @keydown.enter="filterItems"
-            class="custom-search"
-          />
-        </div>
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">優惠券分類</span>
-          <InputText
-            type="text"
-            v-model="selectedCat"
-            @keydown.enter="filterItems"
-            class="custom-search"
-          />
-        </div>
-        <button
-          class="text-white font-bold uppercase text-base px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none custom-search"
-          type="button"
-          style="background: #0c69e1"
-          @click="filterItems"
-        >
-          查詢
-        </button>
-        <button
-          class="text-white font-bold uppercase text-base px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none custom-search"
-          type="button"
-          style="background: #6a9f3e"
-          @click="clearSearch"
-        >
-          清除
-        </button>
-        <button
-          class="text-gray-700 font-bold uppercase text-base px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none custom-search"
-          type="button"
-          style="background: #f9be4a"
-          @click="showEditModal(1)"
-        >
-          新增優惠券
-        </button>
-      </div>
     </section>
 
     <header class="ecommerce-grid my-dark">
@@ -95,7 +25,7 @@
     </header>
     <main
       class="ecommerce-grid"
-      v-for="(item, idx) in itemsForShow"
+      v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
       :style="
@@ -124,33 +54,27 @@
       </div>
 
       <div class="content" :title="item.title">
-        {{ item.title || "" }}
+        {{ item.title || '' }}
       </div>
       <div class="content" :title="item.description">
-        {{ item.description || "" }}
+        {{ item.description || '' }}
       </div>
       <div class="content" :title="item.content">
-        {{ item.content || "" }}
+        {{ item.content || '' }}
       </div>
       <div class="content" :title="item.category">
-        {{ item.category || "" }}
+        {{ item.category || '' }}
       </div>
       <div class="content" :title="item.unit">
-        {{ item.unit || "" }}
+        {{ item.unit || '' }}
       </div>
       <div class="content" :title="item.origin_price">
-        {{ item.origin_price || "" }}
+        {{ item.origin_price || '' }}
       </div>
       <div class="content" :title="item.price">
-        {{ item.price || "" }}
+        {{ item.price || '' }}
       </div>
 
-      <!-- <div class="content" :title="item.imageUrl">
-        {{ item.imageUrl || "" }}
-      </div>
-      <div class="content" :title="item.imagesUrl">
-        {{ item.imagesUrl || "" }}
-      </div> -->
       <div class="content" :title="item.is_enabled">
         <Checkbox
           :binary="true"
@@ -188,10 +112,10 @@
         <h3>
           {{
             nowType == 1
-              ? "新增優惠券"
+              ? '新增優惠券'
               : nowType == 2
-              ? "編輯優惠券"
-              : "刪除優惠券"
+              ? '編輯優惠券'
+              : '刪除優惠券'
           }}
         </h3>
       </template>
@@ -209,74 +133,31 @@
             class="custom-search"
           />
         </div>
-        <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">描述</span>
-          <Textarea
-            v-model.trim="modalItem.description"
-            class="custom-search"
-            :disabled="nowType == 3"
-          />
-        </div>
-        <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">說明</span>
-          <Textarea
-            v-model.trim="modalItem.content"
-            class="custom-search"
-            :disabled="nowType == 3"
-          />
-        </div>
-        <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">分類</span>
-          <InputText
-            v-model.trim="modalItem.category"
-            class="custom-search"
-            :disabled="nowType == 3"
-          />
-        </div>
-        <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">單位</span>
-          <InputText
-            v-model.trim="modalItem.unit"
-            class="custom-search"
-            :disabled="nowType == 3"
-          />
-        </div>
-        <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">原價</span>
-          <InputText
-            type="Number"
-            v-model.trim="modalItem.origin_price"
-            class="custom-search"
-            :disabled="nowType == 3"
-          />
-        </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">售價</span>
+          <span class="p-inputgroup-addon red-star">Percent</span>
           <InputText
-            type="Number"
-            v-model.trim="modalItem.price"
+            v-model.trim="modalItem.percent"
             class="custom-search"
             :disabled="nowType == 3"
+            type="Number"
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">主圖網址</span>
-          <InputText
-            v-model.trim="modalItem.imagesArr[0].url"
-            class="custom-search"
-            :disabled="nowType == 3"
+          <span class="p-inputgroup-addon red-star">到期日</span>
+
+          <Calendar
+            v-model="modalItem.due_date"
+            :showIcon="true"
+            dateFormat="yy-mm-dd"
+            style="height: 40px"
+            class="hidden-item"
           />
         </div>
-        <div
-          class="p-inputgroup mt-2"
-          v-for="(item, i) in modalItem.imagesArr.slice(1)"
-          :key="`headers${i}`"
-        >
-          <span class="p-inputgroup-addon">輸入圖片網址 {{ i + 1 }}</span>
-
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon red-star">折扣碼</span>
           <InputText
-            v-model="item.url"
+            v-model.trim="modalItem.code"
             class="custom-search"
             :disabled="nowType == 3"
           />
@@ -290,7 +171,7 @@
             v-model="modalItem.is_enabled"
           />
         </div>
-        <div class="p-inputgroup mt-2">
+        <!-- <div class="p-inputgroup mt-2">
           <span class="p-inputgroup-addon">上傳主圖圖片</span>
 
           <Button
@@ -309,45 +190,8 @@
             accept="image/bmp,image/x-bmp,image/jpeg,image/png,.pdf"
             hidden
           />
-          <!-- <FileUpload
-            name="file"
-            url="https://vue-course-api.hexschool.io/api/poseidoncode/admin/upload"
-            @upload="onUpload"
-            :multiple="true"
-            accept="image/*"
-            :maxFileSize="1000000"
-          >
-            <template #empty>
-              <p>Drag and drop files to here to upload.</p>
-            </template>
-          </FileUpload> -->
-        </div>
-
-        <div class="col-span-full flex justify-center mt-2">
-          <Galleria
-            :circular="true"
-            :showItemNavigators="true"
-            :value="modalItem.imagesArr"
-            :responsiveOptions="responsiveOptions"
-            :numVisible="6"
-            containerStyle="max-width: 640px"
-            :showThumbnails="false"
-            :showIndicators="true"
-          >
-            <template #item="slotProps">
-              <img
-                :src="slotProps.item.url"
-                style="height: 400px; display: block"
-                :title="slotProps.item.index"
-                v-if="!!slotProps.item.url"
-              />
-              <div
-                v-else
-                style="width: 500px; height: 310px; border: 1px solid #e1e0e0"
-              ></div>
-            </template>
-          </Galleria>
-        </div>
+         
+        </div> -->
       </section>
 
       <template #footer>
@@ -363,44 +207,44 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from "vue";
-import { useToast } from "vue-toastification";
+import { defineComponent, ref, onMounted, watch, inject } from 'vue';
+import { useToast } from 'vue-toastification';
 
 import {
-  getProductsAll,
-  postProducts,
-  deleteProducts,
-  putProducts,
+  getCoupons,
+  putCoupons,
+  deleteCoupons,
+  postCoupons,
   addFileImage,
-} from "Service/apis.js";
+} from 'Service/apis.js';
+import dayjs from 'dayjs';
 
 export default defineComponent({
-  name: "function",
+  name: 'function',
   components: {},
   setup() {
-    const emitter = inject("emitter"); // Inject `emitter`
-    emitter.on("addProducts", (value) => {
+    const emitter = inject('emitter'); // Inject `emitter`
+    emitter.on('addCoupons', (value) => {
       // *Listen* for event
       showEditModal(1);
     });
     //-----------ListData----------------
     //for list
     const headers = ref([
-      { name: "操作", key: "", sortDesc: null },
+      { name: '操作', key: '', sortDesc: null },
 
-      { name: "標題", key: "title", sortDesc: null }, //必填
-      { name: "描述", key: "description", sortDesc: null },
-      { name: "說明", key: "content", sortDesc: null },
-      { name: "分類", key: "category", sortDesc: null }, //必填
-      { name: "單位", key: "unit", sortDesc: null }, //必填
-      { name: "原價", key: "origin_price", sortDesc: null }, //必填
-      { name: "售價", key: "price", sortDesc: null }, //必填
+      { name: '標題', key: 'title', sortDesc: null }, //必填
+      { name: '描述', key: 'description', sortDesc: null },
+      { name: '說明', key: 'content', sortDesc: null },
+      { name: '分類', key: 'category', sortDesc: null }, //必填
+      { name: '單位', key: 'unit', sortDesc: null }, //必填
+      { name: '原價', key: 'origin_price', sortDesc: null }, //必填
+      { name: '售價', key: 'price', sortDesc: null }, //必填
 
-      { name: "是否啟用", key: "is_enabled", sortDesc: null },
+      { name: '是否啟用', key: 'is_enabled', sortDesc: null },
     ]);
 
     const items = ref([]);
-    const itemsForShow = ref([]);
 
     const offset = ref(0);
     const rows = ref(10);
@@ -412,19 +256,18 @@ export default defineComponent({
     async function getData() {
       try {
         //top:筆數、skip:跳過幾筆
+        const page = +offset.value / +rows.value + +1;
+        const skip = (page - 1) * rows.value;
+        const top = rows.value;
 
-        const res = await getProductsAll();
+        const res = await getCoupons(`?page=${page}`);
 
-        let arr = Object.values(res.data?.products);
-        arr = arr.filter((s) => s.title != "測試的優惠券s");
+        console.log('res', res);
 
-        // let { Items, Count } = res.data;
+        // let { Items, Count } = ;
 
-        items.value = [...arr];
-        itemsForShow.value = [...arr];
-        filterItems();
-
-        // totalItemsCount.value = arr.length;
+        items.value = [...res.data?.coupons];
+        totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -432,122 +275,17 @@ export default defineComponent({
         });
       }
     }
-    const filterItems = () => {
-      //top & skip
-      const page = +offset.value / +rows.value + +1;
-      const skip = (page - 1) * rows.value;
-      const top = rows.value;
-
-      //search Filter
-      let arr = JSON.parse(JSON.stringify(items.value));
-
-      if (typeof selectedActivate.value == "boolean") {
-        arr = arr.filter((s) => s.is_enabled == selectedActivate.value);
-      }
-
-      if (selectedTitle.value) {
-        arr = arr.filter((s) => s.title.includes(selectedTitle.value));
-      }
-
-      if (selectedContent.value) {
-        arr = arr.filter((s) => s.content.includes(selectedContent.value));
-      }
-
-      if (selectedCat.value) {
-        arr = arr.filter((s) => s.category.includes(selectedCat.value));
-      }
-
-      // this.rowCount = arr.length;
-      totalItemsCount.value = arr.length;
-
-      //pageNow
-      arr = arr.slice(skip, top + skip);
-      itemsForShow.value = JSON.parse(JSON.stringify(arr));
-    };
-
-    //sort
-    const sort = (item) => {
-      if (!item.key) {
-        return;
-      }
-      if (item.sortDesc) {
-        item.sortDesc = null;
-      } else if (false === item.sortDesc) {
-        item.sortDesc = true;
-      } else if (null === item.sortDesc) {
-        item.sortDesc = false;
-      }
-      orderByArr.value = [];
-
-      headers.value.forEach((s) => {
-        if (s.sortDesc !== null) {
-          orderByArr.value.push(s.sortDesc ? `${s.key} desc` : `${s.key}`);
-        }
-      });
-
-      let sortBy = orderByArr.value.map((s) => ({
-        prop: s.includes("desc") ? s.split(" ")[0] : s,
-        direction: s.includes("desc") ? 1 : -1,
-      }));
-
-      items.value.sort(function (a, b) {
-        let i = 0,
-          result = 0;
-        while (i < sortBy.length && result === 0) {
-          if (isNaN(+b[sortBy[i].prop].toString())) {
-            result =
-              sortBy[i].direction *
-              (a[sortBy[i].prop].toString() < b[sortBy[i].prop].toString()
-                ? -1
-                : a[sortBy[i].prop].toString() > b[sortBy[i].prop].toString()
-                ? 1
-                : 0);
-          } else {
-            result =
-              sortBy[i].direction *
-              (+a[sortBy[i].prop].toString() < +b[sortBy[i].prop].toString()
-                ? -1
-                : +a[sortBy[i].prop].toString() > +b[sortBy[i].prop].toString()
-                ? 1
-                : 0);
-          }
-
-          i++;
-        }
-        return result;
-      });
-      filterItems();
-    };
-
-    //for search
-    const selectedActivate = ref(null);
-    const selectedTitle = ref("");
-    const selectedContent = ref("");
-    const selectedCat = ref("");
-
-    const activates = ref([
-      { value: true, text: "啟用" },
-      { value: false, text: "已停用" },
-    ]);
-
-    function clearSearch() {
-      selectedActivate.value = "";
-      selectedTitle.value = "";
-      selectedContent.value = "";
-      selectedCat.value = "";
-      getData();
-    }
 
     onMounted(async () => {
       await getData();
     });
 
     watch(offset, (v, pv) => {
-      filterItems();
+      getData();
     });
 
     watch(rows, (v, pv) => {
-      filterItems();
+      getData();
     });
 
     //-----------editModal----------------
@@ -557,41 +295,16 @@ export default defineComponent({
 
     function showEditModal(type, item) {
       //type- 1新增、2編輯、3刪除
-      let imgArr = new Array(6).fill().map((s, i) => ({
-        url: "",
-        index: `網址${i + 1}`,
-      }));
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
-        if (item?.imagesUrl) {
-          modalItem.value.imagesArr = item.imagesUrl.map((s, i) => ({
-            url: s,
-            index: `網址${i + 1}`,
-          }));
-          modalItem.value.imagesArr.unshift({
-            url: item.imageUrl,
-            index: `主圖網址`,
-          });
-        } else {
-          modalItem.value.imagesArr = imgArr;
-          modalItem.value.imagesArr.unshift({
-            url: item.imageUrl,
-            index: `主圖網址`,
-          });
-        }
       } else {
         modalItem.value = {
-          category: "",
-          content: "",
-          description: "",
-          imageUrl: "",
-          imagesArr: imgArr,
+          title: '',
           is_enabled: true,
-          origin_price: 0,
-          price: 0,
-          title: "",
-          unit: "",
+          percent: 90,
+          due_date: null,
+          code: '',
         };
       }
       nowType.value = type;
@@ -602,26 +315,23 @@ export default defineComponent({
       const obj = {
         ...modalItem.value,
       };
-
-      obj.imagesUrl = obj.imagesArr.slice(1).map((s) => `${s.url}`);
-      obj.imageUrl = obj.imagesArr[0].url;
-      delete obj.imagesArr;
+      obj.due_date = dayjs(obj.due_date).format('YYYY-MM-DD');
 
       try {
         // const res = await putInstitutionList(obj);
         if (nowType.value == 1) {
-          const res1 = await postProducts({ data: obj });
+          const res1 = await postCoupons({ data: obj });
         }
         if (nowType.value == 2) {
-          const res2 = await putProducts({ data: obj }, obj.id);
+          const res2 = await putCoupons({ data: obj }, obj.id);
         }
         if (nowType.value == 3) {
-          const res3 = await deleteProducts(obj.id);
+          const res3 = await deleteCoupons(obj.id);
         }
 
         toast.success(
           `${
-            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
+            nowType.value == 1 ? '新增' : nowType.value == 2 ? '編輯' : '刪除'
           }成功`,
           {
             timeout: 2000,
@@ -642,7 +352,7 @@ export default defineComponent({
       const obj = {
         ...item,
       };
-      const res2 = await putProducts({ data: obj }, obj.id);
+      const res2 = await postCoupons({ data: obj }, obj.id);
       getData();
       toast.success(`優惠券調整成功`, {
         timeout: 2000,
@@ -650,19 +360,19 @@ export default defineComponent({
       });
     };
 
-    const images = ref("");
+    const images = ref('');
 
     const responsiveOptions = ref([
       {
-        breakpoint: "1024px",
+        breakpoint: '1024px',
         numVisible: 5,
       },
       {
-        breakpoint: "768px",
+        breakpoint: '768px',
         numVisible: 3,
       },
       {
-        breakpoint: "560px",
+        breakpoint: '560px',
         numVisible: 1,
       },
     ]);
@@ -675,17 +385,17 @@ export default defineComponent({
     };
 
     const uploadNewFile = async () => {
-      document.getElementById("file-upload").click();
+      document.getElementById('file-upload').click();
     };
     const fileChange = async (e) => {
       const currentFile = e.target.files[0];
       const currentFileName = Boolean(e.target.files[0])
-        ? e.target.files[0].name.split(".")[0]
-        : "";
+        ? e.target.files[0].name.split('.')[0]
+        : '';
 
       try {
         if (!Boolean(currentFileName)) {
-          toast.error("請先選擇檔案", {
+          toast.error('請先選擇檔案', {
             timeout: 2000,
             hideProgressBar: true,
           });
@@ -694,9 +404,9 @@ export default defineComponent({
 
         let form = new FormData();
 
-        form.append("File", currentFile);
+        form.append('File', currentFile);
         const res = await addFileImage(form);
-        console.log("res", res);
+        console.log('res', res);
 
         if (res.data?.success) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;
@@ -716,7 +426,7 @@ export default defineComponent({
           hideProgressBar: true,
         });
       }
-      document.getElementById("file-upload").value = "";
+      document.getElementById('file-upload').value = '';
     };
 
     return {
@@ -728,29 +438,17 @@ export default defineComponent({
       //for list data variable
       headers,
       items,
-      itemsForShow,
+
       toast,
 
       //list data Function
       getData,
-      filterItems,
-      sort,
 
       //paginator
       offset, //目前在第幾筆
       rows, //1頁顯示筆數
       totalItemsCount,
       orderByArr,
-
-      //for search
-      selectedActivate,
-      selectedTitle,
-      selectedContent,
-      selectedCat,
-
-      activates,
-
-      clearSearch,
 
       //editModal variable
       editModal,
