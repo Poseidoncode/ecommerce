@@ -497,8 +497,7 @@
         > -->
         <p class="py-2 text-gray-500 sm:py-0 text-sm">
           <a href="#">
-            Copyright © 2022 Vigilero All rights resevered. Images are for
-            educational use only, no commercial use.
+            &nbsp;
             <!-- 圖片僅供學習使用，無商業用途。<br /> -->
           </a>
         </p>

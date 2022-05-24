@@ -239,12 +239,12 @@
               ><div
                 class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease hover:-translate-y-1 shadow-sm w-72 max-w-full border border-gray-300 rounded-sm bg-white"
               >
-                <div class="w-full h-48">
+                <div class="w-full h-48 flex justify-center mt-2">
                   <img :src="`${item.imageUrl}`" />
                 </div>
                 <div class="p-6">
                   <div class="text-sm">
-                    <h3 class="font-bold text-base">Pizzzza</h3>
+                    <h3 class="font-bold text-base">{{ item.title || "" }}</h3>
                     <div class="flex items-center text-green-400">
                       <svg
                         class="h-5 w-5 text-yellow-400"
@@ -278,9 +278,9 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from 'vue';
-import { getCustomerProductAll } from 'Service/apis.js';
-import { useToast } from 'vue-toastification';
+import { defineComponent, ref, onMounted, watch, inject } from "vue";
+import { getCustomerProductAll } from "Service/apis.js";
+import { useToast } from "vue-toastification";
 
 export default defineComponent({
   props: {},
