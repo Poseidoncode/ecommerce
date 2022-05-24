@@ -3,16 +3,16 @@
     <div
       class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
       style="
-        background-image: url(https://images.unsplash.com/photo-1559825481-12a05cc00344?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=701&q=80);
+        background-image: url(https://images.unsplash.com/photo-1517463700628-5103184eac47?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687);
       "
     >
       <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
       <div class="w-full px-24 z-10">
         <h1 class="text-5xl font-bold text-left tracking-wide">
-          Keep it special
+          Inspired by arctic beauty
         </h1>
         <p class="text-3xl my-4">
-          Capture your personal memory in unique way, anywhere.
+          Capture your personal memory in unique time.
         </p>
       </div>
       <div
