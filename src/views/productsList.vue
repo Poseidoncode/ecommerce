@@ -224,12 +224,12 @@
         <!-- On mobile hide and show this section using hidden and flex end -->
       </div>
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
-        <div
+        <!-- <div
           class="w-full px-6 py-3 rounded-sm border text-green-800 bg-green-400 border-green-500"
           role="alert"
         >
           We are now offering contactless delivery in light of COVID-19.
-        </div>
+        </div> -->
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
           <div
@@ -244,7 +244,7 @@
                 </div>
                 <div class="p-6">
                   <div class="text-sm">
-                    <h3 class="font-bold text-base">{{ item.title || "" }}</h3>
+                    <h3 class="font-bold text-base">{{ item.title || '' }}</h3>
                     <div class="flex items-center text-green-400">
                       <svg
                         class="h-5 w-5 text-yellow-400"
@@ -278,9 +278,9 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from "vue";
-import { getCustomerProductAll } from "Service/apis.js";
-import { useToast } from "vue-toastification";
+import { defineComponent, ref, onMounted, watch, inject } from 'vue';
+import { getCustomerProductAll } from 'Service/apis.js';
+import { useToast } from 'vue-toastification';
 
 export default defineComponent({
   props: {},
