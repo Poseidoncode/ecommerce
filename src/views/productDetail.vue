@@ -205,29 +205,30 @@
         <div class="md:flex-1 px-4">
           <div x-data="{ image: 1 }" x-cloak>
             <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4">
+              <span class="text-5xl">1</span>
               <div
-                x-show="image === 1"
+                v-show="image === 1"
                 class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center"
               >
                 <span class="text-5xl">1</span>
               </div>
 
               <div
-                x-show="image === 2"
+                v-show="image === 2"
                 class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center"
               >
                 <span class="text-5xl">2</span>
               </div>
 
               <div
-                x-show="image === 3"
+                v-show="image === 3"
                 class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center"
               >
                 <span class="text-5xl">3</span>
               </div>
 
               <div
-                x-show="image === 4"
+                v-show="image === 4"
                 class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center"
               >
                 <span class="text-5xl">4</span>
@@ -328,40 +329,39 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from 'vue';
-import { getCustomerProductAll } from 'Service/apis.js';
+import { defineComponent, ref, onMounted, watch } from 'vue';
+import { getCustomerSingleProduct } from 'Service/apis.js';
 import { useToast } from 'vue-toastification';
+import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
+    const route = useRoute();
+    const router = useRouter();
+
+    console.log('route', route, route.params.productId, route.params.value);
     // emit("update:modelValue", _newValues);
-    // const toast = useToast();
-    // const items = ref([]);
-    // const getData = async () => {
-    //   try {
-    //     //top:筆數、skip:跳過幾筆
-    //     const page = 1;
-    //     // const page = +offset.value / +rows.value + +1;
-    //     // const skip = (page - 1) * rows.value;
-    //     // const top = rows.value;
+    const toast = useToast();
+    const product = ref([]);
+    const getData = async () => {
+      try {
+        const res = await getCustomerSingleProduct(`${route.params.productId}`);
 
-    //     const res = await getCustomerProductAll(`?page=${page}`);
-
-    //     items.value = [...res.data?.products];
-    //     // totalItemsCount.value = +res.data?.length;
-    //   } catch (e) {
-    //     toast.error(`${e.response ? e.response.data : e}`, {
-    //       timeout: 2000,
-    //       hideProgressBar: true,
-    //     });
-    //   }
-    // };
-    // onMounted(async () => {
-    // //   await getData();
-    // });
+        product.value = { ...res.data?.product };
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+    onMounted(async () => {
+      await getData();
+    });
     return {
-      // items, getData
+      product,
+      getData,
     };
   },
 });

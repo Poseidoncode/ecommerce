@@ -235,7 +235,11 @@
           <div
             class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
           >
-            <a href="#" v-for="(item, idx) in items" :key="`content${idx}`"
+            <a
+              href="#"
+              v-for="(item, idx) in items"
+              :key="`content${idx}`"
+              @click.prevent="showDetail(item)"
               ><div
                 class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease hover:-translate-y-1 shadow-sm w-72 max-w-full border border-gray-300 rounded-sm bg-white"
               >
@@ -281,11 +285,14 @@
 import { defineComponent, ref, onMounted, watch, inject } from 'vue';
 import { getCustomerProductAll } from 'Service/apis.js';
 import { useToast } from 'vue-toastification';
+import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
     // emit("update:modelValue", _newValues);
+    const router = useRouter();
+    const route = useRoute();
     const toast = useToast();
     const items = ref([]);
     const getData = async () => {
@@ -307,10 +314,17 @@ export default defineComponent({
         });
       }
     };
+
+    const showDetail = (item) => {
+      router.push({
+        name: 'productdetail',
+        params: { productId: item.id },
+      });
+    };
     onMounted(async () => {
       await getData();
     });
-    return { items, getData };
+    return { items, getData, showDetail };
   },
 });
 </script>
