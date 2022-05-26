@@ -92,6 +92,12 @@ export default {
           },
         ],
       },
+      {
+        key: "4",
+        label: "Logout",
+        icon: "pi pi-fw pi-calendar",
+        to: "/",
+      },
     ]);
 
     const callFunction = async (type) => {
