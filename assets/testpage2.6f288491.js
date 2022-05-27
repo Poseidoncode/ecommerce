@@ -1,0 +1,1 @@
+import"./axios.31af0f42.js";import{_ as o}from"./index.6c76e0a8.js";import"./dayjs.min.b172dca0.js";import{d as t,T as a,O as r,U as n,r as p,c,o as f}from"./vendor.f0aafdee.js";const i=t({props:{},setup(e,{emit:s}){return a(),r(),n(),p([]),{}}});function u(e,s,d,m,_,l){return f(),c("section",null,"123")}var v=o(i,[["render",u]]);export{v as default};
