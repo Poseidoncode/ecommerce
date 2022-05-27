@@ -1,7 +1,4 @@
 <template>
-  <!-- component -->
-  <!-- This is an example component -->
-
   <div class="bg-indigo-700 text-indigo-200 md:text-center py-2 px-4">
     Inspired from Dribbble Shot by
     <a
