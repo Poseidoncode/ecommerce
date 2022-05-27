@@ -2,22 +2,20 @@
   <section>
     <div class="product-img">
       <swiper
-        :style="{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }"
+        @swiper="setThumbsSwiper"
         :loop="true"
         :spaceBetween="10"
-        :navigation="false"
-        :thumbs="{ swiper: thumbsSwiper }"
+        :slidesPerView="4"
+        :freeMode="true"
+        :watchSlidesProgress="true"
         :modules="modules"
-        class="mySwiper2"
+        class="mySwiper"
+        :direction="'vertical'"
       >
         <swiper-slide
-          ><img src="https://swiperjs.com/demos/images/nature-1.jpg"
-        /></swiper-slide>
-
-        <swiper-slide
+          ><img
+            src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
+        ><swiper-slide
           ><img
             src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
         ><swiper-slide
@@ -45,21 +43,24 @@
           ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
         /></swiper-slide>
       </swiper>
+
       <swiper
-        @swiper="setThumbsSwiper"
+        :style="{
+          '--swiper-navigation-color': '#fff',
+          '--swiper-pagination-color': '#fff',
+        }"
         :loop="true"
         :spaceBetween="10"
-        :slidesPerView="4"
-        :freeMode="true"
-        :watchSlidesProgress="true"
+        :navigation="false"
+        :thumbs="{ swiper: thumbsSwiper }"
         :modules="modules"
-        class="mySwiper"
-        :direction="'vertical'"
+        class="mySwiper2"
       >
         <swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-        ><swiper-slide
+          ><img src="https://swiperjs.com/demos/images/nature-1.jpg"
+        /></swiper-slide>
+
+        <swiper-slide
           ><img
             src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
         ><swiper-slide
@@ -137,7 +138,6 @@ export default defineComponent({
       setThumbsSwiper,
       modules: [FreeMode, Navigation, Thumbs, EffectCards],
       // modules3: [FreeMode, Navigation, Thumbs, Virtual],
-      modules2: [EffectCards],
     };
   },
 });
@@ -199,20 +199,29 @@ body {
 }
 
 .mySwiper {
-  height: 20%;
+  // height: 20%;
   box-sizing: border-box;
   padding: 10px 0;
+  margin-right: 8px;
+  margin-left: 0;
+  .swiper-slide {
+    // width: 25%;
+    //  height: 100%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.4;
+  }
 }
+// .swiper-wrapper {
+//   display: flex;
+//   align-items: flex-end;
+// }
 
 .mySwiper2 {
   height: 80%;
   width: 100%;
-}
-
-.mySwiper .swiper-slide {
-  width: 25%;
-  height: 100%;
-  opacity: 0.4;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .mySwiper .swiper-slide-thumb-active {
@@ -227,9 +236,6 @@ body {
 }
 
 .swiper {
-  // width: 240px;
-
-  // height: 320px;
   width: 480px;
   height: 640px;
 }
@@ -244,47 +250,12 @@ body {
   color: #fff;
 }
 
-// .swiper-slide:nth-child(1n) {
-//   background-color: rgb(206, 17, 17);
-// }
-
-// .swiper-slide:nth-child(2n) {
-//   background-color: rgb(0, 140, 255);
-// }
-
-// .swiper-slide:nth-child(3n) {
-//   background-color: rgb(10, 184, 111);
-// }
-
-// .swiper-slide:nth-child(4n) {
-//   background-color: rgb(211, 122, 7);
-// }
-
-// .swiper-slide:nth-child(5n) {
-//   background-color: rgb(118, 163, 12);
-// }
-
-// .swiper-slide:nth-child(6n) {
-//   background-color: rgb(180, 10, 47);
-// }
-
-// .swiper-slide:nth-child(7n) {
-//   background-color: rgb(35, 99, 19);
-// }
-
-// .swiper-slide:nth-child(8n) {
-//   background-color: rgb(0, 68, 255);
-// }
-
-// .swiper-slide:nth-child(9n) {
-//   background-color: rgb(218, 12, 218);
-// }
-
-// .swiper-slide:nth-child(10n) {
-//   background-color: rgb(54, 94, 77);
-// }
-
 .product-img {
   display: flex;
+  justify-content: center;
+}
+::v-deep(.swiper-wrapper) {
+  display: flex;
+  align-items: flex-end;
 }
 </style>
