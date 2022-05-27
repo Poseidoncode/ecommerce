@@ -121,6 +121,16 @@ const routes = [
     },
     component: () => import('@/views/testpage.vue'),
   },
+  {
+    path: '/testpage2',
+    name: 'testpage2',
+    meta: {
+      title: 'testpage2',
+      needNav: false,
+      needFooter: false,
+    },
+    component: () => import('@/views/testpage2.vue'),
+  },
 ];
 
 const router = createRouter({
