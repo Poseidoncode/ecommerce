@@ -1,94 +1,6 @@
 <template>
   <section>
-    <div class="product-img">
-      <swiper
-        @swiper="setThumbsSwiper"
-        :loop="true"
-        :spaceBetween="10"
-        :slidesPerView="4"
-        :freeMode="true"
-        :watchSlidesProgress="true"
-        :modules="modules"
-        class="mySwiper"
-        :direction="'vertical'"
-      >
-        <swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-        /></swiper-slide>
-      </swiper>
 
-      <swiper
-        :style="{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }"
-        :loop="true"
-        :spaceBetween="10"
-        :navigation="false"
-        :thumbs="{ swiper: thumbsSwiper }"
-        :modules="modules"
-        class="mySwiper2"
-      >
-        <swiper-slide
-          ><img src="https://swiperjs.com/demos/images/nature-1.jpg"
-        /></swiper-slide>
-
-        <swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img
-            src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-        ><swiper-slide
-          ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-        /></swiper-slide>
-      </swiper>
-    </div>
   </section>
 </template>
 
@@ -99,16 +11,12 @@ import { useToast } from 'vue-toastification';
 import { useRoute, useRouter } from 'vue-router';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
-// Import Swiper styles
 import 'swiper/css';
-
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-// import './style.css';
 
-// import required modules
 
 import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper';
@@ -120,13 +28,13 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
   },
-  setup(props, { emit }) {
+  setup (props, { emit }) {
     const route = useRoute();
     const router = useRouter();
 
     const toast = useToast();
     const product = ref([]);
-    // let thumbsSwiper = null;
+
     const thumbsSwiper = ref(null);
 
     const setThumbsSwiper = (swiper) => {
@@ -137,7 +45,6 @@ export default defineComponent({
       thumbsSwiper,
       setThumbsSwiper,
       modules: [FreeMode, Navigation, Thumbs, EffectCards],
-      // modules3: [FreeMode, Navigation, Thumbs, Virtual],
     };
   },
 });
@@ -148,8 +55,9 @@ export default defineComponent({
   width: 100%;
   height: 100%;
 }
+
 .swiper {
-  // width: 100%;
+
   width: 240px;
   height: 320px;
 }
@@ -181,10 +89,7 @@ export default defineComponent({
   object-fit: cover;
 }
 
-body {
-  background: #000;
-  color: #000;
-}
+
 
 .swiper {
   width: 100%;
@@ -204,6 +109,7 @@ body {
   padding: 10px 0;
   margin-right: 8px;
   margin-left: 0;
+
   .swiper-slide {
     // width: 25%;
     //  height: 100%;
@@ -212,10 +118,6 @@ body {
     opacity: 0.4;
   }
 }
-// .swiper-wrapper {
-//   display: flex;
-//   align-items: flex-end;
-// }
 
 .mySwiper2 {
   height: 80%;
@@ -254,6 +156,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 ::v-deep(.swiper-wrapper) {
   display: flex;
   align-items: flex-end;
