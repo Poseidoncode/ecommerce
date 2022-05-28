@@ -1,93 +1,24 @@
 <template>
-
-
-  <div class="bg-white shadow-sm sticky top-0">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 md:py-4">
-      <div class="flex items-center justify-between md:justify-start">
-        <!-- Menu Trigger -->
-        <button type="button" class="md:hidden w-10 h-10 rounded-lg -ml-2 flex justify-center items-center">
-          <svg class="text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <!-- ./ Menu Trigger -->
-
-        <a href="#" class="font-bold text-gray-700 text-2xl">Shop.</a>
-
-        <div class="hidden md:flex space-x-3 flex-1 lg:ml-8">
-          <a href="#" class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Electronics</a>
-          <a href="#" class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Fashion</a>
-          <a href="#" class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Tools</a>
-          <a href="#" class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Books</a>
-          <a href="#" class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">More</a>
-        </div>
-
-        <div class="flex items-center space-x-4">
-          <div class="relative hidden md:block">
-            <input type="search"
-              class="pl-10 pr-2 h-10 py-1 rounded-lg border border-gray-200 focus:border-gray-300 focus:outline-none focus:shadow-inner leading-none"
-              placeholder="Search" />
-            <svg class="h-6 w-6 text-gray-300 ml-2 mt-2 stroke-current absolute top-0 left-0"
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-
-          <a href="#"
-            class="flex h-10 items-center px-2 rounded-lg border border-gray-200 hover:border-gray-300 focus:outline-none hover:shadow-inner">
-            <svg class="h-6 w-6 leading-none text-gray-300 stroke-current" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            <span class="pl-1 text-gray-500 text-md">0</span>
-          </a>
-
-          <button type="button"
-            class="hidden md:block w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex justify-center items-center">
-            <img src="https://avatars.dicebear.com/api/bottts/2.svg" alt="bottts" width="28" height="28"
-              class="rounded-lg mx-auto" />
-          </button>
-        </div>
-      </div>
-
-      <!-- Search Mobile -->
-      <div class="relative md:hidden">
-        <input type="search"
-          class="mt-1 w-full pl-10 pr-2 h-10 py-1 rounded-lg border border-gray-200 focus:border-gray-300 focus:outline-none focus:shadow-inner leading-none"
-          placeholder="Search" />
-
-        <svg class="h-6 w-6 text-gray-300 ml-2 mt-3 stroke-current absolute top-0 left-0"
-          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      </div>
-      <!-- ./ Search Mobile -->
-    </div>
-  </div>
-
   <div class="py-6">
+
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center space-x-2 text-gray-400 text-sm">
-        <a href="#" class="hover:underline hover:text-gray-600">Home</a>
+        <a href="#" class="hover:underline hover:text-gray-600" @click.prevent="$router.push('/')">Home</a>
         <span>
           <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </span>
-        <a href="#" class="hover:underline hover:text-gray-600">Electronics</a>
+        <a href="#" class="hover:underline hover:text-gray-600" @click.prevent="$router.push('/productslist')">Shop</a>
         <span>
           <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </span>
-        <span>Headphones</span>
+        <span>{{ product.category }}</span>
       </div>
     </div>
     <!-- ./ Breadcrumbs -->
@@ -99,43 +30,32 @@
         <div class="md:flex-1 px-4">
           <!-- ----prodict img -->
           <div class="product-img">
-            <swiper @swiper="setThumbsSwiper" :loop="true" :spaceBetween="10" :slidesPerView="3" :freeMode="false"
-              :watchSlidesProgress="true" :modules="modules" class="mySwiper" :direction="'vertical'">
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-10.jpg" /></swiper-slide>
+
+            <swiper :loop="false" @click="setThumbsSwiper" :spaceBetween="10" :slidesPerView="3" :freeMode="false"
+              :watchSlidesProgress="false" :modules="modules" class="mySwiper" :direction="'vertical'">
+
+
+              <swiper-slide v-for="(itemimg, idx) in product.imagesUrl" :key="`content${idx}`"><img :src="itemimg" />
+              </swiper-slide>
+
             </swiper>
 
             <swiper :style="{
-              '--swiper-navigation-color': '#fff',
-              '--swiper-pagination-color': '#fff',
-            }" :loop="true" :spaceBetween="10" :navigation="false" :thumbs="{ swiper: thumbsSwiper }"
+              '--swiper-navigation-color': 'gray',
+              '--swiper-pagination-color': 'gray',
+            }" :loop="false" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }"
               :modules="modules" class="mySwiper2">
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide>
 
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-10.jpg" /></swiper-slide>
+              <swiper-slide v-for="(itemimg, idx) in product.imagesUrl" :key="`content${idx}`"><img :src="itemimg" />
+              </swiper-slide>
+
             </swiper>
           </div>
 
         </div>
         <div class="md:flex-1 px-4">
           <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">
-            Lorem ipsum dolor, sit amet consectetur, adipisicing elit.
+            {{ product.title }}
           </h2>
           <p class="text-gray-500 text-sm">
             By
@@ -220,14 +140,18 @@ export default defineComponent({
     const router = useRouter();
 
     console.log('route', route, route.params.productId, route.params.value);
-    // emit("update:modelValue", _newValues);
+
     const toast = useToast();
     const product = ref([]);
     const getData = async () => {
       try {
         const res = await getCustomerSingleProduct(`${route.params.productId}`);
-
+        if (!!res.data?.product?.imagesUrl.length) {
+          res.data.product.imagesUrl = res.data.product.imagesUrl.filter((s) => !!s);
+        }
         product.value = { ...res.data?.product };
+
+        console.log("product.value", product.value)
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -237,12 +161,14 @@ export default defineComponent({
     };
     onMounted(async () => {
       await getData();
+      setThumbsSwiper()
     });
 
 
     const thumbsSwiper = ref(null);
 
-    const setThumbsSwiper = (swiper) => {
+    const setThumbsSwiper = (swiper = null) => {
+      console.log("swiper", swiper)
       thumbsSwiper.value = swiper;
     };
     return {
@@ -251,7 +177,7 @@ export default defineComponent({
 
       thumbsSwiper,
       setThumbsSwiper,
-      modules: [FreeMode, Navigation, Thumbs, EffectCards],
+      modules: [FreeMode, Navigation, Thumbs],
     };
   },
 });
@@ -260,7 +186,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .swiper {
   width: 100%;
-  height: 300px;
+  height: 344px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -274,8 +200,9 @@ export default defineComponent({
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
+
 
 .mySwiper {
   box-sizing: border-box;
@@ -285,28 +212,44 @@ export default defineComponent({
 
   .swiper-slide {
     width: 100%;
+    opacity: 0.2;
 
-    opacity: 0.4;
+    &:hover {
+      cursor: pointer;
+
+      opacity: 1;
+    }
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
   }
 }
 
 .mySwiper2 {
-  height: 80%;
+  // height: 80%;
+  max-height: 344px;
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+
+  .swiper-slide {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+  }
+
 }
 
 .mySwiper .swiper-slide-thumb-active {
   opacity: 1;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+
 
 
 
