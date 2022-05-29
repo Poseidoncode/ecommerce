@@ -135,6 +135,11 @@
 
         </TabView>
       </div>
+
+      <!-- -----------section3 -->
+      <h2 class="heading-line" style="margin:0 0 5px;">
+        <span>Your recently viewed items</span>
+      </h2>
     </div>
   </div>
 </template>
@@ -303,5 +308,10 @@ export default defineComponent({
   padding-right: 10px;
   font-size: 18px;
   font-weight: 700;
+}
+
+::v-deep(.p-tabview .p-tabview-nav) {
+  border-width: 0 0 1px 0;
+  border-color: #d1d1d1;
 }
 </style>

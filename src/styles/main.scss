@@ -1,6 +1,5 @@
-
-
-html, body {
+html,
+body {
   @apply p-0 m-0;
 }
 
@@ -15,7 +14,6 @@ $modalBlue: #1f3fb3;
     @apply py-1 text-white text-left;
 
     .p-dialog-header-icons {
-
       // background: #e6e1e1;
       // border-radius: 50%;
       .p-dialog-header-icon {
@@ -37,5 +35,65 @@ $modalBlue: #1f3fb3;
   .p-dialog-footer {
     border-top: 1px solid #ccc;
     @apply p-2;
+  }
+}
+
+.heading-line {
+  text-align: center;
+  position: relative;
+  margin: 15px 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.heading-line span {
+  background: #fff;
+  padding: 5px 10px;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  margin: 0 10px;
+}
+
+.heading-line:before {
+  content: "";
+  background: #d1d1d1;
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+}
+
+// Typing effect for text
+.typing {
+  // height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-effect {
+  // width: 22ch;
+  width: 44ch;
+  animation: typing 2s steps(22), effect 0.55s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes effect {
+  50% {
+    border-color: transparent;
   }
 }
