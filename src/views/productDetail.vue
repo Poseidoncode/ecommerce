@@ -1,10 +1,13 @@
 <template>
   <div class="py-6">
-
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center space-x-2 text-gray-400 text-sm">
-        <a href="#" class="hover:underline hover:text-gray-600" @click.prevent="$router.push('/')">Home</a>
+        <a href="#" class="hover:underline hover:text-gray-600" @click.prevent="$router.push('/')"><svg
+            xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg></a>
         <span>
           <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
@@ -24,61 +27,54 @@
     <!-- ./ Breadcrumbs -->
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-
       <div class="flex flex-col md:flex-row -mx-4">
-
         <div class="md:flex-1 px-4">
           <!-- ----prodict img -->
           <div class="product-img">
-
-            <swiper :loop="false" @click="setThumbsSwiper" :spaceBetween="10" :slidesPerView="3" :freeMode="false"
+            <swiper :loop="false" @swiper="setThumbsSwiper" :spaceBetween="0" :slidesPerView="5" :freeMode="false"
               :watchSlidesProgress="false" :modules="modules" class="mySwiper" :direction="'vertical'">
-
-
               <swiper-slide v-for="(itemimg, idx) in product.imagesUrl" :key="`content${idx}`"><img :src="itemimg" />
               </swiper-slide>
-
             </swiper>
 
             <swiper :style="{
               '--swiper-navigation-color': 'gray',
               '--swiper-pagination-color': 'gray',
+              '--swiper-navigation-size': '32px',
             }" :loop="false" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }"
               :modules="modules" class="mySwiper2">
-
               <swiper-slide v-for="(itemimg, idx) in product.imagesUrl" :key="`content${idx}`"><img :src="itemimg" />
               </swiper-slide>
-
             </swiper>
           </div>
-
         </div>
         <div class="md:flex-1 px-4">
           <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">
             {{ product.title }}
           </h2>
-          <p class="text-gray-500 text-sm">
-            By
-            <a href="#" class="text-indigo-600 hover:underline">ABC Company</a>
-          </p>
 
           <div class="flex items-center space-x-4 my-4">
             <div>
               <div class="rounded-lg bg-gray-100 flex py-2 px-3">
-                <span class="text-indigo-400 mr-1 mt-1">$</span>
-                <span class="font-bold text-indigo-600 text-3xl">25</span>
+                <span class="mr-1 mt-1" style="color: red">$</span>
+                <span class="font-bold text-3xl" style="color: red">{{ product.price || '' }}</span>
               </div>
             </div>
             <div class="flex-1">
-              <p class="text-green-500 text-xl font-semibold">Save 12%</p>
+              <div class="flex">
+                <p class="old-price">${{ product.origin_price || '' }}</p>
+                <p class="text-green-500 text-xl font-semibold">Save {{ (((+product.origin_price - +product.price
+                  ) / +product.origin_price) * 100).toFixed(1)
+                }}%</p>
+              </div>
+
               <p class="text-gray-400 text-sm">Inclusive of all Taxes.</p>
             </div>
           </div>
 
           <p class="text-gray-500">
-            Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Vitae
-            exercitationem porro saepe ea harum corrupti vero id laudantium
-            enim, libero blanditiis expedita cupiditate a est.
+
+            {{ product.description || '' }}
           </p>
 
           <div class="flex py-4 space-x-4">
@@ -103,31 +99,61 @@
             </div>
 
             <button type="button"
-              class="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white">
+              class="h-14 px-6 py-2 font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white">
               Add to Cart
             </button>
           </div>
         </div>
+      </div>
+      <!-- -----------section2 -->
+      <div class="card">
+        <TabView class="tabview-custom" ref="tabview4">
+          <TabPanel>
+            <template #header>
+              <i class="pi pi-calendar"></i>
+              <span>Specifications</span>
+            </template>
+            <div v-html="product.contentreplace"></div>
+          </TabPanel>
+          <TabPanel>
+            <template #header>
+              <i class="pi pi-user"></i>
+              <span>Returns Policy</span>
+            </template>
+
+            <p>● Items with a value of $35 or more must be returned using a trackable shipping method.
+            </p>
+            <p>● All product packaging (boxes, manuals, warranty cards, etc.) and certificates of authenticity, grading,
+              and appraisal must be returned with the item.
+            </p>
+            <p>● Any items returned without original documentation will be rejected.
+            </p>
+            <p>● Items that have been resized, damaged, or otherwise altered after delivery won't be accepted for
+              return.
+            </p>
+          </TabPanel>
+
+        </TabView>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch } from 'vue';
-import { getCustomerSingleProduct } from 'Service/apis.js';
-import { useToast } from 'vue-toastification';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, ref, onMounted, watch } from "vue";
+import { getCustomerSingleProduct } from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useRoute, useRouter } from "vue-router";
 
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
-import { EffectCards } from 'swiper';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
+import { EffectCards } from "swiper";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 export default defineComponent({
   props: {},
@@ -139,19 +165,23 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
 
-    console.log('route', route, route.params.productId, route.params.value);
-
     const toast = useToast();
-    const product = ref([]);
+    const product = ref({});
+
     const getData = async () => {
       try {
         const res = await getCustomerSingleProduct(`${route.params.productId}`);
         if (!!res.data?.product?.imagesUrl.length) {
-          res.data.product.imagesUrl = res.data.product.imagesUrl.filter((s) => !!s);
+          res.data.product.imagesUrl = res.data.product.imagesUrl.filter(
+            (s) => !!s
+          );
         }
+
         product.value = { ...res.data?.product };
 
-        console.log("product.value", product.value)
+        product.value.contentreplace = product.value.content.replace(/\n/g, "<br>");
+
+        console.log("product.value", product.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -159,18 +189,20 @@ export default defineComponent({
         });
       }
     };
+
+
     onMounted(async () => {
       await getData();
-      setThumbsSwiper()
+      setThumbsSwiper();
     });
-
 
     const thumbsSwiper = ref(null);
 
     const setThumbsSwiper = (swiper = null) => {
-      console.log("swiper", swiper)
       thumbsSwiper.value = swiper;
     };
+
+
     return {
       product,
       getData,
@@ -186,7 +218,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .swiper {
   width: 100%;
-  height: 344px;
+  height: 420px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -202,7 +234,6 @@ export default defineComponent({
   height: 100%;
   object-fit: contain;
 }
-
 
 .mySwiper {
   box-sizing: border-box;
@@ -222,13 +253,11 @@ export default defineComponent({
   }
 
   .swiper-slide-active {
-    opacity: 1;
+    // opacity: 1;
   }
 }
 
 .mySwiper2 {
-  // height: 80%;
-  max-height: 344px;
   width: 100%;
   margin-left: 0;
   margin-right: 0;
@@ -240,18 +269,12 @@ export default defineComponent({
       height: 100%;
       object-fit: contain;
     }
-
   }
-
 }
 
 .mySwiper .swiper-slide-thumb-active {
   opacity: 1;
 }
-
-
-
-
 
 .swiper-slide {
   display: flex;
@@ -273,5 +296,12 @@ export default defineComponent({
 ::v-deep(.swiper-wrapper) {
   display: flex;
   align-items: flex-end;
+}
+
+.old-price {
+  text-decoration: line-through;
+  padding-right: 10px;
+  font-size: 18px;
+  font-weight: 700;
 }
 </style>

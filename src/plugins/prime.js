@@ -21,6 +21,8 @@ import Password from "primevue/password";
 import PrimeVue from "primevue/config";
 import Galleria from "primevue/galleria";
 import FileUpload from "primevue/fileupload";
+import TabView from "primevue/tabview";
+import TabPanel from "primevue/tabpanel";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -44,6 +46,8 @@ export default (app) => {
   app.component("Password", Password);
   app.component("Galleria", Galleria);
   app.component("FileUpload", FileUpload);
+  app.component("TabView", TabView);
+  app.component("TabPanel", TabPanel);
   // .use(ToastService);
   app.use(PrimeVue);
   return app;
