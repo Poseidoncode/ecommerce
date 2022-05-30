@@ -2,26 +2,38 @@
   <div class="py-6">
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center space-x-2 text-gray-400 text-sm">
-        <a href="#" class="hover:underline hover:text-gray-600" @click.prevent="$router.push('/')"><svg
+      <div class="flex items-center space-x-2 text-gray-800 text-sm">
+        <a href="#" class="hover:underline hover:text-gray-800" @click.prevent="$router.push('/')"><svg
             xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg></a>
         <span>
-          <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+          <svg class="h-5 w-5 leading-none text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </span>
-        <a href="#" class="hover:underline hover:text-gray-600" @click.prevent="$router.push('/productslist')">Shop</a>
+        <a href="#" class="text-gray-800 hover:underline hover:text-gray-900"
+          @click.prevent="$router.push('/productslist')">Shop</a>
         <span>
-          <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+          <svg class="h-5 w-5 leading-none text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </span>
-        <span>{{ product.category }}</span>
+        <a href="#" class="text-gray-800 hover:underline hover:text-gray-900"
+          @click.prevent="$router.push('/productslist')">{{
+              product.category
+          }}</a>
+
+        <span>
+          <svg class="h-5 w-5 leading-none text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+        <span class="text-gray-400">{{ product.title }}</span>
       </div>
     </div>
     <!-- ./ Breadcrumbs -->
@@ -57,15 +69,24 @@
             <div>
               <div class="rounded-lg bg-gray-100 flex py-2 px-3">
                 <span class="mr-1 mt-1" style="color: red">$</span>
-                <span class="font-bold text-3xl" style="color: red">{{ product.price || '' }}</span>
+                <span class="font-bold text-3xl" style="color: red">{{
+                    product.price || ''
+                }}</span>
               </div>
             </div>
             <div class="flex-1">
               <div class="flex">
                 <p class="old-price">${{ product.origin_price || '' }}</p>
-                <p class="text-green-500 text-xl font-semibold">Save {{ (((+product.origin_price - +product.price
-                  ) / +product.origin_price) * 100).toFixed(1)
-                }}%</p>
+                <p class="text-green-500 text-xl font-semibold">
+                  Save
+                  {{
+                      (
+                        ((+product.origin_price - +product.price) /
+                          +product.origin_price) *
+                        100
+                      ).toFixed(1)
+                  }}%
+                </p>
               </div>
 
               <p class="text-gray-400 text-sm">Inclusive of all Taxes.</p>
@@ -73,7 +94,6 @@
           </div>
 
           <p class="text-gray-500">
-
             {{ product.description || '' }}
           </p>
 
@@ -121,23 +141,29 @@
               <span>Returns Policy</span>
             </template>
 
-            <p>● Items with a value of $35 or more must be returned using a trackable shipping method.
+            <p>
+              ● Items with a value of $35 or more must be returned using a
+              trackable shipping method.
             </p>
-            <p>● All product packaging (boxes, manuals, warranty cards, etc.) and certificates of authenticity, grading,
-              and appraisal must be returned with the item.
+            <p>
+              ● All product packaging (boxes, manuals, warranty cards, etc.) and
+              certificates of authenticity, grading, and appraisal must be
+              returned with the item.
             </p>
-            <p>● Any items returned without original documentation will be rejected.
+            <p>
+              ● Any items returned without original documentation will be
+              rejected.
             </p>
-            <p>● Items that have been resized, damaged, or otherwise altered after delivery won't be accepted for
-              return.
+            <p>
+              ● Items that have been resized, damaged, or otherwise altered
+              after delivery won't be accepted for return.
             </p>
           </TabPanel>
-
         </TabView>
       </div>
 
       <!-- -----------section3 -->
-      <h2 class="heading-line" style="margin:0 0 5px;">
+      <h2 class="heading-line" style="margin: 0 0 5px">
         <span>Your recently viewed items</span>
       </h2>
     </div>
@@ -145,20 +171,20 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch } from "vue";
-import { getCustomerSingleProduct } from "Service/apis.js";
-import { useToast } from "vue-toastification";
-import { useRoute, useRouter } from "vue-router";
+import { defineComponent, ref, onMounted, watch } from 'vue';
+import { getCustomerSingleProduct } from 'Service/apis.js';
+import { useToast } from 'vue-toastification';
+import { useRoute, useRouter } from 'vue-router';
 
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
-import { EffectCards } from "swiper";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { EffectCards } from 'swiper';
+import { FreeMode, Navigation, Thumbs } from 'swiper';
 
 export default defineComponent({
   props: {},
@@ -166,7 +192,7 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
   },
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const route = useRoute();
     const router = useRouter();
 
@@ -184,9 +210,12 @@ export default defineComponent({
 
         product.value = { ...res.data?.product };
 
-        product.value.contentreplace = product.value.content.replace(/\n/g, "<br>");
+        product.value.contentreplace = product.value.content.replace(
+          /\n/g,
+          '<br>'
+        );
 
-        console.log("product.value", product.value);
+        console.log('product.value', product.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -194,7 +223,6 @@ export default defineComponent({
         });
       }
     };
-
 
     onMounted(async () => {
       await getData();
@@ -206,7 +234,6 @@ export default defineComponent({
     const setThumbsSwiper = (swiper = null) => {
       thumbsSwiper.value = swiper;
     };
-
 
     return {
       product,
