@@ -1,10 +1,6 @@
 <template>
   <headercontent v-if="$route.meta.needNav"></headercontent>
-  <div
-    :class="
-      $route.meta.needNav && $route.name != 'home' ? 'content-section' : ''
-    "
-  >
+  <div>
     <router-view />
   </div>
   <footercontent v-if="$route.meta.needFooter"></footercontent>
@@ -16,7 +12,7 @@ import footercontent from "@/components/footer.vue";
 
 export default {
   components: { headercontent, footercontent },
-  setup() {
+  setup () {
     return {};
   },
 };
@@ -24,7 +20,4 @@ export default {
 
 <style lang="scss">
 @import "./styles/main.scss";
-.content-section {
-  margin-top: 160px;
-}
 </style>

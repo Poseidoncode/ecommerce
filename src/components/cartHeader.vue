@@ -1,32 +1,17 @@
 <template>
-  <header class="header-content" :class="!scrollIsZero || $route.name != 'home' ? 'addBg' : ''">
+  <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
     <div class="container mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
         <div class="hidden w-full text-gray-600 md:flex md:items-center">
-          <!-- <svg
-              class="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M16.2721 10.2721C16.2721 12.4813 14.4813 14.2721 12.2721 14.2721C10.063 14.2721 8.27214 12.4813 8.27214 10.2721C8.27214 8.06298 10.063 6.27212 12.2721 6.27212C14.4813 6.27212 16.2721 8.06298 16.2721 10.2721ZM14.2721 10.2721C14.2721 11.3767 13.3767 12.2721 12.2721 12.2721C11.1676 12.2721 10.2721 11.3767 10.2721 10.2721C10.2721 9.16755 11.1676 8.27212 12.2721 8.27212C13.3767 8.27212 14.2721 9.16755 14.2721 10.2721Z"
-                fill="currentColor"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M5.79417 16.5183C2.19424 13.0909 2.05438 7.39409 5.48178 3.79417C8.90918 0.194243 14.6059 0.054383 18.2059 3.48178C21.8058 6.90918 21.9457 12.6059 18.5183 16.2059L12.3124 22.7241L5.79417 16.5183ZM17.0698 14.8268L12.243 19.8965L7.17324 15.0698C4.3733 12.404 4.26452 7.97318 6.93028 5.17324C9.59603 2.3733 14.0268 2.26452 16.8268 4.93028C19.6267 7.59603 19.7355 12.0268 17.0698 14.8268Z"
-                fill="currentColor"
-              />
-            </svg> -->
-          <!-- <span class="mx-1 text-sm">NY</span> -->
+
         </div>
         <div class="w-full text-gray-700 md:text-center text-2xl font-semibold flex justify-center">
           <!-- Brand -->
-          <img class="mr-2" style="height: 78px" src="/assets/brandfinal.png" />
+          <img class="logo mr-2 logo1" style="height: 78px" src="/assets/brand8.png"
+            :class="!scrollIsZero ? 'addLogo' : ''" />
+          <img class="logo mr-2 logo2" style="height: 78px" src="/assets/brand7.png"
+            :class="!scrollIsZero ? 'addLogo' : ''" />
+
         </div>
 
         <div class="flex items-center justify-end w-full">
@@ -69,23 +54,24 @@
       </div>
       <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-center sm:items-center mt-4">
         <div class="flex flex-col sm:flex-row">
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#">Home</a>
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#" @click.prevent="
-            isOpen = false;
-          $router.push('/productslist');
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0 " href="#"
+            :class="!scrollIsZero ? 'change-color' : ''">Home</a>
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#" @click.prevent="
+  isOpen = false;
+$router.push('/productslist');
           ">Shop</a>
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" @click.prevent="
-            isOpen = false;
-          $router.push('/faq');
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" @click.prevent="
+  isOpen = false;
+$router.push('/faq');
           " href="#">FAQ</a>
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#" @click.prevent="
-            isOpen = false;
-          $router.push('/news');
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#" @click.prevent="
+  isOpen = false;
+$router.push('/news');
           ">News</a>
-          <a class="mt-3 text-gray-400 hover:underline sm:mx-3 sm:mt-0" href="#" @click.prevent="
-            isOpen = false;
-          $router.push('/about');
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#" @click.prevent="
+  isOpen = false;
+$router.push('/about');
           ">About</a>
         </div>
       </nav>
@@ -221,7 +207,7 @@
   </div>
 </template>
 <script>
-import { inject, ref, defineComponent } from "vue";
+import { inject, ref, defineComponent, onMounted } from "vue";
 
 export default defineComponent({
   setup () {
@@ -234,8 +220,9 @@ export default defineComponent({
       // if (window.scrollY + window.screen.height >= document.body.scrollHeight) {
       //
       // }
+      // console.log("window.scrollY", window.scrollY)
 
-      if (window.scrollY == 0) {
+      if (window.scrollY < 50) {
         scrollIsZero.value = true;
       } else {
         scrollIsZero.value = false;
@@ -243,6 +230,14 @@ export default defineComponent({
     };
 
     window.addEventListener("scroll", handleScroll, true);
+
+    onMounted(async () => {
+      if (window.scrollY < 50) {
+        scrollIsZero.value = true;
+      } else {
+        scrollIsZero.value = false;
+      }
+    });
 
     return { isOpen, cartOpen, handleScroll, scrollIsZero };
   },
@@ -258,26 +253,44 @@ export default defineComponent({
   transition: all 0.6s;
 }
 
+.logo {
+  transition: all 0.6s;
+}
+
+.logo2 {
+  display: none;
+}
+
+.logo1.addLogo {
+  display: none;
+}
+
+.logo2.addLogo {
+  display: block;
+}
+
 .addBg {
-  // background: #fff;
-  // -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(70%);
-  // backdrop-filter: blur(20px) saturate(170%) brightness(70%);
-  background-color: rgb(255 255 255 / 89%);
+  background-color: rgb(255 255 255 / 98%);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   // border-bottom: 1px solid #2d3858;
   box-shadow: 0 0 10px rgb(4 7 14 / 80%);
   z-index: 99;
+  opacity: .96;
 
   >div.container {
     >nav {
       a {
-        color: #4b5562 !important;
+        // color: #4b5562 !important;
+        color: #07193f !important;
+        font-weight: 700;
       }
     }
   }
+}
 
-  /* // header.addBg > div > nav > div > a:nth-child(5) */
+.nav-color {
+  color: #E7E9F0;
 }
 </style>

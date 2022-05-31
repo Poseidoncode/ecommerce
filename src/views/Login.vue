@@ -81,7 +81,7 @@
           </div>
           <div class="px-4 pb-2 pt-4">
             <button
-              class="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none"
+              class="uppercase block w-full p-4 text-lg rounded-full theme-bg-color1 theme-color2 focus:outline-none font-extrabold"
               @click.prevent="signIn">
               sign in
             </button>
