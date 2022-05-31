@@ -240,15 +240,20 @@
               v-for="(item, idx) in items"
               :key="`content${idx}`"
               @click.prevent="showDetail(item)"
-              ><div
-                class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease hover:-translate-y-1 shadow-sm w-72 max-w-full border border-gray-300 rounded-sm bg-white"
+              class="product-item"
+            >
+              <div
+                class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease shadow-sm w-72 max-w-full border border-gray-300 rounded-sm bg-white product-item-main"
               >
-                <div class="w-full h-48 flex justify-center mt-2">
+                <div
+                  class="w-full h-48 flex justify-center mt-2 picture-section"
+                >
                   <img :src="`${item.imageUrl}`" />
+                  <div class="image-word">123</div>
                 </div>
                 <div class="p-6">
                   <div class="text-sm">
-                    <h3 class="font-bold text-base">{{ item.title || '' }}</h3>
+                    <h3 class="font-bold text-base">{{ item.title || "" }}</h3>
                     <div class="flex items-center text-green-400">
                       <svg
                         class="h-5 w-5 text-yellow-400"
@@ -272,8 +277,9 @@
                     <p>1.5 miles away · $</p>
                   </div>
                 </div>
-              </div></a
-            >
+              </div>
+              <div class="product-item-hover">123</div>
+            </a>
           </div>
         </div>
       </div>
@@ -282,10 +288,10 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from 'vue';
-import { getCustomerProductAll } from 'Service/apis.js';
-import { useToast } from 'vue-toastification';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, ref, onMounted, watch, inject } from "vue";
+import { getCustomerProductAll } from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   props: {},
@@ -317,7 +323,7 @@ export default defineComponent({
 
     const showDetail = (item) => {
       router.push({
-        name: 'productdetail',
+        name: "productdetail",
         params: { productId: item.id },
       });
     };
@@ -330,9 +336,43 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.news {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.product-item {
+  .product-item-main {
+    .picture-section {
+      .image-word {
+        display: none;
+      }
+      &:hover {
+        position: relative;
+        filter: brightness(70%);
+        transform: scale(1.2);
+        .image-word {
+          display: block;
+          // width: 100%;
+          // height: 100%;
+          // // color: #fff;
+          // // opacity: 0;
+          // // padding: 15px;
+          // // display: flex;
+          // // text-align: center;
+          // // justify-content: center;
+          // // align-items: center;
+          // // background: rgba(0, 0, 0, 0.5);
+          // transition: 0.8s;
+          // position: absolute;
+          top: 0;
+          left: 0;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          top: 70%;
+          opacity: 1;
+          transition: all 0.3s ease-out;
+        }
+      }
+    }
+  }
+  .product-item-hover {
+    display: none;
+  }
 }
 </style>
