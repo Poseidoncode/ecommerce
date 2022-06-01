@@ -1,5 +1,27 @@
 <template>
   <div class="py-6">
+    <section>
+      <div class="text-white bg-setting bg-setting-local" style="
+          background: url('https://images.unsplash.com/photo-1617317376997-8748e6862c01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+          background-position: 50% 65%;
+          background-size: cover;
+        ">
+        <div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
+          <div class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
+            <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">
+              Shop
+            </h1>
+            <h2 class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">
+              Get Your Epic time
+            </h2>
+            <p class="text-sm md:text-base text-gray-50 mb-4">
+              You’re in good hands on our watch.
+            </p>
+          </div>
+          <div class="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center"></div>
+        </div>
+      </div>
+    </section>
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center space-x-2 text-gray-800 text-sm">
@@ -192,7 +214,7 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
   },
-  setup(props, { emit }) {
+  setup (props, { emit }) {
     const route = useRoute();
     const router = useRouter();
 
