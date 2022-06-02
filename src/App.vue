@@ -12,7 +12,7 @@ import footercontent from "@/components/footer.vue";
 
 export default {
   components: { headercontent, footercontent },
-  setup () {
+  setup() {
     return {};
   },
 };

@@ -1,4 +1,11 @@
 <template>
+  <div
+    class="scroll-btn-item"
+    :class="scrollIsZero ? 'btn-fade-out' : 'btn-fade-show'"
+    @click.stop="scrollToTop"
+    variant="primary"
+    pill
+  ></div>
   <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
     <div class="container mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
@@ -347,6 +354,13 @@ import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   setup() {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    };
     const isOpen = ref(false);
     const cartOpen = ref(false);
     const scrollIsZero = ref(false);
@@ -402,7 +416,14 @@ export default defineComponent({
       }
     });
 
-    return { isOpen, cartOpen, handleScroll, scrollIsZero, redirctPage };
+    return {
+      isOpen,
+      cartOpen,
+      handleScroll,
+      scrollIsZero,
+      redirctPage,
+      scrollToTop,
+    };
   },
 });
 </script>
@@ -455,5 +476,28 @@ export default defineComponent({
 
 .nav-color {
   color: #e7e9f0;
+}
+.scroll-btn-item {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  border-bottom: 0.25rem solid;
+  border-right: 0.25rem solid;
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  // color: rgb(12, 21, 73);
+  // color: #53607e;
+  // color: #28afee;
+  color: #09235f;
+  transform: rotate(-135deg);
+  cursor: pointer;
+}
+.btn-fade-out {
+  opacity: 0;
+}
+.btn-fade-show {
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
 }
 </style>
