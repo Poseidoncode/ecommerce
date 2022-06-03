@@ -20,8 +20,8 @@
       <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color7">
         Frequently Asked Questions
       </h1>
-      <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color4">
-        About Orders
+      <h1 class="mb-6 text-xl font-bold md:text-2xl theme-color4">
+        Orders
       </h1>
       <div class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
         <div>
@@ -117,8 +117,8 @@
         </div>
       </div>
       <!-- section-2 -->
-      <h1 class="mb-6 text-xl font-bold md:text-3xl mt-8  theme-color4">
-        About Delivery
+      <h1 class="mb-6 text-xl font-bold md:text-2xl mt-8  theme-color4">
+        Delivery
       </h1>
       <div class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
         <div>
@@ -214,8 +214,8 @@
 
 
       <!-- section-3 -->
-      <h1 class="mb-6 text-xl font-bold md:text-3xl mt-8  theme-color4">
-        About Returns
+      <h1 class="mb-6 text-xl font-bold md:text-2xl mt-8  theme-color4">
+        Returns
       </h1>
       <div class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
         <div>
@@ -365,7 +365,7 @@ export default {
 
 .bg-setting-local {
   padding: 200px 0 120px 0;
-  background: url('https://images.unsplash.com/photo-1617317376997-8748e6862c01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  background: url('https://images.unsplash.com/photo-1618215649907-b51d8accb1ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80');
   background-position: 50% 65%;
   background-size: cover;
 }
