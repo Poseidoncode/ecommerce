@@ -308,23 +308,7 @@
       </div>
     </main>
 
-    <footer class="bg-gray-200" style="font-family: Microsoft JhengHei, Helvetica">
-      <div class="container mx-auto px-6 py-3 flex justify-center items-center">
-        <!-- <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
-          >Vigilero</a
-        > -->
-        <p class="py-2 text-gray-500 sm:py-0 text-sm">
-          <a href="#">
-            &nbsp;
-            <!-- 圖片僅供學習使用，無商業用途。<br /> -->
-          </a>
-        </p>
-        <!-- <p class="py-2 text-gray-500 sm:py-0">
-          本網站為Vigilero權所有，未經允許不得以任何形式複製和採用，圖片僅供學習使用，無商業用途。Copyright
-          © 2022 Vigilero All rights resevered.
-        </p> -->
-      </div>
-    </footer>
+
   </div>
 </template>
 

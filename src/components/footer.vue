@@ -1,6 +1,21 @@
 <template>
   <footer>
-    <!-- <div class="pt-8 bg-gradient-to-b from-gray-900 to-sky-900 md:pt-20"> -->
+
+    <div class="bg-gray-200">
+      <div class="container mx-auto px-6 py-3 flex justify-center items-center">
+
+        <p class="py-2 text-gray-500 sm:py-0 text-sm">
+          <a href="#">
+            &nbsp;
+            <!-- 圖片僅供學習使用，無商業用途。<br /> -->
+          </a>
+        </p>
+        <!-- <p class="py-2 text-gray-500 sm:py-0">
+          本網站為Vigilero權所有，未經允許不得以任何形式複製和採用，圖片僅供學習使用，無商業用途。Copyright
+          © 2022 Vigilero All rights resevered.
+        </p> -->
+      </div>
+    </div>
     <div class="pt-8 bg-gradient-to-b from-gray-100 to-sky-900 md:pt-20">
       <div class="container m-auto px-6 space-y-8 text-gray-400 md:px-12 lg:px-20">
         <div>
