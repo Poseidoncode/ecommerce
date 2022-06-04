@@ -219,16 +219,21 @@ export default defineComponent({
     const items = ref([]);
     const getData = async () => {
       try {
-        //top:筆數、skip:跳過幾筆
-        const page = 1;
-        // const page = +offset.value / +rows.value + +1;
-        // const skip = (page - 1) * rows.value;
-        // const top = rows.value;
 
-        const res = await getCustomerProductAll(`?page=${page}`);
+        if (sessionStorage.getItem("needs")) {
+          items.value = JSON.parse(sessionStorage.getItem("needs"))
 
-        items.value = [...res.data?.products];
-        // totalItemsCount.value = +res.data?.length;
+          return
+        }
+
+
+        const res = await getCustomerProductAll(``);
+        let arr = [...res.data?.products];
+        arr = arr.filter((s) => s.title != "測試的產品s");
+
+        items.value = [...arr];
+        sessionStorage.setItem("needs", JSON.stringify(arr));
+
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
