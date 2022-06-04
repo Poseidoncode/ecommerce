@@ -110,15 +110,15 @@
         </div>
         <div class="mt-16">
           <h3 class="text-gray-600 text-2xl font-medium text-center">
-            Fashions
+            Classic
           </h3>
           <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div class="flex items-end justify-end h-56 w-full bg-cover" style="
-                  background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80');
-                ">
-                <button
-                  class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
+              v-for="(itemCat, i) in itemsClassic" :key="`itemCat${i}`">
+              <div class="h-56 w-full product-background" :style="itemCat.imageUrl ? `background:url(${itemCat.imageUrl})` : ''
+              ">
+                <button class=" p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none
+                focus:bg-blue-500 cart-btn">
                   <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path
@@ -126,13 +126,16 @@
                     </path>
                   </svg>
                 </button>
+                <div class="itemCat-hover">
+                  <div class="itemCat-hover-content">More</div>
+                </div>
               </div>
               <div class="px-5 py-3">
-                <h3 class="text-gray-700 uppercase">Chanel</h3>
-                <span class="text-gray-500 mt-2">$12</span>
+                <h3 class="text-gray-700 uppercase">{{ itemCat.title || '' }}</h3>
+                <span class="text-gray-500 mt-2">${{ itemCat.price }}</span>
               </div>
             </div>
-            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+            <!-- <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
               <div class="flex items-end justify-end h-56 w-full bg-cover" style="
                   background-image: url('https://images.unsplash.com/photo-1544441893-675973e31985?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
                 ">
@@ -150,8 +153,8 @@
                 <h3 class="text-gray-700 uppercase">Man Mix</h3>
                 <span class="text-gray-500 mt-2">$12</span>
               </div>
-            </div>
-            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+            </div> -->
+            <!-- <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
               <div class="flex items-end justify-end h-56 w-full bg-cover" style="
                   background-image: url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
                 ">
@@ -169,8 +172,8 @@
                 <h3 class="text-gray-700 uppercase">Classic watch</h3>
                 <span class="text-gray-500 mt-2">$12</span>
               </div>
-            </div>
-            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+            </div> -->
+            <!-- <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
               <div class="flex items-end justify-end h-56 w-full bg-cover" style="
                   background-image: url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80');
                 ">
@@ -188,7 +191,7 @@
                 <h3 class="text-gray-700 uppercase">woman mix</h3>
                 <span class="text-gray-500 mt-2">$12</span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -243,19 +246,24 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useToast } from "vue-toastification";
 import { useRoute, useRouter } from "vue-router";
 import { getCustomerProductAll } from "Service/apis.js";
 export default {
   setup () {
     const toast = useToast();
+    const items = ref([])
+    const itemsClassic = ref([])
+
     const getData = async () => {
       try {
 
         if (sessionStorage.getItem("needs")) {
-          items.value = JSON.parse(sessionStorage.getItem("needs"))
-
+          let arr = JSON.parse(sessionStorage.getItem("needs"))
+          console.log("arr ", arr, JSON.parse(sessionStorage.getItem("needs")))
+          items.value = [...arr];
+          itemsClassic.value = arr.filter((s) => s.category == "Mens");
           return
         }
 
@@ -265,6 +273,8 @@ export default {
         arr = arr.filter((s) => s.title != "測試的產品s");
 
         items.value = [...arr];
+        itemsClassic.value = arr.filter((s) => s.category == "Mens");
+
         sessionStorage.setItem("needs", JSON.stringify(arr));
 
       } catch (e) {
@@ -274,8 +284,13 @@ export default {
         });
       }
     };
+    onMounted(async () => {
+      getData()
+    });
     return {
-      getData
+      getData,
+      items,
+      itemsClassic
     };
   },
 };
@@ -415,6 +430,44 @@ $coupon-radius-size: 12px;
   .allcoupons {
     .coupon-item {
       width: 100%;
+    }
+  }
+}
+
+.itemCat-hover {
+  display: none;
+}
+
+.product-background {
+  background-size: contain !important;
+  background-repeat: no-repeat no-repeat !important;
+  background-position: center !important;
+  position: relative;
+
+  .cart-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  &:hover {
+    .itemCat-hover {
+      display: block;
+      width: 100% !important;
+      height: 100%;
+      background: rgba(0, 0, 0, .5);
+      position: relative;
+
+      .itemCat-hover-content {
+        position: absolute;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        text-decoration: underline;
+        transform: translate(-50%, -50%);
+        font-size: 26px;
+      }
     }
   }
 }
