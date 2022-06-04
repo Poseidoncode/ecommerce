@@ -292,7 +292,7 @@
       </div>
       <!-- coupon -->
       <section>
-        <div>25% Off on All products at CLOCKS Store</div>
+        <div>25% Off on All products at CLOCKS Stores</div>
         <p>
           Get an incredible 25% discount on all types of watches at CLOCKS
           Store. Only for single use.
