@@ -291,23 +291,22 @@
         </div>
       </div>
       <!-- coupon -->
-      <section>
-        <div>25% Off on All products at CLOCKS Stores</div>
-        <p>
-          Get an incredible 25% discount on all types of watches at CLOCKS
+      <section class="allcoupons">
+        <div class="word-one">25% Off on All products at Vigilero Stores</div>
+        <p class="word-two mb-8">
+          Get an incredible 25% discount on all types of watches at Vigilero
           Store. Only for single use.
         </p>
-        <div class="allcoupons mt-16">
-          <div className="coupon-item">
-            <div className="coupon-intro">
-              <h4>Event Name: discountName</h4>
-              <ul>
-                <li>Coupon Codes: discountCode</li>
-                <li>Expires:</li>
-              </ul>
-            </div>
-            <div className="allcoupon-value">40% Off</div>
+
+        <div className="coupon-item">
+          <div className="coupon-intro">
+            <h4>Campaign: Super Month</h4>
+            <ul>
+              <li>Coupon Codes: EJ23K4</li>
+              <li>Expires: 2022/08/23</li>
+            </ul>
           </div>
+          <div className="allcoupon-value">40% Off</div>
         </div>
       </section>
 
@@ -394,21 +393,31 @@ export default {
 }
 
 //coupon
-$coupon-background-color: #eee;
+$coupon-background-color: #011a45;
 $coupon-radius-size: 12px;
 
 .allcoupons {
+  margin-top: 20px;
+  margin-bottom: 20px;
   background: $coupon-background-color;
   padding: 20px;
-  display: flex;
+  display: grid;
   justify-content: center;
-
+  .word-one {
+    font-size: 30px;
+    color: #ffffff;
+  }
+  .word-two {
+    font-size: 18px;
+    color: #aaa;
+  }
   .coupon-item {
+    cursor: pointer;
     margin-bottom: 20px;
     display: flex;
     align-items: stretch;
     justify-content: stretch;
-    width: 46%;
+    width: 100%;
     transition-duration: 0.3s;
 
     > div {
@@ -423,6 +432,7 @@ $coupon-radius-size: 12px;
 
       > h4 {
         padding-left: 20px;
+        font-weight: 600;
       }
 
       ul {
@@ -445,7 +455,7 @@ $coupon-radius-size: 12px;
       display: flex;
       flex: 1;
       position: relative;
-      background: #688e67;
+      background: #46a3e4;
       color: #fff;
       font-size: 38px;
       align-items: center;

@@ -1,22 +1,15 @@
 <template>
-  <div class="py-6">
-    <section>
-      <div class="text-white bg-setting bg-setting-local" style="
-          background: url('https://images.unsplash.com/photo-1617317376997-8748e6862c01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
-          background-position: 50% 65%;
-          background-size: cover;
-        ">
-        <div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
-          <div class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
-            <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">
+  <div class="pb-6">
+    <section class="bg-section">
+      <div class="text-white bg-setting bg-setting-local">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+          <div class="flex flex-col w-full lg:w-1/3 justify-center p-8 items-center md:items-start">
+            <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose bg-section-word1">
               Shop
             </h1>
-            <h2 class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">
-              Get Your Epic time
+            <h2 class="text-3xl md:text-3xl p-2 leading-relaxed md:leading-snug mb-2 bg-section-word2">
+              Get your Luxurious Elegence
             </h2>
-            <p class="text-sm md:text-base text-gray-50 mb-4">
-              You’re in good hands on our watch.
-            </p>
           </div>
           <div class="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center"></div>
         </div>
@@ -45,9 +38,7 @@
           </svg>
         </span>
         <a href="#" class="text-gray-800 hover:underline hover:text-gray-900"
-          @click.prevent="$router.push('/productslist')">{{
-              product.category
-          }}</a>
+          @click.prevent="$router.push('/productslist')">{{ product.category }}</a>
 
         <span>
           <svg class="h-5 w-5 leading-none text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -92,13 +83,13 @@
               <div class="rounded-lg bg-gray-100 flex py-2 px-3">
                 <span class="mr-1 mt-1" style="color: red">$</span>
                 <span class="font-bold text-3xl" style="color: red">{{
-                    product.price || ''
+                    product.price || ""
                 }}</span>
               </div>
             </div>
             <div class="flex-1">
               <div class="flex">
-                <p class="old-price">${{ product.origin_price || '' }}</p>
+                <p class="old-price">${{ product.origin_price || "" }}</p>
                 <p class="text-green-500 text-xl font-semibold">
                   Save
                   {{
@@ -116,7 +107,7 @@
           </div>
 
           <p class="text-gray-500">
-            {{ product.description || '' }}
+            {{ product.description || "" }}
           </p>
 
           <div class="flex py-4 space-x-4">
@@ -193,20 +184,20 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch } from 'vue';
-import { getCustomerSingleProduct } from 'Service/apis.js';
-import { useToast } from 'vue-toastification';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, ref, onMounted, watch } from "vue";
+import { getCustomerSingleProduct } from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useRoute, useRouter } from "vue-router";
 
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
-import { EffectCards } from 'swiper';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
+import { EffectCards } from "swiper";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 export default defineComponent({
   props: {},
@@ -234,10 +225,10 @@ export default defineComponent({
 
         product.value.contentreplace = product.value.content.replace(
           /\n/g,
-          '<br>'
+          "<br>"
         );
 
-        console.log('product.value', product.value);
+        console.log("product.value", product.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -362,5 +353,41 @@ export default defineComponent({
 ::v-deep(.p-tabview .p-tabview-nav) {
   border-width: 0 0 1px 0;
   border-color: #d1d1d1;
+}
+
+.bg-section {
+  height: 437px;
+  margin-bottom: 100px;
+}
+
+.bg-setting-local {
+  padding: 200px 0 120px 0;
+  // background: url("https: //anscommerce.s3.ap-south-1.amazonaws.com/live/image/catalog/brandstore/johnson/Information/service-center-5.jpg");
+  background: #03112e url(/assets/bgSwirl.svg) repeat 0 0/52px;
+  // background-position: 50% 65%;
+  // background-size: cover;
+}
+
+@media (max-width: 575px) {
+  .bg-section {
+    height: 220px;
+    margin-bottom: 160px;
+  }
+
+  .bg-section-word1 {
+    margin-top: 60px;
+  }
+
+  .bg-section-word2 {
+    display: none;
+  }
+
+  .bg-setting-local {
+    padding: 50px 0 5px 0;
+  }
+
+  .bg-setting-local {
+    background-position: 102% 74%;
+  }
 }
 </style>
