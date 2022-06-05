@@ -13,7 +13,7 @@ import { ref, inject, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 export default {
-  setup () {
+  setup() {
     const emitter = inject("emitter"); // Inject `emitter`
     const router = useRouter();
     const route = useRoute();
@@ -99,7 +99,7 @@ export default {
         label: "Logout",
         icon: "pi pi-fw pi-calendar",
         to: "/",
-        command: () => callFunction("addArticles"),
+        command: () => logout(),
       },
     ]);
 
@@ -125,13 +125,22 @@ export default {
         } else {
           emitter.emit("addCoupons");
         }
+      } else if (type == "addArticles") {
+        if (route.name != "articles") {
+          router.push({ name: "articles" });
+          setTimeout(() => {
+            emitter.emit("addArticles");
+          }, 40);
+        } else {
+          emitter.emit("addArticles");
+        }
       }
     };
 
     const logout = () => {
       sessionStorage.clear();
       router.push({ name: "home" });
-    }
+    };
 
     return { items, callFunction };
   },
@@ -143,7 +152,6 @@ export default {
 //   width: 22rem;
 // }
 .main-content {
-
   // display: flex;
   .left-bar {
     height: 100%;

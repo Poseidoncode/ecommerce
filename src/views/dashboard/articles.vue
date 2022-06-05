@@ -189,7 +189,7 @@ import { defineComponent, ref, onMounted, watch, inject } from "vue";
 import { useToast } from "vue-toastification";
 
 import {
-  getCustomerArticle,
+  getArticles,
   putArticles,
   deleteArticles,
   postArticles,
@@ -232,12 +232,12 @@ export default defineComponent({
         const skip = (page - 1) * rows.value;
         const top = rows.value;
 
-        const res = await getCustomerArticle(`?page=${page}`);
+        const res = await getArticles(`?page=${page}`);
         console.log("res", res);
 
         // let { Items, Count } = ;
 
-        items.value = [...res.data?.coupons];
+        items.value = [...res.data?.articles];
         totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {

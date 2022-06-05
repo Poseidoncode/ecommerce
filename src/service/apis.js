@@ -78,7 +78,10 @@ export const deleteCoupons = (id) =>
     method: "delete",
   });
 
-export const getArticles = (qs = "") => ajax({ url: "admin/articles" + qs });
+export const getArticles = (qs = "") =>
+  ajax({
+    url: "admin/articles" + qs,
+  });
 
 export const getSingleArticle = (id) => ajax({ url: `admin/article/${id}` });
 
