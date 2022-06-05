@@ -1,6 +1,8 @@
 <template>
   <div class="main-content">
-    <div class="left-bar"><PanelMenu :model="items" /></div>
+    <div class="left-bar">
+      <PanelMenu :model="items" />
+    </div>
 
     <router-view class="right-content"></router-view>
   </div>
@@ -11,7 +13,7 @@ import { ref, inject, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 export default {
-  setup() {
+  setup () {
     const emitter = inject("emitter"); // Inject `emitter`
     const router = useRouter();
     const route = useRoute();
@@ -97,6 +99,7 @@ export default {
         label: "Logout",
         icon: "pi pi-fw pi-calendar",
         to: "/",
+        command: () => callFunction("addArticles"),
       },
     ]);
 
@@ -123,11 +126,12 @@ export default {
           emitter.emit("addCoupons");
         }
       }
-      // alert(123);
-
-      // emitter.emit("addProducts");
-      //       addCoupons
     };
+
+    const logout = () => {
+      sessionStorage.clear();
+      router.push({ name: "home" });
+    }
 
     return { items, callFunction };
   },
@@ -139,6 +143,7 @@ export default {
 //   width: 22rem;
 // }
 .main-content {
+
   // display: flex;
   .left-bar {
     height: 100%;
@@ -149,6 +154,7 @@ export default {
     // background: black;
     box-shadow: 0px 10px 40px rgb(41 50 65 / 6%);
   }
+
   .right-content {
     padding-left: 160px;
   }
