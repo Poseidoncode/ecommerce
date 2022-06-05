@@ -69,7 +69,7 @@
             </svg>
           </button>
           <button
-            @click="cartOpen = !cartOpen"
+            @click="openCart"
             class="text-gray-400 focus:outline-none mx-4 sm:mx-0"
             :class="!scrollIsZero ? 'text-gray-600' : ''"
           >
@@ -105,6 +105,7 @@
           </div>
         </div>
       </div>
+
       <nav
         :class="isOpen ? '' : 'hidden'"
         class="sm:flex sm:justify-center sm:items-center mt-4"
@@ -147,7 +148,10 @@
       </nav>
     </div>
   </header>
+
+  <!-- cart -->
   <div
+    v-click-outside="outsideEvent"
     :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
     class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
     style="z-index: 100"
@@ -172,15 +176,22 @@
       </button>
     </div>
     <hr class="my-3" />
-    <div class="flex justify-between mt-6">
+
+    <div
+      class="flex justify-between mt-6"
+      v-for="(itemData, i) in items"
+      :key="`itemData${i}`"
+    >
       <div class="flex">
         <img
           class="h-20 w-20 object-cover rounded"
-          src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
+          :src="itemData.product.imageUrl"
           alt=""
         />
         <div class="mx-3">
-          <h3 class="text-sm text-gray-600">Mac Book Pro</h3>
+          <h3 class="text-sm text-gray-600">
+            {{ itemData.product.title || "" }}
+          </h3>
           <div class="flex items-center mt-2">
             <button
               class="text-gray-500 focus:outline-none focus:text-gray-600"
@@ -199,7 +210,7 @@
                 ></path>
               </svg>
             </button>
-            <span class="text-gray-700 mx-2">2</span>
+            <span class="text-gray-700 mx-2">{{ itemData.qty || "" }}</span>
             <button
               class="text-gray-500 focus:outline-none focus:text-gray-600"
             >
@@ -215,106 +226,29 @@
                 <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </button>
-          </div>
-        </div>
-      </div>
-      <span class="text-gray-600">20$</span>
-    </div>
-    <div class="flex justify-between mt-6">
-      <div class="flex">
-        <img
-          class="h-20 w-20 object-cover rounded"
-          src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
-          alt=""
-        />
-        <div class="mx-3">
-          <h3 class="text-sm text-gray-600">Mac Book Pro</h3>
-          <div class="flex items-center mt-2">
             <button
               class="text-gray-500 focus:outline-none focus:text-gray-600"
+              v-tooltip.top="'delete'"
+              @click.prevent="deleteCartData(itemData)"
             >
               <svg
-                class="h-5 w-5"
+                class="h-5 w-5 text-blue-500"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </button>
-            <span class="text-gray-700 mx-2">2</span>
-            <button
-              class="text-gray-500 focus:outline-none focus:text-gray-600"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
             </button>
           </div>
         </div>
       </div>
-      <span class="text-gray-600">20$</span>
-    </div>
-    <div class="flex justify-between mt-6">
-      <div class="flex">
-        <img
-          class="h-20 w-20 object-cover rounded"
-          src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
-          alt=""
-        />
-        <div class="mx-3">
-          <h3 class="text-sm text-gray-600">Mac Book Pro</h3>
-          <div class="flex items-center mt-2">
-            <button
-              class="text-gray-500 focus:outline-none focus:text-gray-600"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </button>
-            <span class="text-gray-700 mx-2">2</span>
-            <button
-              class="text-gray-500 focus:outline-none focus:text-gray-600"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <span class="text-gray-600">20$</span>
+      <span class="text-gray-600"> ${{ itemData.product.price || "" }}</span>
     </div>
     <div class="mt-8">
       <form class="flex items-center justify-center">
@@ -351,9 +285,23 @@
 <script>
 import { inject, ref, defineComponent, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import {
+  getCustomerCart,
+  postCustomerCart,
+  putCustomerCart,
+  deleteCustomerCart,
+} from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
+    const emitter = inject("emitter"); // Inject `emitter`
+    emitter.on("getCartData", (value) => {
+      getData();
+    });
+    const store = useStore();
+
     const scrollToTop = () => {
       window.scrollTo({
         top: 0,
@@ -366,6 +314,7 @@ export default defineComponent({
     const scrollIsZero = ref(false);
     const router = useRouter();
     const route = useRoute();
+    const toast = useToast();
 
     const handleScroll = () => {
       //垂直位移量 + 可見螢幕高度 ≥ 網頁內文高度
@@ -405,8 +354,52 @@ export default defineComponent({
           console.log(`Sorry, no data`);
       }
     };
-
     window.addEventListener("scroll", handleScroll, true);
+
+    //data
+    const items = ref([]);
+    const itemsTotal = ref("");
+    const getData = async () => {
+      try {
+        const res = await getCustomerCart();
+        items.value = [...res.data?.data?.carts];
+        itemsTotal.value = res.data?.data?.final_total;
+
+        store.commit("m_setCartData", items.value);
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    const deleteCartData = async (item) => {
+      try {
+        console.log(item);
+        const res = await deleteCustomerCart(item.id);
+        await getData();
+        toast.success(`刪除成功`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    const openCart = () => {
+      setTimeout(() => {
+        cartOpen.value = true;
+      }, 0);
+    };
+
+    const outsideEvent = () => {
+      cartOpen.value = false;
+    };
 
     onMounted(async () => {
       if (window.scrollY < 50) {
@@ -414,15 +407,24 @@ export default defineComponent({
       } else {
         scrollIsZero.value = false;
       }
+
+      await getData();
     });
 
     return {
       isOpen,
       cartOpen,
+      openCart,
       handleScroll,
       scrollIsZero,
       redirctPage,
       scrollToTop,
+
+      items,
+      itemsTotal,
+      getData,
+      deleteCartData,
+      outsideEvent,
     };
   },
 });
@@ -477,6 +479,7 @@ export default defineComponent({
 .nav-color {
   color: #e7e9f0;
 }
+
 .scroll-btn-item {
   position: fixed;
   bottom: 50px;
@@ -493,9 +496,11 @@ export default defineComponent({
   transform: rotate(-135deg);
   cursor: pointer;
 }
+
 .btn-fade-out {
   opacity: 0;
 }
+
 .btn-fade-show {
   transition: all 0.4s ease-in-out;
   opacity: 1;

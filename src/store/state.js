@@ -1,7 +1,5 @@
 export default {
   user: {
-    name: "",
-    id: "",
     token: "",
     functions: [
       "groupMaintains",
@@ -11,9 +9,10 @@ export default {
       "motivationMaintain",
       "deviceIDMaintain",
     ],
-    locationId: "",
+
     locationName: "",
   },
+  cart: {},
   options: {
     gateway: [],
   },

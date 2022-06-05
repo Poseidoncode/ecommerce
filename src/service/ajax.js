@@ -16,10 +16,10 @@ export default function ajax({ url, method = "get", data = null }) {
 
     const instance = axios.create({
       headers,
-      baseURL:
-        process.env.NODE_ENV === "development"
-          ? "https://vue-course-api.hexschool.io/api/poseidoncode/"
-          : "https://vue-course-api.hexschool.io/api/poseidoncode/",
+      baseURL: "https://vue3-course-api.hexschool.io/v2/api/poseidoncode/",
+      // process.env.NODE_ENV === "development"
+      //   ? "https://vue-course-api.hexschool.io/api/poseidoncode/"
+      //   : "https://vue-course-api.hexschool.io/api/poseidoncode/",
 
       timeout: 8000,
     });

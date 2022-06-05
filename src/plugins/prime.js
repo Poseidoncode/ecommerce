@@ -23,6 +23,8 @@ import Galleria from "primevue/galleria";
 import FileUpload from "primevue/fileupload";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
+import Tooltip from "primevue/tooltip";
+import Sidebar from "primevue/sidebar";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -48,7 +50,22 @@ export default (app) => {
   app.component("FileUpload", FileUpload);
   app.component("TabView", TabView);
   app.component("TabPanel", TabPanel);
+  app.component("Sidebar", Sidebar);
   // .use(ToastService);
+  app.directive("tooltip", Tooltip);
+  app.directive("click-outside", {
+    mounted(el, binding, vnode) {
+      el.clickOutsideEvent = function (event) {
+        if (!(el === event.target || el.contains(event.target))) {
+          binding.value(event, el);
+        }
+      };
+      document.body.addEventListener("click", el.clickOutsideEvent);
+    },
+    unmounted(el) {
+      document.body.removeEventListener("click", el.clickOutsideEvent);
+    },
+  });
   app.use(PrimeVue);
   return app;
 };

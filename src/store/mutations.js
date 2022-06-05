@@ -1,12 +1,11 @@
 export default {
-  m_setUserName(state, value) {
-    state.user.name = value;
+  m_setCartData(state, value) {
+    state.cart = value;
   },
-
-  m_clearUserData(state) {
+  m_clearData(state) {
     state.user.id = "";
     state.user.name = "";
     state.user.token = "";
-    sessionStorage.removeItem("authData");
+    sessionStorage.clear();
   },
 };
