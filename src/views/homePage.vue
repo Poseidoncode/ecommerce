@@ -66,6 +66,7 @@
               </p>
               <button
                 class="flex items-center mt-4 px-3 py-2 bg-blue-800 text-white text-sm uppercase font-medium rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+                @click="goShop"
               >
                 <span>Shop Now</span>
                 <svg
@@ -99,6 +100,7 @@
                 </p>
                 <button
                   class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
+                  @click="goShop"
                 >
                   <span>Shop Now</span>
                   <svg
@@ -131,6 +133,7 @@
                 </p>
                 <button
                   class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
+                  @click="goShop"
                 >
                   <span>Shop Now</span>
                   <svg
@@ -272,6 +275,7 @@ import { useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
     const emitter = inject("emitter"); // Inject `emitter`
 
     const toast = useToast();
@@ -321,7 +325,7 @@ export default {
             qty: +productData.qty + 1,
           };
           const res = await putCustomerCart({ data: obj }, productData.id);
-          console.log("res2", res);
+
           emitter.emit("getCartData");
         } else {
           obj = {
@@ -329,7 +333,7 @@ export default {
             qty: 1,
           };
           const res = await postCustomerCart({ data: obj });
-          console.log("res", res);
+
           emitter.emit("getCartData");
         }
 
@@ -345,11 +349,21 @@ export default {
       }
     };
 
+    const goShop = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+      router.push("/productslist");
+    };
+
     onMounted(async () => {
       getData();
     });
     return {
       getData,
+      goShop,
       items,
       itemsClassic,
       addToCart,

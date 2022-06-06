@@ -193,46 +193,55 @@
             {{ itemData.product.title || "" }}
           </h3>
           <div class="flex items-center mt-2">
-            <button
-              class="text-gray-500 focus:outline-none focus:text-gray-600"
-            >
+            <div class="relative">
+              <select
+                class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-6 h-8 flex items-end pb-1 text-center"
+                v-model="itemData.qty"
+              >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
               <svg
-                class="h-5 w-5"
+                class="w-5 h-5 text-gray-400 absolute right-0 bottom-1 mb-0 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+                />
               </svg>
-            </button>
-            <span class="text-gray-700 mx-2">{{ itemData.qty || "" }}</span>
-            <button
-              class="text-gray-500 focus:outline-none focus:text-gray-600"
+            </div>
+            <select
+              id="countries"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </button>
+              <option selected>Choose a country</option>
+              <option :value="1">1</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+            </select>
+
             <button
               class="text-gray-500 focus:outline-none focus:text-gray-600"
               v-tooltip.top="'delete'"
               @click.prevent="deleteCartData(itemData)"
             >
               <svg
-                class="h-5 w-5 text-blue-500"
+                class="h-7 w-7 text-blue-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
