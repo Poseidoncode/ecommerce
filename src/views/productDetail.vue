@@ -241,38 +241,46 @@
         </div>
       </div>
       <!-- -----------section2 -->
-      <div class="card">
+      <div class="card mt-3">
         <TabView class="tabview-custom" ref="tabview4">
           <TabPanel>
             <template #header>
-              <i class="pi pi-calendar"></i>
-              <span>Specifications</span>
+              <i class="pi pi-tag"></i>
+              <span style="display: inline-block" class="ml-1">
+                Specifications</span
+              >
             </template>
-            <div v-html="product.contentreplace"></div>
+            <div
+              class="specifications-content"
+              v-html="product.contentreplace"
+            ></div>
           </TabPanel>
           <TabPanel>
             <template #header>
-              <i class="pi pi-user"></i>
-              <span>Returns Policy</span>
+              <i class="pi pi-wallet"></i>
+              <span style="display: inline-block" class="ml-1">
+                Returns Policy</span
+              >
             </template>
-
-            <p>
-              ● Items with a value of $35 or more must be returned using a
-              trackable shipping method.
-            </p>
-            <p>
-              ● All product packaging (boxes, manuals, warranty cards, etc.) and
-              certificates of authenticity, grading, and appraisal must be
-              returned with the item.
-            </p>
-            <p>
-              ● Any items returned without original documentation will be
-              rejected.
-            </p>
-            <p>
-              ● Items that have been resized, damaged, or otherwise altered
-              after delivery won't be accepted for return.
-            </p>
+            <div class="specifications-content">
+              <p>
+                ● Items with a value of $35 or more must be returned using a
+                trackable shipping method.
+              </p>
+              <p>
+                ● All product packaging (boxes, manuals, warranty cards, etc.)
+                and certificates of authenticity, grading, and appraisal must be
+                returned with the item.
+              </p>
+              <p>
+                ● Any items returned without original documentation will be
+                rejected.
+              </p>
+              <p>
+                ● Items that have been resized, damaged, or otherwise altered
+                after delivery won't be accepted for return.
+              </p>
+            </div>
           </TabPanel>
         </TabView>
       </div>
@@ -458,16 +466,14 @@ export default defineComponent({
 }
 
 .bg-section {
-  height: 437px;
+  height: 237px;
   margin-bottom: 100px;
 }
 
 .bg-setting-local {
-  padding: 200px 0 120px 0;
-  // background: url("https: //anscommerce.s3.ap-south-1.amazonaws.com/live/image/catalog/brandstore/johnson/Information/service-center-5.jpg");
+  padding: 10px 0 120px 0;
+
   background: #03112e url(/assets/bgSwirl.svg) repeat 0 0/52px;
-  // background-position: 50% 65%;
-  // background-size: cover;
 }
 
 @media (max-width: 575px) {
@@ -491,5 +497,8 @@ export default defineComponent({
   .bg-setting-local {
     background-position: 102% 74%;
   }
+}
+.specifications-content {
+  line-height: 210%;
 }
 </style>

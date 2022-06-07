@@ -615,7 +615,7 @@ export default defineComponent({
           const res3 = await deleteProducts(obj.id);
         }
 
-        toast.success(
+        toast.info(
           `${
             nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
           }成功`,
@@ -640,7 +640,7 @@ export default defineComponent({
       };
       const res2 = await putProducts({ data: obj }, obj.id);
       getData();
-      toast.success(`產品調整成功`, {
+      toast.info(`產品調整成功`, {
         timeout: 2000,
         hideProgressBar: true,
       });
@@ -664,7 +664,7 @@ export default defineComponent({
     ]);
 
     const onUpload = () => {
-      toast.success(`圖片上傳成功`, {
+      toast.info(`圖片上傳成功`, {
         timeout: 3000,
         hideProgressBar: true,
       });
@@ -694,9 +694,9 @@ export default defineComponent({
         const res = await addFileImage(form);
         console.log("res", res);
 
-        if (res.data?.success) {
+        if (res.data?.info) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;
-          toast.success(`上傳圖片成功`, {
+          toast.info(`上傳圖片成功`, {
             timeout: 2000,
             hideProgressBar: true,
           });

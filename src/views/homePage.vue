@@ -153,7 +153,7 @@
           </div>
         </div>
         <div class="mt-16">
-          <h3 class="text-gray-600 text-2xl font-medium text-center">
+          <h3 class="text-2xl font-medium text-center theme-color-main">
             Classic
           </h3>
           <div
@@ -337,7 +337,7 @@ export default {
           emitter.emit("getCartData");
         }
 
-        toast.success(`商品加入購物車成功`, {
+        toast.info(`商品加入購物車成功`, {
           timeout: 2000,
           hideProgressBar: true,
         });

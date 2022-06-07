@@ -32,8 +32,8 @@
           <button
             @click="$router.push('/login')"
             style="margin-right: 16px"
-            class="text-gray-400 focus:outline-none mx-8 sm:mx-0 mr-10"
-            :class="!scrollIsZero ? 'text-gray-600' : ''"
+            class="focus:outline-none mx-8 sm:mx-0 mr-10"
+            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
           >
             <svg
               class="h-6 w-6"
@@ -51,8 +51,8 @@
           <button
             @click="$router.push('/login')"
             style="margin-right: 16px"
-            class="text-gray-400 focus:outline-none mx-8 sm:mx-0"
-            :class="!scrollIsZero ? 'text-gray-600' : ''"
+            class="focus:outline-none mx-8 sm:mx-0"
+            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
           >
             <svg
               class="h-6 w-6"
@@ -70,8 +70,8 @@
           </button>
           <button
             @click="openCart"
-            class="text-gray-400 focus:outline-none mx-4 sm:mx-0"
-            :class="!scrollIsZero ? 'text-gray-600' : ''"
+            class="focus:outline-none mx-4 sm:mx-0"
+            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
             v-badge.warning="`${items.length}`"
             v-if="items.length"
           >
@@ -292,7 +292,7 @@
       </svg>
     </a>
     <hr class="my-6" />
-    <div class="text-right theme-color4">
+    <div class="text-right theme-color-main">
       Total: ${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}
     </div>
   </div>
@@ -392,7 +392,7 @@ export default defineComponent({
       try {
         const res = await deleteCustomerCart(item.id);
         await getData();
-        toast.success(`刪除成功`, {
+        toast.info(`刪除成功`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -413,7 +413,7 @@ export default defineComponent({
 
         const res = await putCustomerCart({ data: obj }, item.id);
         await getData();
-        toast.success(`購物車更新成功`, {
+        toast.info(`購物車更新成功`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -506,7 +506,7 @@ export default defineComponent({
       a {
         // color: #4b5562 !important;
         color: #07193f !important;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
   }
