@@ -72,6 +72,28 @@
             @click="openCart"
             class="text-gray-400 focus:outline-none mx-4 sm:mx-0"
             :class="!scrollIsZero ? 'text-gray-600' : ''"
+            v-badge.warning="`${items.length}`"
+            v-if="items.length"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+          </button>
+          <button
+            @click="openCart"
+            class="text-gray-400 focus:outline-none mx-4 sm:mx-0"
+            :class="!scrollIsZero ? 'text-gray-600' : ''"
+            v-if="!items.length"
           >
             <svg
               class="h-6 w-6"
@@ -157,7 +179,9 @@
     style="z-index: 100"
   >
     <div class="flex items-center justify-between">
-      <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
+      <h3 class="text-md font-medium text-gray-700">
+        Shopping bag ({{ items.length }} items)
+      </h3>
       <button
         @click="cartOpen = !cartOpen"
         class="text-gray-600 focus:outline-none"
@@ -193,64 +217,42 @@
             {{ itemData.product.title || "" }}
           </h3>
           <div class="flex items-center mt-2">
-            <div class="relative">
+            <div class="mr-2">
               <select
-                class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-6 h-8 flex items-end pb-1 text-center"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 v-model="itemData.qty"
+                @change="putData(itemData)"
               >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
+                <option :value="1">1</option>
+                <option :value="2">2</option>
+                <option :value="3">3</option>
+                <option :value="4">4</option>
+                <option :value="5">5</option>
+                <option :value="6">6</option>
+                <option :value="7">7</option>
+                <option :value="8">8</option>
+                <option :value="9">9</option>
+                <option :value="10">10</option>
               </select>
-              <svg
-                class="w-5 h-5 text-gray-400 absolute right-0 bottom-1 mb-0 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-                />
-              </svg>
             </div>
-            <select
-              id="countries"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-              <option selected>Choose a country</option>
-              <option :value="1">1</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
 
             <button
               class="text-gray-500 focus:outline-none focus:text-gray-600"
               v-tooltip.top="'delete'"
-              @click.prevent="deleteCartData(itemData)"
+              @click.prevent="deleteData(itemData)"
             >
               <svg
-                class="h-7 w-7 text-blue-500"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-gray-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                stroke-width="2"
               >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                 />
               </svg>
             </button>
@@ -289,6 +291,10 @@
         <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
       </svg>
     </a>
+    <hr class="my-6" />
+    <div class="text-right theme-color4">
+      Total: ${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}
+    </div>
   </div>
 </template>
 <script>
@@ -373,7 +379,6 @@ export default defineComponent({
         const res = await getCustomerCart();
         items.value = [...res.data?.data?.carts];
         itemsTotal.value = res.data?.data?.final_total;
-
         store.commit("m_setCartData", items.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
@@ -383,12 +388,32 @@ export default defineComponent({
       }
     };
 
-    const deleteCartData = async (item) => {
+    const deleteData = async (item) => {
       try {
-        console.log(item);
         const res = await deleteCustomerCart(item.id);
         await getData();
         toast.success(`刪除成功`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    const putData = async (item) => {
+      try {
+        const obj = {
+          product_id: item.product_id,
+          qty: +item.qty,
+        };
+
+        const res = await putCustomerCart({ data: obj }, item.id);
+        await getData();
+        toast.success(`購物車更新成功`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -432,7 +457,9 @@ export default defineComponent({
       items,
       itemsTotal,
       getData,
-      deleteCartData,
+      deleteData,
+      putData,
+
       outsideEvent,
     };
   },

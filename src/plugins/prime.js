@@ -25,6 +25,7 @@ import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import Tooltip from "primevue/tooltip";
 import Sidebar from "primevue/sidebar";
+import BadgeDirective from "primevue/badgedirective";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -66,6 +67,7 @@ export default (app) => {
       document.body.removeEventListener("click", el.clickOutsideEvent);
     },
   });
+  app.directive("badge", BadgeDirective);
   app.use(PrimeVue);
   return app;
 };
