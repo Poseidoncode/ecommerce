@@ -48,7 +48,7 @@
         {{ item.title || "" }}
       </div>
       <div class="content" :title="item.tag">
-        {{ item.tag || "" }}
+        {{ item.tag ? item.tag.join(",") : "" }}
       </div>
       <div class="content" :title="item.author">
         {{ item.author || "" }}
@@ -111,7 +111,18 @@
             class="custom-search"
           />
         </div>
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon red-star">Tag</span>
 
+          <InputText
+            v-model.trim="newTag"
+            class="custom-search"
+            :disabled="nowType == 3"
+            type="text"
+            placeholder="加入新TAG"
+          />
+          <Button label="Add" @click="editTag(newTag, 1)" />
+        </div>
         <div class="p-inputgroup mt-2">
           <span class="p-inputgroup-addon red-star">圖片</span>
           <InputText
@@ -121,14 +132,12 @@
             type="text"
           />
         </div>
-        <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">Tag</span>
-          <InputText
-            v-model.trim="modalItem.tag"
-            class="custom-search"
-            :disabled="nowType == 3"
-            type="Number"
-          />
+        <div class="p-inputgroup mt-2 flex" style="grid-column: 1/-1">
+          <div class="tage-data" v-for="itemtag in modalItem.tag">
+            <span class="cursor-pointer" @click="editTag(itemtag, 2)"
+              >&nbsp;#{{ itemtag }}&nbsp;&nbsp;</span
+            >
+          </div>
         </div>
         <div class="p-inputgroup mt-2">
           <span class="p-inputgroup-addon red-star">author</span>
@@ -257,6 +266,7 @@ export default defineComponent({
     const modalItem = ref({});
 
     const showEditModal = async (type, item) => {
+      newTag.value = "";
       //type- 1新增、2編輯、3刪除
       if (type == 3) {
         modalItem.value = { ...item };
@@ -264,7 +274,9 @@ export default defineComponent({
         const res = await getSingleArticle(`${item.id}`);
         modalItem.value = { ...res.data.article };
       } else {
-        modalItem.value = {};
+        modalItem.value = {
+          tag: [],
+        };
       }
       nowType.value = type;
       editModal.value = true;
@@ -320,10 +332,19 @@ export default defineComponent({
       });
     };
 
-    const images = ref("");
+    const newTag = ref("");
+    const editTag = (data, type) => {
+      if (type == 1) {
+        modalItem.value.tag.push(data);
+        newTag.value = "";
+      } else if (type == 2) {
+        modalItem.value.tag = modalItem.value.tag.filter((s) => s != data);
+      }
+    };
 
     return {
-      images,
+      newTag,
+      editTag,
 
       //for list data variable
       headers,
