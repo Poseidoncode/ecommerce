@@ -19,11 +19,7 @@
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="
-        idx % 2 == 0
-          ? 'background-color:#ffffff ;'
-          : 'background-color:#e7f2f3;'
-      "
+      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -57,12 +53,8 @@
         {{ item.code || "" }}
       </div>
 
-      <div class="content" :title="item.is_enabled">
-        <Checkbox
-          :binary="true"
-          v-model="item.is_enabled"
-          @change="setStatus(item)"
-        />
+      <div class="content" :title="item.isPublic">
+        <Checkbox :binary="true" v-model="item.isPublic" @change="setStatus(item)" />
       </div>
     </main>
     <main
@@ -92,16 +84,12 @@
     >
       <template #header>
         <h3>
-          {{
-            nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章"
-          }}
+          {{ nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章" }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          是否確定要刪除此文章?
-        </h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">是否確定要刪除此文章?</h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">標題</span>
           <InputText
@@ -113,72 +101,53 @@
         </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">Percent</span>
+          <span class="p-inputgroup-addon red-star">圖片</span>
           <InputText
-            v-model.trim="modalItem.percent"
+            v-model.trim="modalItem.image"
             class="custom-search"
             :disabled="nowType == 3"
             type="Number"
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">到期日</span>
-
-          <Calendar
-            v-model="modalItem.due_date"
-            :showIcon="true"
-            dateFormat="yy-mm-dd"
-            style="height: 40px"
-            class="hidden-item"
+          <span class="p-inputgroup-addon red-star">Tag</span>
+          <InputText
+            v-model.trim="modalItem.tag"
+            class="custom-search"
             :disabled="nowType == 3"
+            type="Number"
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">折扣碼</span>
+          <span class="p-inputgroup-addon red-star">author</span>
           <InputText
-            v-model.trim="modalItem.code"
+            v-model.trim="modalItem.author"
             class="custom-search"
             :disabled="nowType == 3"
           />
         </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">是否啟用</span>
+          <span class="p-inputgroup-addon">isPublic</span>
           <Checkbox
             style="margin: 12px 0 0 10px"
             :binary="true"
-            v-model="modalItem.is_enabled"
+            v-model="modalItem.isPublic"
           />
         </div>
-        <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">上傳主圖圖片</span>
-
-          <Button
-            @click.stop="uploadNewFile"
-            title="上傳主圖圖片"
-            label="Submit"
-            icon="pi pi-box"
-            iconPos="left"
-            style="margin-left: 10px"
-          />
-          <input
-            id="file-upload"
-            type="file"
-            @change="fileChange($event)"
-            ref="inputFile"
-            accept="image/bmp,image/x-bmp,image/jpeg,image/png,.pdf"
-            hidden
+        <div class="p-inputgroup mt-2" style="grid-column: 1/-1">
+          <Editor
+            class="w-full custom-search"
+            v-model="modalItem.content"
+            editorStyle="height: 460px"
+            :disabled="nowType == 3"
           />
         </div>
       </section>
 
       <template #footer>
         <Button label="確定" @click="saveEditModal" />
-        <Button
-          label="取消"
-          class="p-button-success"
-          @click="editModal = false"
-        />
+        <Button label="取消" class="p-button-success" @click="editModal = false" />
       </template>
     </Dialog>
   </section>
@@ -214,7 +183,7 @@ export default defineComponent({
       { name: "Percent", key: "percent", sortDesc: null }, //必填
       { name: "到期日", key: "due_date", sortDesc: null }, //必填
       { name: "折扣碼", key: "code", sortDesc: null }, //必填
-      { name: "是否啟用", key: "is_enabled", sortDesc: null },
+      { name: "是否啟用", key: "isPublic", sortDesc: null },
     ]);
 
     const items = ref([]);
@@ -272,7 +241,7 @@ export default defineComponent({
       } else {
         modalItem.value = {
           title: "",
-          is_enabled: true,
+          isPublic: true,
           percent: 90,
           due_date: null,
           code: "",
@@ -291,6 +260,7 @@ export default defineComponent({
       try {
         // const res = await putInstitutionList(obj);
         if (nowType.value == 1) {
+          obj.create_at = Date.now();
           const res1 = await postArticles({ data: obj });
         }
         if (nowType.value == 2) {
@@ -301,9 +271,7 @@ export default defineComponent({
         }
 
         toast.info(
-          `${
-            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
-          }成功`,
+          `${nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"}成功`,
           {
             timeout: 2000,
             hideProgressBar: true,

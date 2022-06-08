@@ -26,6 +26,7 @@ import TabPanel from "primevue/tabpanel";
 import Tooltip from "primevue/tooltip";
 import Sidebar from "primevue/sidebar";
 import BadgeDirective from "primevue/badgedirective";
+import Editor from "primevue/editor";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -52,6 +53,7 @@ export default (app) => {
   app.component("TabView", TabView);
   app.component("TabPanel", TabPanel);
   app.component("Sidebar", Sidebar);
+  app.component("Editor", Editor);
   // .use(ToastService);
   app.directive("tooltip", Tooltip);
   app.directive("click-outside", {
