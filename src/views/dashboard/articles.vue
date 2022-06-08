@@ -19,7 +19,11 @@
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
+      :style="
+        idx % 2 == 0
+          ? 'background-color:#ffffff ;'
+          : 'background-color:#e7f2f3;'
+      "
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -43,18 +47,22 @@
       <div class="content" :title="item.title">
         {{ item.title || "" }}
       </div>
-      <div class="content" :title="item.percent">
-        {{ item.percent || "" }}
+      <div class="content" :title="item.tag">
+        {{ item.tag || "" }}
       </div>
-      <div class="content" :title="item.due_date">
-        {{ item.due_date || "" }}
+      <div class="content" :title="item.author">
+        {{ item.author || "" }}
       </div>
-      <div class="content" :title="item.code">
-        {{ item.code || "" }}
+      <div class="content" :title="item.timeforshow">
+        {{ item.timeforshow || "" }}
       </div>
 
       <div class="content" :title="item.isPublic">
-        <Checkbox :binary="true" v-model="item.isPublic" @change="setStatus(item)" />
+        <Checkbox
+          :binary="true"
+          v-model="item.isPublic"
+          @change="setStatus(item)"
+        />
       </div>
     </main>
     <main
@@ -84,12 +92,16 @@
     >
       <template #header>
         <h3>
-          {{ nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章" }}
+          {{
+            nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章"
+          }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">是否確定要刪除此文章?</h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
+          是否確定要刪除此文章?
+        </h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">標題</span>
           <InputText
@@ -106,7 +118,7 @@
             v-model.trim="modalItem.image"
             class="custom-search"
             :disabled="nowType == 3"
-            type="Number"
+            type="text"
           />
         </div>
         <div class="p-inputgroup mt-2">
@@ -147,7 +159,11 @@
 
       <template #footer>
         <Button label="確定" @click="saveEditModal" />
-        <Button label="取消" class="p-button-success" @click="editModal = false" />
+        <Button
+          label="取消"
+          class="p-button-success"
+          @click="editModal = false"
+        />
       </template>
     </Dialog>
   </section>
@@ -162,6 +178,7 @@ import {
   putArticles,
   deleteArticles,
   postArticles,
+  getSingleArticle,
   addFileImage,
 } from "Service/apis.js";
 import dayjs from "dayjs";
@@ -180,10 +197,10 @@ export default defineComponent({
     const headers = ref([
       { name: "操作", key: "", sortDesc: null },
       { name: "標題", key: "title", sortDesc: null }, //必填
-      { name: "Percent", key: "percent", sortDesc: null }, //必填
-      { name: "到期日", key: "due_date", sortDesc: null }, //必填
-      { name: "折扣碼", key: "code", sortDesc: null }, //必填
-      { name: "是否啟用", key: "isPublic", sortDesc: null },
+      { name: "標籤", key: "tag", sortDesc: null }, //必填
+      { name: "作者", key: "author", sortDesc: null }, //必填
+      { name: "建立時間", key: "timeforshow", sortDesc: null }, //必填
+      { name: "是否公開", key: "isPublic", sortDesc: null },
     ]);
 
     const items = ref([]);
@@ -205,8 +222,14 @@ export default defineComponent({
         console.log("res", res);
 
         // let { Items, Count } = ;
-
-        items.value = [...res.data?.articles];
+        let arr = [...res.data?.articles];
+        arr = arr.map((s) => {
+          s.timeforshow = dayjs(new Date(+s.create_at)).format(
+            "YYYY/MM/DD HH:mm:ss"
+          );
+          return s;
+        });
+        items.value = [...arr];
         totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
@@ -233,23 +256,19 @@ export default defineComponent({
     const nowType = ref(1);
     const modalItem = ref({});
 
-    function showEditModal(type, item) {
+    const showEditModal = async (type, item) => {
       //type- 1新增、2編輯、3刪除
-
-      if (type == 2 || type == 3) {
+      if (type == 3) {
         modalItem.value = { ...item };
+      } else if (type == 2) {
+        const res = await getSingleArticle(`${item.id}`);
+        modalItem.value = { ...res.data.article };
       } else {
-        modalItem.value = {
-          title: "",
-          isPublic: true,
-          percent: 90,
-          due_date: null,
-          code: "",
-        };
+        modalItem.value = {};
       }
       nowType.value = type;
       editModal.value = true;
-    }
+    };
 
     const saveEditModal = async () => {
       const obj = {
@@ -260,7 +279,7 @@ export default defineComponent({
       try {
         // const res = await putInstitutionList(obj);
         if (nowType.value == 1) {
-          obj.create_at = Date.now();
+          obj.create_at = +Date.now();
           const res1 = await postArticles({ data: obj });
         }
         if (nowType.value == 2) {
@@ -271,7 +290,9 @@ export default defineComponent({
         }
 
         toast.info(
-          `${nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"}成功`,
+          `${
+            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
+          }成功`,
           {
             timeout: 2000,
             hideProgressBar: true,
@@ -301,62 +322,7 @@ export default defineComponent({
 
     const images = ref("");
 
-    const onUpload = () => {
-      toast.info(`圖片上傳成功`, {
-        timeout: 3000,
-        hideProgressBar: true,
-      });
-    };
-
-    const uploadNewFile = async () => {
-      document.getElementById("file-upload").click();
-    };
-    const fileChange = async (e) => {
-      const currentFile = e.target.files[0];
-      const currentFileName = Boolean(e.target.files[0])
-        ? e.target.files[0].name.split(".")[0]
-        : "";
-
-      try {
-        if (!Boolean(currentFileName)) {
-          toast.error("請先選擇檔案", {
-            timeout: 2000,
-            hideProgressBar: true,
-          });
-          return;
-        }
-
-        let form = new FormData();
-
-        form.append("File", currentFile);
-        const res = await addFileImage(form);
-        console.log("res", res);
-
-        if (res.data?.info) {
-          modalItem.value.imagesArr[0].url = res.data.imageUrl;
-          toast.info(`上傳圖片成功`, {
-            timeout: 2000,
-            hideProgressBar: true,
-          });
-        } else {
-          toast.error(`上傳圖片失敗: ${res.data?.message?.code}`, {
-            timeout: 2000,
-            hideProgressBar: true,
-          });
-        }
-      } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
-          timeout: 2000,
-          hideProgressBar: true,
-        });
-      }
-      document.getElementById("file-upload").value = "";
-    };
-
     return {
-      onUpload,
-      uploadNewFile,
-      fileChange,
       images,
 
       //for list data variable
