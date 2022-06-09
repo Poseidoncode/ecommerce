@@ -54,12 +54,7 @@
             class="focus:outline-none mx-8 sm:mx-0"
             :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
           >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -91,8 +86,8 @@
           </button>
           <button
             @click="openCart"
-            class="text-gray-400 focus:outline-none mx-4 sm:mx-0"
-            :class="!scrollIsZero ? 'text-gray-600' : ''"
+            class="focus:outline-none mx-4 sm:mx-0"
+            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
             v-if="!items.length"
           >
             <svg
@@ -145,9 +140,7 @@
             @click.prevent="redirctPage('productslist')"
             >Shop</a
           >
-          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#"
-            >Contact</a
-          >
+          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
           <a
             class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0"
             @click.prevent="redirctPage('faq')"
@@ -182,10 +175,7 @@
       <h3 class="text-md font-medium text-gray-700">
         Shopping bag ({{ items.length }} items)
       </h3>
-      <button
-        @click="cartOpen = !cartOpen"
-        class="text-gray-600 focus:outline-none"
-      >
+      <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
         <svg
           class="h-5 w-5"
           fill="none"
@@ -263,11 +253,7 @@
     </div>
     <div class="mt-8">
       <form class="flex items-center justify-center">
-        <input
-          class="form-input w-48"
-          type="text"
-          placeholder="Add promocode"
-        />
+        <input class="form-input w-48" type="text" placeholder="Add promocode" />
         <button
           class="ml-3 flex items-center px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
         >
@@ -494,8 +480,7 @@ export default defineComponent({
   background-color: rgb(255 255 255 / 98%);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px
-    1px 1px 0px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   // border-bottom: 1px solid #2d3858;
   box-shadow: 0 0 10px rgb(4 7 14 / 80%);
   z-index: 99;
