@@ -58,9 +58,7 @@
           class="hidden absolute left-0 px-6 lg:px-auto bg-white w-full lg:w-auto z-50 mt-10 lg:mt-0 lg:sticky top-0 pt-6 pb-24 lg:flex flex-col lg:max-h-screen"
         >
           <div class="border-b border-gray-300">
-            <a class="text-sm font-bold text-blue-400 underline"
-              >Change Category</a
-            >
+            <a class="text-sm font-bold text-blue-400 underline">Change Category</a>
             <div class="my-6">
               <div class="">
                 <div class="">
@@ -72,9 +70,7 @@
                       id="delivery-service"
                       value="delivery"
                       checked=""
-                    /><label class="ml-2 text-sm" for="delivery-service"
-                      >Delivery</label
-                    >
+                    /><label class="ml-2 text-sm" for="delivery-service">Delivery</label>
                   </div>
                   <div class="flex items-center mb-3 last:mb-0">
                     <input
@@ -83,9 +79,7 @@
                       class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                       id="curbside-service"
                       value="curbside"
-                    /><label class="ml-2 text-sm" for="curbside-service"
-                      >Curbside</label
-                    >
+                    /><label class="ml-2 text-sm" for="curbside-service">Curbside</label>
                   </div>
                   <div class="flex items-center mb-3 last:mb-0">
                     <input
@@ -94,9 +88,7 @@
                       class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                       id="orderin-service"
                       value="orderin"
-                    /><label class="ml-2 text-sm" for="orderin-service"
-                      >Order In</label
-                    >
+                    /><label class="ml-2 text-sm" for="orderin-service">Order In</label>
                   </div>
                 </div>
               </div>
@@ -128,9 +120,7 @@
                         class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                         id="distance-sort"
                         value="distance"
-                      /><label class="ml-2 text-sm" for="distance-sort"
-                        >Distance</label
-                      >
+                      /><label class="ml-2 text-sm" for="distance-sort">Distance</label>
                     </div>
                     <div class="flex items-center mb-3 last:mb-0">
                       <input
@@ -139,9 +129,7 @@
                         class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                         id="popular-sort"
                         value="popular"
-                      /><label class="ml-2 text-sm" for="popular-sort"
-                        >Popularity</label
-                      >
+                      /><label class="ml-2 text-sm" for="popular-sort">Popularity</label>
                     </div>
                     <div class="flex items-center mb-3 last:mb-0">
                       <input
@@ -151,9 +139,7 @@
                         id="topRated-sort"
                         value="topRated"
                         checked=""
-                      /><label class="ml-2 text-sm" for="topRated-sort"
-                        >Top Rated</label
-                      >
+                      /><label class="ml-2 text-sm" for="topRated-sort">Top Rated</label>
                     </div>
                     <div class="flex items-center mb-3 last:mb-0">
                       <input
@@ -162,9 +148,7 @@
                         class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                         id="atoz-sort"
                         value="atoz"
-                      /><label class="ml-2 text-sm" for="atoz-sort"
-                        >A to Z</label
-                      >
+                      /><label class="ml-2 text-sm" for="atoz-sort">A to Z</label>
                     </div>
                   </div>
                 </div>
@@ -200,9 +184,7 @@
                     type="checkbox"
                     name="gluten-free"
                     class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="gluten-free"
-                    >Gluten Free</label
-                  >
+                  /><label class="ml-2 text-sm" for="gluten-free">Gluten Free</label>
                 </div>
               </div>
               <div class="my-6">
@@ -255,9 +237,7 @@
         </div> -->
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div
-            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
-          >
+          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
             <a
               href="#"
               v-for="(item, idx) in items"
@@ -268,9 +248,7 @@
               <div
                 class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease hover:-translate-y-1 w-72 max-w-full rounded-sm bg-white product-item-main"
               >
-                <div
-                  class="w-full h-48 flex justify-center mt-2 picture-section"
-                >
+                <div class="w-full h-48 flex justify-center mt-2 picture-section">
                   <img :src="`${item.imageUrl}`" />
                   <div class="image-word">123</div>
                 </div>
@@ -346,6 +324,11 @@ export default defineComponent({
     };
 
     const showDetail = (item) => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        // behavior: "smooth",
+      });
       router.push({
         name: "productdetail",
         params: { productId: item.id },

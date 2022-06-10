@@ -15,9 +15,7 @@
         >
           Rise of Tailwind - A Utility First CSS Framework
         </h1>
-        <p class="text-base text-gray-500">
-          January 18, 2021 — Written by Praveen Juge
-        </p>
+        <p class="text-base text-gray-500">January 18, 2021 — Written by Praveen Juge</p>
       </div>
       <div class="flex items-center mb-6 space-x-2">
         <p class="text-gray-600">Share this article</p>
@@ -74,20 +72,19 @@
 
     <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
       <p>
-        What if there is an easy way to achieve responsive UI without using any
-        UI kit? Can we create new and fresh designs for every project with a CSS
-        framework? Enter Tailwind CSS, will this be the perfect CSS framework,
-        well let’s find out.
+        What if there is an easy way to achieve responsive UI without using any UI kit?
+        Can we create new and fresh designs for every project with a CSS framework? Enter
+        Tailwind CSS, will this be the perfect CSS framework, well let’s find out.
       </p>
       <p>
-        Tailwind is a utility-first CSS framework, the keyword being ‘utility’.
-        It is basically a set of classes that you can use in your HTML.
+        Tailwind is a utility-first CSS framework, the keyword being ‘utility’. It is
+        basically a set of classes that you can use in your HTML.
       </p>
 
       <p>
-        Therefore, we don’t have to write any custom CSS to get this button.
-        This can be heavily extended to build whole web applications without the
-        need for any other styles apart from a tailwind.
+        Therefore, we don’t have to write any custom CSS to get this button. This can be
+        heavily extended to build whole web applications without the need for any other
+        styles apart from a tailwind.
       </p>
       <p>...</p>
     </div>
@@ -106,4 +103,38 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.bg-section {
+  height: 237px;
+  margin-bottom: 100px;
+}
+
+.bg-setting-local {
+  padding: 10px 0 120px 0;
+
+  background: #03112e url(/assets/bgSwirl.svg) repeat 0 0/52px;
+}
+
+@media (max-width: 575px) {
+  .bg-section {
+    height: 220px;
+    margin-bottom: 160px;
+  }
+
+  .bg-section-word1 {
+    margin-top: 60px;
+  }
+
+  .bg-section-word2 {
+    display: none;
+  }
+
+  .bg-setting-local {
+    padding: 50px 0 5px 0;
+  }
+
+  .bg-setting-local {
+    background-position: 102% 74%;
+  }
+}
+</style>

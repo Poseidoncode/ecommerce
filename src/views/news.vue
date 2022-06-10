@@ -33,7 +33,7 @@
             <img class="rounded-t-lg" :src="item.image" :alt="item.title" />
           </div>
           <div class="p-5">
-            <a href="#">
+            <a href="#" @click.prevent="showDetail(item)">
               <h5
                 class="text-gray-900 font-bold text-xl tracking-tight mb-2 title-outline"
                 :title="item.title"
@@ -50,6 +50,7 @@
               <a
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-1"
                 href="#"
+                @click.prevent="showDetail(item)"
               >
                 Read more
               </a>
@@ -75,10 +76,13 @@ import { inject, ref, defineComponent, onMounted } from "vue";
 import { getCustomerArticle } from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import dayjs from "dayjs";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
+    const router = useRouter();
+    const route = useRoute();
     const toast = useToast();
     const offset = ref(0);
     const rows = ref(10);
@@ -93,9 +97,7 @@ export default defineComponent({
 
         let arr = [...res.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format(
-            "YYYY/MM/DD HH:mm:ss"
-          );
+          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
           return s;
         });
         items.value = [...arr];
@@ -108,6 +110,18 @@ export default defineComponent({
       }
     };
 
+    const showDetail = (item) => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        // behavior: "smooth",
+      });
+      router.push({
+        name: "newsdetail",
+        params: { newsId: item.id },
+      });
+    };
+
     onMounted(async () => {
       await getData();
     });
@@ -117,6 +131,7 @@ export default defineComponent({
       totalItemsCount,
       items,
       getData,
+      showDetail,
     };
   },
 });

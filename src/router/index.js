@@ -78,6 +78,16 @@ const routes = [
     component: () => import("@/views/news.vue"),
   },
   {
+    path: "/newsdetail/:newsId",
+    name: "newsdetail",
+    meta: {
+      title: "newsdetail",
+      needNav: true,
+      needFooter: true,
+    },
+    component: () => import("@/views/newsDetail.vue"),
+  },
+  {
     path: "/article",
     name: "article",
     meta: {
