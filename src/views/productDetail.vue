@@ -177,8 +177,7 @@
                   Save
                   {{
                     (
-                      ((+product.origin_price - +product.price) /
-                        +product.origin_price) *
+                      ((+product.origin_price - +product.price) / +product.origin_price) *
                       100
                     ).toFixed(1)
                   }}%
@@ -246,39 +245,29 @@
           <TabPanel>
             <template #header>
               <i class="pi pi-tag"></i>
-              <span style="display: inline-block" class="ml-1">
-                Specifications</span
-              >
+              <span style="display: inline-block" class="ml-1"> Specifications</span>
             </template>
-            <div
-              class="specifications-content"
-              v-html="product.contentreplace"
-            ></div>
+            <div class="specifications-content" v-html="product.contentreplace"></div>
           </TabPanel>
           <TabPanel>
             <template #header>
               <i class="pi pi-wallet"></i>
-              <span style="display: inline-block" class="ml-1">
-                Returns Policy</span
-              >
+              <span style="display: inline-block" class="ml-1"> Returns Policy</span>
             </template>
             <div class="specifications-content">
               <p>
-                ● Items with a value of $35 or more must be returned using a
-                trackable shipping method.
+                ● Items with a value of $35 or more must be returned using a trackable
+                shipping method.
               </p>
               <p>
-                ● All product packaging (boxes, manuals, warranty cards, etc.)
-                and certificates of authenticity, grading, and appraisal must be
-                returned with the item.
+                ● All product packaging (boxes, manuals, warranty cards, etc.) and
+                certificates of authenticity, grading, and appraisal must be returned with
+                the item.
               </p>
+              <p>● Any items returned without original documentation will be rejected.</p>
               <p>
-                ● Any items returned without original documentation will be
-                rejected.
-              </p>
-              <p>
-                ● Items that have been resized, damaged, or otherwise altered
-                after delivery won't be accepted for return.
+                ● Items that have been resized, damaged, or otherwise altered after
+                delivery won't be accepted for return.
               </p>
             </div>
           </TabPanel>
@@ -326,17 +315,12 @@ export default defineComponent({
       try {
         const res = await getCustomerSingleProduct(`${route.params.productId}`);
         if (!!res.data?.product?.imagesUrl.length) {
-          res.data.product.imagesUrl = res.data.product.imagesUrl.filter(
-            (s) => !!s
-          );
+          res.data.product.imagesUrl = res.data.product.imagesUrl.filter((s) => !!s);
         }
 
         product.value = { ...res.data?.product };
 
-        product.value.contentreplace = product.value.content.replace(
-          /\n/g,
-          "<br>"
-        );
+        product.value.contentreplace = product.value.content.replace(/\n/g, "<br>");
 
         console.log("product.value", product.value);
       } catch (e) {
@@ -371,6 +355,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+//upper detatil
 .swiper {
   width: 100%;
   height: 420px;
@@ -460,11 +445,17 @@ export default defineComponent({
   font-weight: 700;
 }
 
+//specifications
 ::v-deep(.p-tabview .p-tabview-nav) {
   border-width: 0 0 1px 0;
   border-color: #d1d1d1;
 }
 
+.specifications-content {
+  line-height: 210%;
+}
+
+//background
 .bg-section {
   height: 237px;
   margin-bottom: 100px;
@@ -497,8 +488,5 @@ export default defineComponent({
   .bg-setting-local {
     background-position: 102% 74%;
   }
-}
-.specifications-content {
-  line-height: 210%;
 }
 </style>
