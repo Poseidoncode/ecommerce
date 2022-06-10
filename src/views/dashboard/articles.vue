@@ -19,11 +19,7 @@
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="
-        idx % 2 == 0
-          ? 'background-color:#ffffff ;'
-          : 'background-color:#e7f2f3;'
-      "
+      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -58,11 +54,7 @@
       </div>
 
       <div class="content" :title="item.isPublic">
-        <Checkbox
-          :binary="true"
-          v-model="item.isPublic"
-          @change="setStatus(item)"
-        />
+        <Checkbox :binary="true" v-model="item.isPublic" @change="setStatus(item)" />
       </div>
     </main>
     <main
@@ -92,16 +84,12 @@
     >
       <template #header>
         <h3>
-          {{
-            nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章"
-          }}
+          {{ nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章" }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          是否確定要刪除此文章?
-        </h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">是否確定要刪除此文章?</h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">標題</span>
           <InputText
@@ -133,7 +121,11 @@
           />
         </div>
         <div class="p-inputgroup mt-2 flex" style="grid-column: 1/-1">
-          <div class="tage-data" v-for="itemtag in modalItem.tag">
+          <div
+            class="tage-data"
+            v-for="(itemtag, it) in modalItem.tag"
+            :key="`articles${it}`"
+          >
             <span class="cursor-pointer" @click="editTag(itemtag, 2)"
               >&nbsp;#{{ itemtag }}&nbsp;&nbsp;</span
             >
@@ -176,11 +168,7 @@
 
       <template #footer>
         <Button label="確定" @click="saveEditModal" />
-        <Button
-          label="取消"
-          class="p-button-success"
-          @click="editModal = false"
-        />
+        <Button label="取消" class="p-button-success" @click="editModal = false" />
       </template>
     </Dialog>
   </section>
@@ -241,9 +229,7 @@ export default defineComponent({
         // let { Items, Count } = ;
         let arr = [...res.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format(
-            "YYYY/MM/DD HH:mm:ss"
-          );
+          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
           return s;
         });
         items.value = [...arr];
@@ -313,9 +299,7 @@ export default defineComponent({
         }
 
         toast.info(
-          `${
-            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
-          }成功`,
+          `${nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"}成功`,
           {
             timeout: 2000,
             hideProgressBar: true,
