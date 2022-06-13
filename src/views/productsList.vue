@@ -1,5 +1,6 @@
 <template>
   <div>
+    <section></section>
     <section class="bg-section">
       <div class="text-white bg-setting bg-setting-local">
         <div class="container mx-auto flex flex-col md:flex-row items-center">
@@ -54,205 +55,185 @@
           </svg>
         </div>
 
-        <div
-          class="hidden absolute left-0 px-6 lg:px-auto bg-white w-full lg:w-auto z-50 mt-10 lg:mt-0 lg:sticky top-0 pt-6 pb-24 lg:flex flex-col lg:max-h-screen"
-        >
-          <div class="border-b border-gray-300">
-            <a class="text-sm font-bold text-blue-400 underline"
-              >Change Category</a
+        <div class="lg:sticky lg:top-96">
+          <details open class="overflow-hidden border border-gray-200 rounded">
+            <summary
+              class="flex items-center justify-between px-5 py-3 bg-gray-100 lg:hidden"
             >
-            <div class="my-6">
-              <div class="">
-                <div class="">
-                  <div class="flex items-center mb-3 last:mb-0">
-                    <input
-                      name="service"
-                      type="radio"
-                      class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                      id="delivery-service"
-                      value="delivery"
-                      checked=""
-                    /><label class="ml-2 text-sm" for="delivery-service"
-                      >Delivery</label
-                    >
-                  </div>
-                  <div class="flex items-center mb-3 last:mb-0">
-                    <input
-                      name="service"
-                      type="radio"
-                      class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                      id="curbside-service"
-                      value="curbside"
-                    /><label class="ml-2 text-sm" for="curbside-service"
-                      >Curbside</label
-                    >
-                  </div>
-                  <div class="flex items-center mb-3 last:mb-0">
-                    <input
-                      name="service"
-                      type="radio"
-                      class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                      id="orderin-service"
-                      value="orderin"
-                    /><label class="ml-2 text-sm" for="orderin-service"
-                      >Order In</label
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="flex-1 lg:overflow-y-scroll">
-            <div class="border-b border-gray-300 py-6">
-              <div class="flex items-center justify-between cursor-pointer">
-                <h5 class="text-sm font-bold">Sort</h5>
-                <svg
-                  class="h-8 w-8 text-blue-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
+              <span class="text-sm font-medium"> Toggle Filters </span>
+
+              <svg
+                class="w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </summary>
+
+            <aside class="border-t border-gray-200 lg:border-t-0">
+              <fieldset>
+                <legend
+                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
                 >
-                  <polyline points="18 15 12 9 6 15" />
-                </svg>
-              </div>
-              <div class="my-6">
-                <div class="">
-                  <div class="">
-                    <div class="flex items-center mb-3 last:mb-0">
-                      <input
-                        name="sort"
-                        type="radio"
-                        class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                        id="distance-sort"
-                        value="distance"
-                      /><label class="ml-2 text-sm" for="distance-sort"
-                        >Distance</label
-                      >
-                    </div>
-                    <div class="flex items-center mb-3 last:mb-0">
-                      <input
-                        name="sort"
-                        type="radio"
-                        class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                        id="popular-sort"
-                        value="popular"
-                      /><label class="ml-2 text-sm" for="popular-sort"
-                        >Popularity</label
-                      >
-                    </div>
-                    <div class="flex items-center mb-3 last:mb-0">
-                      <input
-                        name="sort"
-                        type="radio"
-                        class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                        id="topRated-sort"
-                        value="topRated"
-                        checked=""
-                      /><label class="ml-2 text-sm" for="topRated-sort"
-                        >Top Rated</label
-                      >
-                    </div>
-                    <div class="flex items-center mb-3 last:mb-0">
-                      <input
-                        name="sort"
-                        type="radio"
-                        class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
-                        id="atoz-sort"
-                        value="atoz"
-                      /><label class="ml-2 text-sm" for="atoz-sort"
-                        >A to Z</label
-                      >
-                    </div>
+                  Type
+                </legend>
+
+                <div class="px-5 py-6 space-y-2">
+                  <div class="flex items-center">
+                    <input
+                      id="toy"
+                      type="checkbox"
+                      name="type[toy]"
+                      class="w-5 h-5 border-gray-300 rounded"
+                    />
+
+                    <label for="toy" class="ml-3 text-sm font-medium">
+                      Toy
+                    </label>
+                  </div>
+
+                  <div class="flex items-center">
+                    <input
+                      id="game"
+                      type="checkbox"
+                      name="type[game]"
+                      class="w-5 h-5 border-gray-300 rounded"
+                    />
+
+                    <label for="game" class="ml-3 text-sm font-medium">
+                      Game
+                    </label>
+                  </div>
+
+                  <div class="flex items-center">
+                    <input
+                      id="outdoor"
+                      type="checkbox"
+                      name="type[outdoor]"
+                      class="w-5 h-5 border-gray-300 rounded"
+                    />
+
+                    <label for="outdoor" class="ml-3 text-sm font-medium">
+                      Outdoor
+                    </label>
+                  </div>
+
+                  <div class="pt-2">
+                    <button
+                      type="button"
+                      class="text-xs text-gray-500 underline"
+                    >
+                      Reset Type
+                    </button>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="border-b border-gray-300 py-6">
-              <div class="flex items-center justify-between cursor-pointer">
-                <h5 class="text-sm font-bold">Dietary</h5>
-                <svg
-                  class="h-8 w-8 text-blue-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="18 15 12 9 6 15" />
-                </svg>
-              </div>
-              <div class="my-6">
-                <div class="w-full flex items-center">
-                  <input
-                    type="checkbox"
-                    name="organic"
-                    class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="organic">Organic</label>
-                </div>
-              </div>
-              <div class="my-6">
-                <div class="w-full flex items-center">
-                  <input
-                    type="checkbox"
-                    name="gluten-free"
-                    class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="gluten-free"
-                    >Gluten Free</label
+              </fieldset>
+
+              <div>
+                <fieldset>
+                  <legend
+                    class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
                   >
-                </div>
+                    Age
+                  </legend>
+
+                  <div class="px-5 py-6 space-y-2">
+                    <div class="flex items-center">
+                      <input
+                        id="3+"
+                        type="checkbox"
+                        name="age[3+]"
+                        class="w-5 h-5 border-gray-300 rounded"
+                      />
+
+                      <label for="3+" class="ml-3 text-sm font-medium">
+                        3+
+                      </label>
+                    </div>
+
+                    <div class="flex items-center">
+                      <input
+                        id="8+"
+                        type="checkbox"
+                        name="age[8+]"
+                        class="w-5 h-5 border-gray-300 rounded"
+                      />
+
+                      <label for="8+" class="ml-3 text-sm font-medium">
+                        8+
+                      </label>
+                    </div>
+
+                    <div class="flex items-center">
+                      <input
+                        id="12+"
+                        type="checkbox"
+                        name="age[12+]"
+                        class="w-5 h-5 border-gray-300 rounded"
+                      />
+
+                      <label for="12+" class="ml-3 text-sm font-medium">
+                        12+
+                      </label>
+                    </div>
+
+                    <div class="flex items-center">
+                      <input
+                        id="16+"
+                        type="checkbox"
+                        name="age[16+]"
+                        class="w-5 h-5 border-gray-300 rounded"
+                      />
+
+                      <label for="16+" class="ml-3 text-sm font-medium">
+                        16+
+                      </label>
+                    </div>
+
+                    <div class="pt-2">
+                      <button
+                        type="button"
+                        class="text-xs text-gray-500 underline"
+                      >
+                        Reset Age
+                      </button>
+                    </div>
+                  </div>
+                </fieldset>
               </div>
-              <div class="my-6">
-                <div class="w-full flex items-center">
-                  <input
-                    type="checkbox"
-                    name="kosher"
-                    class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="kosher">Kosher</label>
-                </div>
+
+              <div
+                class="flex justify-between px-5 py-3 border-t border-gray-200"
+              >
+                <button
+                  name="reset"
+                  type="button"
+                  class="text-xs font-medium text-gray-600 underline rounded"
+                >
+                  Reset All
+                </button>
+
+                <button
+                  name="commit"
+                  type="button"
+                  class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
+                >
+                  Apply Filters
+                </button>
               </div>
-              <div class="my-6">
-                <div class="w-full flex items-center">
-                  <input
-                    type="checkbox"
-                    name="paleo"
-                    class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="paleo">Paleo</label>
-                </div>
-              </div>
-              <div class="my-6">
-                <div class="w-full flex items-center">
-                  <input
-                    type="checkbox"
-                    name="vegan"
-                    class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="vegan">Vegan</label>
-                </div>
-              </div>
-              <div class="my-6">
-                <div class="w-full flex items-center">
-                  <input
-                    type="checkbox"
-                    name="halal"
-                    class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="halal">Halal</label>
-                </div>
-              </div>
-            </div>
-          </div>
+            </aside>
+          </details>
         </div>
-        <!-- On mobile hide and show this section using hidden and flex end -->
       </div>
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
-        <!-- <div
-          class="w-full px-6 py-3 rounded-sm border text-green-800 bg-green-400 border-green-500"
-          role="alert"
-        >
-          We are now offering contactless delivery in light of COVID-19.
-        </div> -->
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
           <div
@@ -308,25 +289,7 @@
                     <h3 class="font-bold text-base text-center">
                       {{ item.title || "" }}
                     </h3>
-                    <!-- <div class="flex items-center text-green-400">
-                      <svg
-                        class="h-5 w-5 text-yellow-400"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polygon
-                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                        />
-                      </svg>
-                      4.3
-                    </div> -->
-                    <!-- <p class="mt-1">
-                      <span>Pizza · </span><span>Italian · </span><span>Dessert </span>
-                    </p> -->
+
                     <p class="font-bold text-base text-center">
                       <span class="theme-color8 mr-2"
                         >${{ item.origin_price }}
