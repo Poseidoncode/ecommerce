@@ -58,7 +58,9 @@
           class="hidden absolute left-0 px-6 lg:px-auto bg-white w-full lg:w-auto z-50 mt-10 lg:mt-0 lg:sticky top-0 pt-6 pb-24 lg:flex flex-col lg:max-h-screen"
         >
           <div class="border-b border-gray-300">
-            <a class="text-sm font-bold text-blue-400 underline">Change Category</a>
+            <a class="text-sm font-bold text-blue-400 underline"
+              >Change Category</a
+            >
             <div class="my-6">
               <div class="">
                 <div class="">
@@ -70,7 +72,9 @@
                       id="delivery-service"
                       value="delivery"
                       checked=""
-                    /><label class="ml-2 text-sm" for="delivery-service">Delivery</label>
+                    /><label class="ml-2 text-sm" for="delivery-service"
+                      >Delivery</label
+                    >
                   </div>
                   <div class="flex items-center mb-3 last:mb-0">
                     <input
@@ -79,7 +83,9 @@
                       class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                       id="curbside-service"
                       value="curbside"
-                    /><label class="ml-2 text-sm" for="curbside-service">Curbside</label>
+                    /><label class="ml-2 text-sm" for="curbside-service"
+                      >Curbside</label
+                    >
                   </div>
                   <div class="flex items-center mb-3 last:mb-0">
                     <input
@@ -88,7 +94,9 @@
                       class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                       id="orderin-service"
                       value="orderin"
-                    /><label class="ml-2 text-sm" for="orderin-service">Order In</label>
+                    /><label class="ml-2 text-sm" for="orderin-service"
+                      >Order In</label
+                    >
                   </div>
                 </div>
               </div>
@@ -120,7 +128,9 @@
                         class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                         id="distance-sort"
                         value="distance"
-                      /><label class="ml-2 text-sm" for="distance-sort">Distance</label>
+                      /><label class="ml-2 text-sm" for="distance-sort"
+                        >Distance</label
+                      >
                     </div>
                     <div class="flex items-center mb-3 last:mb-0">
                       <input
@@ -129,7 +139,9 @@
                         class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                         id="popular-sort"
                         value="popular"
-                      /><label class="ml-2 text-sm" for="popular-sort">Popularity</label>
+                      /><label class="ml-2 text-sm" for="popular-sort"
+                        >Popularity</label
+                      >
                     </div>
                     <div class="flex items-center mb-3 last:mb-0">
                       <input
@@ -139,7 +151,9 @@
                         id="topRated-sort"
                         value="topRated"
                         checked=""
-                      /><label class="ml-2 text-sm" for="topRated-sort">Top Rated</label>
+                      /><label class="ml-2 text-sm" for="topRated-sort"
+                        >Top Rated</label
+                      >
                     </div>
                     <div class="flex items-center mb-3 last:mb-0">
                       <input
@@ -148,7 +162,9 @@
                         class="appearance-none w-6 h-6 border border-gray-300 rounded-full outline-none cursor-pointer checked:bg-blue-400"
                         id="atoz-sort"
                         value="atoz"
-                      /><label class="ml-2 text-sm" for="atoz-sort">A to Z</label>
+                      /><label class="ml-2 text-sm" for="atoz-sort"
+                        >A to Z</label
+                      >
                     </div>
                   </div>
                 </div>
@@ -184,7 +200,9 @@
                     type="checkbox"
                     name="gluten-free"
                     class="appearance-none w-6 h-6 border border-gray-300 rounded-sm outline-none cursor-pointer checked:bg-blue-400"
-                  /><label class="ml-2 text-sm" for="gluten-free">Gluten Free</label>
+                  /><label class="ml-2 text-sm" for="gluten-free"
+                    >Gluten Free</label
+                  >
                 </div>
               </div>
               <div class="my-6">
@@ -237,7 +255,9 @@
         </div> -->
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
+          >
             <a
               href="#"
               v-for="(item, idx) in items"
@@ -254,7 +274,9 @@
                 </div> -->
                 <div
                   class="h-56 w-full product-background"
-                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
+                  :style="
+                    item.imageUrl ? `background:url(${item.imageUrl})` : ''
+                  "
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -278,10 +300,15 @@
                     <div class="item-hover-content">More</div>
                   </div>
                 </div>
-                <div class="p-6">
+                <div class="p-6 pt-1">
                   <div class="text-sm">
-                    <h3 class="font-bold text-base">{{ item.title || "" }}</h3>
-                    <div class="flex items-center text-green-400">
+                    <h4 class="font-bold text-base text-center">
+                      {{ item.category || "" }}
+                    </h4>
+                    <h3 class="font-bold text-base text-center">
+                      {{ item.title || "" }}
+                    </h3>
+                    <!-- <div class="flex items-center text-green-400">
                       <svg
                         class="h-5 w-5 text-yellow-400"
                         viewBox="0 0 24 24"
@@ -296,11 +323,18 @@
                         />
                       </svg>
                       4.3
-                    </div>
+                    </div> -->
                     <!-- <p class="mt-1">
                       <span>Pizza · </span><span>Italian · </span><span>Dessert </span>
                     </p> -->
-                    <p>${{ item.origin_price }} ${{ item.price }}</p>
+                    <p class="font-bold text-base text-center">
+                      <span class="theme-color8 mr-2"
+                        >${{ item.origin_price }}
+                      </span>
+                      <span class="theme-color9 line-through">
+                        ${{ item.price }}</span
+                      >
+                    </p>
                   </div>
                 </div>
               </div>
@@ -377,7 +411,9 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find((s) => s.product_id == item.id);
+          let productData = store.state.cart.find(
+            (s) => s.product_id == item.id
+          );
 
           obj = {
             product_id: productData.product_id,
