@@ -246,11 +246,37 @@
               class="product-item"
             >
               <div
-                class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease hover:-translate-y-1 w-72 max-w-full rounded-sm bg-white product-item-main"
+                class="mx-auto cursor-pointer h-full hover:border-gray-400 transform transition-all duration-200 ease w-72 max-w-full rounded-sm bg-white product-item-main"
               >
-                <div class="w-full h-48 flex justify-center mt-2 picture-section">
+                <!-- <div class="w-full h-48 flex justify-center mt-2 picture-section">
                   <img :src="`${item.imageUrl}`" />
                   <div class="image-word">123</div>
+                </div> -->
+                <div
+                  class="h-56 w-full product-background"
+                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
+                >
+                  <button
+                    class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
+                    @click.stop.prevent="addToCart(item)"
+                  >
+                    <svg
+                      class="h-5 w-5"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <div class="item-hover">
+                    <div class="item-hover-content">More</div>
+                  </div>
                 </div>
                 <div class="p-6">
                   <div class="text-sm">
@@ -289,18 +315,26 @@
 
 <script>
 import { defineComponent, ref, onMounted, watch, inject } from "vue";
-import { getCustomerProductAll } from "Service/apis.js";
+import {
+  getCustomerProductAll,
+  postCustomerCart,
+  putCustomerCart,
+} from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
     // emit("update:modelValue", _newValues);
+    const store = useStore();
     const router = useRouter();
     const route = useRoute();
     const toast = useToast();
     const items = ref([]);
+    const emitter = inject("emitter");
+
     const getData = async () => {
       try {
         if (sessionStorage.getItem("needs")) {
@@ -334,10 +368,50 @@ export default defineComponent({
         params: { productId: item.id },
       });
     };
+
+    const addToCart = async (item) => {
+      try {
+        let obj = {};
+        const isExist = store.state.cart.find((s) => s.product_id == item.id)
+          ? true
+          : false;
+
+        if (isExist) {
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
+
+          obj = {
+            product_id: productData.product_id,
+            qty: +productData.qty + 1,
+          };
+          const res = await putCustomerCart({ data: obj }, productData.id);
+
+          emitter.emit("getCartData");
+        } else {
+          obj = {
+            product_id: item.id,
+            qty: 1,
+          };
+          const res = await postCustomerCart({ data: obj });
+
+          emitter.emit("getCartData");
+        }
+
+        toast.info(`商品加入購物車成功`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
     onMounted(async () => {
       await getData();
     });
-    return { items, getData, showDetail };
+    return { items, getData, showDetail, addToCart };
   },
 });
 </script>
@@ -403,6 +477,47 @@ export default defineComponent({
 
   .bg-setting-local {
     background-position: 102% 74%;
+  }
+}
+
+.product-background {
+  background-size: contain !important;
+  background-repeat: no-repeat no-repeat !important;
+  background-position: center !important;
+  position: relative;
+
+  .cart-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+  .item-hover {
+    .item-hover-content {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    background-size: 110%;
+    .item-hover {
+      display: block;
+      width: 100% !important;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+
+      .item-hover-content {
+        position: absolute;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        text-decoration: underline;
+        transform: translate(-50%, -50%);
+        font-size: 26px;
+        opacity: 1;
+      }
+    }
   }
 }
 </style>
