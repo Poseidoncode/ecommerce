@@ -27,6 +27,7 @@ import Tooltip from "primevue/tooltip";
 import Sidebar from "primevue/sidebar";
 import BadgeDirective from "primevue/badgedirective";
 import Editor from "primevue/editor";
+import Slider from "primevue/slider";
 
 export default (app) => {
   app.component("InputText", InputText);
@@ -54,6 +55,7 @@ export default (app) => {
   app.component("TabPanel", TabPanel);
   app.component("Sidebar", Sidebar);
   app.component("Editor", Editor);
+  app.component("Slider", Slider);
   // .use(ToastService);
   app.directive("tooltip", Tooltip);
   app.directive("click-outside", {

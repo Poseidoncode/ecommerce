@@ -31,7 +31,7 @@
         class="w-full mx-auto mt-2 mb-4 sm:mx-0 sm:mb-0 sm:mt-0 sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:w-1/2 sm:h-full justify-center items-center block sm:flex"
       >
         <div class="p-inputgroup">
-          <InputText placeholder="Keyword" />
+          <InputText placeholder="Search Product Name or Product Content" />
           <Button icon="pi pi-search" class="p-button-warning" />
         </div>
       </div>
@@ -80,35 +80,49 @@
 
             <aside class="border-t border-gray-200 lg:border-t-0">
               <fieldset>
-                <legend
-                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-                >
+                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
                   Type
                 </legend>
 
                 <div class="px-5 py-6 space-y-2">
-                  <div class="flex items-center">
-                    <input
-                      id="toy"
-                      type="checkbox"
-                      name="type[toy]"
-                      class="w-5 h-5 border-gray-300 rounded"
-                    />
-
-                    <label for="toy" class="ml-3 text-sm font-medium">
-                      Toy
+                  <div
+                    class="flex items-center h-full ml-1"
+                    v-for="(item, index) in categoryOptions"
+                    :key="index"
+                  >
+                    <label
+                      class="form-check-label inline-block text-gray-800 cursor-pointer"
+                    >
+                      <input
+                        class="form-check-input rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none align-top bg-no-repeat bg-center bg-contai mr-2 cursor-pointer no-ring"
+                        type="radio"
+                        v-model="searchData.category"
+                        :value="item.value"
+                      />
+                      {{ item.label }}
                     </label>
                   </div>
 
-                  <div class="flex items-center">
-                    <input
-                      id="game"
-                      type="checkbox"
-                      name="type[game]"
-                      class="w-5 h-5 border-gray-300 rounded"
-                    />
+                  <!-- <div class="flex items-center">
+                    <label for="toy" class="ml-3 text-sm font-medium">
+                      <input
+                        id="toy"
+                        type="radio"
+                        name="type[toy]"
+                        class="w-5 h-5 border-gray-300 rounded"
+                      />
+                      Toy
+                    </label>
+                  </div> -->
 
+                  <!-- <div class="flex items-center">
                     <label for="game" class="ml-3 text-sm font-medium">
+                      <input
+                        id="game"
+                        type="checkbox"
+                        name="type[game]"
+                        class="w-5 h-5 border-gray-300 rounded"
+                      />
                       Game
                     </label>
                   </div>
@@ -124,24 +138,25 @@
                     <label for="outdoor" class="ml-3 text-sm font-medium">
                       Outdoor
                     </label>
-                  </div>
+                  </div> -->
 
                   <div class="pt-2">
-                    <button
-                      type="button"
-                      class="text-xs text-gray-500 underline"
-                    >
+                    <button type="button" class="text-xs text-gray-500 underline">
                       Reset Type
                     </button>
                   </div>
                 </div>
               </fieldset>
 
-              <div>
+              <fieldset>
+                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+                  Price
+                </legend>
+              </fieldset>
+
+              <!-- <div>
                 <fieldset>
-                  <legend
-                    class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-                  >
+                  <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
                     Age
                   </legend>
 
@@ -154,9 +169,7 @@
                         class="w-5 h-5 border-gray-300 rounded"
                       />
 
-                      <label for="3+" class="ml-3 text-sm font-medium">
-                        3+
-                      </label>
+                      <label for="3+" class="ml-3 text-sm font-medium"> 3+ </label>
                     </div>
 
                     <div class="flex items-center">
@@ -167,9 +180,7 @@
                         class="w-5 h-5 border-gray-300 rounded"
                       />
 
-                      <label for="8+" class="ml-3 text-sm font-medium">
-                        8+
-                      </label>
+                      <label for="8+" class="ml-3 text-sm font-medium"> 8+ </label>
                     </div>
 
                     <div class="flex items-center">
@@ -180,9 +191,7 @@
                         class="w-5 h-5 border-gray-300 rounded"
                       />
 
-                      <label for="12+" class="ml-3 text-sm font-medium">
-                        12+
-                      </label>
+                      <label for="12+" class="ml-3 text-sm font-medium"> 12+ </label>
                     </div>
 
                     <div class="flex items-center">
@@ -193,26 +202,19 @@
                         class="w-5 h-5 border-gray-300 rounded"
                       />
 
-                      <label for="16+" class="ml-3 text-sm font-medium">
-                        16+
-                      </label>
+                      <label for="16+" class="ml-3 text-sm font-medium"> 16+ </label>
                     </div>
 
                     <div class="pt-2">
-                      <button
-                        type="button"
-                        class="text-xs text-gray-500 underline"
-                      >
+                      <button type="button" class="text-xs text-gray-500 underline">
                         Reset Age
                       </button>
                     </div>
                   </div>
                 </fieldset>
-              </div>
+              </div> -->
 
-              <div
-                class="flex justify-between px-5 py-3 border-t border-gray-200"
-              >
+              <div class="flex justify-between px-5 py-3 border-t border-gray-200">
                 <button
                   name="reset"
                   type="button"
@@ -236,9 +238,7 @@
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div
-            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
-          >
+          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
             <a
               href="#"
               v-for="(item, idx) in items"
@@ -255,9 +255,7 @@
                 </div> -->
                 <div
                   class="h-56 w-full product-background"
-                  :style="
-                    item.imageUrl ? `background:url(${item.imageUrl})` : ''
-                  "
+                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -291,12 +289,8 @@
                     </h3>
 
                     <p class="font-bold text-base text-center">
-                      <span class="theme-color8 mr-2"
-                        >${{ item.origin_price }}
-                      </span>
-                      <span class="theme-color9 line-through">
-                        ${{ item.price }}</span
-                      >
+                      <span class="theme-color8 mr-2">${{ item.origin_price }} </span>
+                      <span class="theme-color9 line-through"> ${{ item.price }}</span>
                     </p>
                   </div>
                 </div>
@@ -332,11 +326,39 @@ export default defineComponent({
     const items = ref([]);
     const emitter = inject("emitter");
 
+    const categoryOptions = [
+      {
+        label: "Mens",
+        value: "Mens",
+      },
+      {
+        label: "Womens",
+        value: "Womens",
+      },
+      {
+        label: "Dive",
+        value: "Dive",
+      },
+      {
+        label: "Classic",
+        value: "Classic",
+      },
+      {
+        label: "Ceramic",
+        value: "Ceramic",
+      },
+    ];
+
+    const searchData = ref({
+      category: "",
+      title: "",
+      price: "",
+    });
+
     const getData = async () => {
       try {
         if (sessionStorage.getItem("needs")) {
           items.value = JSON.parse(sessionStorage.getItem("needs"));
-
           return;
         }
 
@@ -374,9 +396,7 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find(
-            (s) => s.product_id == item.id
-          );
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
 
           obj = {
             product_id: productData.product_id,
@@ -410,7 +430,7 @@ export default defineComponent({
     onMounted(async () => {
       await getData();
     });
-    return { items, getData, showDetail, addToCart };
+    return { searchData, categoryOptions, items, getData, showDetail, addToCart };
   },
 });
 </script>
