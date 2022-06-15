@@ -31,8 +31,22 @@
         class="w-full mx-auto mt-2 mb-4 sm:mx-0 sm:mb-0 sm:mt-0 sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:w-1/2 sm:h-full justify-center items-center block sm:flex"
       >
         <div class="p-inputgroup">
-          <InputText placeholder="Search Product Name or Product Content" />
-          <Button icon="pi pi-search" class="p-button-warning" />
+          <InputText
+            placeholder="Search Product Name / Product Content"
+            v-model="searchData.title"
+          />
+          <Button
+            icon="pi pi-search"
+            class="p-button-warning"
+            style="margin: 0 5px 0 0"
+            @click="getData"
+          />
+          <Button
+            icon="pi pi-replay"
+            class="p-button-primary"
+            @click="clearData"
+            v-tooltip.top="'Reset Data'"
+          />
         </div>
       </div>
     </div>
@@ -98,52 +112,10 @@
                         type="radio"
                         v-model="searchData.category"
                         :value="item.value"
+                        @change="getData"
                       />
                       {{ item.label }}
                     </label>
-                  </div>
-
-                  <!-- <div class="flex items-center">
-                    <label for="toy" class="ml-3 text-sm font-medium">
-                      <input
-                        id="toy"
-                        type="radio"
-                        name="type[toy]"
-                        class="w-5 h-5 border-gray-300 rounded"
-                      />
-                      Toy
-                    </label>
-                  </div> -->
-
-                  <!-- <div class="flex items-center">
-                    <label for="game" class="ml-3 text-sm font-medium">
-                      <input
-                        id="game"
-                        type="checkbox"
-                        name="type[game]"
-                        class="w-5 h-5 border-gray-300 rounded"
-                      />
-                      Game
-                    </label>
-                  </div>
-
-                  <div class="flex items-center">
-                    <input
-                      id="outdoor"
-                      type="checkbox"
-                      name="type[outdoor]"
-                      class="w-5 h-5 border-gray-300 rounded"
-                    />
-
-                    <label for="outdoor" class="ml-3 text-sm font-medium">
-                      Outdoor
-                    </label>
-                  </div> -->
-
-                  <div class="pt-2">
-                    <button type="button" class="text-xs text-gray-500 underline">
-                      Reset Type
-                    </button>
                   </div>
                 </div>
               </fieldset>
@@ -153,72 +125,17 @@
                   Price
                 </legend>
               </fieldset>
-
-              <!-- <div>
-                <fieldset>
-                  <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
-                    Age
-                  </legend>
-
-                  <div class="px-5 py-6 space-y-2">
-                    <div class="flex items-center">
-                      <input
-                        id="3+"
-                        type="checkbox"
-                        name="age[3+]"
-                        class="w-5 h-5 border-gray-300 rounded"
-                      />
-
-                      <label for="3+" class="ml-3 text-sm font-medium"> 3+ </label>
-                    </div>
-
-                    <div class="flex items-center">
-                      <input
-                        id="8+"
-                        type="checkbox"
-                        name="age[8+]"
-                        class="w-5 h-5 border-gray-300 rounded"
-                      />
-
-                      <label for="8+" class="ml-3 text-sm font-medium"> 8+ </label>
-                    </div>
-
-                    <div class="flex items-center">
-                      <input
-                        id="12+"
-                        type="checkbox"
-                        name="age[12+]"
-                        class="w-5 h-5 border-gray-300 rounded"
-                      />
-
-                      <label for="12+" class="ml-3 text-sm font-medium"> 12+ </label>
-                    </div>
-
-                    <div class="flex items-center">
-                      <input
-                        id="16+"
-                        type="checkbox"
-                        name="age[16+]"
-                        class="w-5 h-5 border-gray-300 rounded"
-                      />
-
-                      <label for="16+" class="ml-3 text-sm font-medium"> 16+ </label>
-                    </div>
-
-                    <div class="pt-2">
-                      <button type="button" class="text-xs text-gray-500 underline">
-                        Reset Age
-                      </button>
-                    </div>
-                  </div>
-                </fieldset>
-              </div> -->
+              <div class="px-5 py-6 space-y-2">
+                <h5>Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}</h5>
+                <Slider v-model="searchData.price" :range="true" :max="7000" />
+              </div>
 
               <div class="flex justify-between px-5 py-3 border-t border-gray-200">
                 <button
                   name="reset"
                   type="button"
                   class="text-xs font-medium text-gray-600 underline rounded"
+                  @click="clearData"
                 >
                   Reset All
                 </button>
@@ -227,6 +144,7 @@
                   name="commit"
                   type="button"
                   class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
+                  @click="getData"
                 >
                   Apply Filters
                 </button>
@@ -352,28 +270,53 @@ export default defineComponent({
     const searchData = ref({
       category: "",
       title: "",
-      price: "",
+      price: [100, 3000],
     });
 
     const getData = async () => {
-      try {
-        if (sessionStorage.getItem("needs")) {
-          items.value = JSON.parse(sessionStorage.getItem("needs"));
-          return;
+      let arr = [];
+
+      if (sessionStorage.getItem("needs")) {
+        arr = JSON.parse(sessionStorage.getItem("needs"));
+      } else {
+        try {
+          const res = await getCustomerProductAll(``);
+          arr = [...res.data?.products];
+        } catch (e) {
+          toast.error(`${e.response ? e.response.data : e}`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
         }
-
-        const res = await getCustomerProductAll(``);
-        let arr = [...res.data?.products];
-        arr = arr.filter((s) => s.title != "測試的產品s");
-
-        items.value = [...arr];
-        sessionStorage.setItem("needs", JSON.stringify(arr));
-      } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
-          timeout: 2000,
-          hideProgressBar: true,
-        });
       }
+      arr = arr.filter((s) => s.title != "測試的產品s");
+
+      if (searchData.value.title) {
+        arr = arr.filter((s) => s.title.includes(searchData.value.title));
+      }
+
+      if (searchData.value.category) {
+        arr = arr.filter((s) => s.category == searchData.value.category);
+      }
+
+      if (searchData.value.price[0]) {
+        arr = arr.filter((s) => +s.price >= +searchData.value.price[0]);
+      }
+
+      if (searchData.value.price[1]) {
+        arr = arr.filter((s) => +s.price <= +searchData.value.price[1]);
+      }
+
+      items.value = [...arr];
+    };
+
+    const clearData = () => {
+      searchData.value = {
+        category: "",
+        title: "",
+        price: [100, 3000],
+      };
+      getData();
     };
 
     const showDetail = (item) => {
@@ -430,7 +373,15 @@ export default defineComponent({
     onMounted(async () => {
       await getData();
     });
-    return { searchData, categoryOptions, items, getData, showDetail, addToCart };
+    return {
+      searchData,
+      categoryOptions,
+      items,
+      getData,
+      clearData,
+      showDetail,
+      addToCart,
+    };
   },
 });
 </script>
