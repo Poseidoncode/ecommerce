@@ -94,7 +94,9 @@
 
             <aside class="border-t border-gray-200 lg:border-t-0">
               <fieldset>
-                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+                <legend
+                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
+                >
                   Type
                 </legend>
 
@@ -121,16 +123,22 @@
               </fieldset>
 
               <fieldset>
-                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+                <legend
+                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
+                >
                   Price
                 </legend>
               </fieldset>
               <div class="px-5 py-6 space-y-2">
-                <h5>Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}</h5>
-                <Slider v-model="searchData.price" :range="true" :max="7000" />
+                <h5>
+                  Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}
+                </h5>
+                <Slider v-model="searchData.price" :range="true" :max="1700" />
               </div>
 
-              <div class="flex justify-between px-5 py-3 border-t border-gray-200">
+              <div
+                class="flex justify-between px-5 py-3 border-t border-gray-200"
+              >
                 <button
                   name="reset"
                   type="button"
@@ -156,7 +164,9 @@
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
+          >
             <a
               href="#"
               v-for="(item, idx) in items"
@@ -173,7 +183,9 @@
                 </div> -->
                 <div
                   class="h-56 w-full product-background"
-                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
+                  :style="
+                    item.imageUrl ? `background:url(${item.imageUrl})` : ''
+                  "
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -207,8 +219,10 @@
                     </h3>
 
                     <p class="font-bold text-base text-center">
-                      <span class="theme-color8 mr-2">${{ item.origin_price }} </span>
-                      <span class="theme-color9 line-through"> ${{ item.price }}</span>
+                      <span class="theme-color9 line-through inline-block mr-2">
+                        ${{ item.origin_price }}</span
+                      >
+                      <span class="theme-color8">${{ item.price }} </span>
                     </p>
                   </div>
                 </div>
@@ -270,7 +284,7 @@ export default defineComponent({
     const searchData = ref({
       category: "",
       title: "",
-      price: [100, 3000],
+      price: [100, 1600],
     });
 
     const getData = async () => {
@@ -339,7 +353,9 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find((s) => s.product_id == item.id);
+          let productData = store.state.cart.find(
+            (s) => s.product_id == item.id
+          );
 
           obj = {
             product_id: productData.product_id,

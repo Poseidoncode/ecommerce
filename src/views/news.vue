@@ -29,7 +29,10 @@
         <div
           class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5 mx-3"
         >
-          <div class="news-img">
+          <div
+            class="news-img cursor-pointer"
+            @click.prevent="showDetail(item)"
+          >
             <img class="rounded-t-lg" :src="item.image" :alt="item.title" />
           </div>
           <div class="p-5">
@@ -95,7 +98,9 @@ export default defineComponent({
 
         let arr = [...res.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
+          s.timeforshow = dayjs(new Date(+s.create_at)).format(
+            "YYYY/MM/DD HH:mm:ss"
+          );
           return s;
         });
         items.value = [...arr];
