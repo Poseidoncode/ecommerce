@@ -1,6 +1,6 @@
 <template>
   <headercontent v-if="$route.meta.needNav"></headercontent>
-  <div>
+  <div class="all-content">
     <router-view />
   </div>
   <footercontent v-if="$route.meta.needFooter"></footercontent>
@@ -20,4 +20,15 @@ export default {
 
 <style lang="scss">
 @import "./styles/main.scss";
+
+.all-content {
+  // background: url("/public/assets/brandfinalt.png") no-repeat calc(100% - 19px);
+  background: transparent url("/public/assets/bgrough.jpg") repeat 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 99%;
+  height: 99%;
+  width: 99vw;
+  z-index: 1;
+}
 </style>

@@ -484,6 +484,7 @@ export default defineComponent({
   top: 0;
   width: 100%;
   transition: all 0.6s;
+  z-index: 2;
 }
 
 .logo {

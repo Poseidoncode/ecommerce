@@ -375,7 +375,7 @@ export default {
 <style lang="scss" scoped>
 .main-content {
   // background: #f0efed;
-  background: #e7e9f0;
+  // background: #e7e9f0;
 }
 
 .featrue-word {
