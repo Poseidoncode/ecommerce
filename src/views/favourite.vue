@@ -9,7 +9,7 @@
             <h1
               class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose bg-section-word1"
             >
-              About
+              Favourite
             </h1>
             <h2
               class="text-3xl md:text-3xl p-2 leading-relaxed md:leading-snug mb-2 bg-section-word2"

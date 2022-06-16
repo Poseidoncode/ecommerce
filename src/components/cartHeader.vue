@@ -49,7 +49,7 @@
             </svg>
           </button>
           <button
-            @click="$router.push('/login')"
+            @click="$router.push('/favourite')"
             style="margin-right: 16px"
             class="focus:outline-none mx-8 sm:mx-0"
             :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
@@ -281,7 +281,13 @@
     <a
       class="flex items-center justify-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
     >
-      <span>Chechout</span>
+      <span
+        @click="
+          cartOpen = false;
+          $router.push('/checkout');
+        "
+        >Chechout</span
+      >
       <svg
         class="h-5 w-5 mx-2"
         fill="none"

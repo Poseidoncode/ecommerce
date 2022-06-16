@@ -128,6 +128,26 @@ const routes = [
     component: () => import("@/views/productDetail.vue"),
   },
   {
+    path: "/favourite",
+    name: "favourite",
+    meta: {
+      title: "favourite page",
+      needNav: true,
+      needFooter: true,
+    },
+    component: () => import("@/views/favourite.vue"),
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    meta: {
+      title: "checkout page",
+      needNav: true,
+      needFooter: true,
+    },
+    component: () => import("@/views/checkout.vue"),
+  },
+  {
     path: "/testpage",
     name: "testpage",
     meta: {
