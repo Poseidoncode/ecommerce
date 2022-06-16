@@ -145,7 +145,10 @@
             @click.prevent="redirctPage('productslist')"
             >Shop</a
           >
-          <a class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a
+            class="mt-3 nav-color hover:underline sm:mx-3 sm:mt-0"
+            href="#"
+            @click.prevent="redirctPage('contact')"
             >Contact</a
           >
           <a
@@ -361,6 +364,9 @@ export default defineComponent({
           break;
         case "news":
           router.push({ name: "news" });
+          break;
+        case "contact":
+          router.push({ name: "contact" });
           break;
         case "about":
           router.push({ name: "about" });
