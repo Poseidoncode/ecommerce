@@ -94,9 +94,7 @@
 
             <aside class="border-t border-gray-200 lg:border-t-0">
               <fieldset>
-                <legend
-                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-                >
+                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
                   Type
                 </legend>
 
@@ -123,22 +121,16 @@
               </fieldset>
 
               <fieldset>
-                <legend
-                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-                >
+                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
                   Price
                 </legend>
               </fieldset>
               <div class="px-5 py-6 space-y-2">
-                <h5>
-                  Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}
-                </h5>
+                <h5>Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}</h5>
                 <Slider v-model="searchData.price" :range="true" :max="1700" />
               </div>
 
-              <div
-                class="flex justify-between px-5 py-3 border-t border-gray-200"
-              >
+              <div class="flex justify-between px-5 py-3 border-t border-gray-200">
                 <button
                   name="reset"
                   type="button"
@@ -164,10 +156,8 @@
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div
-            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
-          >
-            <a
+          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
+            <div
               href="#"
               v-for="(item, idx) in items"
               :key="`content${idx}`"
@@ -183,13 +173,11 @@
                 </div> -->
                 <div
                   class="h-56 w-full product-background"
-                  :style="
-                    item.imageUrl ? `background:url(${item.imageUrl})` : ''
-                  "
+                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
-                    @click.stop.prevent="addToCart(item)"
+                    @click.stop="addToCart(item)"
                   >
                     <svg
                       class="h-5 w-5"
@@ -206,7 +194,27 @@
                     </svg>
                   </button>
                   <div class="item-hover">
-                    <div class="item-hover-content">More</div>
+                    <div class="item-hover-content" @click.prevent="showDetail(item)">
+                      More
+                    </div>
+                    <button
+                      @click.stop="addToFavorite(item)"
+                      class="focus:outline-none mx-8 sm:mx-0 item-hover-content item-hover-content2"
+                    >
+                      <svg
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
                 <div class="p-6 pt-1">
@@ -228,7 +236,7 @@
                 </div>
               </div>
               <div class="product-item-hover">123</div>
-            </a>
+            </div>
           </div>
         </div>
       </div>
@@ -344,6 +352,37 @@ export default defineComponent({
         params: { productId: item.id },
       });
     };
+    const addToFavorite = (item) => {
+      // window.scrollTo({
+      //   top: 0,
+      //   left: 0,
+      //   // behavior: "smooth",
+      // });
+      // router.push({
+      //   name: "productdetail",
+      //   params: { productId: item.id },
+      // });
+      let dataFavor = [];
+
+      const existFavorArr = !!localStorage.getItem("favorData");
+      console.log("existFavorArr", existFavorArr);
+
+      if (!existFavorArr) {
+        dataFavor = [item.id];
+        localStorage.setItem("favorData", JSON.stringify(dataFavor));
+      } else {
+        dataFavor = JSON.parse(localStorage.getItem("favorData"));
+      }
+
+      // ? JSON.parse(localStorage.getItem("favorData"))
+      // : [
+      //     {
+      //       Name: checkedName,
+      //       Id: 1,
+      //       time: Date.now(),
+      //     },
+      //   ];
+    };
 
     const addToCart = async (item) => {
       try {
@@ -353,9 +392,7 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find(
-            (s) => s.product_id == item.id
-          );
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
 
           obj = {
             product_id: productData.product_id,
@@ -396,6 +433,7 @@ export default defineComponent({
       getData,
       clearData,
       showDetail,
+      addToFavorite,
       addToCart,
     };
   },
@@ -493,15 +531,20 @@ export default defineComponent({
       background: rgba(0, 0, 0, 0.5);
       position: relative;
 
-      .item-hover-content {
+      .item-hover-content,
+      .item-hover-content2 {
         position: absolute;
         color: #fff;
         top: 50%;
-        left: 50%;
+        left: 35%;
         text-decoration: underline;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -35%);
         font-size: 26px;
         opacity: 1;
+      }
+      .item-hover-content2 {
+        left: 65%;
+        transform: translateX(-65%);
       }
     }
   }
