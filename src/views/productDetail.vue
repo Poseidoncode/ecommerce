@@ -341,8 +341,6 @@ export default defineComponent({
           /\n/g,
           "<br>"
         );
-
-        console.log("product.value", product.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,

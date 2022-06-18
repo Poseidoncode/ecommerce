@@ -1,4 +1,5 @@
 <template>
+  <!-- scrollToTop -->
   <div
     class="scroll-btn-item"
     :class="scrollIsZero ? 'btn-fade-out' : 'btn-fade-show'"
@@ -6,6 +7,8 @@
     variant="primary"
     pill
   ></div>
+
+  <!-- main -->
   <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
     <div class="container mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
@@ -48,11 +51,13 @@
               <circle cx="12" cy="7" r="4" />
             </svg>
           </button>
+
           <button
             @click="$router.push('/favourite')"
             style="margin-right: 16px"
             class="focus:outline-none mx-8 sm:mx-0"
             :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
+            v-if="!favoriteTotal"
           >
             <svg
               class="h-6 w-6"
@@ -68,6 +73,29 @@
               />
             </svg>
           </button>
+          <button
+            @click="$router.push('/favourite')"
+            style="margin-right: 16px"
+            class="focus:outline-none mx-8 sm:mx-0"
+            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
+            v-badge.warning="`${favoriteTotal}`"
+            v-if="!!favoriteTotal"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
+
           <button
             @click="openCart"
             class="focus:outline-none mx-4 sm:mx-0"
@@ -307,7 +335,7 @@
   </div>
 </template>
 <script>
-import { inject, ref, defineComponent, onMounted } from "vue";
+import { inject, ref, defineComponent, onMounted, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import {
   getCustomerCart,
@@ -323,6 +351,9 @@ export default defineComponent({
     const emitter = inject("emitter"); // Inject `emitter`
     emitter.on("getCartData", (value) => {
       getData();
+    });
+    emitter.on("getFavorData", (value) => {
+      getFavoriteData();
     });
     const store = useStore();
 
@@ -399,6 +430,12 @@ export default defineComponent({
         });
       }
     };
+    const favoriteTotal = ref("");
+    const getFavoriteData = () => {
+      favoriteTotal.value = localStorage.getItem("favorData")
+        ? JSON.parse(localStorage.getItem("favorData")).length
+        : "";
+    };
 
     const deleteData = async (item) => {
       try {
@@ -473,6 +510,9 @@ export default defineComponent({
       putData,
 
       outsideEvent,
+
+      favoriteTotal,
+      getFavoriteData,
     };
   },
 });

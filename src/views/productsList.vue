@@ -218,9 +218,11 @@
                     >
                       <svg
                         class="h-6 w-6"
-                        fill="none"
+                        :fill="item.isFavorProduct ? '#FCD34D' : 'none'"
                         viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        :stroke="
+                          item.isFavorProduct ? '#FCD34D' : 'currentColor'
+                        "
                       >
                         <path
                           stroke-linecap="round"
@@ -326,7 +328,16 @@ export default defineComponent({
           });
         }
       }
+      const favorArr = localStorage.getItem("favorData")
+        ? JSON.parse(localStorage.getItem("favorData"))
+        : [];
+
       arr = arr.filter((s) => s.title != "測試的產品s");
+
+      arr = arr.map((s) => {
+        s.isFavorProduct = favorArr.find((k) => k == s.id) ? true : false;
+        return s;
+      });
 
       //search section
       if (!!store.state?.searchData?.category) {
@@ -382,11 +393,13 @@ export default defineComponent({
       let dataFavorArr = [];
 
       const existFavorArr = !!localStorage.getItem("favorData");
-      console.log("existFavorArr", existFavorArr);
 
       if (!existFavorArr) {
         dataFavorArr = [item.id];
-        localStorage.setItem("favorData", JSON.stringify(dataFavorArr));
+        toast.info(`The Item has  been added to favorite.`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
       } else {
         dataFavorArr = JSON.parse(localStorage.getItem("favorData"));
         const isExistThisFavorite = dataFavorArr.find((s) => s == item.id)
@@ -394,16 +407,23 @@ export default defineComponent({
           : false;
 
         if (isExistThisFavorite) {
+          dataFavorArr = dataFavorArr.filter((s) => s != item.id);
+          toast.info(`The Item has been removed from favorite.`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
         } else {
           dataFavorArr.push(item.id);
-          localStorage.setItem("favorData", JSON.stringify(dataFavorArr));
+          toast.info(`The Item has  been added to favorite.`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
         }
       }
 
-      toast.info(`The Item has  been added favorite. `, {
-        timeout: 2000,
-        hideProgressBar: true,
-      });
+      localStorage.setItem("favorData", JSON.stringify(dataFavorArr));
+      emitter.emit("getFavorData");
+      getData();
     };
 
     const addToCart = async (item) => {
