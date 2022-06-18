@@ -1,16 +1,11 @@
 export default {
   user: {
     token: "",
-    functions: [
-      "groupMaintains",
-      "groupMaintain",
-      "deviceMaintain",
-      "warningMaintain",
-      "motivationMaintain",
-      "deviceIDMaintain",
-    ],
-
-    locationName: "",
+    searchData: {
+      category: "",
+      title: "",
+      price: [100, 1600],
+    },
   },
   cart: {},
   options: {

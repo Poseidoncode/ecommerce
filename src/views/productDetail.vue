@@ -26,11 +26,11 @@
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center space-x-2 text-gray-800 text-sm">
-        <a
-          href="#"
-          class="hover:underline hover:text-gray-800"
+        <div
+          class="hover:underline hover:text-gray-800 cursor-pointer"
           @click.prevent="$router.push('/')"
-          ><svg
+        >
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-4 h-4"
             fill="none"
@@ -42,8 +42,9 @@
               stroke-linejoin="round"
               stroke-width="2"
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            /></svg
-        ></a>
+            />
+          </svg>
+        </div>
         <span>
           <svg
             class="h-5 w-5 leading-none text-gray-800"
@@ -60,12 +61,12 @@
             />
           </svg>
         </span>
-        <a
-          href="#"
-          class="text-gray-800 hover:underline hover:text-gray-900"
+        <div
+          class="text-gray-800 hover:underline hover:text-gray-900 cursor-pointer"
           @click.prevent="$router.push('/productslist')"
-          >Shop</a
         >
+          Shop
+        </div>
         <span>
           <svg
             class="h-5 w-5 leading-none text-gray-800"
@@ -82,12 +83,13 @@
             />
           </svg>
         </span>
-        <a
+        <div
           href="#"
-          class="text-gray-800 hover:underline hover:text-gray-900"
-          @click.prevent="$router.push('/productslist')"
-          >{{ product.category }}</a
+          class="text-gray-800 hover:underline hover:text-gray-900 cursor-pointer"
+          @click="goSpecialCategory(product.category)"
         >
+          {{ product.category }}
+        </div>
 
         <span>
           <svg
@@ -300,6 +302,7 @@ import { useToast } from "vue-toastification";
 import { useRoute, useRouter } from "vue-router";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { useStore } from "vuex";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -318,6 +321,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const route = useRoute();
     const router = useRouter();
+    const store = useStore();
 
     const toast = useToast();
     const product = ref({});
@@ -358,12 +362,27 @@ export default defineComponent({
       thumbsSwiper.value = swiper;
     };
 
+    const goSpecialCategory = (cat) => {
+      store.commit("m_setSearchData", {
+        category: cat,
+        title: "",
+        price: "",
+      });
+      window.scrollTo({
+        top: 400,
+        left: 0,
+        // behavior: "smooth",
+      });
+      router.push("/productslist");
+    };
+
     return {
       product,
       getData,
 
       thumbsSwiper,
       setThumbsSwiper,
+      goSpecialCategory,
       modules: [FreeMode, Navigation, Thumbs],
     };
   },

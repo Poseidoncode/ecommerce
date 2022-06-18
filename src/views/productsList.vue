@@ -307,7 +307,7 @@ export default defineComponent({
     const searchData = ref({
       category: "",
       title: "",
-      price: [100, 1600],
+      price: [0, 1600],
     });
 
     const getData = async () => {
@@ -327,6 +327,16 @@ export default defineComponent({
         }
       }
       arr = arr.filter((s) => s.title != "測試的產品s");
+
+      //search section
+      if (!!store.state?.searchData?.category) {
+        searchData.value.category = store.state.searchData.category;
+        store.commit("m_setSearchData", {
+          category: "",
+          title: "",
+          price: [0, 1600],
+        });
+      }
 
       if (searchData.value.title) {
         arr = arr.filter((s) => s.title.includes(searchData.value.title));
@@ -351,7 +361,7 @@ export default defineComponent({
       searchData.value = {
         category: "",
         title: "",
-        price: [100, 3000],
+        price: [0, 1600],
       };
       getData();
     };
@@ -367,16 +377,8 @@ export default defineComponent({
         params: { productId: item.id },
       });
     };
+
     const addToFavorite = (item) => {
-      // window.scrollTo({
-      //   top: 0,
-      //   left: 0,
-      //   // behavior: "smooth",
-      // });
-      // router.push({
-      //   name: "productdetail",
-      //   params: { productId: item.id },
-      // });
       let dataFavorArr = [];
 
       const existFavorArr = !!localStorage.getItem("favorData");
@@ -402,15 +404,6 @@ export default defineComponent({
         timeout: 2000,
         hideProgressBar: true,
       });
-
-      // ? JSON.parse(localStorage.getItem("favorData"))
-      // : [
-      //     {
-      //       Name: checkedName,
-      //       Id: 1,
-      //       time: Date.now(),
-      //     },
-      //   ];
     };
 
     const addToCart = async (item) => {
@@ -438,7 +431,6 @@ export default defineComponent({
             qty: 1,
           };
           const res = await postCustomerCart({ data: obj });
-
           emitter.emit("getCartData");
         }
 
