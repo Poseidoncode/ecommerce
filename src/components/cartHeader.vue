@@ -492,6 +492,7 @@ export default defineComponent({
       }
 
       await getData();
+      getFavoriteData();
     });
 
     return {

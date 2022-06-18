@@ -24,244 +24,61 @@
       </div>
     </section>
 
-    <section class="text-gray-600 body-font">
-      <div
-        class="container pt-16 mx-auto flex px-5 items-center justify-center flex-col"
-      >
-        <div class="text-center lg:w-2/3 w-full">
-          <h1
-            class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
-          >
-            Microdosing synth tattooed vexillologist
-          </h1>
-          <p class="mb-8 leading-relaxed">
-            Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing
-            tousled. Chambray dreamcatcher trust fund, kitsch vice godard
-            disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh.
-            Pour-over meditation PBR&B pickled ennui celiac mlkshk freegan photo
-            booth af fingerstache pitchfork.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-8 lg:gap-16 lg:grid-cols-2">
-          <div
-            class="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full lg:order-last"
-          >
-            <img
-              class="absolute inset-0 object-cover w-full h-full"
-              src="https://www.hyperui.dev/photos/man-1.jpeg"
-              alt="Man using a computer"
-            />
-          </div>
-
-          <div class="lg:py-24">
-            <h2 class="text-3xl font-bold sm:text-4xl">Grow your audience</h2>
-
-            <p class="mt-4 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui
-              hic atque tenetur quis eius quos ea neque sunt, accusantium soluta
-              minus veniam tempora deserunt? Molestiae eius quidem quam
-              repellat.
-            </p>
-
-            <a
-              class="inline-flex items-center px-8 py-3 mt-8 text-white bg-indigo-600 border border-indigo-600 rounded hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
-              href="/get-started"
-            >
-              <span class="text-sm font-medium"> Get Started </span>
-
+    <div class="flex justify-center" style="width: 99vw">
+      <DataTable :value="items" responsiveLayout="scroll">
+        <Column field="title" header="Name" style="color: #0a0d15"></Column>
+        <Column field="category" header="Category"></Column>
+        <Column header="Image">
+          <template #body="slotProps">
+            <div style="height: 120px">
+              <img
+                :src="slotProps.data.imageUrl"
+                :alt="slotProps.data.imageUrl"
+                class="product-image"
+                style="width: 100%; height: 100%; object-fit: contain"
+              />
+            </div>
+          </template>
+        </Column>
+        <Column field="price" header="Price">
+          <template #body="slotProps"> ${{ slotProps.data.price }} </template>
+        </Column>
+        <Column header="Add To Cart">
+          <template #body="slotProps">
+            <div class="flex justify-center">
               <svg
-                class="w-5 h-5 ml-3"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M5.00014 14H18.1359C19.1487 14 19.6551 14 20.0582 13.8112C20.4134 13.6448 20.7118 13.3777 20.9163 13.0432C21.1485 12.6633 21.2044 12.16 21.3163 11.1534L21.9013 5.88835C21.9355 5.58088 21.9525 5.42715 21.9031 5.30816C21.8597 5.20366 21.7821 5.11697 21.683 5.06228C21.5702 5 21.4155 5 21.1062 5H4.50014M2 2H3.24844C3.51306 2 3.64537 2 3.74889 2.05032C3.84002 2.09463 3.91554 2.16557 3.96544 2.25376C4.02212 2.35394 4.03037 2.48599 4.04688 2.7501L4.95312 17.2499C4.96963 17.514 4.97788 17.6461 5.03456 17.7462C5.08446 17.8344 5.15998 17.9054 5.25111 17.9497C5.35463 18 5.48694 18 5.75156 18H19M7.5 21.5H7.51M16.5 21.5H16.51M8 21.5C8 21.7761 7.77614 22 7.5 22C7.22386 22 7 21.7761 7 21.5C7 21.2239 7.22386 21 7.5 21C7.77614 21 8 21.2239 8 21.5ZM17 21.5C17 21.7761 16.7761 22 16.5 22C16.2239 22 16 21.7761 16 21.5C16 21.2239 16.2239 21 16.5 21C16.7761 21 17 21.2239 17 21.5Z"
+                  stroke="#07245E"
+                  stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section
-      class="max-w-screen-xl p-4 bg-white dark:bg-gray-800 mx-auto px-4 sm:px-6 lg:px-8 relative py-26"
-    >
-      <div class="relative">
-        <div
-          class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center"
-        >
-          <div class="lg:col-start-2 lg:max-w-2xl ml-auto">
-            <h4
-              class="mt-2 text-2xl leading-8 font-extrabold text-gray-900 dark:text-white sm:text-3xl sm:leading-9"
-            >
-              THE Vigilero Story
-            </h4>
-            <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-              In the early 1960s, Vigilero purchased a watch assembly factory.
-              Here, in the heart of the Swiss Jura mountains, high-quality
-              timepieces were produced for several name brands of watches, which
-              carried their private label signatures on dial, case, and
-              movement.
-            </p>
-            <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-              In just seven years the company has already had a massive impact
-              on the high-end watch market..
-            </p>
-            <ul class="mt-8 md:grid md:grid-cols-2 gap-6">
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    Live modifications
-                  </span>
-                </div>
-              </li>
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    Data tracker
-                  </span>
-                </div>
-              </li>
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    24/24 support
-                  </span>
-                </div>
-              </li>
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    Free tips to improve work time
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div
-            class="mt-10 lg:-mx-4 relative relative-20 lg:mt-0 lg:col-start-1"
-          >
-            <div class="relative space-y-4">
-              <div
-                class="flex items-end justify-center lg:justify-start space-x-4"
-              >
-                <img
-                  class="rounded-lg shadow-lg w-32 md:w-56"
-                  width="200"
-                  src="https://images.unsplash.com/photo-1596574556890-40f0563f2bbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=672&q=80"
-                  alt="1"
-                />
-                <img
-                  class="rounded-lg shadow-lg w-40 md:w-64"
-                  width="260"
-                  src="https://images.unsplash.com/photo-1604242692760-2f7b0c26856d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-                  alt="2"
-                />
-              </div>
-              <div
-                class="flex items-start justify-center lg:justify-start space-x-4 ml-12"
-              >
-                <img
-                  class="rounded-lg shadow-lg w-24 md:w-40"
-                  width="170"
-                  src="https://images.unsplash.com/photo-1629581678313-36cf745a9af9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80"
-                  alt="3"
-                />
-                <img
-                  class="rounded-lg shadow-lg w-32 md:w-56"
-                  width="200"
-                  src="https://images.unsplash.com/photo-1603394151492-5e9b974b090b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=684&q=80"
-                  alt="4"
-                />
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </template>
+        </Column>
+
+        <template #footer>
+          In total there are {{ items ? items.length : 0 }} products.
+        </template>
+      </DataTable>
+    </div>
   </div>
 </template>
 
 <script>
-import { inject, ref, defineComponent } from "vue";
+import { inject, ref, defineComponent, onMounted } from "vue";
+import { getCustomerProductAll } from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   props: {
@@ -271,8 +88,42 @@ export default defineComponent({
     // },
   },
   setup(props, { emit }) {
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+    const toast = useToast();
+    const items = ref([]);
     // emit("update:modelValue", _newValues);
-    return {};
+    const getData = async () => {
+      let arr = [];
+
+      if (sessionStorage.getItem("needs")) {
+        arr = JSON.parse(sessionStorage.getItem("needs"));
+      } else {
+        try {
+          const res = await getCustomerProductAll(``);
+          arr = [...res.data?.products];
+        } catch (e) {
+          toast.error(`${e.response ? e.response.data : e}`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+        }
+      }
+      const favorArr = localStorage.getItem("favorData")
+        ? JSON.parse(localStorage.getItem("favorData"))
+        : [];
+
+      arr = arr.filter((s) => s.title != "測試的產品s");
+      arr = arr.filter((s) => favorArr.find((k) => k == s.id));
+
+      items.value = [...arr];
+    };
+
+    onMounted(async () => {
+      await getData();
+    });
+    return { items };
   },
 });
 </script>
