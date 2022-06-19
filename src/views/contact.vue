@@ -24,6 +24,38 @@
       </div>
     </section>
 
+    <div class="home">
+      <v-form v-slot="{ errors, values, validate }" @submit="onSubmit">
+        {{ errors }} {{ values }}
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <v-field
+            id="email"
+            name="email"
+            type="email"
+            class="form-control"
+            :class="{ 'is-invalid': errors['email'] }"
+            placeholder="請輸入 Email"
+            rules="email|required"
+            v-model="user.email"
+          ></v-field>
+          123
+          <error-message name="email" class="invalid-feedback"></error-message>
+        </div>
+
+        <button
+          class="btn me-2 btn-outline-primary"
+          type="button"
+          @click="validate"
+        >
+          驗證
+        </button>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </v-form>
+    </div>
+
     <section class="text-gray-600 body-font relative">
       <div class="container px-5 py-2 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
@@ -178,7 +210,11 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     // emit("update:modelValue", _newValues);
-    return {};
+    const user = ref({});
+    const onSubmit = () => {
+      console.log(user.value);
+    };
+    return { user, onSubmit };
   },
 });
 </script>

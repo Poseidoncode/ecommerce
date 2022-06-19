@@ -151,3 +151,20 @@ $modalBlue: #1f3fb3;
   background-position: 50% 65%;
   background-size: cover;
 }
+
+//vee-validate
+.invalid,
+.is-invalid {
+  color: #eb0600;
+}
+.invalid input,
+.is-invalid input {
+  border: 1px #eb0600 solid;
+}
+
+.valid {
+  color: green;
+}
+.valid input {
+  border: 1px solid green;
+}
