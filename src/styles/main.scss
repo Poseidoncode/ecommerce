@@ -156,9 +156,6 @@ $modalBlue: #1f3fb3;
 .invalid,
 .is-invalid {
   color: #eb0600;
-}
-.invalid input,
-.is-invalid input {
   border: 1px #eb0600 solid;
 }
 
@@ -167,4 +164,8 @@ $modalBlue: #1f3fb3;
 }
 .valid input {
   border: 1px solid green;
+}
+
+.invalid-feedback {
+  color: #eb0600;
 }

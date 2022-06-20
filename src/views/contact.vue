@@ -26,29 +26,50 @@
 
     <div class="home">
       <v-form v-slot="{ errors, values, validate }" @submit="onSubmit">
-        {{ errors }} {{ values }}
+        <div>
+          <label class="form-label"
+            >Name
+            <v-field
+              name="name"
+              type="name"
+              class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              :class="{
+                'is-invalid': errors['name'],
+                'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                  'name'
+                ],
+              }"
+              placeholder="請輸入 Name"
+              rules="required"
+              v-model="user.name"
+            ></v-field>
+          </label>
+          <error-message name="name" class="invalid-feedback"></error-message>
+        </div>
 
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <v-field
-            id="email"
-            name="email"
-            type="email"
-            class="form-control"
-            :class="{ 'is-invalid': errors['email'] }"
-            placeholder="請輸入 Email"
-            rules="email|required"
-            v-model="user.email"
-          ></v-field>
-          123
+          <label class="form-label"
+            >Email
+            <v-field
+              name="email"
+              type="email"
+              class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              :class="{
+                'is-invalid': errors['email'],
+                'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                  'email'
+                ],
+              }"
+              placeholder="請輸入 Email"
+              rules="email|required"
+              v-model="user.email"
+            ></v-field>
+          </label>
+
           <error-message name="email" class="invalid-feedback"></error-message>
         </div>
 
-        <button
-          class="btn me-2 btn-outline-primary"
-          type="button"
-          @click="validate"
-        >
+        <button class="btn me-2 btn-outline-primary" type="button" @click="validate">
           驗證
         </button>
 
@@ -59,23 +80,18 @@
     <section class="text-gray-600 body-font relative">
       <div class="container px-5 py-2 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
-          <h1
-            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-          >
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             Contact Us
           </h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify.
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.
           </p>
         </div>
         <div class="lg:w-1/2 md:w-2/3 mx-auto">
           <div class="flex flex-wrap -m-2">
             <div class="p-2 w-1/2">
               <div class="relative">
-                <label for="name" class="leading-7 text-sm text-gray-600"
-                  >Name</label
-                >
+                <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
                 <input
                   type="text"
                   id="name"
@@ -86,9 +102,7 @@
             </div>
             <div class="p-2 w-1/2">
               <div class="relative">
-                <label for="email" class="leading-7 text-sm text-gray-600"
-                  >Email</label
-                >
+                <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -116,13 +130,9 @@
                 Button
               </button>
             </div>
-            <div
-              class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center"
-            >
+            <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
               <a class="text-blue-500">example@email.com</a>
-              <p class="leading-normal my-5">
-                49 Smith St. <br />Saint Cloud, MN 56301
-              </p>
+              <p class="leading-normal my-5">49 Smith St. <br />Saint Cloud, MN 56301</p>
               <span class="inline-flex">
                 <a class="text-gray-500">
                   <svg
@@ -162,14 +172,7 @@
                     class="w-5 h-5"
                     viewBox="0 0 24 24"
                   >
-                    <rect
-                      width="20"
-                      height="20"
-                      x="2"
-                      y="2"
-                      rx="5"
-                      ry="5"
-                    ></rect>
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                     <path
                       d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
                     ></path>

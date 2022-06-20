@@ -16,7 +16,8 @@ import "vue-toastification/dist/index.css";
 import { Field, Form, ErrorMessage, defineRule, configure } from "vee-validate";
 import { required, email, min } from "@vee-validate/rules";
 import { localize, setLocale } from "@vee-validate/i18n";
-import zhTW from "@vee-validate/i18n/dist/locale/zh_TW.json";
+// import zhTW from "@vee-validate/i18n/dist/locale/zh_TW.json";
+import enUs from "@vee-validate/i18n/dist/locale/en.json";
 
 // 定義驗證規則
 
@@ -27,7 +28,9 @@ defineRule("min", min);
 // 設定 vee-validate 全域規則
 
 configure({
-  generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
+  // generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
+  generateMessage: localize({ enUs }),
+
   validateOnInput: true, // 當輸入任何內容直接進行驗證
   classes: {
     valid: "valid",
