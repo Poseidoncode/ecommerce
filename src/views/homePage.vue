@@ -337,7 +337,7 @@ export default {
           emitter.emit("getCartData");
         }
 
-        toast.info(`The Item has already been added cart. `, {
+        toast.info(`The Item has already been added cart.`, {
           timeout: 2000,
           hideProgressBar: true,
         });
