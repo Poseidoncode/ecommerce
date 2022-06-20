@@ -39,7 +39,8 @@ configure({
 });
 
 // 設定預設語系
-setLocale("zh_TW");
+// setLocale("zh_TW");
+setLocale("enUs");
 
 //toast
 const options = {

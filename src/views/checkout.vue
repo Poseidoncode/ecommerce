@@ -23,240 +23,274 @@
         </div>
       </div>
     </section>
+    <!-- component -->
 
-    <section class="text-gray-600 body-font">
-      <div
-        class="container pt-16 mx-auto flex px-5 items-center justify-center flex-col"
-      >
-        <div class="text-center lg:w-2/3 w-full">
-          <h1
-            class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
+    <div class="min-w-screen min-h-screen bg-gray-50 py-5">
+      <div class="px-5">
+        <div class="mb-2">
+          <a
+            href="#"
+            class="focus:outline-none hover:underline text-gray-500 text-sm"
+            ><i class="mdi mdi-arrow-left text-gray-400"></i>Back</a
           >
-            Microdosing synth tattooed vexillologist
+        </div>
+        <div class="mb-2">
+          <h1 class="text-3xl md:text-5xl font-bold text-gray-600">
+            Checkout.
           </h1>
-          <p class="mb-8 leading-relaxed">
-            Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing
-            tousled. Chambray dreamcatcher trust fund, kitsch vice godard
-            disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh.
-            Pour-over meditation PBR&B pickled ennui celiac mlkshk freegan photo
-            booth af fingerstache pitchfork.
-          </p>
+        </div>
+        <div class="mb-5 text-gray-400">
+          <a href="#" class="focus:outline-none hover:underline text-gray-500"
+            >Home</a
+          >
+          /
+          <a href="#" class="focus:outline-none hover:underline text-gray-500"
+            >Cart</a
+          >
+          / <span class="text-gray-600">Checkout</span>
         </div>
       </div>
-    </section>
-
-    <section>
-      <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-8 lg:gap-16 lg:grid-cols-2">
-          <div
-            class="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full lg:order-last"
-          >
-            <img
-              class="absolute inset-0 object-cover w-full h-full"
-              src="https://www.hyperui.dev/photos/man-1.jpeg"
-              alt="Man using a computer"
-            />
-          </div>
-
-          <div class="lg:py-24">
-            <h2 class="text-3xl font-bold sm:text-4xl">Grow your audience</h2>
-
-            <p class="mt-4 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui
-              hic atque tenetur quis eius quos ea neque sunt, accusantium soluta
-              minus veniam tempora deserunt? Molestiae eius quidem quam
-              repellat.
-            </p>
-
-            <a
-              class="inline-flex items-center px-8 py-3 mt-8 text-white bg-indigo-600 border border-indigo-600 rounded hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
-              href="/get-started"
-            >
-              <span class="text-sm font-medium"> Get Started </span>
-
-              <svg
-                class="w-5 h-5 ml-3"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section
-      class="max-w-screen-xl p-4 bg-white dark:bg-gray-800 mx-auto px-4 sm:px-6 lg:px-8 relative py-26"
-    >
-      <div class="relative">
-        <div
-          class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center"
-        >
-          <div class="lg:col-start-2 lg:max-w-2xl ml-auto">
-            <h4
-              class="mt-2 text-2xl leading-8 font-extrabold text-gray-900 dark:text-white sm:text-3xl sm:leading-9"
-            >
-              THE Vigilero Story
-            </h4>
-            <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-              In the early 1960s, Vigilero purchased a watch assembly factory.
-              Here, in the heart of the Swiss Jura mountains, high-quality
-              timepieces were produced for several name brands of watches, which
-              carried their private label signatures on dial, case, and
-              movement.
-            </p>
-            <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-              In just seven years the company has already had a massive impact
-              on the high-end watch market..
-            </p>
-            <ul class="mt-8 md:grid md:grid-cols-2 gap-6">
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    Live modifications
-                  </span>
-                </div>
-              </li>
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    Data tracker
-                  </span>
-                </div>
-              </li>
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    24/24 support
-                  </span>
-                </div>
-              </li>
-              <li class="mt-6 lg:mt-0">
-                <div class="flex">
-                  <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
-                  >
-                    Free tips to improve work time
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div
-            class="mt-10 lg:-mx-4 relative relative-20 lg:mt-0 lg:col-start-1"
-          >
-            <div class="relative space-y-4">
+      <div
+        class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800"
+      >
+        <div class="w-full">
+          <div class="-mx-3 md:flex items-start">
+            <div class="px-3 md:w-7/12 lg:pr-10">
               <div
-                class="flex items-end justify-center lg:justify-start space-x-4"
+                class="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6"
               >
-                <img
-                  class="rounded-lg shadow-lg w-32 md:w-56"
-                  width="200"
-                  src="https://images.unsplash.com/photo-1596574556890-40f0563f2bbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=672&q=80"
-                  alt="1"
-                />
-                <img
-                  class="rounded-lg shadow-lg w-40 md:w-64"
-                  width="260"
-                  src="https://images.unsplash.com/photo-1604242692760-2f7b0c26856d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-                  alt="2"
-                />
+                <div class="w-full flex items-center">
+                  <div
+                    class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"
+                      alt=""
+                    />
+                  </div>
+                  <div class="flex-grow pl-3">
+                    <h6 class="font-semibold uppercase text-gray-600">
+                      Ray Ban Sunglasses.
+                    </h6>
+                    <p class="text-gray-400">x 1</p>
+                  </div>
+                  <div>
+                    <span class="font-semibold text-gray-600 text-xl">$210</span
+                    ><span class="font-semibold text-gray-600 text-sm"
+                      >.00</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="mb-6 pb-6 border-b border-gray-200">
+                <div class="-mx-2 flex items-end justify-end">
+                  <div class="flex-grow px-2 lg:max-w-xs">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      >Discount code</label
+                    >
+                    <div>
+                      <input
+                        class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                        placeholder="XXXXXX"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div class="px-2">
+                    <button
+                      class="block w-full max-w-xs mx-auto border border-transparent bg-gray-400 hover:bg-gray-500 focus:bg-gray-500 text-white rounded-md px-5 py-2 font-semibold"
+                    >
+                      APPLY
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-6 pb-6 border-b border-gray-200 text-gray-800">
+                <div class="w-full flex mb-3 items-center">
+                  <div class="flex-grow">
+                    <span class="text-gray-600">Subtotal</span>
+                  </div>
+                  <div class="pl-3">
+                    <span class="font-semibold">$190.91</span>
+                  </div>
+                </div>
+                <div class="w-full flex items-center">
+                  <div class="flex-grow">
+                    <span class="text-gray-600">Taxes (GST)</span>
+                  </div>
+                  <div class="pl-3">
+                    <span class="font-semibold">$19.09</span>
+                  </div>
+                </div>
               </div>
               <div
-                class="flex items-start justify-center lg:justify-start space-x-4 ml-12"
+                class="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl"
               >
-                <img
-                  class="rounded-lg shadow-lg w-24 md:w-40"
-                  width="170"
-                  src="https://images.unsplash.com/photo-1629581678313-36cf745a9af9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80"
-                  alt="3"
-                />
-                <img
-                  class="rounded-lg shadow-lg w-32 md:w-56"
-                  width="200"
-                  src="https://images.unsplash.com/photo-1603394151492-5e9b974b090b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=684&q=80"
-                  alt="4"
-                />
+                <div class="w-full flex items-center">
+                  <div class="flex-grow">
+                    <span class="text-gray-600">Total</span>
+                  </div>
+                  <div class="pl-3">
+                    <span class="font-semibold text-gray-400 text-sm">AUD</span>
+                    <span class="font-semibold">$210.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-3 md:w-5/12">
+              <div
+                class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6"
+              >
+                <div class="w-full flex mb-3 items-center">
+                  <div class="w-32">
+                    <span class="text-gray-600 font-semibold">Contact</span>
+                  </div>
+                  <div class="flex-grow pl-3">
+                    <span>Scott Windon</span>
+                  </div>
+                </div>
+                <div class="w-full flex items-center">
+                  <div class="w-32">
+                    <span class="text-gray-600 font-semibold"
+                      >Billing Address</span
+                    >
+                  </div>
+                  <div class="flex-grow pl-3">
+                    <span>123 George Street, Sydney, NSW 2000 Australia</span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6"
+              >
+                <div class="w-full p-3 border-b border-gray-200">
+                  <div class="mb-5">
+                    <label for="type1" class="flex items-center cursor-pointer">
+                      <input
+                        type="radio"
+                        class="form-radio h-5 w-5 text-indigo-500"
+                        name="type"
+                        id="type1"
+                        checked
+                      />
+                      <img
+                        src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
+                        class="h-6 ml-3"
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <div class="mb-3">
+                      <label
+                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        >Name on card</label
+                      >
+                      <div>
+                        <input
+                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                          placeholder="John Smith"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label
+                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        >Card number</label
+                      >
+                      <div>
+                        <input
+                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                          placeholder="0000 0000 0000 0000"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3 -mx-2 flex items-end">
+                      <div class="px-2 w-1/4">
+                        <label
+                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                          >Expiration date</label
+                        >
+                        <div>
+                          <select
+                            class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
+                          >
+                            <option value="01">01 - January</option>
+                            <option value="02">02 - February</option>
+                            <option value="03">03 - March</option>
+                            <option value="04">04 - April</option>
+                            <option value="05">05 - May</option>
+                            <option value="06">06 - June</option>
+                            <option value="07">07 - July</option>
+                            <option value="08">08 - August</option>
+                            <option value="09">09 - September</option>
+                            <option value="10">10 - October</option>
+                            <option value="11">11 - November</option>
+                            <option value="12">12 - December</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="px-2 w-1/4">
+                        <select
+                          class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
+                        >
+                          <option value="2020">2020</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                          <option value="2024">2024</option>
+                          <option value="2025">2025</option>
+                          <option value="2026">2026</option>
+                          <option value="2027">2027</option>
+                          <option value="2028">2028</option>
+                          <option value="2029">2029</option>
+                        </select>
+                      </div>
+                      <div class="px-2 w-1/4">
+                        <label
+                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                          >Security code</label
+                        >
+                        <div>
+                          <input
+                            class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                            placeholder="000"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full p-3">
+                  <label for="type2" class="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      class="form-radio h-5 w-5 text-indigo-500"
+                      name="type"
+                      id="type2"
+                    />
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                      width="80"
+                      class="ml-3"
+                    />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <button
+                  class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold"
+                >
+                  <i class="mdi mdi-lock-outline mr-1"></i> PAY NOW
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 

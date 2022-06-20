@@ -32,7 +32,8 @@
           Contact Us
         </h1>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-center mb-4">
-          Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.
+          Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+          gentrify.
         </p>
 
         <v-form
@@ -49,11 +50,10 @@
                 class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 :class="{
                   'is-invalid': errors['name'],
-                  'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
-                    'name'
-                  ],
+                  'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                    !errors['name'],
                 }"
-                placeholder="請輸入 Name"
+                placeholder="Please enter  Name"
                 rules="required"
                 v-model="user.name"
               ></v-field>
@@ -70,18 +70,20 @@
                 class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 :class="{
                   'is-invalid': errors['email'],
-                  'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
-                    'email'
-                  ],
+                  'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                    !errors['email'],
                 }"
-                placeholder="請輸入 Email"
+                placeholder="Please enter  Email"
                 rules="email|required"
                 v-model="user.email"
               >
               </v-field>
             </label>
 
-            <error-message name="email" class="invalid-feedback"></error-message>
+            <error-message
+              name="email"
+              class="invalid-feedback"
+            ></error-message>
           </div>
 
           <div class="mb-3" style="grid-column: 1 / -1">
@@ -93,11 +95,10 @@
                 class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 :class="{
                   'is-invalid': errors['message'],
-                  'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
-                    'message'
-                  ],
+                  'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                    !errors['message'],
                 }"
-                placeholder="請輸入 Message"
+                placeholder="Please enter  Message"
                 rules="required"
                 v-model="user.message"
                 as="textarea"
@@ -106,7 +107,10 @@
               </v-field>
             </label>
 
-            <error-message name="message" class="invalid-feedback"></error-message>
+            <error-message
+              name="message"
+              class="invalid-feedback"
+            ></error-message>
           </div>
 
           <!-- <button class="btn me-2 btn-outline-primary" type="button" @click="validate">
@@ -124,9 +128,13 @@
               Button
             </button>
           </div>
-          <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
+          <div
+            class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center"
+          >
             <a class="text-blue-500">example@email.com</a>
-            <p class="leading-normal my-5">49 Smith St. <br />Saint Cloud, MN 56301</p>
+            <p class="leading-normal my-5">
+              49 Smith St. <br />Saint Cloud, MN 56301
+            </p>
             <span class="inline-flex">
               <a class="text-gray-500">
                 <svg
