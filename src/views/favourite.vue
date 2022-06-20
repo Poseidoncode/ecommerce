@@ -182,7 +182,20 @@ export default defineComponent({
           emitter.emit("getCartData");
         }
 
-        toast.info(`The Item has already been added cart.`, {
+        //renew favorite
+        let dataFavorArr = localStorage.getItem("favorData")
+          ? JSON.parse(localStorage.getItem("favorData"))
+          : [];
+
+        dataFavorArr = dataFavorArr.filter((s) => s != item.id);
+
+        localStorage.setItem("favorData", JSON.stringify(dataFavorArr));
+        emitter.emit("getFavorData");
+
+        //renew data
+        getData();
+
+        toast.info(`The Item has already been added to cart.`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -194,7 +207,25 @@ export default defineComponent({
       }
     };
 
-    const deleteFavorite = () => {};
+    const deleteFavorite = (item) => {
+      //renew favorite
+      let dataFavorArr = localStorage.getItem("favorData")
+        ? JSON.parse(localStorage.getItem("favorData"))
+        : [];
+
+      dataFavorArr = dataFavorArr.filter((s) => s != item.id);
+
+      localStorage.setItem("favorData", JSON.stringify(dataFavorArr));
+      emitter.emit("getFavorData");
+
+      //renew data
+      getData();
+
+      toast.info(`The Item has already been added to cart.`, {
+        timeout: 2000,
+        hideProgressBar: true,
+      });
+    };
 
     onMounted(async () => {
       await getData();

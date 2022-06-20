@@ -94,7 +94,9 @@
 
             <aside class="border-t border-gray-200 lg:border-t-0">
               <fieldset>
-                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+                <legend
+                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
+                >
                   Type
                 </legend>
 
@@ -121,16 +123,22 @@
               </fieldset>
 
               <fieldset>
-                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+                <legend
+                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
+                >
                   Price
                 </legend>
               </fieldset>
               <div class="px-5 py-6 space-y-2">
-                <h5>Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}</h5>
+                <h5>
+                  Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}
+                </h5>
                 <Slider v-model="searchData.price" :range="true" :max="1700" />
               </div>
 
-              <div class="flex justify-between px-5 py-3 border-t border-gray-200">
+              <div
+                class="flex justify-between px-5 py-3 border-t border-gray-200"
+              >
                 <button
                   name="reset"
                   type="button"
@@ -156,7 +164,9 @@
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
+          >
             <div
               href="#"
               v-for="(item, idx) in items"
@@ -173,7 +183,9 @@
                 </div> -->
                 <div
                   class="h-56 w-full product-background"
-                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
+                  :style="
+                    item.imageUrl ? `background:url(${item.imageUrl})` : ''
+                  "
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -194,7 +206,10 @@
                     </svg>
                   </button>
                   <div class="item-hover">
-                    <div class="item-hover-content" @click.prevent="showDetail(item)">
+                    <div
+                      class="item-hover-content"
+                      @click.prevent="showDetail(item)"
+                    >
                       More
                     </div>
                     <button
@@ -205,7 +220,9 @@
                         class="h-6 w-6"
                         :fill="item.isFavorProduct ? '#FCD34D' : 'none'"
                         viewBox="0 0 24 24"
-                        :stroke="item.isFavorProduct ? '#FCD34D' : 'currentColor'"
+                        :stroke="
+                          item.isFavorProduct ? '#FCD34D' : 'currentColor'
+                        "
                       >
                         <path
                           stroke-linecap="round"
@@ -385,7 +402,9 @@ export default defineComponent({
         });
       } else {
         dataFavorArr = JSON.parse(localStorage.getItem("favorData"));
-        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id) ? true : false;
+        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id)
+          ? true
+          : false;
 
         if (isExistThisFavorite) {
           dataFavorArr = dataFavorArr.filter((s) => s != item.id);
@@ -415,7 +434,9 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find((s) => s.product_id == item.id);
+          let productData = store.state.cart.find(
+            (s) => s.product_id == item.id
+          );
 
           obj = {
             product_id: productData.product_id,
@@ -433,7 +454,7 @@ export default defineComponent({
           emitter.emit("getCartData");
         }
 
-        toast.info(`The Item has already been added cart. `, {
+        toast.info(`The Item has already been added to cart. `, {
           timeout: 2000,
           hideProgressBar: true,
         });
