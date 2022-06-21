@@ -179,8 +179,7 @@
                   Save
                   {{
                     (
-                      ((+product.origin_price - +product.price) /
-                        +product.origin_price) *
+                      ((+product.origin_price - +product.price) / +product.origin_price) *
                       100
                     ).toFixed(1)
                   }}%
@@ -204,6 +203,7 @@
               </div>
               <select
                 class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1"
+                v-model="selectedQty"
               >
                 <option>1</option>
                 <option>2</option>
@@ -236,8 +236,28 @@
             <button
               type="button"
               class="h-14 px-6 py-2 font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white"
+              @click.stop="addToCart(product)"
             >
               Add to Cart
+            </button>
+
+            <button
+              @click.stop="addToFavorite(product)"
+              class="focus:outline-none mx-8 sm:mx-0 item-hover-content item-hover-content2"
+            >
+              <svg
+                class="h-6 w-6"
+                :fill="product.isFavorProduct ? '#FCD34D' : 'none'"
+                viewBox="0 0 24 24"
+                :stroke="product.isFavorProduct ? '#FCD34D' : 'currentColor'"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -248,39 +268,29 @@
           <TabPanel>
             <template #header>
               <i class="pi pi-tag"></i>
-              <span style="display: inline-block" class="ml-1">
-                Specifications</span
-              >
+              <span style="display: inline-block" class="ml-1"> Specifications</span>
             </template>
-            <div
-              class="specifications-content"
-              v-html="product.contentreplace"
-            ></div>
+            <div class="specifications-content" v-html="product.contentreplace"></div>
           </TabPanel>
           <TabPanel>
             <template #header>
               <i class="pi pi-wallet"></i>
-              <span style="display: inline-block" class="ml-1">
-                Returns Policy</span
-              >
+              <span style="display: inline-block" class="ml-1"> Returns Policy</span>
             </template>
             <div class="specifications-content">
               <p>
-                ● Items with a value of $35 or more must be returned using a
-                trackable shipping method.
+                ● Items with a value of $35 or more must be returned using a trackable
+                shipping method.
               </p>
               <p>
-                ● All product packaging (boxes, manuals, warranty cards, etc.)
-                and certificates of authenticity, grading, and appraisal must be
-                returned with the item.
+                ● All product packaging (boxes, manuals, warranty cards, etc.) and
+                certificates of authenticity, grading, and appraisal must be returned with
+                the item.
               </p>
+              <p>● Any items returned without original documentation will be rejected.</p>
               <p>
-                ● Any items returned without original documentation will be
-                rejected.
-              </p>
-              <p>
-                ● Items that have been resized, damaged, or otherwise altered
-                after delivery won't be accepted for return.
+                ● Items that have been resized, damaged, or otherwise altered after
+                delivery won't be accepted for return.
               </p>
             </div>
           </TabPanel>
@@ -296,8 +306,12 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch } from "vue";
-import { getCustomerSingleProduct } from "Service/apis.js";
+import { defineComponent, ref, onMounted, watch, inject } from "vue";
+import {
+  getCustomerSingleProduct,
+  postCustomerCart,
+  putCustomerCart,
+} from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import { useRoute, useRouter } from "vue-router";
 
@@ -322,25 +336,32 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
     const store = useStore();
+    const emitter = inject("emitter");
+    const selectedQty = ref(1);
 
     const toast = useToast();
     const product = ref({});
 
+    //detail Data
     const getData = async () => {
       try {
         const res = await getCustomerSingleProduct(`${route.params.productId}`);
         if (!!res.data?.product?.imagesUrl.length) {
-          res.data.product.imagesUrl = res.data.product.imagesUrl.filter(
-            (s) => !!s
-          );
+          res.data.product.imagesUrl = res.data.product.imagesUrl.filter((s) => !!s);
         }
 
         product.value = { ...res.data?.product };
+        product.value.contentreplace = product.value.content.replace(/\n/g, "<br>");
 
-        product.value.contentreplace = product.value.content.replace(
-          /\n/g,
-          "<br>"
-        );
+        const dataFavorArr = !!localStorage.getItem("favorData")
+          ? JSON.parse(localStorage.getItem("favorData"))
+          : [];
+
+        product.value.isFavorProduct = dataFavorArr.find(
+          (k) => k == route.params.productId
+        )
+          ? true
+          : false;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
           timeout: 2000,
@@ -348,12 +369,7 @@ export default defineComponent({
         });
       }
     };
-
-    onMounted(async () => {
-      await getData();
-      setThumbsSwiper();
-    });
-
+    //detail show
     const thumbsSwiper = ref(null);
 
     const setThumbsSwiper = (swiper = null) => {
@@ -374,6 +390,86 @@ export default defineComponent({
       router.push("/productslist");
     };
 
+    ///detail Action
+
+    const addToFavorite = (item) => {
+      let dataFavorArr = [];
+
+      const existFavorArr = !!localStorage.getItem("favorData");
+
+      if (!existFavorArr) {
+        dataFavorArr = [item.id];
+        toast.info(`The Item has  been added to favorite.`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } else {
+        dataFavorArr = JSON.parse(localStorage.getItem("favorData"));
+        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id) ? true : false;
+
+        if (isExistThisFavorite) {
+          dataFavorArr = dataFavorArr.filter((s) => s != item.id);
+          toast.info(`The Item has been removed from favorite.`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+        } else {
+          dataFavorArr.push(item.id);
+          toast.info(`The Item has  been added to favorite.`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+        }
+      }
+
+      localStorage.setItem("favorData", JSON.stringify(dataFavorArr));
+      emitter.emit("getFavorData");
+      getData();
+    };
+
+    const addToCart = async (item) => {
+      try {
+        let obj = {};
+        const isExist = store.state.cart.find((s) => s.product_id == item.id)
+          ? true
+          : false;
+
+        if (isExist) {
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
+
+          obj = {
+            product_id: productData.product_id,
+            qty: +productData.qty + +selectedQty.value,
+          };
+          const res = await putCustomerCart({ data: obj }, productData.id);
+
+          emitter.emit("getCartData");
+        } else {
+          obj = {
+            product_id: item.id,
+            qty: +selectedQty.value,
+          };
+          const res = await postCustomerCart({ data: obj });
+          emitter.emit("getCartData");
+        }
+
+        toast.info(`The Item has already been added to cart. `, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    onMounted(async () => {
+      await getData();
+      setThumbsSwiper();
+    });
+
     return {
       product,
       getData,
@@ -382,6 +478,9 @@ export default defineComponent({
       setThumbsSwiper,
       goSpecialCategory,
       modules: [FreeMode, Navigation, Thumbs],
+      addToFavorite,
+      addToCart,
+      selectedQty,
     };
   },
 });
