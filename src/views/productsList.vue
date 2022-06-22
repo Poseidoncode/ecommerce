@@ -210,7 +210,7 @@
                       class="item-hover-content"
                       @click.prevent="showDetail(item)"
                     >
-                      More
+                      Detail
                     </div>
                     <button
                       @click.stop="addToFavorite(item)"
@@ -236,7 +236,9 @@
                 </div>
                 <div class="p-6 pt-1">
                   <div class="text-sm">
-                    <h4 class="font-bold text-base text-center">
+                    <h4
+                      class="font-bold text-base text-center theme-color-main"
+                    >
                       {{ item.category || "" }}
                     </h4>
                     <h3 class="font-bold text-base text-center">
@@ -581,7 +583,7 @@ export default defineComponent({
         color: #fff;
         top: 50%;
         left: 35%;
-        text-decoration: underline;
+        // text-decoration: underline;
         transform: translate(-50%, -35%);
         font-size: 26px;
         opacity: 1;

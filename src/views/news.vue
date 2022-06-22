@@ -358,7 +358,11 @@
         <span>Latest News</span>
       </h1>
       <div class="news-content">
-        <div class="main-content" v-for="(item, i) in items" :key="`news${i}`">
+        <div
+          class="main-content"
+          v-for="(item, i) in items.slice(0, 4)"
+          :key="`news${i}`"
+        >
           <div
             class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5 mx-3"
           >
