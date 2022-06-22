@@ -9,7 +9,7 @@
             <h1
               class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose bg-section-word1"
             >
-              CheckOut
+              Order
             </h1>
             <h2
               class="text-3xl md:text-3xl p-2 leading-relaxed md:leading-snug mb-2 bg-section-word2"
@@ -24,32 +24,11 @@
       </div>
     </section>
     <!-- component -->
+    <div class="card">
+      <Steps :model="stepItems" :readonly="true" />
+    </div>
 
     <div class="min-w-screen min-h-screen bg-gray-50 py-5">
-      <div class="px-5">
-        <div class="mb-2">
-          <a
-            href="#"
-            class="focus:outline-none hover:underline text-gray-500 text-sm"
-            ><i class="mdi mdi-arrow-left text-gray-400"></i>Back</a
-          >
-        </div>
-        <div class="mb-2">
-          <h1 class="text-3xl md:text-5xl font-bold text-gray-600">
-            Checkout.
-          </h1>
-        </div>
-        <div class="mb-5 text-gray-400">
-          <a href="#" class="focus:outline-none hover:underline text-gray-500"
-            >Home</a
-          >
-          /
-          <a href="#" class="focus:outline-none hover:underline text-gray-500"
-            >Cart</a
-          >
-          / <span class="text-gray-600">Checkout</span>
-        </div>
-      </div>
       <div
         class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800"
       >
@@ -306,7 +285,25 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     // emit("update:modelValue", _newValues);
-    return {};
+    const stepItems = ref([
+      {
+        label: "Personal",
+        to: "/",
+      },
+      {
+        label: "checkout",
+        to: "/checkout",
+      },
+      {
+        label: "Payment",
+        to: "/payment",
+      },
+      {
+        label: "Confirmation",
+        to: "/confirmation",
+      },
+    ]);
+    return { stepItems };
   },
 });
 </script>
@@ -345,5 +342,15 @@ export default defineComponent({
   .bg-setting-local {
     background-position: 102% 74%;
   }
+}
+.card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+::v-deep(.p-disabled) {
+  background-color: #ffffff;
 }
 </style>
