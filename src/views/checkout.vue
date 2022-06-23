@@ -9,7 +9,7 @@
             <h1
               class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose bg-section-word1"
             >
-              CheckOut
+              Order
             </h1>
             <h2
               class="text-3xl md:text-3xl p-2 leading-relaxed md:leading-snug mb-2 bg-section-word2"
@@ -28,26 +28,13 @@
     <div class="min-w-screen min-h-screen bg-gray-50 py-5">
       <div class="px-5">
         <div class="mb-2">
-          <a
-            href="#"
-            class="focus:outline-none hover:underline text-gray-500 text-sm"
-            ><i class="mdi mdi-arrow-left text-gray-400"></i>Back</a
-          >
-        </div>
-        <div class="mb-2">
-          <h1 class="text-3xl md:text-5xl font-bold text-gray-600">
-            Checkout.
-          </h1>
+          <h1 class="text-3xl md:text-5xl font-bold text-gray-600">Shipping</h1>
         </div>
         <div class="mb-5 text-gray-400">
-          <a href="#" class="focus:outline-none hover:underline text-gray-500"
-            >Home</a
-          >
+          <a href="#" class="focus:outline-none hover:underline text-gray-500">Home</a>
           /
-          <a href="#" class="focus:outline-none hover:underline text-gray-500"
-            >Cart</a
-          >
-          / <span class="text-gray-600">Checkout</span>
+          <a href="#" class="focus:outline-none hover:underline text-gray-500">Cart</a>
+          / <span class="text-gray-600">Shipping</span>
         </div>
       </div>
       <div
@@ -76,9 +63,7 @@
                   </div>
                   <div>
                     <span class="font-semibold text-gray-600 text-xl">$210</span
-                    ><span class="font-semibold text-gray-600 text-sm"
-                      >.00</span
-                    >
+                    ><span class="font-semibold text-gray-600 text-sm">.00</span>
                   </div>
                 </div>
               </div>
@@ -151,9 +136,7 @@
                 </div>
                 <div class="w-full flex items-center">
                   <div class="w-32">
-                    <span class="text-gray-600 font-semibold"
-                      >Billing Address</span
-                    >
+                    <span class="text-gray-600 font-semibold">Billing Address</span>
                   </div>
                   <div class="flex-grow pl-3">
                     <span>123 George Street, Sydney, NSW 2000 Australia</span>
@@ -181,8 +164,7 @@
                   </div>
                   <div>
                     <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Name on card</label
                       >
                       <div>
@@ -194,8 +176,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Card number</label
                       >
                       <div>
@@ -208,8 +189,7 @@
                     </div>
                     <div class="mb-3 -mx-2 flex items-end">
                       <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                           >Expiration date</label
                         >
                         <div>
@@ -248,8 +228,7 @@
                         </select>
                       </div>
                       <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                           >Security code</label
                         >
                         <div>
@@ -283,7 +262,7 @@
                 <button
                   class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold"
                 >
-                  <i class="mdi mdi-lock-outline mr-1"></i> PAY NOW
+                  <i class="mdi mdi-lock-outline mr-1"></i> Place Order
                 </button>
               </div>
             </div>
