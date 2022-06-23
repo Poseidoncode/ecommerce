@@ -59,12 +59,7 @@
             :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
             v-if="!favoriteTotal"
           >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -81,12 +76,7 @@
             v-badge.warning="`${favoriteTotal}`"
             v-if="!!favoriteTotal"
           >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -213,10 +203,7 @@
       <h3 class="text-md font-medium text-gray-700">
         Shopping bag ({{ items.length }} items)
       </h3>
-      <button
-        @click="cartOpen = !cartOpen"
-        class="text-gray-600 focus:outline-none"
-      >
+      <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
         <svg
           class="h-5 w-5"
           fill="none"
@@ -294,11 +281,7 @@
     </div>
     <div class="mt-8">
       <form class="flex items-center justify-center">
-        <input
-          class="form-input w-48"
-          type="text"
-          placeholder="Add promocode"
-        />
+        <input class="form-input w-48" type="text" placeholder="Add promocode" />
         <button
           class="ml-3 flex items-center px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
         >
@@ -306,8 +289,30 @@
         </button>
       </form>
     </div>
-    <a
-      class="flex items-center justify-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+    <div
+      class="cursor-pointer flex items-center justify-center mt-4 px-3 py-2 bg-yellow-600 text-white text-sm uppercase font-medium rounded hover:bg-yellow-500 focus:outline-none focus:bg-yellow-500"
+    >
+      <span
+        @click="
+          cartOpen = false;
+          $router.push('/cart');
+        "
+        >Cart</span
+      >
+      <svg
+        class="h-5 w-5 mx-2"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </div>
+    <div
+      class="cursor-pointer flex items-center justify-center mt-2 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
     >
       <span
         @click="
@@ -327,7 +332,7 @@
       >
         <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
       </svg>
-    </a>
+    </div>
     <hr class="my-6" />
     <div class="text-right theme-color-main">
       Total: ${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}
@@ -548,8 +553,7 @@ export default defineComponent({
   background-color: rgb(255 255 255 / 98%);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px
-    1px 1px 0px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   // border-bottom: 1px solid #2d3858;
   box-shadow: 0 0 10px rgb(4 7 14 / 80%);
   z-index: 99;
