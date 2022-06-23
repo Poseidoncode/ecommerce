@@ -289,10 +289,12 @@
         </div>
       </div>
 
-      <div class="text-gray-600">${{ itemData.product.price || "" }}</div>
+      <div class="text-gray-600 product-content-price">
+        ${{ itemData.product.price || "" }}
+      </div>
       <hr class="product-content-hr" />
     </div>
-    <div class="text-right theme-color-main">
+    <div class="text-right theme-color-main" style="margin-right: 2px">
       Total: ${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}
     </div>
     <!-- <div class="mt-8">
@@ -626,6 +628,10 @@ export default defineComponent({
       height: 100%;
       object-fit: contain;
     }
+  }
+  .product-content-price {
+    text-align: end;
+    margin-right: 2px;
   }
   .product-content-hr {
     grid-column: 1 / -1;
