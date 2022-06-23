@@ -138,6 +138,16 @@ const routes = [
     component: () => import("@/views/favourite.vue"),
   },
   {
+    path: "/cart",
+    name: "cart",
+    meta: {
+      title: "cart page",
+      needNav: true,
+      needFooter: true,
+    },
+    component: () => import("@/views/cart.vue"),
+  },
+  {
     path: "/checkout",
     name: "checkout",
     meta: {
@@ -146,6 +156,16 @@ const routes = [
       needFooter: true,
     },
     component: () => import("@/views/checkout.vue"),
+  },
+  {
+    path: "/payment",
+    name: "payment",
+    meta: {
+      title: "patment page",
+      needNav: true,
+      needFooter: true,
+    },
+    component: () => import("@/views/payment.vue"),
   },
   {
     path: "/testpage",
