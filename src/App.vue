@@ -26,9 +26,9 @@ export default {
   background: transparent url("/public/assets/bgrough.jpg") repeat 0 0;
   overflow: hidden;
   position: relative;
-  width: 99%;
+  // width: 99%;
   height: 99%;
-  width: 99vw;
+  // width: 99vw;
   z-index: 1;
 }
 </style>
