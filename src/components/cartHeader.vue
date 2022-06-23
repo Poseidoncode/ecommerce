@@ -196,7 +196,7 @@
   <div
     v-click-outside="outsideEvent"
     :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
-    class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
+    class="fixed right-0 top-0 max-w-sm w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
     style="z-index: 100"
   >
     <div class="flex items-center justify-between">
@@ -220,63 +220,62 @@
     <hr class="my-3" />
 
     <div
-      class="flex justify-between mt-6"
+      class="mt-6 product-content"
       v-for="(itemData, i) in items"
       :key="`itemData${i}`"
     >
-      <div class="flex">
-        <img
-          class="h-20 w-20 object-cover rounded"
-          :src="itemData.product.imageUrl"
-          alt=""
-        />
-        <div class="mx-3">
-          <h3 class="text-sm text-gray-600">
-            {{ itemData.product.title || "" }}
-          </h3>
-          <div class="flex items-center mt-2">
-            <div class="mr-2">
-              <select
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                v-model="itemData.qty"
-                @change="putData(itemData)"
-              >
-                <option :value="1">1</option>
-                <option :value="2">2</option>
-                <option :value="3">3</option>
-                <option :value="4">4</option>
-                <option :value="5">5</option>
-                <option :value="6">6</option>
-                <option :value="7">7</option>
-                <option :value="8">8</option>
-                <option :value="9">9</option>
-                <option :value="10">10</option>
-              </select>
-            </div>
+      <div class="product-content-img">
+        <img :src="itemData.product.imageUrl" alt="" />
+      </div>
 
-            <button
-              class="text-gray-500 focus:outline-none focus:text-gray-600"
-              v-tooltip.top="'delete'"
-              @click.prevent="deleteData(itemData)"
+      <div class="mx-3">
+        <h3 class="text-sm text-gray-600">
+          {{ itemData.product.title || "" }}
+        </h3>
+        <div class="flex items-center mt-2">
+          <!-- {{ itemData.qty }} -->
+          <div class="mr-2">
+            <select
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              v-model="itemData.qty"
+              @change="putData(itemData)"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                />
-              </svg>
-            </button>
+              <option :value="1">1</option>
+              <option :value="2">2</option>
+              <option :value="3">3</option>
+              <option :value="4">4</option>
+              <option :value="5">5</option>
+              <option :value="6">6</option>
+              <option :value="7">7</option>
+              <option :value="8">8</option>
+              <option :value="9">9</option>
+              <option :value="10">10</option>
+            </select>
           </div>
+
+          <button
+            class="text-gray-500 focus:outline-none focus:text-gray-600"
+            v-tooltip.top="'delete'"
+            @click.prevent="deleteData(itemData)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+          </button>
         </div>
       </div>
+
       <span class="text-gray-600"> ${{ itemData.product.price || "" }}</span>
     </div>
     <div class="mt-8">
@@ -427,6 +426,7 @@ export default defineComponent({
         const res = await getCustomerCart();
         items.value = [...res.data?.data?.carts];
         itemsTotal.value = res.data?.data?.final_total;
+        console.log("items", items.value);
         store.commit("m_setCartData", items.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
@@ -596,5 +596,18 @@ export default defineComponent({
 .btn-fade-show {
   transition: all 0.4s ease-in-out;
   opacity: 1;
+}
+
+.product-content {
+  display: grid;
+  grid-template-columns: 75px 1fr 60px;
+  .product-content-img {
+    height: 92px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
 }
 </style>
