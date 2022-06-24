@@ -38,28 +38,102 @@
           <div class="-mx-3 md:flex items-start">
             <div class="px-3 md:w-7/12 lg:pr-10">
               <div
+                class="product-content"
+                v-for="(itemData, i) in items"
+                :key="`itemData${i}`"
+              >
+                <div class="product-content-img">
+                  <img :src="itemData.product.imageUrl" alt="" />
+                </div>
+
+                <div>
+                  <h3 class="text-sm text-gray-600">
+                    {{ itemData.product.title || "" }}
+                  </h3>
+                  <div class="flex items-center mt-2">
+                    <!-- {{ itemData.qty }} -->
+                    <div class="mr-2">
+                      <select
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        v-model="itemData.qty"
+                        @change="putData(itemData)"
+                      >
+                        <option :value="1">1</option>
+                        <option :value="2">2</option>
+                        <option :value="3">3</option>
+                        <option :value="4">4</option>
+                        <option :value="5">5</option>
+                        <option :value="6">6</option>
+                        <option :value="7">7</option>
+                        <option :value="8">8</option>
+                        <option :value="9">9</option>
+                        <option :value="10">10</option>
+                      </select>
+                    </div>
+
+                    <button
+                      class="text-gray-500 focus:outline-none focus:text-gray-600"
+                      v-tooltip.top="'delete'"
+                      @click.prevent="deleteData(itemData)"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-gray-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="text-gray-600 product-content-price">
+                  ${{ itemData.product.price || "" }}
+                </div>
+                <hr class="product-content-hr" />
+              </div>
+              <div class="text-right theme-color-main" style="margin-right: 2px">
+                Total: ${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}
+              </div>
+
+              <div
                 class="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6"
               >
-                <div class="w-full flex items-center">
+                <!-- data -->
+                <!-- {{ items }} -->
+                <div
+                  class="w-full flex items-center"
+                  v-for="(itemData, i) in items"
+                  :key="`itemData${i}`"
+                >
                   <div
-                    class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200"
+                    class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200 product-content-img"
                   >
-                    <img
+                    <!-- <img
                       src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"
                       alt=""
-                    />
+                    /> -->
+                    <img :src="itemData.product.imageUrl" alt="" />
                   </div>
                   <div class="flex-grow pl-3">
                     <h6 class="font-semibold uppercase text-gray-600">
-                      Ray Ban Sunglasses.
+                      {{ itemData.product.title || "" }}
                     </h6>
-                    <p class="text-gray-400">x 1</p>
+                    <p class="text-gray-400">x {{ itemData.qty }}</p>
                   </div>
                   <div>
-                    <span class="font-semibold text-gray-600 text-xl">$210</span
-                    ><span class="font-semibold text-gray-600 text-sm"
-                      >.00</span
+                    <span class="font-semibold text-gray-600 text-xl"
+                      >${{ itemData.product.price }}</span
                     >
+
+                    <!-- <span class="font-semibold text-gray-600 text-sm">.00</span> -->
                   </div>
                 </div>
               </div>
@@ -132,9 +206,7 @@
                 </div>
                 <div class="w-full flex items-center">
                   <div class="w-32">
-                    <span class="text-gray-600 font-semibold"
-                      >Billing Address</span
-                    >
+                    <span class="text-gray-600 font-semibold">Billing Address</span>
                   </div>
                   <div class="flex-grow pl-3">
                     <span>123 George Street, Sydney, NSW 2000 Australia</span>
@@ -162,8 +234,7 @@
                   </div>
                   <div>
                     <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Name on card</label
                       >
                       <div>
@@ -175,8 +246,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Card number</label
                       >
                       <div>
@@ -189,8 +259,7 @@
                     </div>
                     <div class="mb-3 -mx-2 flex items-end">
                       <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                           >Expiration date</label
                         >
                         <div>
@@ -229,8 +298,7 @@
                         </select>
                       </div>
                       <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                           >Security code</label
                         >
                         <div>
@@ -276,7 +344,11 @@
 </template>
 
 <script>
-import { inject, ref, defineComponent } from "vue";
+import { inject, ref, defineComponent, onMounted, watch, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { getCustomerCart, putCustomerCart, deleteCustomerCart } from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useStore } from "vuex";
 
 export default defineComponent({
   props: {
@@ -286,7 +358,6 @@ export default defineComponent({
     // },
   },
   setup(props, { emit }) {
-    // emit("update:modelValue", _newValues);
     const stepItems = ref([
       {
         label: "Cart",
@@ -301,7 +372,71 @@ export default defineComponent({
         to: "/payment",
       },
     ]);
-    return { stepItems };
+    const emitter = inject("emitter"); // Inject `emitter`
+    const router = useRouter();
+    const toast = useToast();
+    const store = useStore();
+
+    //data
+    const items = ref([]);
+    const itemsTotal = ref("");
+    const getData = async () => {
+      try {
+        const res = await getCustomerCart();
+        items.value = [...res.data?.data?.carts];
+        itemsTotal.value = res.data?.data?.final_total;
+
+        store.commit("m_setCartData", items.value);
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    const deleteData = async (item) => {
+      try {
+        const res = await deleteCustomerCart(item.id);
+        await getData();
+        toast.info(`刪除成功`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    const putData = async (item) => {
+      try {
+        const obj = {
+          product_id: item.product_id,
+          qty: +item.qty,
+        };
+
+        const res = await putCustomerCart({ data: obj }, item.id);
+        await getData();
+        toast.info(`購物車更新成功`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    onMounted(async () => {
+      await getData();
+    });
+
+    return { stepItems, items, itemsTotal, getData, deleteData, putData };
   },
 });
 </script>
@@ -359,5 +494,14 @@ export default defineComponent({
 
 ::v-deep(.p-disabled) {
   background-color: #ffffff;
+}
+.product-content-img {
+  height: 92px;
+  img {
+    width: 100%;
+    height: 100%;
+    // -o-object-fit: contain;
+    object-fit: contain;
+  }
 }
 </style>
