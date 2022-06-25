@@ -59,7 +59,12 @@
             :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
             v-if="!favoriteTotal"
           >
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -76,7 +81,12 @@
             v-badge.warning="`${favoriteTotal}`"
             v-if="!!favoriteTotal"
           >
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -203,7 +213,10 @@
       <h3 class="text-md font-medium text-gray-700">
         Shopping bag ({{ items.length }} items)
       </h3>
-      <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
+      <button
+        @click="cartOpen = !cartOpen"
+        class="text-gray-600 focus:outline-none"
+      >
         <svg
           class="h-5 w-5"
           fill="none"
@@ -219,7 +232,11 @@
     </div>
     <hr class="my-3" />
 
-    <div class="product-content" v-for="(itemData, i) in items" :key="`itemData${i}`">
+    <div
+      class="product-content"
+      v-for="(itemData, i) in items"
+      :key="`itemData${i}`"
+    >
       <div class="product-content-img">
         <img :src="itemData.product.imageUrl" alt="" />
       </div>
@@ -447,7 +464,7 @@ export default defineComponent({
       try {
         const res = await deleteCustomerCart(item.id);
         await getData();
-        toast.info(`刪除成功`, {
+        toast.info(`DeleteSuccess`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -468,7 +485,7 @@ export default defineComponent({
 
         const res = await putCustomerCart({ data: obj }, item.id);
         await getData();
-        toast.info(`購物車更新成功`, {
+        toast.info(`Cart Update Success`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -554,7 +571,8 @@ export default defineComponent({
   background-color: rgb(255 255 255 / 98%);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px rgba(0, 0, 0, 0.05) 0px
+    1px 1px 0px;
   // border-bottom: 1px solid #2d3858;
   box-shadow: 0 0 10px rgb(4 7 14 / 80%);
   z-index: 99;

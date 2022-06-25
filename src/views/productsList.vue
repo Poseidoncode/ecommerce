@@ -575,6 +575,7 @@ export default defineComponent({
       height: 100%;
       // background: rgba(0, 0, 0, 0.5);
       background: rgba(22, 22, 22, 0.295);
+      // background: #e6e6e625;
       position: relative;
 
       .item-hover-content,

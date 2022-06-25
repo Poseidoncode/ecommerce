@@ -1,7 +1,7 @@
 <template>
   <section class="main-section px-3">
     <section class="search-block">
-      <h5 class="big-title">優惠券管理</h5>
+      <h5 class="big-title">CouponManagement</h5>
     </section>
 
     <header class="ecommerce-grid my-dark">
@@ -41,7 +41,7 @@
           style="background: #0d4a9e"
           @click="showEditModal(2, item)"
         >
-          編輯
+          Edit
         </button>
         <button
           class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 text-sm"
@@ -49,7 +49,7 @@
           style="background: #218be1"
           @click="showEditModal(3, item)"
         >
-          刪除
+          Delete
         </button>
       </div>
 
@@ -103,20 +103,20 @@
         <h3>
           {{
             nowType == 1
-              ? "新增優惠券"
+              ? "AddCoupon"
               : nowType == 2
-              ? "編輯優惠券"
-              : "刪除優惠券"
+              ? "EditCoupon"
+              : "DeleteCoupon"
           }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
         <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          是否確定要刪除此優惠券?
+          Delete This Coupon?
         </h2>
         <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">標題</span>
+          <span class="p-inputgroup-addon red-star">Title</span>
           <InputText
             type="text"
             v-model.trim="modalItem.title"
@@ -135,7 +135,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">到期日</span>
+          <span class="p-inputgroup-addon red-star">Due Date</span>
 
           <Calendar
             v-model="modalItem.due_date"
@@ -147,7 +147,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">折扣碼</span>
+          <span class="p-inputgroup-addon red-star">Code</span>
           <InputText
             v-model.trim="modalItem.code"
             class="custom-search"
@@ -156,40 +156,19 @@
         </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">是否啟用</span>
+          <span class="p-inputgroup-addon">IsEnabled</span>
           <Checkbox
             style="margin: 12px 0 0 10px"
             :binary="true"
             v-model="modalItem.is_enabled"
           />
         </div>
-        <!-- <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">上傳主圖圖片</span>
-
-          <Button
-            @click.stop="uploadNewFile"
-            title="上傳主圖圖片"
-            label="Submit"
-            icon="pi pi-box"
-            iconPos="left"
-            style="margin-left: 10px"
-          />
-          <input
-            id="file-upload"
-            type="file"
-            @change="fileChange($event)"
-            ref="inputFile"
-            accept="image/bmp,image/x-bmp,image/jpeg,image/png,.pdf"
-            hidden
-          />
-         
-        </div> -->
       </section>
 
       <template #footer>
-        <Button label="確定" @click="saveEditModal" />
+        <Button label="Confirm" @click="saveEditModal" />
         <Button
-          label="取消"
+          label="Cancel"
           class="p-button-success"
           @click="editModal = false"
         />
@@ -223,12 +202,12 @@ export default defineComponent({
     //-----------ListData----------------
     //for list
     const headers = ref([
-      { name: "操作", key: "", sortDesc: null },
-      { name: "標題", key: "title", sortDesc: null }, //必填
+      { name: "Operate", key: "", sortDesc: null },
+      { name: "Title", key: "title", sortDesc: null }, //必填
       { name: "Percent", key: "percent", sortDesc: null }, //必填
-      { name: "到期日", key: "due_date", sortDesc: null }, //必填
-      { name: "折扣碼", key: "code", sortDesc: null }, //必填
-      { name: "是否啟用", key: "is_enabled", sortDesc: null },
+      { name: "Due Date", key: "due_date", sortDesc: null }, //必填
+      { name: "Code", key: "code", sortDesc: null }, //必填
+      { name: "IsEnabled", key: "is_enabled", sortDesc: null },
     ]);
 
     const items = ref([]);
@@ -280,7 +259,7 @@ export default defineComponent({
     const modalItem = ref({});
 
     function showEditModal(type, item) {
-      //type- 1新增、2編輯、3刪除
+      //type- 1Add、2Edit、3Delete
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
@@ -317,8 +296,8 @@ export default defineComponent({
 
         toast.info(
           `${
-            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
-          }成功`,
+            nowType.value == 1 ? "Add" : nowType.value == 2 ? "Edit" : "Delete"
+          }Success`,
           {
             timeout: 2000,
             hideProgressBar: true,
@@ -340,7 +319,7 @@ export default defineComponent({
       };
       const res2 = await putCoupons({ data: obj }, obj.id);
       getData();
-      toast.info(`優惠券調整成功`, {
+      toast.info(`Coupon調整Success`, {
         timeout: 2000,
         hideProgressBar: true,
       });
@@ -349,7 +328,7 @@ export default defineComponent({
     const images = ref("");
 
     const onUpload = () => {
-      toast.info(`圖片上傳成功`, {
+      toast.info(`圖片上傳Success`, {
         timeout: 3000,
         hideProgressBar: true,
       });
@@ -381,7 +360,7 @@ export default defineComponent({
 
         if (res.data?.info) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;
-          toast.info(`上傳圖片成功`, {
+          toast.info(`上傳圖片Success`, {
             timeout: 2000,
             hideProgressBar: true,
           });

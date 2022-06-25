@@ -1,7 +1,7 @@
 <template>
   <section class="main-section px-3">
     <section class="search-block">
-      <h5 class="big-title">文章管理</h5>
+      <h5 class="big-title">NewsManagement</h5>
     </section>
 
     <header class="ecommerce-grid my-dark">
@@ -19,7 +19,11 @@
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
+      :style="
+        idx % 2 == 0
+          ? 'background-color:#ffffff ;'
+          : 'background-color:#e7f2f3;'
+      "
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -28,7 +32,7 @@
           style="background: #0d4a9e"
           @click="showEditModal(2, item)"
         >
-          編輯
+          Edit
         </button>
         <button
           class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 text-sm"
@@ -36,7 +40,7 @@
           style="background: #218be1"
           @click="showEditModal(3, item)"
         >
-          刪除
+          Delete
         </button>
       </div>
 
@@ -54,7 +58,11 @@
       </div>
 
       <div class="content" :title="item.isPublic">
-        <Checkbox :binary="true" v-model="item.isPublic" @change="setStatus(item)" />
+        <Checkbox
+          :binary="true"
+          v-model="item.isPublic"
+          @change="setStatus(item)"
+        />
       </div>
     </main>
     <main
@@ -84,14 +92,18 @@
     >
       <template #header>
         <h3>
-          {{ nowType == 1 ? "新增文章" : nowType == 2 ? "編輯文章" : "刪除文章" }}
+          {{
+            nowType == 1 ? "AddNews" : nowType == 2 ? "EditNews" : "DeleteNews"
+          }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">是否確定要刪除此文章?</h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
+          Delete This News?
+        </h2>
         <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">標題</span>
+          <span class="p-inputgroup-addon red-star">Title</span>
           <InputText
             type="text"
             v-model.trim="modalItem.title"
@@ -112,7 +124,7 @@
           <Button label="Add" @click="editTag(newTag, 1)" />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">圖片</span>
+          <span class="p-inputgroup-addon red-star">Image</span>
           <InputText
             v-model.trim="modalItem.image"
             class="custom-search"
@@ -132,7 +144,7 @@
           </div>
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">author</span>
+          <span class="p-inputgroup-addon red-star">Author</span>
           <InputText
             v-model.trim="modalItem.author"
             class="custom-search"
@@ -140,7 +152,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2" style="grid-column: 1/-1">
-          <span class="p-inputgroup-addon red-star">outline</span>
+          <span class="p-inputgroup-addon red-star">Outline</span>
           <InputText
             v-model.trim="modalItem.outline"
             class="custom-search"
@@ -149,7 +161,7 @@
         </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">isPublic</span>
+          <span class="p-inputgroup-addon">IsPublic</span>
           <Checkbox
             style="margin: 12px 0 0 10px"
             :binary="true"
@@ -167,8 +179,12 @@
       </section>
 
       <template #footer>
-        <Button label="確定" @click="saveEditModal" />
-        <Button label="取消" class="p-button-success" @click="editModal = false" />
+        <Button label="Confirm" @click="saveEditModal" />
+        <Button
+          label="Cancel"
+          class="p-button-success"
+          @click="editModal = false"
+        />
       </template>
     </Dialog>
   </section>
@@ -200,12 +216,12 @@ export default defineComponent({
     //-----------ListData----------------
     //for list
     const headers = ref([
-      { name: "操作", key: "", sortDesc: null },
-      { name: "標題", key: "title", sortDesc: null }, //必填
-      { name: "標籤", key: "tag", sortDesc: null }, //必填
-      { name: "作者", key: "author", sortDesc: null }, //必填
-      { name: "建立時間", key: "timeforshow", sortDesc: null }, //必填
-      { name: "是否公開", key: "isPublic", sortDesc: null },
+      { name: "Operate", key: "", sortDesc: null },
+      { name: "Title", key: "title", sortDesc: null }, //必填
+      { name: "Tag", key: "tag", sortDesc: null }, //必填
+      { name: "Author", key: "author", sortDesc: null }, //必填
+      { name: "CreateTime", key: "timeforshow", sortDesc: null }, //必填
+      { name: "IsPublic", key: "isPublic", sortDesc: null },
     ]);
 
     const items = ref([]);
@@ -229,7 +245,9 @@ export default defineComponent({
         // let { Items, Count } = ;
         let arr = [...res.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
+          s.timeforshow = dayjs(new Date(+s.create_at)).format(
+            "YYYY/MM/DD HH:mm:ss"
+          );
           return s;
         });
         items.value = [...arr];
@@ -261,7 +279,7 @@ export default defineComponent({
 
     const showEditModal = async (type, item) => {
       newTag.value = "";
-      //type- 1新增、2編輯、3刪除
+      //type- 1Add、2Edit、3Delete
       if (type == 3) {
         modalItem.value = { ...item };
       } else if (type == 2) {
@@ -299,7 +317,9 @@ export default defineComponent({
         }
 
         toast.info(
-          `${nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"}成功`,
+          `${
+            nowType.value == 1 ? "Add" : nowType.value == 2 ? "Edit" : "Delete"
+          }Success`,
           {
             timeout: 2000,
             hideProgressBar: true,
@@ -321,7 +341,7 @@ export default defineComponent({
       };
       const res2 = await putArticles({ data: obj }, obj.id);
       getData();
-      toast.info(`文章調整成功`, {
+      toast.info(`News調整Success`, {
         timeout: 2000,
         hideProgressBar: true,
       });

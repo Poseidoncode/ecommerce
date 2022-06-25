@@ -1,10 +1,10 @@
 <template>
   <section class="main-section px-3">
     <section class="search-block">
-      <h5 class="big-title">產品管理</h5>
+      <h5 class="big-title">ProductManagement</h5>
       <div class="p-2 search-section">
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">啟用狀態</span>
+          <span class="p-inputgroup-addon">IsEnabled</span>
           <div
             v-for="item of activates"
             :key="item.text"
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品標題</span>
+          <span class="p-inputgroup-addon">Title</span>
           <InputText
             type="text"
             v-model="selectedTitle"
@@ -30,7 +30,7 @@
           />
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品描述 </span>
+          <span class="p-inputgroup-addon">Content </span>
           <InputText
             type="text"
             v-model="selectedContent"
@@ -39,7 +39,7 @@
           />
         </div>
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">產品分類</span>
+          <span class="p-inputgroup-addon">Category</span>
           <InputText
             type="text"
             v-model="selectedCat"
@@ -69,7 +69,7 @@
           style="background: #f9be4a"
           @click="showEditModal(1)"
         >
-          新增產品
+          AddProduct
         </button>
       </div>
     </section>
@@ -111,7 +111,7 @@
           style="background: #0d4a9e"
           @click="showEditModal(2, item)"
         >
-          編輯
+          Edit
         </button>
         <button
           class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 text-sm"
@@ -119,7 +119,7 @@
           style="background: #218be1"
           @click="showEditModal(3, item)"
         >
-          刪除
+          Delete
         </button>
       </div>
 
@@ -187,17 +187,21 @@
       <template #header>
         <h3>
           {{
-            nowType == 1 ? "新增產品" : nowType == 2 ? "編輯產品" : "刪除產品"
+            nowType == 1
+              ? "AddProduct"
+              : nowType == 2
+              ? "EditProduct"
+              : "DeleteProduct"
           }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
         <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          是否確定要刪除此產品?
+          Delete This Product?
         </h2>
         <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">標題</span>
+          <span class="p-inputgroup-addon red-star">Title</span>
           <InputText
             type="text"
             v-model.trim="modalItem.title"
@@ -206,7 +210,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">描述</span>
+          <span class="p-inputgroup-addon red-star">Description</span>
           <Textarea
             v-model.trim="modalItem.description"
             class="custom-search"
@@ -214,7 +218,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2 col-span-full">
-          <span class="p-inputgroup-addon red-star">說明</span>
+          <span class="p-inputgroup-addon red-star">Content</span>
           <Textarea
             v-model.trim="modalItem.content"
             class="custom-search"
@@ -222,7 +226,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">分類</span>
+          <span class="p-inputgroup-addon red-star">Category</span>
           <InputText
             v-model.trim="modalItem.category"
             class="custom-search"
@@ -230,7 +234,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">單位</span>
+          <span class="p-inputgroup-addon red-star">Unit</span>
           <InputText
             v-model.trim="modalItem.unit"
             class="custom-search"
@@ -238,7 +242,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">原價</span>
+          <span class="p-inputgroup-addon red-star">Origin Price</span>
           <InputText
             type="Number"
             v-model.trim="modalItem.origin_price"
@@ -248,7 +252,7 @@
         </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon red-star">售價</span>
+          <span class="p-inputgroup-addon red-star">Price</span>
           <InputText
             type="Number"
             v-model.trim="modalItem.price"
@@ -257,7 +261,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">主圖網址</span>
+          <span class="p-inputgroup-addon">Main Image</span>
           <InputText
             v-model.trim="modalItem.imagesArr[0].url"
             class="custom-search"
@@ -269,7 +273,7 @@
           v-for="(item, i) in modalItem.imagesArr.slice(1)"
           :key="`headers${i}`"
         >
-          <span class="p-inputgroup-addon">輸入圖片網址 {{ i + 1 }}</span>
+          <span class="p-inputgroup-addon">Image Url {{ i + 1 }}</span>
 
           <InputText
             v-model="item.url"
@@ -279,7 +283,7 @@
         </div>
 
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">是否啟用</span>
+          <span class="p-inputgroup-addon">IsEnabled</span>
           <Checkbox
             style="margin: 12px 0 0 10px"
             :binary="true"
@@ -287,7 +291,7 @@
           />
         </div>
         <div class="p-inputgroup mt-2">
-          <span class="p-inputgroup-addon">上傳主圖圖片</span>
+          <span class="p-inputgroup-addon">Upload Main Image</span>
 
           <Button
             @click.stop="uploadNewFile"
@@ -347,9 +351,9 @@
       </section>
 
       <template #footer>
-        <Button label="確定" @click="saveEditModal" />
+        <Button label="Confirm" @click="saveEditModal" />
         <Button
-          label="取消"
+          label="Cancel"
           class="p-button-success"
           @click="editModal = false"
         />
@@ -382,17 +386,17 @@ export default defineComponent({
     //-----------ListData----------------
     //for list
     const headers = ref([
-      { name: "操作", key: "", sortDesc: null },
+      { name: "Operate", key: "", sortDesc: null },
 
-      { name: "標題", key: "title", sortDesc: null }, //必填
-      { name: "描述", key: "description", sortDesc: null },
-      { name: "說明", key: "content", sortDesc: null },
-      { name: "分類", key: "category", sortDesc: null }, //必填
-      { name: "單位", key: "unit", sortDesc: null }, //必填
-      { name: "原價", key: "origin_price", sortDesc: null }, //必填
-      { name: "售價", key: "price", sortDesc: null }, //必填
+      { name: "Title", key: "title", sortDesc: null }, //必填
+      { name: "Description", key: "description", sortDesc: null },
+      { name: "Content", key: "content", sortDesc: null },
+      { name: "Category", key: "category", sortDesc: null }, //必填
+      { name: "Unit", key: "unit", sortDesc: null }, //必填
+      { name: "Origin Price", key: "origin_price", sortDesc: null }, //必填
+      { name: "Price", key: "price", sortDesc: null }, //必填
 
-      { name: "是否啟用", key: "is_enabled", sortDesc: null },
+      { name: "IsEnabled", key: "is_enabled", sortDesc: null },
     ]);
 
     const items = ref([]);
@@ -412,7 +416,7 @@ export default defineComponent({
         const res = await getProductsAll();
 
         let arr = Object.values(res.data?.products);
-        arr = arr.filter((s) => s.title != "測試的產品s");
+        arr = arr.filter((s) => s.title != "測試的Products");
 
         // let { Items, Count } = res.data;
 
@@ -552,7 +556,7 @@ export default defineComponent({
     const modalItem = ref({});
 
     function showEditModal(type, item) {
-      //type- 1新增、2編輯、3刪除
+      //type- 1Add、2Edit、3Delete
       let imgArr = new Array(6).fill().map((s, i) => ({
         url: "",
         index: `網址${i + 1}`,
@@ -617,8 +621,8 @@ export default defineComponent({
 
         toast.info(
           `${
-            nowType.value == 1 ? "新增" : nowType.value == 2 ? "編輯" : "刪除"
-          }成功`,
+            nowType.value == 1 ? "Add" : nowType.value == 2 ? "Edit" : "Delete"
+          }Success`,
           {
             timeout: 2000,
             hideProgressBar: true,
@@ -640,7 +644,7 @@ export default defineComponent({
       };
       const res2 = await putProducts({ data: obj }, obj.id);
       getData();
-      toast.info(`產品調整成功`, {
+      toast.info(`Product調整Success`, {
         timeout: 2000,
         hideProgressBar: true,
       });
@@ -664,7 +668,7 @@ export default defineComponent({
     ]);
 
     const onUpload = () => {
-      toast.info(`圖片上傳成功`, {
+      toast.info(`圖片上傳Success`, {
         timeout: 3000,
         hideProgressBar: true,
       });
@@ -696,7 +700,7 @@ export default defineComponent({
 
         if (res.data?.info) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;
-          toast.info(`上傳圖片成功`, {
+          toast.info(`上傳圖片Success`, {
             timeout: 2000,
             hideProgressBar: true,
           });
