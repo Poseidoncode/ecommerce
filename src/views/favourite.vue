@@ -25,7 +25,7 @@
     </section>
 
     <section
-      class="favorite-content-big flex justify-center"
+      class="favorite-content-big flex justify-center mb-6"
       style="width: 99vw"
     >
       <DataTable :value="items" responsiveLayout="scroll">
@@ -97,7 +97,7 @@
         </Column>
 
         <template #footer>
-          In total there are {{ items ? items.length : 0 }} products.
+          In total there are {{ items ? items.length : 0 }} favorite products.
         </template>
       </DataTable>
     </section>
@@ -152,6 +152,9 @@
       <div class="text-gray-600">${{ itemData.price || "" }}</div>
       <hr class="product-content-hr" />
     </section>
+    <div class="favorite-content-small2 mb-6">
+      In total there are {{ items ? items.length : 0 }} favorite products.
+    </div>
   </div>
 </template>
 
@@ -332,6 +335,9 @@ export default defineComponent({
 .favorite-content-small {
   display: none;
 }
+.favorite-content-small2 {
+  display: none;
+}
 
 @media (max-width: 575px) {
   .favorite-content-big {
@@ -354,6 +360,10 @@ export default defineComponent({
       grid-column: 1 / -1;
       margin: 16px 0 16px;
     }
+  }
+  .favorite-content-small2 {
+    display: block;
+    margin-left: 20px;
   }
 }
 </style>

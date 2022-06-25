@@ -660,8 +660,8 @@ export default defineComponent({
 .icon-section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 15px;
+  grid-column-gap: 17px;
 
-  margin-right: 15px;
+  margin-right: 17px;
 }
 </style>
