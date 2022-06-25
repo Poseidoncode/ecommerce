@@ -9,7 +9,10 @@
   ></div>
 
   <!-- main -->
-  <header class="header-content" :class="!scrollIsZero ? 'addBg' : ''">
+  <header
+    class="header-content"
+    :class="!scrollIsZero || isMobile ? 'addBg' : ''"
+  >
     <div class="container mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
         <div class="hidden w-full text-gray-600 md:flex md:items-center"></div>
@@ -21,122 +24,131 @@
             class="logo mr-2 logo1"
             style="height: 78px"
             src="/assets/brand8.png"
-            :class="!scrollIsZero ? 'addLogo' : ''"
+            :class="!scrollIsZero || isMobile ? 'addLogo' : ''"
           />
           <img
             class="logo mr-2 logo2"
             style="height: 78px"
             src="/assets/brand7.png"
-            :class="!scrollIsZero ? 'addLogo' : ''"
+            :class="!scrollIsZero || isMobile ? 'addLogo' : ''"
           />
         </div>
 
         <div class="flex items-center justify-end w-full">
-          <button
-            @click="$router.push('/login')"
-            style="margin-right: 16px"
-            class="focus:outline-none mx-8 sm:mx-0 mr-10"
-            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
-          >
-            <svg
-              class="h-6 w-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <section class="icon-section">
+            <button
+              @click="$router.push('/login')"
+              class="focus:outline-none"
+              :class="
+                !scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'
+              "
             >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-          </button>
+              <svg
+                class="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </button>
 
-          <button
-            @click="$router.push('/favourite')"
-            style="margin-right: 16px"
-            class="focus:outline-none mx-8 sm:mx-0"
-            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
-            v-if="!favoriteTotal"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <button
+              @click="$router.push('/favourite')"
+              class="focus:outline-none"
+              :class="
+                !scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'
+              "
+              v-if="!favoriteTotal"
             >
-              <path
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+            </button>
+            <button
+              @click="$router.push('/favourite')"
+              class="focus:outline-none"
+              :class="
+                !scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'
+              "
+              v-badge.warning="`${favoriteTotal}`"
+              v-if="!!favoriteTotal"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+            </button>
+
+            <button
+              @click="openCart"
+              class="focus:outline-none"
+              :class="
+                !scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'
+              "
+              v-badge.warning="`${items.length}`"
+              v-if="items.length"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
-            </svg>
-          </button>
-          <button
-            @click="$router.push('/favourite')"
-            style="margin-right: 16px"
-            class="focus:outline-none mx-8 sm:mx-0"
-            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
-            v-badge.warning="`${favoriteTotal}`"
-            v-if="!!favoriteTotal"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </button>
+            <button
+              @click="openCart"
+              class="focus:outline-none"
+              :class="
+                !scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'
+              "
+              v-if="!items.length"
             >
-              <path
+              <svg
+                class="h-6 w-6"
+                fill="none"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
-            </svg>
-          </button>
-
-          <button
-            @click="openCart"
-            class="focus:outline-none mx-4 sm:mx-0"
-            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
-            v-badge.warning="`${items.length}`"
-            v-if="items.length"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              ></path>
-            </svg>
-          </button>
-          <button
-            @click="openCart"
-            class="focus:outline-none mx-4 sm:mx-0"
-            :class="!scrollIsZero ? 'theme-color3' : 'theme-color1'"
-            v-if="!items.length"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              ></path>
-            </svg>
-          </button>
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </button>
+          </section>
 
           <div class="flex sm:hidden">
             <button
@@ -507,6 +519,10 @@ export default defineComponent({
       cartOpen.value = false;
     };
 
+    const isMobile = computed(() => {
+      return +window?.outerWidth < 600;
+    });
+
     onMounted(async () => {
       if (window.scrollY < 50) {
         scrollIsZero.value = true;
@@ -519,6 +535,7 @@ export default defineComponent({
     });
 
     return {
+      isMobile,
       isOpen,
       cartOpen,
       openCart,
@@ -638,5 +655,13 @@ export default defineComponent({
     grid-column: 1 / -1;
     margin: 16px 0 16px;
   }
+}
+
+.icon-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 15px;
+
+  margin-right: 15px;
 }
 </style>
