@@ -53,7 +53,7 @@
           style="background: #0c69e1"
           @click="filterItems"
         >
-          查詢
+          Search
         </button>
         <button
           class="text-white font-bold uppercase text-base px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none custom-search"
@@ -61,7 +61,7 @@
           style="background: #6a9f3e"
           @click="clearSearch"
         >
-          清除
+          Clear
         </button>
         <button
           class="text-gray-700 font-bold uppercase text-base px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none custom-search"

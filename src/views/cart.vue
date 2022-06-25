@@ -164,9 +164,10 @@
                   </div>
                 </div>
               </div>
-
-              <div
-                class="cursor-pointer flex items-center justify-center mt-2 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500 w-3/12"
+              <button
+                class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex"
+                type="button"
+                style="background: #0d4a9e"
                 @click="
                   cartOpen = false;
                   $router.push('/checkout');
@@ -184,7 +185,7 @@
                 >
                   <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
-              </div>
+              </button>
             </div>
           </div>
         </div>
