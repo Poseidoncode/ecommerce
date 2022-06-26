@@ -112,12 +112,6 @@
               class="invalid-feedback"
             ></error-message>
           </div>
-
-          <!-- <button class="btn me-2 btn-outline-primary" type="button" @click="validate">
-            驗證
-          </button> -->
-
-          <!-- <button class="btn btn-primary" type="submit">Submit</button> -->
         </v-form>
 
         <div class="flex flex-wrap -m-2">

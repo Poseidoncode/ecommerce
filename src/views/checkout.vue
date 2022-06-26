@@ -52,21 +52,6 @@
                 class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6"
               >
                 <div class="w-full p-3 border-b border-gray-200">
-                  <div class="mb-5">
-                    <label for="type1" class="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        class="form-radio h-5 w-5 text-indigo-500"
-                        name="type"
-                        id="type1"
-                        checked
-                      />
-                      <img
-                        src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
-                        class="h-6 ml-3"
-                      />
-                    </label>
-                  </div>
                   <div>
                     <div class="mb-3">
                       <label
@@ -81,22 +66,90 @@
                         />
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                        >Card number</label
-                      >
-                      <div>
-                        <input
-                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                          placeholder="0000 0000 0000 0000"
-                          type="text"
-                        />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
+
+              <v-form
+                class="contact-form-section"
+                v-slot="{ errors, values, validate }"
+                @submit="onSubmit"
+              >
+                <div>
+                  <label class="form-label"
+                    >Name
+                    <v-field
+                      name="name"
+                      type="name"
+                      class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      :class="{
+                        'is-invalid': errors['name'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['name'],
+                      }"
+                      placeholder="Please enter  Name"
+                      rules="required"
+                      v-model="user.name"
+                    ></v-field>
+                  </label>
+                  <error-message
+                    name="name"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label"
+                    >Email
+                    <v-field
+                      name="email"
+                      type="email"
+                      class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      :class="{
+                        'is-invalid': errors['email'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['email'],
+                      }"
+                      placeholder="Please enter  Email"
+                      rules="email|required"
+                      v-model="user.email"
+                    >
+                    </v-field>
+                  </label>
+
+                  <error-message
+                    name="email"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div class="mb-3" style="grid-column: 1 / -1">
+                  <label class="form-label"
+                    >Message
+                    <v-field
+                      name="message"
+                      type="message"
+                      class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      :class="{
+                        'is-invalid': errors['message'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['message'],
+                      }"
+                      placeholder="Please enter  Message"
+                      rules="required"
+                      v-model="user.message"
+                      as="textarea"
+                      rows="10"
+                    >
+                    </v-field>
+                  </label>
+
+                  <error-message
+                    name="message"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+              </v-form>
             </div>
             <div class="px-3 md:w-4/12">
               <div
@@ -160,12 +213,6 @@
               </div>
 
               <div>
-                <!-- <button
-                  class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold"
-                >
-                  <i class="mdi mdi-lock-outline mr-1"></i> Pay Now
-                </button> -->
-
                 <button
                   class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex"
                   type="button"
@@ -283,6 +330,8 @@ export default defineComponent({
       }
     };
 
+    const user = ref({});
+
     onMounted(async () => {
       await getData();
     });
@@ -294,6 +343,7 @@ export default defineComponent({
       itemsFinalTotal,
       itemsDiscount,
       getData,
+      user,
     };
   },
 });
