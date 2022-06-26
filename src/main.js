@@ -14,7 +14,7 @@ import "vue-toastification/dist/index.css";
 
 //vee-validate
 import { Field, Form, ErrorMessage, defineRule, configure } from "vee-validate";
-import { required, email, min } from "@vee-validate/rules";
+import { required, email, min, numeric } from "@vee-validate/rules";
 import { localize, setLocale } from "@vee-validate/i18n";
 // import zhTW from "@vee-validate/i18n/dist/locale/zh_TW.json";
 import enUs from "@vee-validate/i18n/dist/locale/en.json";
@@ -24,6 +24,7 @@ import enUs from "@vee-validate/i18n/dist/locale/en.json";
 defineRule("required", required);
 defineRule("email", email);
 defineRule("min", min);
+defineRule("numeric", numeric);
 
 // 設定 vee-validate 全域規則
 

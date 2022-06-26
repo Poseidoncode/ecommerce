@@ -426,7 +426,7 @@ export default defineComponent({
 
         // totalItemsCount.value = arr.length;
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -629,7 +629,7 @@ export default defineComponent({
           }
         );
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -711,7 +711,7 @@ export default defineComponent({
           });
         }
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });

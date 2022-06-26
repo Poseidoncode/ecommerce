@@ -254,7 +254,7 @@ export default defineComponent({
 
         store.commit("m_setCartData", items.value);
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -271,7 +271,7 @@ export default defineComponent({
           hideProgressBar: true,
         });
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -293,7 +293,7 @@ export default defineComponent({
           hideProgressBar: true,
         });
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -315,7 +315,7 @@ export default defineComponent({
       } catch (e) {
         console.log("e", e.response, e.message);
         toast.error(
-          `${e?.response.data?.message ? e.response.data.message : e}`,
+          `${e?.response.data?.message ? e.response.data.message.message : e}`,
           {
             timeout: 2000,
             hideProgressBar: true,

@@ -238,7 +238,7 @@ export default defineComponent({
         items.value = [...arr];
         totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -320,7 +320,7 @@ export default defineComponent({
           }
         );
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -388,7 +388,7 @@ export default defineComponent({
           });
         }
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });

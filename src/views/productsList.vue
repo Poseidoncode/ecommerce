@@ -324,7 +324,7 @@ export default defineComponent({
           const res = await getCustomerProductAll(``);
           arr = [...res.data?.products];
         } catch (e) {
-          toast.error(`${e.response ? e.response.data : e}`, {
+          toast.error(`${e.response ? e.response.data.message : e}`, {
             timeout: 2000,
             hideProgressBar: true,
           });
@@ -461,7 +461,7 @@ export default defineComponent({
           hideProgressBar: true,
         });
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });

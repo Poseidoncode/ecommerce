@@ -276,15 +276,21 @@
 </template>
 
 <script>
-import { inject, ref, defineComponent } from "vue";
+import { inject, ref, defineComponent, onMounted, watch, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import {
+  getCustomerCart,
+  putCustomerCart,
+  deleteCustomerCart,
+  postCustomerCoupon,
+  postCustomerOrder,
+  getCustomerSingleOrder,
+} from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useStore } from "vuex";
 
 export default defineComponent({
-  props: {
-    // specColum: {
-    //   type: String,
-    //   default: "",
-    // },
-  },
+  props: {},
   setup(props, { emit }) {
     // emit("update:modelValue", _newValues);
     const stepItems = ref([
@@ -301,7 +307,54 @@ export default defineComponent({
         to: "/payment",
       },
     ]);
-    return { stepItems };
+    const emitter = inject("emitter"); // Inject `emitter`
+    const router = useRouter();
+    const route = useRoute();
+    const toast = useToast();
+    const store = useStore();
+
+    //data
+    const order = ref({});
+    const itemsTotal = ref("");
+    const itemsFinalTotal = ref("");
+    const itemsDiscount = ref("");
+
+    const getData = async () => {
+      try {
+        const dataKeyData = sessionStorage.getItem("ordnow");
+        const orderId = route?.params?.datakey || dataKeyData;
+        if (!route?.params?.datakey && !dataKeyData) {
+          toast.error(`There's no order!`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+          router.push("/");
+          return;
+        }
+        const res = await getCustomerSingleOrder(orderId);
+        order.value = { ...res.data?.order };
+
+        console.log("order", order.value, res.data.order);
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    onMounted(async () => {
+      await getData();
+    });
+
+    return {
+      stepItems,
+      order,
+      itemsTotal,
+      itemsFinalTotal,
+      itemsDiscount,
+      getData,
+    };
   },
 });
 </script>

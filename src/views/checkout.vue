@@ -52,28 +52,28 @@
               <v-form
                 class="contact-form-section w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6 p-3"
                 v-slot="{ errors, values, validate }"
-                @submit="onSubmit"
+                @submit="onSubmit(errors)"
               >
                 <div>
                   <label
                     class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Name
                     <v-field
-                      name="name"
+                      name="Name"
                       type="name"
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
-                        'is-invalid': errors['name'],
+                        'is-invalid': errors['Name'],
                         'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['name'],
+                          !errors['Name'],
                       }"
-                      placeholder="Please enter  Name"
+                      placeholder="Please enter Name"
                       rules="required"
                       v-model="user.name"
                     ></v-field>
                   </label>
                   <error-message
-                    name="name"
+                    name="Name"
                     class="invalid-feedback"
                   ></error-message>
                 </div>
@@ -83,13 +83,13 @@
                     class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Email
                     <v-field
-                      name="email"
+                      name="Email"
                       type="email"
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
-                        'is-invalid': errors['email'],
+                        'is-invalid': errors['Email'],
                         'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['email'],
+                          !errors['Email'],
                       }"
                       placeholder="Please enter  Email"
                       rules="email|required"
@@ -99,7 +99,55 @@
                   </label>
 
                   <error-message
-                    name="email"
+                    name="Email"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div>
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Phone
+                    <v-field
+                      name="Phone"
+                      type="phone"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Phone'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Phone'],
+                      }"
+                      placeholder="Please enter  Phone"
+                      rules="numeric|required"
+                      v-model="user.phone"
+                    ></v-field>
+                  </label>
+                  <error-message
+                    name="Phone"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div>
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Address
+                    <v-field
+                      name="Address"
+                      type="Address"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Address'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Address'],
+                      }"
+                      placeholder="Please enter Address"
+                      rules="required"
+                      v-model="user.address"
+                    ></v-field>
+                  </label>
+                  <error-message
+                    name="Address"
                     class="invalid-feedback"
                   ></error-message>
                 </div>
@@ -109,13 +157,13 @@
                     class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Message
                     <v-field
-                      name="message"
+                      name="Message"
                       type="message"
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
-                        'is-invalid': errors['message'],
+                        'is-invalid': errors['Message'],
                         'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['message'],
+                          !errors['Message'],
                       }"
                       placeholder="Please enter  Message"
                       rules="required"
@@ -127,10 +175,12 @@
                   </label>
 
                   <error-message
-                    name="message"
+                    name="Message"
                     class="invalid-feedback"
                   ></error-message>
                 </div>
+
+                <button id="v-form-button" hidden>Submit</button>
               </v-form>
             </div>
             <div class="px-3 md:w-4/12">
@@ -194,6 +244,19 @@
                     <span class="font-semibold">$00.00</span>
                   </div>
                 </div>
+                <hr class="col-span-full my-3" />
+                <div class="w-full cart-content">
+                  <div>
+                    <span class="text-gray-600">Final Total</span>
+                  </div>
+                  <div>
+                    <span class="font-semibold"
+                      >${{
+                        itemsFinalTotal ? itemsFinalTotal.toFixed(2) : ""
+                      }}</span
+                    >
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -201,10 +264,7 @@
                   class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex"
                   type="button"
                   style="background: #0d4a9e"
-                  @click="
-                    cartOpen = false;
-                    $router.push('/payment');
-                  "
+                  @click="onSubmitClick"
                 >
                   <span>Pay Now</span>
                   <svg
@@ -261,6 +321,7 @@ import {
   putCustomerCart,
   deleteCustomerCart,
   postCustomerCoupon,
+  postCustomerOrder,
 } from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import { useStore } from "vuex";
@@ -307,7 +368,7 @@ export default defineComponent({
 
         store.commit("m_setCartData", items.value);
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -315,6 +376,47 @@ export default defineComponent({
     };
 
     const user = ref({});
+
+    const myForm = ref(null);
+    const onSubmitClick = () => {
+      document.getElementById("v-form-button").click();
+    };
+
+    const onSubmit = async () => {
+      try {
+        const obj = {
+          user: {
+            name: user.value?.name,
+            email: user.value?.email,
+            tel: user.value?.phone,
+            address: user.value?.address,
+          },
+          message: user.value?.message,
+        };
+
+        const res = await postCustomerOrder({ data: obj });
+        emitter.emit("getCartData");
+        console.log("res");
+
+        emitter.emit("getCartData");
+        router.push({
+          name: "payment",
+          params: { datakey: `${res.data.orderId}` },
+        });
+
+        sessionStorage.setItem("ordnow", `${res.data.orderId}`);
+
+        toast.info(`Order Update Success`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
 
     onMounted(async () => {
       await getData();
@@ -328,6 +430,10 @@ export default defineComponent({
       itemsDiscount,
       getData,
       user,
+
+      myForm,
+      onSubmit,
+      onSubmitClick,
     };
   },
 });

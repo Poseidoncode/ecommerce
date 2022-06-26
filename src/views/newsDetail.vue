@@ -138,7 +138,9 @@ export default defineComponent({
         console.log(res);
         let obj = { ...res.data?.article };
         console.log("obj", obj);
-        obj.timeforshow = dayjs(new Date(+obj.create_at)).format("YYYY/MM/DD HH:mm:ss");
+        obj.timeforshow = dayjs(new Date(+obj.create_at)).format(
+          "YYYY/MM/DD HH:mm:ss"
+        );
 
         obj.contentreplace = obj.content.replace(/\n/g, "<br>");
 
@@ -146,7 +148,7 @@ export default defineComponent({
 
         console.log("news.value", news.value);
       } catch (e) {
-        toast.error(`${e.response ? e.response.data : e}`, {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
           hideProgressBar: true,
         });
