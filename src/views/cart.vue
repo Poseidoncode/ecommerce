@@ -114,15 +114,17 @@
                     >
                     <div>
                       <input
-                        class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                        class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                         placeholder="XXXXXX"
                         type="text"
+                        v-model="couponCode"
                       />
                     </div>
                   </div>
                   <div class="px-2">
                     <button
                       class="block w-full max-w-xs mx-auto border border-transparent bg-gray-400 hover:bg-gray-500 focus:bg-gray-500 text-white rounded-md px-5 py-2 font-semibold"
+                      @click="applyCouponCode(couponCode)"
                     >
                       APPLY
                     </button>
@@ -130,14 +132,24 @@
                 </div>
               </div>
               <div class="mb-6 pb-6 border-b border-gray-200 text-gray-800">
-                <div class="w-full flex mb-3 items-center">
+                <div class="w-full flex mb-2 items-center">
                   <div class="flex-grow">
-                    <span class="text-gray-600">Subtotal</span>
+                    <span class="text-gray-600">Total</span>
                   </div>
                   <div class="pl-3">
                     <span class="font-semibold"
                       >${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}</span
                     >
+                  </div>
+                </div>
+                <div class="w-full flex mb-2 items-center">
+                  <div class="flex-grow">
+                    <span class="text-gray-600">Discount</span>
+                  </div>
+                  <div class="pl-3">
+                    <span class="font-semibold">
+                      {{ itemsDiscount }}
+                    </span>
                   </div>
                 </div>
                 <div class="w-full flex items-center">
@@ -154,12 +166,14 @@
               >
                 <div class="w-full flex items-center">
                   <div class="flex-grow">
-                    <span class="text-gray-600">Total</span>
+                    <span class="text-gray-600">Final Total</span>
                   </div>
                   <div class="pl-3">
                     <span class="font-semibold text-gray-400 text-sm">USD</span>
                     <span class="font-semibold"
-                      >${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}</span
+                      >${{
+                        itemsFinalTotal ? itemsFinalTotal.toFixed(2) : ""
+                      }}</span
                     >
                   </div>
                 </div>
@@ -201,6 +215,7 @@ import {
   getCustomerCart,
   putCustomerCart,
   deleteCustomerCart,
+  postCustomerCoupon,
 } from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import { useStore } from "vuex";
@@ -235,11 +250,18 @@ export default defineComponent({
     //data
     const items = ref([]);
     const itemsTotal = ref("");
+    const itemsFinalTotal = ref("");
+    const itemsDiscount = ref("");
     const getData = async () => {
       try {
         const res = await getCustomerCart();
         items.value = [...res.data?.data?.carts];
-        itemsTotal.value = res.data?.data?.final_total;
+        itemsTotal.value = res.data?.data?.total;
+        itemsFinalTotal.value = res.data?.data?.final_total;
+        itemsDiscount.value = (
+          +res.data?.data?.total.toFixed(2) -
+          +res.data?.data?.final_total.toFixed(2)
+        ).toFixed(2);
 
         store.commit("m_setCartData", items.value);
       } catch (e) {
@@ -254,6 +276,7 @@ export default defineComponent({
       try {
         const res = await deleteCustomerCart(item.id);
         await getData();
+        emitter.emit("getCartData");
         toast.info(`DeleteSuccess`, {
           timeout: 2000,
           hideProgressBar: true,
@@ -275,6 +298,7 @@ export default defineComponent({
 
         const res = await putCustomerCart({ data: obj }, item.id);
         await getData();
+        emitter.emit("getCartData");
         toast.info(`Cart Update Success`, {
           timeout: 2000,
           hideProgressBar: true,
@@ -287,11 +311,46 @@ export default defineComponent({
       }
     };
 
+    const couponCode = ref("");
+    const applyCouponCode = async (codeData = null) => {
+      try {
+        const obj = {
+          code: codeData,
+        };
+        const res = await postCustomerCoupon({ data: obj });
+        await getData();
+        toast.info(`Coupon Apply successfully`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        console.log("e", e.response, e.message);
+        toast.error(
+          `${e?.response.data?.message ? e.response.data.message : e}`,
+          {
+            timeout: 2000,
+            hideProgressBar: true,
+          }
+        );
+      }
+    };
+
     onMounted(async () => {
       await getData();
     });
 
-    return { stepItems, items, itemsTotal, getData, deleteData, putData };
+    return {
+      stepItems,
+      items,
+      itemsTotal,
+      itemsFinalTotal,
+      itemsDiscount,
+      getData,
+      deleteData,
+      putData,
+      applyCouponCode,
+      couponCode,
+    };
   },
 });
 </script>

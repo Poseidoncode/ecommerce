@@ -216,11 +216,11 @@
           <div className="coupon-intro">
             <h4>Campaign: Super Month</h4>
             <ul>
-              <li>Coupon Codes: EJ23K4</li>
-              <li>Expires: 2022/08/23</li>
+              <li>Coupon Codes: SuperCampain</li>
+              <li>Expires: 2022/12/25</li>
             </ul>
           </div>
-          <div className="allcoupon-value">40% Off</div>
+          <div className="allcoupon-value">25% Off</div>
         </div>
       </section>
 
