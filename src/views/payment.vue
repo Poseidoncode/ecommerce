@@ -36,235 +36,277 @@
       >
         <div class="w-full">
           <div class="-mx-3 md:flex items-start">
-            <div class="px-3 md:w-7/12 lg:pr-10">
+            <div class="px-3 md:w-8/12">
               <div
-                class="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6"
+                class="w-full mx-auto rounded-lg bg-white p-3 text-gray-800 font-light mb-3"
               >
                 <div class="w-full flex items-center">
-                  <div
-                    class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"
-                      alt=""
-                    />
-                  </div>
-                  <div class="flex-grow pl-3">
-                    <h6 class="font-semibold uppercase text-gray-600">
-                      Ray Ban Sunglasses.
-                    </h6>
-                    <p class="text-gray-400">x 1</p>
-                  </div>
                   <div>
-                    <span class="font-semibold text-gray-600 text-xl">$210</span
-                    ><span class="font-semibold text-gray-600 text-sm"
-                      >.00</span
+                    <span class="text-gray-600 font-semibold text-2xl"
+                      >Payment Details</span
                     >
                   </div>
                 </div>
               </div>
-              <div class="mb-6 pb-6 border-b border-gray-200">
-                <div class="-mx-2 flex items-end justify-end">
-                  <div class="flex-grow px-2 lg:max-w-xs">
-                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                      >Discount code</label
-                    >
-                    <div>
-                      <input
-                        class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                        placeholder="XXXXXX"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="px-2">
-                    <button
-                      class="block w-full max-w-xs mx-auto border border-transparent bg-gray-400 hover:bg-gray-500 focus:bg-gray-500 text-white rounded-md px-5 py-2 font-semibold"
-                    >
-                      APPLY
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="mb-6 pb-6 border-b border-gray-200 text-gray-800">
-                <div class="w-full flex mb-3 items-center">
-                  <div class="flex-grow">
-                    <span class="text-gray-600">Subtotal</span>
-                  </div>
-                  <div class="pl-3">
-                    <span class="font-semibold">$190.91</span>
-                  </div>
-                </div>
-                <div class="w-full flex items-center">
-                  <div class="flex-grow">
-                    <span class="text-gray-600">Taxes (GST)</span>
-                  </div>
-                  <div class="pl-3">
-                    <span class="font-semibold">$19.09</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl"
+
+              <v-form
+                class="contact-form-section w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light p-3"
+                v-slot="{ errors, values, validate }"
+                @submit="onSubmit(errors)"
               >
-                <div class="w-full flex items-center">
-                  <div class="flex-grow">
-                    <span class="text-gray-600">Total</span>
-                  </div>
-                  <div class="pl-3">
-                    <span class="font-semibold text-gray-400 text-sm">AUD</span>
-                    <span class="font-semibold">$210.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="px-3 md:w-5/12">
-              <div
-                class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6"
-              >
-                <div class="w-full flex mb-3 items-center">
-                  <div class="w-32">
-                    <span class="text-gray-600 font-semibold">Contact</span>
-                  </div>
-                  <div class="flex-grow pl-3">
-                    <span>Scott Windon</span>
-                  </div>
-                </div>
-                <div class="w-full flex items-center">
-                  <div class="w-32">
-                    <span class="text-gray-600 font-semibold"
-                      >Billing Address</span
-                    >
-                  </div>
-                  <div class="flex-grow pl-3">
-                    <span>123 George Street, Sydney, NSW 2000 Australia</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6"
-              >
-                <div class="w-full p-3 border-b border-gray-200">
-                  <div class="mb-5">
-                    <label for="type1" class="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        class="form-radio h-5 w-5 text-indigo-500"
-                        name="type"
-                        id="type1"
-                        checked
-                      />
-                      <img
-                        src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
-                        class="h-6 ml-3"
-                      />
-                    </label>
-                  </div>
-                  <div>
-                    <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                        >Name on card</label
-                      >
-                      <div>
-                        <input
-                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                          placeholder="John Smith"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                        >Card number</label
-                      >
-                      <div>
-                        <input
-                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                          placeholder="0000 0000 0000 0000"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div class="mb-3 -mx-2 flex items-end">
-                      <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                          >Expiration date</label
-                        >
-                        <div>
-                          <select
-                            class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                          >
-                            <option value="01">01 - January</option>
-                            <option value="02">02 - February</option>
-                            <option value="03">03 - March</option>
-                            <option value="04">04 - April</option>
-                            <option value="05">05 - May</option>
-                            <option value="06">06 - June</option>
-                            <option value="07">07 - July</option>
-                            <option value="08">08 - August</option>
-                            <option value="09">09 - September</option>
-                            <option value="10">10 - October</option>
-                            <option value="11">11 - November</option>
-                            <option value="12">12 - December</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="px-2 w-1/4">
-                        <select
-                          class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                        >
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                          <option value="2023">2023</option>
-                          <option value="2024">2024</option>
-                          <option value="2025">2025</option>
-                          <option value="2026">2026</option>
-                          <option value="2027">2027</option>
-                          <option value="2028">2028</option>
-                          <option value="2029">2029</option>
-                        </select>
-                      </div>
-                      <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                          >Security code</label
-                        >
-                        <div>
-                          <input
-                            class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                            placeholder="000"
-                            type="text"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="w-full p-3">
-                  <label for="type2" class="flex items-center cursor-pointer">
+                <div class="mb-5">
+                  <label for="type1" class="flex items-center cursor-pointer">
                     <input
                       type="radio"
                       class="form-radio h-5 w-5 text-indigo-500"
                       name="type"
-                      id="type2"
+                      id="type1"
+                      value="visa"
+                      v-model="payType"
                     />
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
-                      width="80"
-                      class="ml-3"
-                    />
+                    <img src="/assets/visapicture.png" class="h-6 ml-3" />
                   </label>
                 </div>
+
+                <div>
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Name
+                    <v-field
+                      name="Name"
+                      type="name"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Name'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Name'],
+                      }"
+                      placeholder="Please enter Name"
+                      rules="required"
+                      v-model="user.name"
+                    ></v-field>
+                  </label>
+                  <error-message
+                    name="Name"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div class="mb-3">
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Email
+                    <v-field
+                      name="Email"
+                      type="email"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Email'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Email'],
+                      }"
+                      placeholder="Please enter  Email"
+                      rules="email|required"
+                      v-model="user.email"
+                    >
+                    </v-field>
+                  </label>
+
+                  <error-message
+                    name="Email"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div>
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Phone
+                    <v-field
+                      name="Phone"
+                      type="phone"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Phone'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Phone'],
+                      }"
+                      placeholder="Please enter  Phone"
+                      rules="numeric|required"
+                      v-model="user.phone"
+                    ></v-field>
+                  </label>
+                  <error-message
+                    name="Phone"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div>
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Address
+                    <v-field
+                      name="Address"
+                      type="Address"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Address'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Address'],
+                      }"
+                      placeholder="Please enter Address"
+                      rules="required"
+                      v-model="user.address"
+                    ></v-field>
+                  </label>
+                  <error-message
+                    name="Address"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <div class="mb-3" style="grid-column: 1 / -1">
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                    >Message
+                    <v-field
+                      name="Message"
+                      type="message"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                      :class="{
+                        'is-invalid': errors['Message'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                          !errors['Message'],
+                      }"
+                      placeholder="Please enter  Message"
+                      rules="required"
+                      v-model="user.message"
+                      as="textarea"
+                      rows="10"
+                    >
+                    </v-field>
+                  </label>
+
+                  <error-message
+                    name="Message"
+                    class="invalid-feedback"
+                  ></error-message>
+                </div>
+
+                <button id="v-form-button" hidden>Submit</button>
+              </v-form>
+
+              <div class="w-full p-3">
+                <label for="type2" class="flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    class="form-radio h-5 w-5 text-indigo-500"
+                    name="type"
+                    id="type2"
+                    value="paypal"
+                    v-model="payType"
+                  />
+                  <img src="/assets/PayPal.svg" width="80" class="ml-3" />
+                </label>
               </div>
+            </div>
+            <div class="px-3 md:w-4/12">
+              <div
+                class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6"
+              >
+                <div class="w-full flex mb-3 items-center">
+                  <div class="w-full">
+                    <span class="text-gray-600 font-semibold text-2xl"
+                      >Your Billing</span
+                    >
+                  </div>
+                </div>
+                <div class="w-full cart-content">
+                  <div>
+                    <span class="text-gray-600 font-semibold">Contact</span>
+                  </div>
+                  <div class="flex-grow pl-3 text-gray-800">
+                    <span>{{ order.user?.name }}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-600 font-semibold">Phone</span>
+                  </div>
+                  <div class="flex-grow pl-3 text-gray-800">
+                    <span>{{ order.user?.tel }}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-600 font-semibold">Email</span>
+                  </div>
+                  <div class="flex-grow pl-3 text-gray-800">
+                    <span>{{ order.user?.email }}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-600 font-semibold"
+                      >Billing Address</span
+                    >
+                  </div>
+                  <div class="flex-grow pl-3 text-gray-800">
+                    <span>{{ order.user?.address }}</span>
+                  </div>
+                </div>
+                <hr class="col-span-full my-3" />
+                <div class="w-full cart-content">
+                  <div>
+                    <span class="text-gray-600 font-semibold">Final Total</span>
+                  </div>
+                  <div class="flex-grow pl-3 text-gray-800">
+                    <span
+                      >${{ order?.total ? order?.total.toFixed(2) : "" }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <button
-                  class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold"
+                  class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex"
+                  type="button"
+                  style="background: #0d4a9e"
+                  @click="onSubmitClick"
                 >
-                  <i class="mdi mdi-lock-outline mr-1"></i> PAY NOW
+                  <span>Pay Now</span>
+                  <svg
+                    class="h-5 w-5 mx-2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </button>
+                <button
+                  class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex mr-3"
+                  type="button"
+                  style="background: #f1b82b"
+                  @click="
+                    cartOpen = false;
+                    $router.push('/cart');
+                  "
+                >
+                  <span style="transform: scaleX(-1)">
+                    <svg
+                      class="h-5 w-5 mx-2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </span>
+
+                  <span>Cart</span>
                 </button>
               </div>
             </div>
@@ -322,6 +364,7 @@ export default defineComponent({
     const getData = async () => {
       try {
         const dataKeyData = sessionStorage.getItem("ordnow");
+        console.log("dataKeyData", dataKeyData);
         const orderId = route?.params?.datakey || dataKeyData;
         if (!route?.params?.datakey && !dataKeyData) {
           toast.error(`There's no order!`, {
@@ -343,6 +386,51 @@ export default defineComponent({
       }
     };
 
+    const user = ref({});
+
+    const myForm = ref(null);
+    const onSubmitClick = () => {
+      document.getElementById("v-form-button").click();
+    };
+
+    const onSubmit = async () => {
+      try {
+        const obj = {
+          user: {
+            name: user.value?.name,
+            email: user.value?.email,
+            tel: user.value?.phone,
+            address: user.value?.address,
+          },
+          message: user.value?.message,
+        };
+
+        const res = await postCustomerOrder({ data: obj });
+        emitter.emit("getCartData");
+        console.log("res");
+
+        emitter.emit("getCartData");
+        router.push({
+          name: "payment",
+          params: { datakey: `${res.data.orderId}` },
+        });
+
+        sessionStorage.setItem("ordnow", `${res.data.orderId}`);
+
+        toast.info(`Order Update Success`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      } catch (e) {
+        toast.error(`${e.response ? e.response.data.message : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
+      }
+    };
+
+    const payType = ref("");
+
     onMounted(async () => {
       await getData();
     });
@@ -354,6 +442,12 @@ export default defineComponent({
       itemsFinalTotal,
       itemsDiscount,
       getData,
+      user,
+
+      myForm,
+      onSubmit,
+      onSubmitClick,
+      payType,
     };
   },
 });
@@ -412,5 +506,11 @@ export default defineComponent({
 
 ::v-deep(.p-disabled) {
   background-color: #ffffff;
+}
+.cart-content {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 7px;
 }
 </style>

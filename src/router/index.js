@@ -168,6 +168,16 @@ const routes = [
     component: () => import("@/views/payment.vue"),
   },
   {
+    path: "/paymentbackup",
+    name: "paymentbackup",
+    meta: {
+      title: "paymentbackup page",
+      needNav: true,
+      needFooter: true,
+    },
+    component: () => import("@/views/paymentbackup.vue"),
+  },
+  {
     path: "/testpage",
     name: "testpage",
     meta: {
