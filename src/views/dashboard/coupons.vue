@@ -59,8 +59,8 @@
       <div class="content" :title="item.percent">
         {{ item.percent || "" }}
       </div>
-      <div class="content" :title="item.due_date">
-        {{ item.due_date || "" }}
+      <div class="content" :title="item.dueDateShow">
+        {{ item.dueDateShow || "" }}
       </div>
       <div class="content" :title="item.code">
         {{ item.code || "" }}
@@ -140,7 +140,7 @@
           <Calendar
             v-model="modalItem.due_date"
             :showIcon="true"
-            dateFormat="yy-mm-dd"
+            dateFormat="yy/mm/dd"
             style="height: 40px"
             class="hidden-item"
             :disabled="nowType == 3"
@@ -226,12 +226,15 @@ export default defineComponent({
         const top = rows.value;
 
         const res = await getCoupons(`?page=${page}`);
+        let arr = [...res.data?.coupons];
+        arr = arr.map((s) => {
+          s.dueDateShow = s.due_date
+            ? dayjs(new Date(+s.due_date)).format("YYYY/MM/DD")
+            : "";
+          return s;
+        });
 
-        console.log("res", res);
-
-        // let { Items, Count } = ;
-
-        items.value = [...res.data?.coupons];
+        items.value = [...arr];
         totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
         toast.error(`${e.response ? e.response.data : e}`, {
@@ -263,6 +266,9 @@ export default defineComponent({
 
       if (type == 2 || type == 3) {
         modalItem.value = { ...item };
+        modalItem.value.due_date = modalItem.value.due_date
+          ? dayjs(new Date(+modalItem.value.due_date)).format("YYYY/MM/DD")
+          : "";
       } else {
         modalItem.value = {
           title: "",
@@ -280,7 +286,16 @@ export default defineComponent({
       const obj = {
         ...modalItem.value,
       };
-      obj.due_date = dayjs(obj.due_date).format("YYYY-MM-DD");
+
+      obj.due_date = Date.parse(obj.due_date);
+
+      obj.percent = +obj.percent;
+
+      if (obj.is_enabled) {
+        obj.is_enabled = 1;
+      } else {
+        obj.is_enabled = 0;
+      }
 
       try {
         // const res = await putInstitutionList(obj);

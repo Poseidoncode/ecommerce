@@ -205,7 +205,7 @@
         </div>
       </div>
       <!-- coupon -->
-      <section class="allcoupons">
+      <section class="allcoupons" @click="copyCoupon">
         <div class="word-one">25% Off on All products at Vigilero Stores</div>
         <p class="word-two mb-8">
           Get an incredible 25% discount on all types of watches at Vigilero
@@ -271,9 +271,11 @@ import {
   postCustomerCart,
   putCustomerCart,
 } from "Service/apis.js";
+import { useClipboard } from "@vueuse/core";
 import { useStore } from "vuex";
 export default {
   setup() {
+    const { copy } = useClipboard();
     const store = useStore();
     const router = useRouter();
     const emitter = inject("emitter"); // Inject `emitter`
@@ -358,6 +360,14 @@ export default {
       router.push("/productslist");
     };
 
+    const copyCoupon = () => {
+      copy("SuperCampain");
+      toast.info(`Successfully Copy Coupon Code : SuperCampain!`, {
+        timeout: 2000,
+        hideProgressBar: true,
+      });
+    };
+
     onMounted(async () => {
       getData();
     });
@@ -367,6 +377,7 @@ export default {
       items,
       itemsClassic,
       addToCart,
+      copyCoupon,
     };
   },
 };
