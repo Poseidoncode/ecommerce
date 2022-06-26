@@ -62,9 +62,9 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q11"
           >
-            It's really easy to place an order with House Of Watches, simply
-            select your item/s and add to basket. You can select from checking
-            out using our secure payment site or using PayPal.
+            It's really easy to place an order with Vigilero, simply select your
+            item/s and add to basket. You can select from checking out using our
+            secure payment site or using PayPal.
           </div>
         </div>
         <div>
@@ -132,11 +132,10 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q13"
           >
-            House of Watches are authorised dealers of all the brands we sell.
-            All watches are brand new and come with full manufacturer's
-            warranty, certification and packaging. You can confirm this by
-            finding us on manufacturers' websites where we are listed as either
-            House of Watches or T.H.Baker
+            Vigilero are authorised dealers of all the brands we sell. All
+            watches are brand new and come with full manufacturer's warranty,
+            certification and packaging. You can confirm this by finding us on
+            manufacturers' websites where we are listed as Vigilero.
           </div>
         </div>
 

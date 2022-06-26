@@ -231,9 +231,7 @@
                     <span class="text-gray-600">Discount</span>
                   </div>
                   <div>
-                    <span class="font-semibold">
-                      {{ itemsDiscount }}
-                    </span>
+                    <span class="font-semibold"> ${{ itemsDiscount }} </span>
                   </div>
                 </div>
                 <div class="w-full cart-content">
