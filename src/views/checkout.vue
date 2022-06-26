@@ -48,40 +48,20 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6"
-              >
-                <div class="w-full p-3 border-b border-gray-200">
-                  <div>
-                    <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
-                        >Name</label
-                      >
-                      <div>
-                        <input
-                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                          placeholder="John Smith"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               <v-form
-                class="contact-form-section"
+                class="contact-form-section w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6 p-3"
                 v-slot="{ errors, values, validate }"
                 @submit="onSubmit"
               >
                 <div>
-                  <label class="form-label"
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Name
                     <v-field
                       name="name"
                       type="name"
-                      class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['name'],
                         'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
@@ -99,12 +79,13 @@
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label"
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Email
                     <v-field
                       name="email"
                       type="email"
-                      class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['email'],
                         'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
@@ -124,12 +105,13 @@
                 </div>
 
                 <div class="mb-3" style="grid-column: 1 / -1">
-                  <label class="form-label"
+                  <label
+                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Message
                     <v-field
                       name="message"
                       type="message"
-                      class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['message'],
                         'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
@@ -179,7 +161,9 @@
                     {{ itemData.product.title || "" }} x
                     {{ itemData.qty || "" }}
                   </div>
-                  <div>${{ itemData.total || "" }}</div>
+                  <div>
+                    ${{ itemData.total ? itemData.total.toFixed(2) : "" }}
+                  </div>
                   <hr class="col-span-full my-3" />
                 </div>
                 <div class="w-full mb-2 cart-content">
