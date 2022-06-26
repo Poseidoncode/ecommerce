@@ -99,12 +99,6 @@
                 </div>
                 <hr class="product-content-hr" />
               </div>
-              <!-- <div
-                class="text-right theme-color-main"
-                style="margin-right: 2px"
-              >
-                Total: ${{ itemsTotal ? itemsTotal.toFixed(2) : "" }}
-              </div> -->
 
               <div class="mb-6 pb-6 border-b border-gray-200">
                 <div class="-mx-2 flex items-end justify-end">
@@ -221,12 +215,7 @@ import { useToast } from "vue-toastification";
 import { useStore } from "vuex";
 
 export default defineComponent({
-  props: {
-    // specColum: {
-    //   type: String,
-    //   default: "",
-    // },
-  },
+  props: {},
   setup(props, { emit }) {
     const stepItems = ref([
       {
