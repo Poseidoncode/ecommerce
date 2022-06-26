@@ -231,6 +231,7 @@ export default defineComponent({
           s.dueDateShow = s.due_date
             ? dayjs(new Date(+s.due_date)).format("YYYY/MM/DD")
             : "";
+          s.is_enabled = +s.is_enabled == 1 ? true : false;
           return s;
         });
 
@@ -332,6 +333,7 @@ export default defineComponent({
       const obj = {
         ...item,
       };
+      obj.is_enabled = obj.is_enabled ? 1 : 0;
       const res2 = await putCoupons({ data: obj }, obj.id);
       getData();
       toast.info(`Coupon調整Success`, {
