@@ -50,7 +50,7 @@
               </div>
 
               <v-form
-                class="contact-form-section w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light p-3"
+                class="contact-form-section w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light p-3 rounded-b-none"
                 v-slot="{ errors, values, validate }"
                 @submit="onSubmit(errors)"
               >
@@ -197,7 +197,9 @@
                 <button id="v-form-button" hidden>Submit</button>
               </v-form>
 
-              <div class="w-full p-3">
+              <div
+                class="w-full p-3 contact-form-section mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light border-t-0 rounded-t-none"
+              >
                 <label for="type2" class="flex items-center cursor-pointer">
                   <input
                     type="radio"
