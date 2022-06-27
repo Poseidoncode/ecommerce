@@ -98,11 +98,7 @@
       v-for="(item, idx) in itemsForShow"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="
-        idx % 2 == 0
-          ? 'background-color:#ffffff ;'
-          : 'background-color:#e7f2f3;'
-      "
+      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -152,11 +148,7 @@
         {{ item.imagesUrl || "" }}
       </div> -->
       <div class="content" :title="item.is_enabled">
-        <Checkbox
-          :binary="true"
-          v-model="item.is_enabled"
-          @change="setStatus(item)"
-        />
+        <Checkbox :binary="true" v-model="item.is_enabled" @change="setStatus(item)" />
       </div>
     </main>
     <main
@@ -187,24 +179,27 @@
       <template #header>
         <h3>
           {{
-            nowType == 1
-              ? "AddProduct"
-              : nowType == 2
-              ? "EditProduct"
-              : "DeleteProduct"
+            nowType == 1 ? "AddProduct" : nowType == 2 ? "EditProduct" : "DeleteProduct"
           }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          Delete This Product?
-        </h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">Delete This Product?</h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">Title</span>
           <InputText
             type="text"
             v-model.trim="modalItem.title"
+            :disabled="nowType == 3"
+            class="custom-search"
+          />
+        </div>
+        <div class="p-inputgroup mt-2 col-span-full">
+          <span class="p-inputgroup-addon red-star">OriginTitle</span>
+          <InputText
+            type="text"
+            v-model.trim="modalItem.origintitle"
             :disabled="nowType == 3"
             class="custom-search"
           />
@@ -275,11 +270,7 @@
         >
           <span class="p-inputgroup-addon">Image Url {{ i + 1 }}</span>
 
-          <InputText
-            v-model="item.url"
-            class="custom-search"
-            :disabled="nowType == 3"
-          />
+          <InputText v-model="item.url" class="custom-search" :disabled="nowType == 3" />
         </div>
 
         <div class="p-inputgroup mt-2">
@@ -352,11 +343,7 @@
 
       <template #footer>
         <Button label="Confirm" @click="saveEditModal" />
-        <Button
-          label="Cancel"
-          class="p-button-success"
-          @click="editModal = false"
-        />
+        <Button label="Cancel" class="p-button-success" @click="editModal = false" />
       </template>
     </Dialog>
   </section>
@@ -591,6 +578,7 @@ export default defineComponent({
           origin_price: 0,
           price: 0,
           title: "",
+          origintitle: "",
           unit: "",
         };
       }
@@ -606,6 +594,8 @@ export default defineComponent({
       obj.imagesUrl = obj.imagesArr.slice(1).map((s) => `${s.url}`);
       obj.imageUrl = obj.imagesArr[0].url;
       delete obj.imagesArr;
+      obj.origin_price = +obj.origin_price;
+      obj.price = +obj.price;
 
       try {
         // const res = await putInstitutionList(obj);
@@ -620,9 +610,7 @@ export default defineComponent({
         }
 
         toast.info(
-          `${
-            nowType.value == 1 ? "Add" : nowType.value == 2 ? "Edit" : "Delete"
-          }Success`,
+          `${nowType.value == 1 ? "Add" : nowType.value == 2 ? "Edit" : "Delete"}Success`,
           {
             timeout: 2000,
             hideProgressBar: true,
@@ -644,7 +632,7 @@ export default defineComponent({
       };
       const res2 = await putProducts({ data: obj }, obj.id);
       getData();
-      toast.info(`Product調整Success`, {
+      toast.info(`Product Updates Successfully`, {
         timeout: 2000,
         hideProgressBar: true,
       });
