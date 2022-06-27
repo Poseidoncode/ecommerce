@@ -25,7 +25,7 @@ export default {
   // background: url("/public/assets/brandfinalt.png") no-repeat calc(100% - 19px);
   background: transparent url("/public/assets/bgrough.jpg") repeat 0 0;
   overflow: hidden;
-  position: relative;
+  // position: relative;
   // width: 99%;
   height: 99%;
   // width: 99vw;

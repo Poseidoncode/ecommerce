@@ -161,11 +161,21 @@ const routes = [
     path: "/payment",
     name: "payment",
     meta: {
-      title: "patment page",
+      title: "payment page",
       needNav: true,
       needFooter: true,
     },
     component: () => import("@/views/payment.vue"),
+  },
+  {
+    path: "/thanksEnd",
+    name: "thanksEnd",
+    meta: {
+      title: "thanksEnd page",
+      needNav: false,
+      needFooter: false,
+    },
+    component: () => import("@/views/thanksEnd.vue"),
   },
   {
     path: "/paymentbackup",

@@ -58,7 +58,7 @@
                   <label for="type1" class="flex items-center cursor-pointer">
                     <input
                       type="radio"
-                      class="form-radio h-5 w-5 text-indigo-500"
+                      class="form-radio h-5 w-5 text-blue-500"
                       name="type"
                       id="type1"
                       value="visa"
@@ -67,132 +67,123 @@
                     <img src="/assets/visapicture.png" class="h-6 ml-3" />
                   </label>
                 </div>
-
-                <div>
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
-                    >Name
-                    <v-field
+                <main v-if="payType == 'visa'">
+                  <div>
+                    <label
+                      class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      >Name on card
+                      <v-field
+                        name="Name"
+                        type="name"
+                        class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                        :class="{
+                          'is-invalid': errors['Name'],
+                          'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                            !errors['Name'],
+                        }"
+                        placeholder="Please enter Name"
+                        rules="required"
+                        v-model="user.name"
+                      ></v-field>
+                    </label>
+                    <error-message
                       name="Name"
-                      type="name"
-                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
-                      :class="{
-                        'is-invalid': errors['Name'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Name'],
-                      }"
-                      placeholder="Please enter Name"
-                      rules="required"
-                      v-model="user.name"
-                    ></v-field>
-                  </label>
-                  <error-message
-                    name="Name"
-                    class="invalid-feedback"
-                  ></error-message>
-                </div>
+                      class="invalid-feedback"
+                    ></error-message>
+                  </div>
 
-                <div class="mb-3">
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
-                    >Email
-                    <v-field
-                      name="Email"
-                      type="email"
-                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
-                      :class="{
-                        'is-invalid': errors['Email'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Email'],
-                      }"
-                      placeholder="Please enter  Email"
-                      rules="email|required"
-                      v-model="user.email"
-                    >
-                    </v-field>
-                  </label>
+                  <div>
+                    <label
+                      class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      >Card number
+                      <v-field
+                        name="Card number"
+                        type="name"
+                        class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                        :class="{
+                          'is-invalid': errors['Card number'],
+                          'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                            !errors['Card number'],
+                        }"
+                        placeholder="0000 0000 0000 0000"
+                        rules="numeric|min:16|max:16|required"
+                        v-model="user.cardnumber"
+                      ></v-field>
+                    </label>
+                    <error-message
+                      name="Card number"
+                      class="invalid-feedback"
+                    ></error-message>
+                  </div>
 
-                  <error-message
-                    name="Email"
-                    class="invalid-feedback"
-                  ></error-message>
-                </div>
-
-                <div>
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
-                    >Phone
-                    <v-field
-                      name="Phone"
-                      type="phone"
-                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
-                      :class="{
-                        'is-invalid': errors['Phone'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Phone'],
-                      }"
-                      placeholder="Please enter  Phone"
-                      rules="numeric|required"
-                      v-model="user.phone"
-                    ></v-field>
-                  </label>
-                  <error-message
-                    name="Phone"
-                    class="invalid-feedback"
-                  ></error-message>
-                </div>
-
-                <div>
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
-                    >Address
-                    <v-field
-                      name="Address"
-                      type="Address"
-                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
-                      :class="{
-                        'is-invalid': errors['Address'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Address'],
-                      }"
-                      placeholder="Please enter Address"
-                      rules="required"
-                      v-model="user.address"
-                    ></v-field>
-                  </label>
-                  <error-message
-                    name="Address"
-                    class="invalid-feedback"
-                  ></error-message>
-                </div>
-
-                <div class="mb-3" style="grid-column: 1 / -1">
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
-                    >Message
-                    <v-field
-                      name="Message"
-                      type="message"
-                      class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
-                      :class="{
-                        'is-invalid': errors['Message'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Message'],
-                      }"
-                      placeholder="Please enter  Message"
-                      rules="required"
-                      v-model="user.message"
-                      as="textarea"
-                      rows="10"
-                    >
-                    </v-field>
-                  </label>
-
-                  <error-message
-                    name="Message"
-                    class="invalid-feedback"
-                  ></error-message>
-                </div>
+                  <div class="mb-3 -mx-2 flex items-end">
+                    <div class="px-2 w-1/4">
+                      <label
+                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        >Expiration date</label
+                      >
+                      <div>
+                        <select
+                          class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors cursor-pointer"
+                        >
+                          <option value="01">01 - January</option>
+                          <option value="02">02 - February</option>
+                          <option value="03">03 - March</option>
+                          <option value="04">04 - April</option>
+                          <option value="05">05 - May</option>
+                          <option value="06">06 - June</option>
+                          <option value="07">07 - July</option>
+                          <option value="08">08 - August</option>
+                          <option value="09">09 - September</option>
+                          <option value="10">10 - October</option>
+                          <option value="11">11 - November</option>
+                          <option value="12">12 - December</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="px-2 w-1/4">
+                      <select
+                        class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors cursor-pointer"
+                      >
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                      </select>
+                    </div>
+                    <div class="px-2 w-1/4">
+                      <label
+                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        >Security code</label
+                      >
+                      <div class="code-field">
+                        <v-field
+                          name="code"
+                          type="name"
+                          class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
+                          :class="{
+                            'is-invalid': errors['code'],
+                            'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
+                              !errors['code'],
+                          }"
+                          placeholder="CVC"
+                          rules="numeric|min:3|max:3|required"
+                          v-model="user.securityCode"
+                        ></v-field>
+                        <error-message
+                          name="code"
+                          class="invalid-feedback spec-error"
+                        ></error-message>
+                      </div>
+                    </div>
+                  </div>
+                </main>
 
                 <button id="v-form-button" hidden>Submit</button>
               </v-form>
@@ -203,7 +194,7 @@
                 <label for="type2" class="flex items-center cursor-pointer">
                   <input
                     type="radio"
-                    class="form-radio h-5 w-5 text-indigo-500"
+                    class="form-radio h-5 w-5 text-blue-500"
                     name="type"
                     id="type2"
                     value="paypal"
@@ -272,7 +263,7 @@
                   style="background: #0d4a9e"
                   @click="onSubmitClick"
                 >
-                  <span>Pay Now</span>
+                  <span>Pay</span>
                   <svg
                     class="h-5 w-5 mx-2"
                     fill="none"
@@ -294,7 +285,7 @@
                     $router.push('/cart');
                   "
                 >
-                  <span style="transform: scaleX(-1)">
+                  <!-- <span style="transform: scaleX(-1)">
                     <svg
                       class="h-5 w-5 mx-2"
                       fill="none"
@@ -306,9 +297,9 @@
                     >
                       <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
-                  </span>
+                  </span> -->
 
-                  <span>Cart</span>
+                  <span>Cancel Order</span>
                 </button>
               </div>
             </div>
@@ -431,7 +422,7 @@ export default defineComponent({
       }
     };
 
-    const payType = ref("");
+    const payType = ref("visa");
 
     onMounted(async () => {
       await getData();
@@ -514,5 +505,15 @@ export default defineComponent({
   grid-template-columns: 130px 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 7px;
+}
+
+.code-field {
+  position: relative;
+  .spec-error {
+    position: absolute;
+    left: 0;
+    bottom: -22px;
+    width: 360px;
+  }
 }
 </style>
