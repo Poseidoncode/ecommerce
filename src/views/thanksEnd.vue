@@ -10,26 +10,21 @@
           <div
             class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
             style="
-              background-image: url('https://source.unsplash.com/oWTW-jNGl9I/600x800');
+              background-image: url('https://images.unsplash.com/photo-1565718253569-3156836e2ec0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80');
             "
           ></div>
           <!-- Col -->
-          <div
-            class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none"
-          >
+          <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
             <div class="px-8 mb-4 text-center">
               <h3 class="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
               <p class="mb-4 text-sm text-gray-700">
-                We get it, stuff happens. Just enter your email address below
-                and we'll send you a link to reset your password!
+                We get it, stuff happens. Just enter your email address below and we'll
+                send you a link to reset your password!
               </p>
             </div>
             <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
               <div class="mb-4">
-                <label
-                  class="block mb-2 text-sm font-bold text-gray-700"
-                  for="email"
-                >
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                   Email
                 </label>
                 <input
