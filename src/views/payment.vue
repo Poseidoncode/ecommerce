@@ -78,18 +78,16 @@
                         class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                         :class="{
                           'is-invalid': errors['Name'],
-                          'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                            !errors['Name'],
+                          'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                            'Name'
+                          ],
                         }"
                         placeholder="Please enter Name"
                         rules="required"
                         v-model="user.name"
                       ></v-field>
                     </label>
-                    <error-message
-                      name="Name"
-                      class="invalid-feedback"
-                    ></error-message>
+                    <error-message name="Name" class="invalid-feedback"></error-message>
                   </div>
 
                   <div>
@@ -102,8 +100,9 @@
                         class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                         :class="{
                           'is-invalid': errors['Card number'],
-                          'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                            !errors['Card number'],
+                          'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                            'Card number'
+                          ],
                         }"
                         placeholder="0000 0000 0000 0000"
                         rules="numeric|min:16|max:16|required"
@@ -118,8 +117,7 @@
 
                   <div class="mb-3 -mx-2 flex items-end">
                     <div class="px-2 w-1/4">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Expiration date</label
                       >
                       <div>
@@ -158,8 +156,7 @@
                       </select>
                     </div>
                     <div class="px-2 w-1/4">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Security code</label
                       >
                       <div class="code-field">
@@ -169,8 +166,9 @@
                           class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                           :class="{
                             'is-invalid': errors['code'],
-                            'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                              !errors['code'],
+                            'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                              'code'
+                            ],
                           }"
                           placeholder="CVC"
                           rules="numeric|min:3|max:3|required"
@@ -210,9 +208,7 @@
               >
                 <div class="w-full flex mb-3 items-center">
                   <div class="w-full">
-                    <span class="text-gray-600 font-semibold text-2xl"
-                      >Your Billing</span
-                    >
+                    <span class="text-gray-600 font-semibold text-2xl">Your Billing</span>
                   </div>
                 </div>
                 <div class="w-full cart-content">
@@ -235,9 +231,7 @@
                     <span>{{ order.user?.email }}</span>
                   </div>
                   <div>
-                    <span class="text-gray-600 font-semibold"
-                      >Billing Address</span
-                    >
+                    <span class="text-gray-600 font-semibold">Billing Address</span>
                   </div>
                   <div class="flex-grow pl-3 text-gray-800">
                     <span>{{ order.user?.address }}</span>
@@ -249,9 +243,7 @@
                     <span class="text-gray-600 font-semibold">Final Total</span>
                   </div>
                   <div class="flex-grow pl-3 text-gray-800">
-                    <span
-                      >${{ order?.total ? order?.total.toFixed(2) : "" }}</span
-                    >
+                    <span>${{ order?.total ? order?.total.toFixed(2) : "" }}</span>
                   </div>
                 </div>
               </div>
@@ -308,11 +300,43 @@
       </div>
     </div>
   </div>
+  <Dialog
+    class="custom-modal"
+    v-model:visible="showConfirmMessage"
+    style="width: 500px"
+    :modal="true"
+    :draggable="false"
+  >
+    <template #header>
+      <h3>System Message</h3>
+    </template>
+    <div class="font-bold" style="font-size: 25px">
+      You have not completed the payment, are you sure you want to leave this page?
+    </div>
+    <template #footer>
+      <Button
+        label="Confirm"
+        @click="
+          $router.push({
+            name: wantToGo,
+          })
+        "
+      />
+      <Button
+        label="Cancel"
+        class="p-button-success"
+        @click="
+          showConfirmMessage = false;
+          wantToGo = '';
+        "
+      />
+    </template>
+  </Dialog>
 </template>
 
 <script>
 import { inject, ref, defineComponent, onMounted, watch, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter, onBeforeRouteLeave } from "vue-router";
 import {
   getCustomerCart,
   putCustomerCart,
@@ -320,6 +344,7 @@ import {
   postCustomerCoupon,
   postCustomerOrder,
   getCustomerSingleOrder,
+  postCustomerPay,
 } from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import { useStore } from "vuex";
@@ -357,7 +382,7 @@ export default defineComponent({
     const getData = async () => {
       try {
         const dataKeyData = sessionStorage.getItem("ordnow");
-        console.log("dataKeyData", dataKeyData);
+
         const orderId = route?.params?.datakey || dataKeyData;
         if (!route?.params?.datakey && !dataKeyData) {
           toast.error(`There's no order!`, {
@@ -388,27 +413,16 @@ export default defineComponent({
 
     const onSubmit = async () => {
       try {
-        const obj = {
-          user: {
-            name: user.value?.name,
-            email: user.value?.email,
-            tel: user.value?.phone,
-            address: user.value?.address,
-          },
-          message: user.value?.message,
-        };
+        const dataKeyData = sessionStorage.getItem("ordnow");
+        const orderId = route?.params?.datakey || dataKeyData;
+        // const res = await postCustomerPay(orderId);
 
-        const res = await postCustomerOrder({ data: obj });
-        emitter.emit("getCartData");
-        console.log("res");
+        console.log("orderId", orderId);
 
-        emitter.emit("getCartData");
         router.push({
-          name: "payment",
-          params: { datakey: `${res.data.orderId}` },
+          name: "thanksEnd",
+          params: { datakey: `${orderId}` },
         });
-
-        sessionStorage.setItem("ordnow", `${res.data.orderId}`);
 
         toast.info(`Order Update Success`, {
           timeout: 2000,
@@ -421,6 +435,22 @@ export default defineComponent({
         });
       }
     };
+    const wantToGo = ref("");
+    const showConfirmMessage = ref(false);
+
+    onBeforeRouteLeave(async (to, from, next) => {
+      console.log("to", to, "from", from);
+      if (to.name == "thanksEnd") {
+        sessionStorage.clear();
+        next();
+      } else if (!!wantToGo.value) {
+        next();
+      } else {
+        wantToGo.value = to.name;
+        showConfirmMessage.value = true;
+        next(false);
+      }
+    });
 
     const payType = ref("visa");
 
@@ -429,6 +459,9 @@ export default defineComponent({
     });
 
     return {
+      wantToGo,
+      showConfirmMessage,
+
       stepItems,
       order,
       itemsTotal,

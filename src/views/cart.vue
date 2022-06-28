@@ -165,9 +165,7 @@
                   <div class="pl-3">
                     <span class="font-semibold text-gray-400 text-sm">USD</span>
                     <span class="font-semibold"
-                      >${{
-                        itemsFinalTotal ? itemsFinalTotal.toFixed(2) : ""
-                      }}</span
+                      >${{ itemsFinalTotal ? itemsFinalTotal.toFixed(2) : "" }}</span
                     >
                   </div>
                 </div>
@@ -248,8 +246,7 @@ export default defineComponent({
         itemsTotal.value = res.data?.data?.total;
         itemsFinalTotal.value = res.data?.data?.final_total;
         itemsDiscount.value = (
-          +res.data?.data?.total.toFixed(2) -
-          +res.data?.data?.final_total.toFixed(2)
+          +res.data?.data?.total.toFixed(2) - +res.data?.data?.final_total.toFixed(2)
         ).toFixed(2);
 
         store.commit("m_setCartData", items.value);
@@ -314,13 +311,10 @@ export default defineComponent({
         });
       } catch (e) {
         console.log("e", e.response, e.message);
-        toast.error(
-          `${e?.response.data?.message ? e.response.data.message.message : e}`,
-          {
-            timeout: 2000,
-            hideProgressBar: true,
-          }
-        );
+        toast.error(`${e?.response.data?.message ? e.response.data.message : e}`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
       }
     };
 

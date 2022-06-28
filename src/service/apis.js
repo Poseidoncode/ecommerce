@@ -162,8 +162,9 @@ export const postCustomerPay = (id) =>
   ajax({
     url: `pay/${id}`,
     method: "post",
-    data,
+    // data,
   });
+// [API]: /api/:api_path/pay/:order_id
 
 export const getCustomerArticle = (qs = "") => ajax({ url: "articles" + qs });
 export const getCustomerSingleArticle = (id) => ajax({ url: `article/${id}` });
