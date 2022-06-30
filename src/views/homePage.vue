@@ -608,7 +608,6 @@
                         </blockquote>
                       </li></swiper-slide
                     >
-                    <swiper-slide>Slide 4</swiper-slide>
                   </swiper>
                 </ul>
               </div>
