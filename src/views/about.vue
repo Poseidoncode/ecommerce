@@ -32,14 +32,13 @@
           <h1
             class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
           >
-            Microdosing synth tattooed vexillologist
+            We’re Listening
           </h1>
           <p class="mb-8 leading-relaxed">
-            Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing
-            tousled. Chambray dreamcatcher trust fund, kitsch vice godard
-            disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh.
-            Pour-over meditation PBR&B pickled ennui celiac mlkshk freegan photo
-            booth af fingerstache pitchfork.
+            We’re here to help you find and buy the perfect luxury watch that
+            you’ve been looking for. We do our part by purchasing luxury watches
+            directly from all around the world to provide you with the lowest
+            cost, but still best quality of watches for all of our customers.
           </p>
         </div>
       </div>
@@ -51,8 +50,16 @@
           class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12"
         >
           <div class="md:5/12 lg:w-5/12">
-            <img
+            <!-- <img
               src="https://tailus.io/sources/blocks/left-image/preview/images/startup.png"
+              alt="image"
+              loading="lazy"
+              width=""
+              height=""
+            /> -->
+            <img
+              class="rounded-lg"
+              src="https://images.unsplash.com/photo-1519153017650-55aad829d4e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               alt="image"
               loading="lazy"
               width=""
@@ -61,18 +68,20 @@
           </div>
           <div class="md:7/12 lg:w-6/12">
             <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">
-              Nuxt development is carried out by passionate developers
+              Finest Authentic Products
             </h2>
             <p class="mt-6 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum
-              omnis voluptatem accusantium nemo perspiciatis delectus atque
-              autem! Voluptatum tenetur beatae unde aperiam, repellat expedita
-              consequatur! Officiis id consequatur atque doloremque!
+              Vigilero are authorised dealers of every single product on all of
+              our sites, which means you can be assured that every item is a
+              genuine, authentic product direct from the manufacturer, and will
+              be sold with the same relevant warranties, booklets and packaging
+              as if purchasing from the high street.
             </p>
             <p class="mt-4 text-gray-600">
-              Nobis minus voluptatibus pariatur dignissimos libero quaerat iure
-              expedita at? Asperiores nemo possimus nesciunt dicta veniam
-              aspernatur quam mollitia.
+              All of our watch ranges have been carefully selected from our
+              experienced buying team, meaning that every category has the most
+              beautiful, relevant and respected timepieces available in the
+              world.
             </p>
           </div>
         </div>
@@ -87,26 +96,30 @@
           >
             <img
               class="absolute inset-0 object-cover w-full h-full"
-              src="https://www.hyperui.dev/photos/man-1.jpeg"
+              src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               alt="Man using a computer"
             />
           </div>
 
           <div class="lg:py-24">
-            <h2 class="text-3xl font-bold sm:text-4xl">Grow your audience</h2>
+            <h2 class="text-3xl font-bold sm:text-4xl">
+              Premier Customer Service
+            </h2>
 
             <p class="mt-4 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui
-              hic atque tenetur quis eius quos ea neque sunt, accusantium soluta
-              minus veniam tempora deserunt? Molestiae eius quidem quam
-              repellat.
+              One of the points that make Vigilero unique in the world of
+              on-line trading is our commitment to providing the best shopping
+              experience, combined with a level of customer service and support
+              that is unrivalled.Unlike many other online companies, our
+              customer service department is employed directly by T H Baker, and
+              not outsourced.
             </p>
 
             <a
-              class="inline-flex items-center px-8 py-3 mt-8 text-white bg-indigo-600 border border-indigo-600 rounded hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring"
+              class="inline-flex items-center px-8 py-3 mt-8 text-white bg-blue-600 border border-blue-600 rounded hover:bg-transparent hover:text-blue-600 active:text-blue-500 focus:outline-none focus:ring"
               href="/get-started"
             >
-              <span class="text-sm font-medium"> Get Started </span>
+              <span class="text-sm font-medium"> Shop </span>
 
               <svg
                 class="w-5 h-5 ml-3"
