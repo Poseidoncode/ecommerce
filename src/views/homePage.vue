@@ -5,20 +5,16 @@
         <div
           class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24"
         >
-          <div
-            class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8"
-          >
+          <div class="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
             <h1 class="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">
               Luxury
             </h1>
-            <h2
-              class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2"
-            >
+            <h2 class="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">
               Watches : The Timeless Infinity
             </h2>
             <p class="text-sm md:text-base text-gray-50 mb-4">
-              Explore your favourite events and register now to showcase your
-              talent and win exciting prizes.
+              Explore your favourite events and register now to showcase your talent and
+              win exciting prizes.
             </p>
             <a
               href="#"
@@ -60,9 +56,9 @@
           <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
             <div class="px-10 max-w-xl">
               <h2 class="text-2xl text-white font-semibold">High Precision</h2>
-              <p class="mt-2 text-gray-400">
-                The ultimate reference in luxury chronograph watches,
-                high-precision timing innovations since 1860.
+              <p class="mt-2 text-gray-300">
+                The ultimate reference in luxury chronograph watches, high-precision
+                timing innovations since 1860.
               </p>
               <button
                 class="flex items-center mt-4 px-3 py-2 bg-blue-800 text-white text-sm uppercase font-medium rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
@@ -94,9 +90,9 @@
             <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
               <div class="px-10 max-w-xl">
                 <h2 class="text-2xl text-white font-semibold">Luxury</h2>
-                <p class="mt-2 text-gray-400">
-                  Swiss luxury watch and clock manufacturer founded in 1839,
-                  located in Canton of Geneva and the Vallée de Joux.
+                <p class="mt-2 text-gray-300">
+                  Swiss luxury watch and clock manufacturer founded in 1839, located in
+                  Canton of Geneva and the Vallée de Joux.
                 </p>
                 <button
                   class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
@@ -127,9 +123,9 @@
             <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
               <div class="px-10 max-w-xl">
                 <h2 class="text-2xl text-white font-semibold">Aesthetic</h2>
-                <p class="mt-2 text-gray-400">
-                  Its ability to endure the challenges of time and embraces its
-                  simple purpose and aesthetic appeal.
+                <p class="mt-2 text-gray-300">
+                  Its ability to endure the challenges of time and embraces its simple
+                  purpose and aesthetic appeal.
                 </p>
                 <button
                   class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
@@ -152,9 +148,56 @@
             </div>
           </div>
         </div>
-        <div class="mt-16 swiper-container">
-          <div class="swiper-arrow arrow-previous">123</div>
-          <div class="swiper-arrow arrow-next">456</div>
+        <h1
+          class="heading-line text-4xl font-semibold leading-9 text-center text-gray-800 dark:text-gray-50 my-10"
+        >
+          <span>FEATURED WATCHES</span>
+        </h1>
+        <div class="swiper-container">
+          <div class="swiper-arrow arrow-previous">
+            <div class="ball">
+              <div class="arrow-left">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 11.5C6.72386 11.5 6.5 11.7239 6.5 12C6.5 12.2761 6.72386 12.5 7 12.5V11.5ZM21 12.5C21.2761 12.5 21.5 12.2761 21.5 12C21.5 11.7239 21.2761 11.5 21 11.5V12.5ZM7 12.5H21V11.5H7V12.5Z"
+                    fill="#F9F9F9"
+                  />
+                  <path
+                    d="M2.35729 11.7856L5.7884 9.72696C6.32162 9.40703 7 9.79112 7 10.413V13.587C7 14.2089 6.32162 14.593 5.7884 14.273L2.35729 12.2144C2.19545 12.1173 2.19545 11.8827 2.35729 11.7856Z"
+                    fill="#F9F9F9"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-arrow arrow-next">
+            <div class="ball">
+              <div class="arrow-right">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17 11.5C17.2761 11.5 17.5 11.7239 17.5 12C17.5 12.2761 17.2761 12.5 17 12.5V11.5ZM3 12.5C2.72386 12.5 2.5 12.2761 2.5 12C2.5 11.7239 2.72386 11.5 3 11.5V12.5ZM17 12.5H3V11.5H17V12.5Z"
+                    fill="#F9F9F9"
+                  />
+                  <path
+                    d="M21.6427 11.7856L18.2116 9.72696C17.6784 9.40703 17 9.79112 17 10.413V13.587C17 14.2089 17.6784 14.593 18.2116 14.273L21.6427 12.2144C21.8045 12.1173 21.8045 11.8827 21.6427 11.7856Z"
+                    fill="#F9F9F9"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
 
           <swiper
             ref="{swiperRef}"
@@ -207,20 +250,11 @@
               delay: 3000,
             }"
           >
-            <swiper-slide
-              v-for="(itemCat, i) in itemsClassic"
-              :key="`itemCat${i}`"
-            >
-              <div
-                class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
-              >
+            <swiper-slide v-for="(itemCat, i) in itemsClassic" :key="`itemCat${i}`">
+              <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
                 <div
                   class="h-56 w-full product-background"
-                  :style="
-                    itemCat.imageUrl
-                      ? `background:url(${itemCat.imageUrl})`
-                      : ''
-                  "
+                  :style="itemCat.imageUrl ? `background:url(${itemCat.imageUrl})` : ''"
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -261,8 +295,8 @@
       <section class="allcoupons" @click="copyCoupon">
         <div class="word-one">25% Off on All products at Vigilero Stores</div>
         <p class="word-two mb-8">
-          Get an incredible 25% discount on all types of watches at Vigilero
-          Store. Only for single use.
+          Get an incredible 25% discount on all types of watches at Vigilero Store. Only
+          for single use.
         </p>
 
         <div className="coupon-item">
@@ -282,7 +316,7 @@
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
-            class="inline-block w-8 h-8 text-gray-400 mb-8"
+            class="inline-block w-8 h-8 text-gray-300 mb-8"
             viewBox="0 0 975.036 975.036"
           >
             <path
@@ -326,9 +360,8 @@
               </h2>
 
               <p class="mt-4 text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Voluptas veritatis illo placeat harum porro optio fugit a culpa
-                sunt id!
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
+                veritatis illo placeat harum porro optio fugit a culpa sunt id!
               </p>
 
               <div class="hidden lg:mt-8 lg:flex lg:gap-4">
@@ -467,18 +500,15 @@
                             </div>
 
                             <div class="mt-4">
-                              <p
-                                class="text-2xl font-bold text-pink-600 sm:text-3xl"
-                              >
+                              <p class="text-2xl font-bold text-pink-600 sm:text-3xl">
                                 Stayin' Alive
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
-                                No, Rose, they are not breathing. And they have
-                                no arms or legs … Where are they? You know what?
-                                If we come across somebody with no arms or legs,
-                                do we bother resuscitating them? I mean, what
-                                quality of life do we have there?
+                                No, Rose, they are not breathing. And they have no arms or
+                                legs … Where are they? You know what? If we come across
+                                somebody with no arms or legs, do we bother resuscitating
+                                them? I mean, what quality of life do we have there?
                               </p>
                             </div>
                           </div>
@@ -553,18 +583,15 @@
                             </div>
 
                             <div class="mt-4">
-                              <p
-                                class="text-2xl font-bold text-pink-600 sm:text-3xl"
-                              >
+                              <p class="text-2xl font-bold text-pink-600 sm:text-3xl">
                                 Stayin' Alive
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
-                                No, Rose, they are not breathing. And they have
-                                no arms or legs … Where are they? You know what?
-                                If we come across somebody with no arms or legs,
-                                do we bother resuscitating them? I mean, what
-                                quality of life do we have there?
+                                No, Rose, they are not breathing. And they have no arms or
+                                legs … Where are they? You know what? If we come across
+                                somebody with no arms or legs, do we bother resuscitating
+                                them? I mean, what quality of life do we have there?
                               </p>
                             </div>
                           </div>
@@ -639,18 +666,15 @@
                             </div>
 
                             <div class="mt-4">
-                              <p
-                                class="text-2xl font-bold text-pink-600 sm:text-3xl"
-                              >
+                              <p class="text-2xl font-bold text-pink-600 sm:text-3xl">
                                 Stayin' Alive
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
-                                No, Rose, they are not breathing. And they have
-                                no arms or legs … Where are they? You know what?
-                                If we come across somebody with no arms or legs,
-                                do we bother resuscitating them? I mean, what
-                                quality of life do we have there?
+                                No, Rose, they are not breathing. And they have no arms or
+                                legs … Where are they? You know what? If we come across
+                                somebody with no arms or legs, do we bother resuscitating
+                                them? I mean, what quality of life do we have there?
                               </p>
                             </div>
                           </div>
@@ -789,9 +813,7 @@ export default {
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find(
-            (s) => s.product_id == item.id
-          );
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
 
           obj = {
             product_id: productData.product_id,
@@ -1007,9 +1029,56 @@ $coupon-radius-size: 12px;
   }
   .arrow-previous {
     left: 0;
+
+    .ball {
+      width: 3.25em;
+      height: 3.25em;
+      border-radius: 100%;
+      background-color: #23314b;
+      position: relative;
+      transition: all 0.7s;
+      cursor: pointer;
+      .arrow-left {
+        position: absolute;
+        top: 50%;
+        right: -15px;
+        transform: translate(0%, -50%);
+        transition: all 0.7s;
+      }
+
+      &:hover {
+        transform: scale(1.08);
+        .arrow-left {
+          transform: translate(-15%, -50%);
+        }
+      }
+    }
   }
   .arrow-next {
     right: 0;
+    .ball {
+      width: 3.25em;
+      height: 3.25em;
+      border-radius: 100%;
+      background-color: #23314b;
+      position: relative;
+      transition: all 0.7s;
+      cursor: pointer;
+      .arrow-right {
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translate(0%, -50%);
+        transition: all 0.7s;
+      }
+
+      &:hover {
+        transform: scale(1.08);
+        .arrow-right {
+          transform: translate(15%, -50%);
+        }
+      }
+    }
   }
   .product-slide {
     .product-background {

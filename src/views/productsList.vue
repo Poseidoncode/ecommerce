@@ -94,9 +94,7 @@
 
             <aside class="border-t border-gray-200 lg:border-t-0">
               <fieldset>
-                <legend
-                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-                >
+                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
                   Type
                 </legend>
 
@@ -123,22 +121,16 @@
               </fieldset>
 
               <fieldset>
-                <legend
-                  class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-                >
+                <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
                   Price
                 </legend>
               </fieldset>
               <div class="px-5 py-6 space-y-2">
-                <h5>
-                  Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}
-                </h5>
+                <h5>Range: {{ searchData.price[0] }} ╴{{ searchData.price[1] }}</h5>
                 <Slider v-model="searchData.price" :range="true" :max="1700" />
               </div>
 
-              <div
-                class="flex justify-between px-5 py-3 border-t border-gray-200"
-              >
+              <div class="flex justify-between px-5 py-3 border-t border-gray-200">
                 <button
                   name="reset"
                   type="button"
@@ -164,9 +156,7 @@
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
         <div class="mt-12">
           <h1 class="text-3xl font-bold">Recommended For You</h1>
-          <div
-            class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
-          >
+          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
             <div
               href="#"
               v-for="(item, idx) in items"
@@ -183,9 +173,7 @@
                 </div> -->
                 <div
                   class="h-56 w-full product-background"
-                  :style="
-                    item.imageUrl ? `background:url(${item.imageUrl})` : ''
-                  "
+                  :style="item.imageUrl ? `background:url(${item.imageUrl})` : ''"
                 >
                   <button
                     class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -206,23 +194,32 @@
                     </svg>
                   </button>
                   <div class="item-hover">
-                    <div
-                      class="item-hover-content"
-                      @click.prevent="showDetail(item)"
-                    >
-                      Detail
+                    <div class="item-hover-content" @click.prevent="showDetail(item)">
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle cx="11" cy="11" r="6" stroke="#FFF" />
+                        <path
+                          d="M11 8C10.606 8 10.2159 8.0776 9.85195 8.22836C9.48797 8.37913 9.15726 8.6001 8.87868 8.87868C8.6001 9.15726 8.37913 9.48797 8.22836 9.85195C8.0776 10.2159 8 10.606 8 11"
+                          stroke="#FFF"
+                          stroke-linecap="round"
+                        />
+                        <path d="M20 20L17 17" stroke="#FFF" stroke-linecap="round" />
+                      </svg>
                     </div>
                     <button
                       @click.stop="addToFavorite(item)"
                       class="focus:outline-none mx-8 sm:mx-0 item-hover-content item-hover-content2"
                     >
                       <svg
-                        class="h-6 w-6"
+                        class="h-7 w-7"
                         :fill="item.isFavorProduct ? '#FCD34D' : 'none'"
                         viewBox="0 0 24 24"
-                        :stroke="
-                          item.isFavorProduct ? '#FCD34D' : 'currentColor'
-                        "
+                        :stroke="item.isFavorProduct ? '#FCD34D' : 'currentColor'"
                       >
                         <path
                           stroke-linecap="round"
@@ -236,9 +233,7 @@
                 </div>
                 <div class="p-6 pt-1">
                   <div class="text-sm">
-                    <h4
-                      class="font-bold text-base text-center theme-color-main"
-                    >
+                    <h4 class="font-bold text-base text-center theme-color-main">
                       {{ item.category || "" }}
                     </h4>
                     <h3 class="font-bold text-base text-center">
@@ -404,9 +399,7 @@ export default defineComponent({
         });
       } else {
         dataFavorArr = JSON.parse(localStorage.getItem("favorData"));
-        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id)
-          ? true
-          : false;
+        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id) ? true : false;
 
         if (isExistThisFavorite) {
           dataFavorArr = dataFavorArr.filter((s) => s != item.id);
@@ -436,9 +429,7 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find(
-            (s) => s.product_id == item.id
-          );
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
 
           obj = {
             product_id: productData.product_id,
@@ -583,7 +574,7 @@ export default defineComponent({
         position: absolute;
         color: #fff;
         top: 50%;
-        left: 35%;
+        left: 37%;
         // text-decoration: underline;
         transform: translate(-50%, -35%);
         font-size: 26px;
@@ -591,6 +582,7 @@ export default defineComponent({
       }
       .item-hover-content2 {
         left: 65%;
+        top: 47.2%;
         transform: translateX(-65%);
       }
     }
