@@ -153,6 +153,80 @@
           </div>
         </div>
         <div class="mt-16">
+          <swiper
+            ref="{swiperRef}"
+            :loop="true"
+            :slidesPerView="1"
+            :centeredSlides="true"
+            :spaceBetween="30"
+            :autoplay="{
+              delay: 8000,
+            }"
+            :breakpoints="{
+              640: {
+                centeredSlides: true,
+                slidesPerView: 1.25,
+              },
+              1024: {
+                centeredSlides: false,
+                slidesPerView: 1.5,
+              },
+            }"
+            :navigation="{
+              nextEl: '.next-button',
+              prevEl: '.prev-button',
+            }"
+            :modules="modules"
+            class="mySwiper"
+          >
+            <swiper-slide
+              v-for="(itemCat, i) in itemsClassic.slice(0, 4)"
+              :key="`itemCat${i}`"
+            >
+              <div
+                class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
+              >
+                <div
+                  class="h-56 w-full product-background"
+                  :style="
+                    itemCat.imageUrl
+                      ? `background:url(${itemCat.imageUrl})`
+                      : ''
+                  "
+                >
+                  <button
+                    class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
+                    @click.prevent="addToCart(itemCat)"
+                  >
+                    <svg
+                      class="h-5 w-5"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <div class="itemCat-hover">
+                    <div class="itemCat-hover-content">More</div>
+                  </div>
+                </div>
+                <div class="px-5 py-3 mt-2">
+                  <h3 class="uppercase text-center theme-color7">
+                    {{ itemCat.title || "" }}
+                  </h3>
+                  <h4 class="text-black-500 mt-2 text-center theme-color7">
+                    ${{ itemCat.price }}
+                  </h4>
+                </div>
+              </div>
+            </swiper-slide>
+          </swiper>
           <h3 class="text-2xl font-medium text-center theme-color-main">
             Classic
           </h3>
@@ -162,7 +236,7 @@
             <div
               class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
               v-for="(itemCat, i) in itemsClassic.slice(0, 4)"
-              :key="`itemCat${i}`"
+              :key="`itemCat2${i}`"
             >
               <div
                 class="h-56 w-full product-background"
