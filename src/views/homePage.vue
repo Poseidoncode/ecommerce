@@ -274,11 +274,11 @@
                       ></path>
                     </svg>
                   </button>
-                  <div class="itemCat-hover">
-                    <div
-                      class="itemCat-hover-content cursor-pointer"
-                      @click.prevent="showDetail(itemCat)"
-                    >
+                  <div
+                    class="itemCat-hover cursor-pointer"
+                    @click.prevent="showDetail(itemCat)"
+                  >
+                    <div class="itemCat-hover-content">
                       <svg
                         width="36"
                         height="36"
@@ -1112,7 +1112,8 @@ $coupon-radius-size: 12px;
           display: block;
           width: 100% !important;
           height: 100%;
-          background: rgba(0, 0, 0, 0.5);
+          // background: rgba(0, 0, 0, 0.5);
+          background: rgba(22, 22, 22, 0.295);
           position: relative;
 
           .itemCat-hover-content {
