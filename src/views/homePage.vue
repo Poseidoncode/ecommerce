@@ -152,35 +152,63 @@
             </div>
           </div>
         </div>
-        <div class="mt-16">
+        <div class="mt-16 swiper-container">
+          <div class="swiper-arrow arrow-previous">123</div>
+          <div class="swiper-arrow arrow-next">456</div>
+
           <swiper
             ref="{swiperRef}"
-            :loop="true"
+            :mousewheel="{
+              invert: true,
+            }"
             :slidesPerView="1"
-            :centeredSlides="true"
             :spaceBetween="30"
-            :autoplay="{
-              delay: 8000,
-            }"
-            :breakpoints="{
-              640: {
-                centeredSlides: true,
-                slidesPerView: 1.25,
-              },
-              1024: {
-                centeredSlides: false,
-                slidesPerView: 1.5,
-              },
-            }"
+            :loop="true"
+            :speed="1200"
+            :centeredSlides="true"
+            :lazy="true"
             :navigation="{
-              nextEl: '.next-button',
-              prevEl: '.prev-button',
+              nextEl: '.arrow-next',
+              prevEl: '.arrow-previous',
             }"
-            :modules="modules"
-            class="mySwiper"
+            :initialSlide="3"
+            :keyboard="{
+              enabled: true,
+            }"
+            class="product-slide"
+            :breakpoints="{
+              0: {
+                /* when window >=0px - webflow mobile portriat */
+                slidesPerView: 1.5,
+                spaceBetween: 15,
+              },
+              478: {
+                /* when window >= 478px - webflow mobile landscape */
+                slidesPerView: 3,
+                spaceBetween: 15,
+              },
+              767: {
+                /* when window >= 767px - webflow tablet */ slidesPerView: 2.25,
+                spaceBetween: 30,
+              },
+              988: {
+                /* when window >= 988px - webflow desktop */
+                slidesPerView: 4.25,
+                spaceBetween: 50,
+              },
+              1920: {
+                /* when window >= 988px - webflow desktop */
+                slidesPerView: 5.25,
+                spaceBetween: 50,
+              },
+            }"
+            :modules="modules2"
+            :scrollbar="{
+              delay: 3000,
+            }"
           >
             <swiper-slide
-              v-for="(itemCat, i) in itemsClassic.slice(0, 4)"
+              v-for="(itemCat, i) in itemsClassic"
               :key="`itemCat${i}`"
             >
               <div
@@ -227,55 +255,6 @@
               </div>
             </swiper-slide>
           </swiper>
-          <h3 class="text-2xl font-medium text-center theme-color-main">
-            Classic
-          </h3>
-          <div
-            class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
-          >
-            <div
-              class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
-              v-for="(itemCat, i) in itemsClassic.slice(0, 4)"
-              :key="`itemCat2${i}`"
-            >
-              <div
-                class="h-56 w-full product-background"
-                :style="
-                  itemCat.imageUrl ? `background:url(${itemCat.imageUrl})` : ''
-                "
-              >
-                <button
-                  class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
-                  @click.prevent="addToCart(itemCat)"
-                >
-                  <svg
-                    class="h-5 w-5"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    ></path>
-                  </svg>
-                </button>
-                <div class="itemCat-hover">
-                  <div class="itemCat-hover-content">More</div>
-                </div>
-              </div>
-              <div class="px-5 py-3 mt-2">
-                <h3 class="uppercase text-center theme-color7">
-                  {{ itemCat.title || "" }}
-                </h3>
-                <h4 class="text-black-500 mt-2 text-center theme-color7">
-                  ${{ itemCat.price }}
-                </h4>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <!-- coupon -->
@@ -755,9 +734,12 @@ import "swiper/css";
 
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import "swiper/css/keyboard";
+import "swiper/css/mousewheel";
 
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import { Keyboard, Autoplay, Mousewheel, Pagination, Navigation } from "swiper";
 export default {
   components: {
     Swiper,
@@ -868,6 +850,7 @@ export default {
       addToCart,
       copyCoupon,
       modules: [Pagination, Navigation],
+      modules2: [Keyboard, Mousewheel, Pagination, Navigation],
     };
   },
 };
@@ -1014,36 +997,52 @@ $coupon-radius-size: 12px;
 .itemCat-hover {
   display: none;
 }
-
-.product-background {
-  background-size: contain !important;
-  background-repeat: no-repeat no-repeat !important;
-  background-position: center !important;
+.swiper-container {
   position: relative;
-
-  .cart-btn {
+  .swiper-arrow {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
+    top: 50%;
+    transform: translate(0%, -50%);
+    z-index: 2;
   }
-
-  &:hover {
-    .itemCat-hover {
-      display: block;
-      width: 100% !important;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+  .arrow-previous {
+    left: 0;
+  }
+  .arrow-next {
+    right: 0;
+  }
+  .product-slide {
+    .product-background {
+      background-size: contain !important;
+      background-repeat: no-repeat no-repeat !important;
+      background-position: center !important;
       position: relative;
 
-      .itemCat-hover-content {
+      .cart-btn {
         position: absolute;
-        color: #fff;
-        top: 50%;
-        left: 50%;
-        text-decoration: underline;
-        transform: translate(-50%, -50%);
-        font-size: 26px;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      &:hover {
+        .itemCat-hover {
+          display: block;
+          width: 100% !important;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          position: relative;
+
+          .itemCat-hover-content {
+            position: absolute;
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            text-decoration: underline;
+            transform: translate(-50%, -50%);
+            font-size: 26px;
+          }
+        }
       }
     }
   }
