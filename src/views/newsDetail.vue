@@ -96,22 +96,11 @@
 
       <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
         <div class="specifications-content" v-html="news.contentreplace"></div>
-        <!-- <p>
-          What if there is an easy way to achieve responsive UI without using any UI kit?
-          Can we create new and fresh designs for every project with a CSS framework?
-          Enter Tailwind CSS, will this be the perfect CSS framework, well let’s find out.
-        </p>
-        <p>
-          Tailwind is a utility-first CSS framework, the keyword being ‘utility’. It is
-          basically a set of classes that you can use in your HTML.
-        </p>
-
-        <p>
-          Therefore, we don’t have to write any custom CSS to get this button. This can be
-          heavily extended to build whole web applications without the need for any other
-          styles apart from a tailwind.
-        </p>
-        <p>...</p> -->
+        <span class="tage-data" v-for="(itemtag, it) in news.tag" :key="`articles${it}`">
+          <span class="cursor-pointer" @click="editTag(itemtag, 2)"
+            >&nbsp;#{{ itemtag }}&nbsp;&nbsp;&nbsp;</span
+          >
+        </span>
       </div>
     </article>
   </div>
@@ -138,9 +127,7 @@ export default defineComponent({
         console.log(res);
         let obj = { ...res.data?.article };
         console.log("obj", obj);
-        obj.timeforshow = dayjs(new Date(+obj.create_at)).format(
-          "YYYY/MM/DD HH:mm:ss"
-        );
+        obj.timeforshow = dayjs(new Date(+obj.create_at)).format("YYYY/MM/DD HH:mm:ss");
 
         obj.contentreplace = obj.content.replace(/\n/g, "<br>");
 
