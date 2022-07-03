@@ -58,7 +58,7 @@
               <h2 class="text-2xl text-white font-semibold">High Precision</h2>
               <p class="mt-2 text-gray-300">
                 The ultimate reference in luxury chronograph watches, high-precision
-                timing innovations since 1860.
+                timing innovations since 1960.
               </p>
               <button
                 class="flex items-center mt-4 px-3 py-2 bg-blue-800 text-white text-sm uppercase font-medium rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
@@ -80,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="md:flex mt-8 md:-mx-4">
+        <div class="md:flex mt-8 md:-mx-4 mb-12">
           <div
             class="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2"
             style="
@@ -149,11 +149,11 @@
           </div>
         </div>
         <h1
-          class="heading-line text-4xl font-semibold leading-9 text-center text-gray-800 dark:text-gray-50 my-10"
+          class="heading-line font-semibold leading-9 text-center dark:text-gray-50 theme-color-main"
         >
-          <span>FEATURED WATCHES</span>
+          <span style="font-size: 24px">FEATURED WATCHES</span>
         </h1>
-        <div class="swiper-container">
+        <div class="swiper-container mb-12">
           <div class="swiper-arrow arrow-previous">
             <div class="ball">
               <div class="arrow-left">
@@ -310,42 +310,15 @@
           <div className="allcoupon-value">25% Off</div>
         </div>
       </section>
+      <div class="container mx-auto mt-10">
+        <h1
+          class="heading-line font-semibold leading-9 text-center dark:text-gray-50 theme-color-main"
+        >
+          <span style="font-size: 24px">Vigilero Reviews</span>
+        </h1>
+      </div>
 
-      <!-- <section class="text-gray-600 body-font">
-        <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="inline-block w-8 h-8 text-gray-300 mb-8"
-            viewBox="0 0 975.036 975.036"
-          >
-            <path
-              d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"
-            ></path>
-          </svg>
-          <p class="leading-relaxed text-lg">
-            Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
-            taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman
-            taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid
-            fanny pack vaporware. Man bun next level coloring book skateboard
-            four loko knausgaard. Kitsch keffiyeh master cleanse direct trade
-            indigo juice before they sold out gentrify plaid gastropub normcore
-            XOXO 90's pickled cindigo jean shorts. Slow-carb next level
-            shoindigoitch ethical authentic, yr scenester sriracha forage
-            franzen organic drinking vinegar.
-          </p>
-          <span
-            class="inline-block h-1 w-10 rounded bg-blue-500 mt-8 mb-6"
-          ></span>
-          <h2
-            class="text-gray-900 font-medium title-font tracking-wider text-sm"
-          >
-            HOLDEN CAULFIELD
-          </h2>
-          <p class="text-gray-500">Senior Product Designer</p>
-        </div>
-      </section> -->
-      <section class="bg-gray-100">
+      <section class="bg-gray-100" style="background: #f0f1f5">
         <div
           class="px-4 py-16 mx-auto sm:px-6 lg:pl-8 lg:pr-0 lg:mr-0 sm:py-24 max-w-[1340px]"
         >
@@ -353,21 +326,23 @@
             class="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-16 gap-y-8 lg:items-center"
           >
             <div class="max-w-xl text-center sm:text-left">
-              <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-                Don't just take our word for it...
+              <h2 class="text-3xl font-bold tracking-tight sm:text-4xl theme-color-main">
+                <!-- Time to be Different -->
+                VIGILERO REVIEWS
                 <br class="hidden sm:block lg:hidden" />
-                Read reviews from our customers
+                <!-- Read reviews from our customers -->
               </h2>
 
               <p class="mt-4 text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
-                veritatis illo placeat harum porro optio fugit a culpa sunt id!
+                Vigilero has a consumer rating of 4.8 stars from 16 reviews indicating
+                that most customers are generally satisfied with their purchases. Vigilero
+                ranks 49th among Watch sites.
               </p>
 
               <div class="hidden lg:mt-8 lg:flex lg:gap-4">
                 <button
                   aria-label="Previous slide"
-                  class="p-3 text-pink-600 border border-pink-600 rounded-full hover:bg-pink-600 hover:text-white prev-button"
+                  class="p-3 review-text2 border review rounded-full hover:text-white prev-button"
                 >
                   <svg
                     class="w-5 h-5 transform -rotate-180"
@@ -387,7 +362,7 @@
 
                 <button
                   aria-label="Next slide"
-                  class="p-3 text-pink-600 border border-pink-600 rounded-full hover:bg-pink-600 hover:text-white next-button"
+                  class="p-3 review-text2 border review rounded-full hover:text-white next-button"
                 >
                   <svg
                     class="w-5 h-5"
@@ -442,7 +417,7 @@
                           class="flex flex-col justify-between h-full p-12 bg-white"
                         >
                           <div>
-                            <div class="flex gap-0.5 text-green-500">
+                            <div class="flex gap-0.5 theme-color8">
                               <svg
                                 class="w-5 h-5"
                                 fill="currentColor"
@@ -500,21 +475,25 @@
                             </div>
 
                             <div class="mt-4">
-                              <p class="text-2xl font-bold text-pink-600 sm:text-3xl">
-                                Stayin' Alive
+                              <p class="text-2xl font-bold review-text sm:text-3xl">
+                                David L
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
-                                No, Rose, they are not breathing. And they have no arms or
-                                legs … Where are they? You know what? If we come across
-                                somebody with no arms or legs, do we bother resuscitating
-                                them? I mean, what quality of life do we have there?
+                                I really like shopping at your website because I have
+                                purchased three SiSU watches and really like two of them
+                                but never wear the second one because my wrist is way to
+                                small and I even went to a watch place to have them remove
+                                a link but it's still too big.
                               </p>
                             </div>
                           </div>
 
-                          <footer class="mt-8 text-sm text-gray-500">
-                            &mdash; Michael Scott
+                          <footer
+                            class="mt-8 text-sm text-gray-500"
+                            style="text-align: end"
+                          >
+                            &mdash; Posted 3 days ago
                           </footer>
                         </blockquote>
                       </li></swiper-slide
@@ -525,7 +504,7 @@
                           class="flex flex-col justify-between h-full p-12 bg-white"
                         >
                           <div>
-                            <div class="flex gap-0.5 text-green-500">
+                            <div class="flex gap-0.5 theme-color8">
                               <svg
                                 class="w-5 h-5"
                                 fill="currentColor"
@@ -583,21 +562,24 @@
                             </div>
 
                             <div class="mt-4">
-                              <p class="text-2xl font-bold text-pink-600 sm:text-3xl">
-                                Stayin' Alive
+                              <p class="text-2xl font-bold review-text sm:text-3xl">
+                                Nixon watch
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
-                                No, Rose, they are not breathing. And they have no arms or
-                                legs … Where are they? You know what? If we come across
-                                somebody with no arms or legs, do we bother resuscitating
-                                them? I mean, what quality of life do we have there?
+                                Best service I received in a long time postal to ireland
+                                was super speedy watch was so beautiful as described
+                                highly recommend Vigilero will purchase again from this
+                                seller thank you for your wonderful service regards eddie
                               </p>
                             </div>
                           </div>
 
-                          <footer class="mt-8 text-sm text-gray-500">
-                            &mdash; Michael Scott
+                          <footer
+                            class="mt-8 text-sm text-gray-500"
+                            style="text-align: end"
+                          >
+                            &mdash; Posted 4 days ago
                           </footer>
                         </blockquote>
                       </li></swiper-slide
@@ -608,7 +590,7 @@
                           class="flex flex-col justify-between h-full p-12 bg-white"
                         >
                           <div>
-                            <div class="flex gap-0.5 text-green-500">
+                            <div class="flex gap-0.5 theme-color8">
                               <svg
                                 class="w-5 h-5"
                                 fill="currentColor"
@@ -666,21 +648,23 @@
                             </div>
 
                             <div class="mt-4">
-                              <p class="text-2xl font-bold text-pink-600 sm:text-3xl">
-                                Stayin' Alive
+                              <p class="text-2xl font-bold review-text sm:text-3xl">
+                                Christian M
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
-                                No, Rose, they are not breathing. And they have no arms or
-                                legs … Where are they? You know what? If we come across
-                                somebody with no arms or legs, do we bother resuscitating
-                                them? I mean, what quality of life do we have there?
+                                Great selection and prices. These are interesting watches.
+                                They aren't the most precise or collectable, but they are
+                                the coolest.
                               </p>
                             </div>
                           </div>
 
-                          <footer class="mt-8 text-sm text-gray-500">
-                            &mdash; Michael Scott
+                          <footer
+                            class="mt-8 text-sm text-gray-500"
+                            style="text-align: end"
+                          >
+                            &mdash; Posted 5 days ago
                           </footer>
                         </blockquote>
                       </li></swiper-slide
@@ -694,7 +678,7 @@
           <div class="flex justify-center gap-4 mt-8 lg:hidden">
             <button
               aria-label="Previous slide"
-              class="p-4 text-pink-600 border border-pink-600 rounded-full hover:bg-pink-600 hover:text-white prev-button"
+              class="p-4 review-text2 border review rounded-full hover:text-white prev-button"
             >
               <svg
                 class="w-5 h-5 transform -rotate-180"
@@ -714,7 +698,7 @@
 
             <button
               aria-label="Next slide"
-              class="p-4 text-pink-600 border border-pink-600 rounded-full hover:bg-pink-600 hover:text-white next-button"
+              class="p-4 review-text2 border review rounded-full hover:text-white next-button"
             >
               <svg
                 class="w-5 h-5"
@@ -1114,6 +1098,24 @@ $coupon-radius-size: 12px;
         }
       }
     }
+  }
+}
+.review {
+  border-color: #8bc5f0;
+  color: #8bc5f0;
+}
+.review-text {
+  color: #8bc5f0;
+  &:hover {
+    // background-color: #8bc5f0;
+    // color: #e7e9f0;
+  }
+}
+.review-text2 {
+  color: #8bc5f0;
+  &:hover {
+    background-color: #8bc5f0;
+    color: #e7e9f0;
   }
 }
 </style>

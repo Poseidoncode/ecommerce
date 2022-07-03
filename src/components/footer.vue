@@ -21,15 +21,12 @@
               />
             </svg>
 
-            <h1
-              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
-            >
-              Default Taiwindcss Config
+            <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+              Up to 4 Years Interest Free Credit
             </h1>
 
             <p class="mt-2 text-gray-500 dark:text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim
-              fusce tortor, ac sed malesuada blandit. Et mi gravida sem feugiat.
+              0% APR Representative. T&Cs Apply
             </p>
           </div>
 
@@ -49,15 +46,12 @@
               />
             </svg>
 
-            <h1
-              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
-            >
-              Fully Responsive Components
+            <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+              Free Next Day Delivery Until 9PM
             </h1>
 
             <p class="mt-2 text-gray-500 dark:text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim
-              fusce tortor, ac sed malesuada blandit. Et mi gravida sem feugiat.
+              Monday - Sunday Nationwide
             </p>
           </div>
 
@@ -92,15 +86,12 @@
               </defs>
             </svg>
 
-            <h1
-              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
-            >
-              RTL Languages Support
+            <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+              Click & Collect Service
             </h1>
 
             <p class="mt-2 text-gray-500 dark:text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim
-              fusce tortor, ac sed malesuada blandit. Et mi gravida sem feugiat.
+              From over 40 Showrooms Nationwide
             </p>
           </div>
         </div>
@@ -149,16 +140,13 @@
               </svg>
             </span>
 
-            <h1
-              class="text-2xl font-semibold text-gray-700 capitalize dark:text-white"
-            >
+            <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
               elegant Dark Mode
             </h1>
 
             <p class="text-gray-500 dark:text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              ab nulla quod dignissimos vel non corrupti doloribus voluptatum
-              eveniet
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla
+              quod dignissimos vel non corrupti doloribus voluptatum eveniet
             </p>
 
             <a
@@ -202,16 +190,13 @@
               </svg>
             </span>
 
-            <h1
-              class="text-2xl font-semibold text-gray-700 capitalize dark:text-white"
-            >
+            <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
               Easy to customiztions
             </h1>
 
             <p class="text-gray-500 dark:text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              ab nulla quod dignissimos vel non corrupti doloribus voluptatum
-              eveniet
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla
+              quod dignissimos vel non corrupti doloribus voluptatum eveniet
             </p>
 
             <a
@@ -255,16 +240,13 @@
               </svg>
             </span>
 
-            <h1
-              class="text-2xl font-semibold text-gray-700 capitalize dark:text-white"
-            >
+            <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
               Simple & clean designs
             </h1>
 
             <p class="text-gray-500 dark:text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              ab nulla quod dignissimos vel non corrupti doloribus voluptatum
-              eveniet
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla
+              quod dignissimos vel non corrupti doloribus voluptatum eveniet
             </p>
 
             <a
@@ -306,9 +288,7 @@
       </div>
     </div>
     <div class="pt-8 bg-gradient-to-b from-gray-100 to-sky-900 md:pt-20">
-      <div
-        class="container m-auto px-6 space-y-8 text-gray-400 md:px-12 lg:px-20"
-      >
+      <div class="container m-auto px-6 space-y-8 text-gray-400 md:px-12 lg:px-20">
         <div>
           <div
             class="mb-6 gap-6 items-center justify-between py-6 sm:flex md:mb-16 md:py-0 md:space-y-6"
@@ -394,9 +374,7 @@
             </div>
           </div>
           <div>
-            <div
-              class="pb-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5"
-            >
+            <div class="pb-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
               <div>
                 <h6 class="text-lg font-medium text-gray-600">Contact</h6>
                 <ul class="list-inside mt-4 space-y-4">
@@ -404,19 +382,13 @@
                     <a href="#" class="hover:text-cyan-400 transition">About</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Customers</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Enterprise</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Partners</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
@@ -430,19 +402,13 @@
                     <a href="#" class="hover:text-cyan-400 transition">About</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Customers</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Enterprise</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Partners</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
@@ -456,19 +422,13 @@
                     <a href="#" class="hover:text-cyan-400 transition">About</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Customers</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Enterprise</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Partners</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
@@ -479,9 +439,7 @@
                 <h6 class="text-lg font-medium text-gray-600">Contact</h6>
                 <ul class="list-inside mt-4 space-y-4">
                   <li>
-                    <a
-                      href="tel:+243996660436"
-                      class="hover:text-cyan-400 transition"
+                    <a href="tel:+243996660436" class="hover:text-cyan-400 transition"
                       >+243 996 660 436</a
                     >
                   </li>
@@ -510,9 +468,7 @@
                           title="Submit"
                           class="absolute right-0 w-max py-3 px-6 text-center rounded-r-xl transition bg-cyan-400 hover:bg-cyan-300 active:bg-cyan-600 focus:bg-cyan-300"
                         >
-                          <span class="text-gray-900 font-semibold">
-                            Send
-                          </span>
+                          <span class="text-gray-900 font-semibold"> Send </span>
                         </button>
                       </div>
                     </form>
@@ -536,8 +492,8 @@
         > -->
         <p class="py-2 text-gray-500 sm:py-0 text-sm">
           <a href="#">
-            Copyright © 2022 Vigilero All rights resevered. Images are for
-            educational use only, no commercial use.
+            Copyright © 2022 Vigilero All rights resevered. Images are for educational use
+            only, no commercial use.
           </a>
         </p>
       </div>
