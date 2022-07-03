@@ -292,7 +292,7 @@
         </div>
       </div>
       <!-- coupon -->
-      <section class="allcoupons" @click="copyCoupon">
+      <section class="allcoupons mt-16" @click="copyCoupon">
         <div class="word-one">25% Off on All products at Vigilero Stores</div>
         <p class="word-two mb-8">
           Get an incredible 25% discount on all types of watches at Vigilero Store. Only
@@ -310,7 +310,7 @@
           <div className="allcoupon-value">25% Off</div>
         </div>
       </section>
-      <div class="container mx-auto mt-10">
+      <div class="container mx-auto mt-16">
         <h1
           class="heading-line font-semibold leading-9 text-center dark:text-gray-50 theme-color-main"
         >
@@ -318,17 +318,16 @@
         </h1>
       </div>
 
-      <section class="bg-gray-100" style="background: #f0f1f5">
-        <div
-          class="px-4 py-16 mx-auto sm:px-6 lg:pl-8 lg:pr-0 lg:mr-0 sm:py-24 max-w-[1340px]"
-        >
+      <section style="background: #fff">
+        <div class="px-4 mx-auto sm:px-6 lg:pl-8 lg:pr-0 lg:mr-0 sm:py-4 max-w-[1340px]">
           <div
             class="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-16 gap-y-8 lg:items-center"
           >
             <div class="max-w-xl text-center sm:text-left">
               <h2 class="text-3xl font-bold tracking-tight sm:text-4xl theme-color-main">
                 <!-- Time to be Different -->
-                VIGILERO REVIEWS
+                Overview
+                <!-- Vigilero Reviews -->
                 <br class="hidden sm:block lg:hidden" />
                 <!-- Read reviews from our customers -->
               </h2>
@@ -386,6 +385,7 @@
               <div class="swiper-container">
                 <ul class="swiper-wrapper">
                   <swiper
+                    class="mySwiper"
                     ref="{swiperRef}"
                     :loop="true"
                     :slidesPerView="1"
@@ -409,10 +409,9 @@
                       prevEl: '.prev-button',
                     }"
                     :modules="modules"
-                    class="mySwiper"
                   >
                     <swiper-slide>
-                      <li class="swiper-slide">
+                      <li class="swiper-slide reviews-swiper">
                         <blockquote
                           class="flex flex-col justify-between h-full p-12 bg-white"
                         >
@@ -476,7 +475,7 @@
 
                             <div class="mt-4">
                               <p class="text-2xl font-bold review-text sm:text-3xl">
-                                David L
+                                David Louis
                               </p>
 
                               <p class="mt-4 leading-relaxed text-gray-500">
@@ -499,7 +498,7 @@
                       </li></swiper-slide
                     >
                     <swiper-slide
-                      ><li class="swiper-slide">
+                      ><li class="swiper-slide reviews-swiper">
                         <blockquote
                           class="flex flex-col justify-between h-full p-12 bg-white"
                         >
@@ -551,9 +550,10 @@
 
                               <svg
                                 class="w-5 h-5"
-                                fill="currentColor"
+                                fill="none"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
+                                stroke="currentColor"
                               >
                                 <path
                                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
@@ -585,7 +585,7 @@
                       </li></swiper-slide
                     >
                     <swiper-slide
-                      ><li class="swiper-slide">
+                      ><li class="swiper-slide reviews-swiper">
                         <blockquote
                           class="flex flex-col justify-between h-full p-12 bg-white"
                         >
@@ -895,7 +895,7 @@ $coupon-background-color: #011a45;
 $coupon-radius-size: 12px;
 
 .allcoupons {
-  margin-top: 20px;
+  // margin-top: 20px;
   margin-bottom: 20px;
   background: $coupon-background-color;
   padding: 20px;
@@ -1106,10 +1106,6 @@ $coupon-radius-size: 12px;
 }
 .review-text {
   color: #8bc5f0;
-  &:hover {
-    // background-color: #8bc5f0;
-    // color: #e7e9f0;
-  }
 }
 .review-text2 {
   color: #8bc5f0;
@@ -1117,5 +1113,10 @@ $coupon-radius-size: 12px;
     background-color: #8bc5f0;
     color: #e7e9f0;
   }
+}
+
+.swiper-slide.reviews-swiper {
+  border: 1px solid #c0c1c2;
+  border-radius: 3px;
 }
 </style>
