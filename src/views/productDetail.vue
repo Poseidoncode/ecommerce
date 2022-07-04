@@ -622,6 +622,31 @@ export default defineComponent({
       sessionStorage.setItem("needs", JSON.stringify(arr));
     };
 
+    const showDetail = (item) => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        // behavior: "smooth",
+      });
+
+      router.replace({
+        name: "productdetail",
+        params: { productId: item.id },
+      });
+    };
+
+    watch(
+      () => route.params.productId,
+      async (pv, prev) => {
+        if (pv) {
+          await getData();
+          await setThumbsSwiper();
+          await setRecentlyViewData();
+          getRecentlyViewData();
+        }
+      }
+    );
+
     onMounted(async () => {
       await getData();
       await setThumbsSwiper();
@@ -635,6 +660,7 @@ export default defineComponent({
       setRecentlyViewData,
       getRecentlyViewData,
       itemsRecently,
+      showDetail,
 
       thumbsSwiper,
       setThumbsSwiper,
