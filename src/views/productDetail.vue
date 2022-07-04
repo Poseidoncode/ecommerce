@@ -594,7 +594,6 @@ export default defineComponent({
         }
       }
 
-      console.log("ataRecentlyArr", dataRecentlyArr);
       localStorage.setItem("recentlyData", JSON.stringify(dataRecentlyArr));
     };
 
