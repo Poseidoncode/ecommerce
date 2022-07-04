@@ -179,8 +179,7 @@
                   Save
                   {{
                     (
-                      ((+product.origin_price - +product.price) /
-                        +product.origin_price) *
+                      ((+product.origin_price - +product.price) / +product.origin_price) *
                       100
                     ).toFixed(1)
                   }}%
@@ -269,39 +268,29 @@
           <TabPanel>
             <template #header>
               <i class="pi pi-tag"></i>
-              <span style="display: inline-block" class="ml-1">
-                Specifications</span
-              >
+              <span style="display: inline-block" class="ml-1"> Specifications</span>
             </template>
-            <div
-              class="specifications-content"
-              v-html="product.contentreplace"
-            ></div>
+            <div class="specifications-content" v-html="product.contentreplace"></div>
           </TabPanel>
           <TabPanel>
             <template #header>
               <i class="pi pi-wallet"></i>
-              <span style="display: inline-block" class="ml-1">
-                Returns Policy</span
-              >
+              <span style="display: inline-block" class="ml-1"> Returns Policy</span>
             </template>
             <div class="specifications-content">
               <p>
-                ● Items with a value of $35 or more must be returned using a
-                trackable shipping method.
+                ● Items with a value of $35 or more must be returned using a trackable
+                shipping method.
               </p>
               <p>
-                ● All product packaging (boxes, manuals, warranty cards, etc.)
-                and certificates of authenticity, grading, and appraisal must be
-                returned with the item.
+                ● All product packaging (boxes, manuals, warranty cards, etc.) and
+                certificates of authenticity, grading, and appraisal must be returned with
+                the item.
               </p>
+              <p>● Any items returned without original documentation will be rejected.</p>
               <p>
-                ● Any items returned without original documentation will be
-                rejected.
-              </p>
-              <p>
-                ● Items that have been resized, damaged, or otherwise altered
-                after delivery won't be accepted for return.
+                ● Items that have been resized, damaged, or otherwise altered after
+                delivery won't be accepted for return.
               </p>
             </div>
           </TabPanel>
@@ -358,16 +347,11 @@ export default defineComponent({
       try {
         const res = await getCustomerSingleProduct(`${route.params.productId}`);
         if (!!res.data?.product?.imagesUrl.length) {
-          res.data.product.imagesUrl = res.data.product.imagesUrl.filter(
-            (s) => !!s
-          );
+          res.data.product.imagesUrl = res.data.product.imagesUrl.filter((s) => !!s);
         }
 
         product.value = { ...res.data?.product };
-        product.value.contentreplace = product.value.content.replace(
-          /\n/g,
-          "<br>"
-        );
+        product.value.contentreplace = product.value.content.replace(/\n/g, "<br>");
 
         const dataFavorArr = !!localStorage.getItem("favorData")
           ? JSON.parse(localStorage.getItem("favorData"))
@@ -421,9 +405,7 @@ export default defineComponent({
         });
       } else {
         dataFavorArr = JSON.parse(localStorage.getItem("favorData"));
-        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id)
-          ? true
-          : false;
+        const isExistThisFavorite = dataFavorArr.find((s) => s == item.id) ? true : false;
 
         if (isExistThisFavorite) {
           dataFavorArr = dataFavorArr.filter((s) => s != item.id);
@@ -453,9 +435,7 @@ export default defineComponent({
           : false;
 
         if (isExist) {
-          let productData = store.state.cart.find(
-            (s) => s.product_id == item.id
-          );
+          let productData = store.state.cart.find((s) => s.product_id == item.id);
 
           obj = {
             product_id: productData.product_id,
@@ -485,14 +465,41 @@ export default defineComponent({
       }
     };
 
+    const setRecentlyView = (item) => {
+      console.log("setRecentlyView");
+      let dataRecentlyArr = [];
+      const existRecentlyArr = !!localStorage.getItem("recentlyData");
+      const productId = route.params.productId;
+
+      if (!existRecentlyArr) {
+        dataRecentlyArr = [productId];
+      } else {
+        dataRecentlyArr = JSON.parse(localStorage.getItem("recentlyData"));
+        const isExistThisRecent = dataRecentlyArr.find((s) => s == productId)
+          ? true
+          : false;
+
+        if (isExistThisRecent) {
+          dataRecentlyArr = dataRecentlyArr.filter((s) => s != productId);
+          dataRecentlyArr.push(productId);
+        } else {
+          dataRecentlyArr.push(productId);
+        }
+      }
+
+      localStorage.setItem("recentlyData", JSON.stringify(dataRecentlyArr));
+    };
+
     onMounted(async () => {
       await getData();
       setThumbsSwiper();
+      setRecentlyView();
     });
 
     return {
       product,
       getData,
+      setRecentlyView,
 
       thumbsSwiper,
       setThumbsSwiper,
