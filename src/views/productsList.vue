@@ -143,7 +143,7 @@
                 <button
                   name="commit"
                   type="button"
-                  class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
+                  class="px-5 py-3 text-xs font-medium text-white bg-blue-800 rounded"
                   @click="getData"
                 >
                   Apply Filters
@@ -159,7 +159,8 @@
           <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color7">
             Recommended For You
           </h1>
-          <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
+          <!-- <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"> -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
             <div
               href="#"
               v-for="(item, idx) in items"
