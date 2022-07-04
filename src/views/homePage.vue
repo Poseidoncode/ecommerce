@@ -148,10 +148,8 @@
             </div>
           </div>
         </div>
-        <h1
-          class="heading-line font-semibold leading-9 text-center dark:text-gray-50 theme-color-main"
-        >
-          <span style="font-size: 24px">FEATURED WATCHES</span>
+        <h1 class="heading-line font-semibold leading-9 text-center dark:text-gray-50">
+          <span>FEATURED WATCHES</span>
         </h1>
         <div class="swiper-container mb-12">
           <div class="swiper-arrow arrow-previous">
@@ -327,10 +325,8 @@
         </div>
       </section>
       <div class="container mx-auto mt-16">
-        <h1
-          class="heading-line font-semibold leading-9 text-center dark:text-gray-50 theme-color-main"
-        >
-          <span style="font-size: 24px">Vigilero Reviews</span>
+        <h1 class="heading-line font-semibold leading-9 text-center dark:text-gray-50">
+          <span>Vigilero Reviews</span>
         </h1>
       </div>
 

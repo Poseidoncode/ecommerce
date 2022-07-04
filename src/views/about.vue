@@ -25,20 +25,16 @@
     </section>
 
     <section class="text-gray-600 body-font">
-      <div
-        class="container pt-16 mx-auto flex px-5 items-center justify-center flex-col"
-      >
+      <div class="container pt-16 mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
-          <h1
-            class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
-          >
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
             We’re Listening
           </h1>
           <p class="mb-8 leading-relaxed">
-            We’re here to help you find and buy the perfect luxury watch that
-            you’ve been looking for. We do our part by purchasing luxury watches
-            directly from all around the world to provide you with the lowest
-            cost, but still best quality of watches for all of our customers.
+            We’re here to help you find and buy the perfect luxury watch that you’ve been
+            looking for. We do our part by purchasing luxury watches directly from all
+            around the world to provide you with the lowest cost, but still best quality
+            of watches for all of our customers.
           </p>
         </div>
       </div>
@@ -46,9 +42,7 @@
 
     <div class="py-16 bg-white">
       <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
-        <div
-          class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12"
-        >
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
           <div class="md:5/12 lg:w-5/12">
             <!-- <img
               src="https://tailus.io/sources/blocks/left-image/preview/images/startup.png"
@@ -71,17 +65,16 @@
               Finest Authentic Products
             </h2>
             <p class="mt-6 text-gray-600">
-              Vigilero are authorised dealers of every single product on all of
-              our sites, which means you can be assured that every item is a
-              genuine, authentic product direct from the manufacturer, and will
-              be sold with the same relevant warranties, booklets and packaging
-              as if purchasing from the high street.
+              Vigilero are authorised dealers of every single product on all of our sites,
+              which means you can be assured that every item is a genuine, authentic
+              product direct from the manufacturer, and will be sold with the same
+              relevant warranties, booklets and packaging as if purchasing from the high
+              street.
             </p>
             <p class="mt-4 text-gray-600">
-              All of our watch ranges have been carefully selected from our
-              experienced buying team, meaning that every category has the most
-              beautiful, relevant and respected timepieces available in the
-              world.
+              All of our watch ranges have been carefully selected from our experienced
+              buying team, meaning that every category has the most beautiful, relevant
+              and respected timepieces available in the world.
             </p>
           </div>
         </div>
@@ -102,22 +95,19 @@
           </div>
 
           <div class="lg:py-24">
-            <h2 class="text-3xl font-bold sm:text-4xl">
-              Premier Customer Service
-            </h2>
+            <h2 class="text-3xl font-bold sm:text-4xl">Premier Customer Service</h2>
 
             <p class="mt-4 text-gray-600">
-              One of the points that make Vigilero unique in the world of
-              on-line trading is our commitment to providing the best shopping
-              experience, combined with a level of customer service and support
-              that is unrivalled.Unlike many other online companies, our
-              customer service department is employed directly by T H Baker, and
-              not outsourced.
+              One of the points that make Vigilero unique in the world of on-line trading
+              is our commitment to providing the best shopping experience, combined with a
+              level of customer service and support that is unrivalled.Unlike many other
+              online companies, our customer service department is employed directly by T
+              H Baker, and not outsourced.
             </p>
 
-            <a
-              class="inline-flex items-center px-8 py-3 mt-8 text-white bg-blue-600 border border-blue-600 rounded hover:bg-transparent hover:text-blue-600 active:text-blue-500 focus:outline-none focus:ring"
-              href="/get-started"
+            <div
+              class="inline-flex items-center px-8 py-3 mt-8 text-white bg-blue-600 border border-blue-600 rounded hover:bg-transparent hover:text-blue-600 active:text-blue-500 focus:outline-none focus:ring cursor-pointer"
+              @click.prevent="showDetail"
             >
               <span class="text-sm font-medium"> Shop </span>
 
@@ -135,7 +125,7 @@
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </div>
           </div>
         </div>
       </div>
@@ -154,27 +144,22 @@
               THE Vigilero Story
             </h4>
             <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-              In the early 1960s, Vigilero purchased a watch assembly factory.
-              Here, in the heart of the Swiss Jura mountains, high-quality
-              timepieces were produced for several name brands of watches, which
-              carried their private label signatures on dial, case, and
-              movement.
+              In the early 1960s, Vigilero purchased a watch assembly factory. Here, in
+              the heart of the Swiss Jura mountains, high-quality timepieces were produced
+              for several name brands of watches, which carried their private label
+              signatures on dial, case, and movement.
             </p>
             <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-300">
-              In just seven years the company has already had a massive impact
-              on the high-end watch market..
+              In just seven years the company has already had a massive impact on the
+              high-end watch market..
             </p>
             <ul class="mt-8 md:grid md:grid-cols-2 gap-6">
               <li class="mt-6 lg:mt-0">
                 <div class="flex">
                   <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
+                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-blue-100 text-blue-800 dark:text-blue-500 drark:bg-transparent"
                   >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
+                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fill-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -185,20 +170,16 @@
                   <span
                     class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
                   >
-                    Live modifications
+                    High Precision
                   </span>
                 </div>
               </li>
               <li class="mt-6 lg:mt-0">
                 <div class="flex">
                   <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
+                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-blue-100 text-blue-800 dark:text-blue-500 drark:bg-transparent"
                   >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
+                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fill-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -209,20 +190,16 @@
                   <span
                     class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
                   >
-                    Data tracker
+                    Aesthetic
                   </span>
                 </div>
               </li>
               <li class="mt-6 lg:mt-0">
                 <div class="flex">
                   <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
+                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-blue-100 text-blue-800 dark:text-blue-500 drark:bg-transparent"
                   >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
+                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fill-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -240,13 +217,9 @@
               <li class="mt-6 lg:mt-0">
                 <div class="flex">
                   <span
-                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 dark:text-green-500 drark:bg-transparent"
+                    class="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-blue-100 text-blue-800 dark:text-blue-500 drark:bg-transparent"
                   >
-                    <svg
-                      class="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
+                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fill-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -257,19 +230,15 @@
                   <span
                     class="ml-4 text-base leading-6 font-medium text-gray-500 dark:text-gray-200"
                   >
-                    Free tips to improve work time
+                    Luxury
                   </span>
                 </div>
               </li>
             </ul>
           </div>
-          <div
-            class="mt-10 lg:-mx-4 relative relative-20 lg:mt-0 lg:col-start-1"
-          >
+          <div class="mt-10 lg:-mx-4 relative relative-20 lg:mt-0 lg:col-start-1">
             <div class="relative space-y-4">
-              <div
-                class="flex items-end justify-center lg:justify-start space-x-4"
-              >
+              <div class="flex items-end justify-center lg:justify-start space-x-4">
                 <img
                   class="rounded-lg shadow-lg w-32 md:w-56"
                   width="200"
@@ -309,6 +278,7 @@
 
 <script>
 import { inject, ref, defineComponent } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   props: {
@@ -318,8 +288,18 @@ export default defineComponent({
     // },
   },
   setup(props, { emit }) {
-    // emit("update:modelValue", _newValues);
-    return {};
+    const router = useRouter();
+    const showDetail = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        // behavior: "smooth",
+      });
+      router.push({
+        name: "productslist",
+      });
+    };
+    return { showDetail };
   },
 });
 </script>
