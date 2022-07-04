@@ -301,6 +301,113 @@
       <h2 class="heading-line" style="margin: 0 0 5px">
         <span>Your recently viewed items</span>
       </h2>
+
+      <swiper
+        ref="{swiperRef}"
+        :mousewheel="{
+          invert: true,
+        }"
+        :slidesPerView="1"
+        :spaceBetween="30"
+        :loop="false"
+        :speed="1200"
+        :centeredSlides="false"
+        :lazy="true"
+        :navigation="{
+          nextEl: '.arrow-next',
+          prevEl: '.arrow-previous',
+        }"
+        :initialSlide="1"
+        :keyboard="{
+          enabled: true,
+        }"
+        class="product-slide"
+        :breakpoints="{
+          0: {
+            /* when window >=0px - webflow mobile portriat */
+            slidesPerView: 1.5,
+            spaceBetween: 15,
+          },
+          478: {
+            /* when window >= 478px - webflow mobile landscape */
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+          767: {
+            /* when window >= 767px - webflow tablet */ slidesPerView: 2.25,
+            spaceBetween: 30,
+          },
+          988: {
+            /* when window >= 988px - webflow desktop */
+            slidesPerView: 4.25,
+            spaceBetween: 50,
+          },
+          1920: {
+            /* when window >= 988px - webflow desktop */
+            slidesPerView: 4.25,
+            spaceBetween: 50,
+          },
+        }"
+        :modules="modules2"
+        :scrollbar="{
+          delay: 3000,
+        }"
+      >
+        <swiper-slide v-for="(itemCat, i) in itemsRecently" :key="`itemCat${i}`">
+          <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+            <div
+              class="h-56 w-full product-background"
+              :style="itemCat.imageUrl ? `background:url(${itemCat.imageUrl})` : ''"
+            >
+              <button
+                class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
+                @click.prevent="addToCart(itemCat)"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="itemCat-hover cursor-pointer"
+                @click.prevent="showDetail(itemCat)"
+              >
+                <div class="itemCat-hover-content">
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.4697 20.5304C19.7626 20.8232 20.2374 20.8232 20.5303 20.5304C20.8232 20.2375 20.8232 19.7626 20.5303 19.4697L19.4697 20.5304ZM7 9.25C6.58579 9.25 6.25 9.58579 6.25 10C6.25 10.4142 6.58579 10.75 7 10.75V9.25ZM13 10.75C13.4142 10.75 13.75 10.4142 13.75 10C13.75 9.58579 13.4142 9.25 13 9.25V10.75ZM10.75 7C10.75 6.58579 10.4142 6.25 10 6.25C9.58579 6.25 9.25 6.58579 9.25 7H10.75ZM9.25 13C9.25 13.4142 9.58579 13.75 10 13.75C10.4142 13.75 10.75 13.4142 10.75 13H9.25ZM20.5303 19.4697L15.4801 14.4194L14.4194 15.4801L19.4697 20.5304L20.5303 19.4697ZM10 16.25C6.54822 16.25 3.75 13.4518 3.75 10H2.25C2.25 14.2802 5.71979 17.75 10 17.75V16.25ZM3.75 10C3.75 6.54822 6.54822 3.75 10 3.75V2.25C5.71979 2.25 2.25 5.71979 2.25 10H3.75ZM10 3.75C13.4518 3.75 16.25 6.54822 16.25 10H17.75C17.75 5.71979 14.2802 2.25 10 2.25V3.75ZM16.25 10C16.25 11.7261 15.5513 13.2876 14.4194 14.4194L15.4801 15.4801C16.8817 14.0784 17.75 12.1399 17.75 10H16.25ZM14.4194 14.4194C13.2876 15.5513 11.7261 16.25 10 16.25V17.75C12.1399 17.75 14.0784 16.8818 15.4801 15.4801L14.4194 14.4194ZM7 10.75H13V9.25H7V10.75ZM9.25 7V13H10.75V7H9.25Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="px-5 py-3 mt-2">
+              <h3 class="uppercase text-center theme-color7">
+                {{ itemCat.title || "" }}
+              </h3>
+              <h4 class="text-black-500 mt-2 text-center theme-color7">
+                ${{ itemCat.price }}
+              </h4>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
 </template>
@@ -311,6 +418,7 @@ import {
   getCustomerSingleProduct,
   postCustomerCart,
   putCustomerCart,
+  getCustomerProductAll,
 } from "Service/apis.js";
 import { useToast } from "vue-toastification";
 import { useRoute, useRouter } from "vue-router";
@@ -324,7 +432,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import { EffectCards } from "swiper";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { Keyboard, Mousewheel, Pagination, FreeMode, Navigation, Thumbs } from "swiper";
 
 export default defineComponent({
   props: {},
@@ -466,7 +574,6 @@ export default defineComponent({
     };
 
     const setRecentlyViewData = (item) => {
-      console.log("setRecentlyView");
       let dataRecentlyArr = [];
       const existRecentlyArr = !!localStorage.getItem("recentlyData");
       const productId = route.params.productId;
@@ -487,24 +594,54 @@ export default defineComponent({
         }
       }
 
+      console.log("ataRecentlyArr", dataRecentlyArr);
       localStorage.setItem("recentlyData", JSON.stringify(dataRecentlyArr));
+    };
+
+    const itemsRecently = ref([]);
+
+    const getRecentlyViewData = async () => {
+      let dataRecentlyArr = !!localStorage.getItem("recentlyData")
+        ? JSON.parse(localStorage.getItem("recentlyData"))
+        : [];
+      if (sessionStorage.getItem("needs")) {
+        let arr = JSON.parse(sessionStorage.getItem("needs"));
+
+        dataRecentlyArr = dataRecentlyArr.map((s) => arr.find((k) => s == k.id));
+
+        itemsRecently.value = [...dataRecentlyArr];
+        return;
+      }
+
+      const res = await getCustomerProductAll(``);
+      let arr = [...res.data?.products];
+      arr = arr.filter((s) => s.title != "測試的產品s");
+
+      dataRecentlyArr = dataRecentlyArr.map((s) => arr.find((k) => s == k.id));
+      itemsRecently.value = [...dataRecentlyArr];
+
+      sessionStorage.setItem("needs", JSON.stringify(arr));
     };
 
     onMounted(async () => {
       await getData();
-      setThumbsSwiper();
-      setRecentlyViewData();
+      await setThumbsSwiper();
+      await setRecentlyViewData();
+      getRecentlyViewData();
     });
 
     return {
       product,
       getData,
       setRecentlyViewData,
+      getRecentlyViewData,
+      itemsRecently,
 
       thumbsSwiper,
       setThumbsSwiper,
       goSpecialCategory,
       modules: [FreeMode, Navigation, Thumbs],
+      modules2: [Keyboard, Mousewheel, Pagination, Navigation],
       addToFavorite,
       addToCart,
       selectedQty,
@@ -646,6 +783,44 @@ export default defineComponent({
 
   .bg-setting-local {
     background-position: 102% 74%;
+  }
+}
+
+.product-slide {
+  height: 100%;
+  .product-background {
+    background-size: contain !important;
+    background-repeat: no-repeat no-repeat !important;
+    background-position: center !important;
+    position: relative;
+
+    .cart-btn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+    }
+
+    &:hover {
+      .itemCat-hover {
+        display: block;
+        width: 100% !important;
+        height: 224px;
+        // background: rgba(0, 0, 0, 0.5);
+        background: rgba(22, 22, 22, 0.295);
+        position: relative;
+
+        .itemCat-hover-content {
+          position: absolute;
+          color: #fff;
+          top: 50%;
+          left: 50%;
+          text-decoration: underline;
+          transform: translate(-50%, -50%);
+          font-size: 26px;
+        }
+      }
+    }
   }
 }
 </style>
