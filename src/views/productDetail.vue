@@ -175,7 +175,7 @@
             <div class="flex-1">
               <div class="flex">
                 <p class="old-price">${{ product.origin_price || "" }}</p>
-                <p class="text-green-500 text-xl font-semibold">
+                <p class="theme-color5 text-xl font-semibold">
                   Save
                   {{
                     (
@@ -263,7 +263,7 @@
         </div>
       </div>
       <!-- -----------section2 -->
-      <div class="card mt-3">
+      <div class="card mt-10">
         <TabView class="tabview-custom" ref="tabview4">
           <TabPanel>
             <template #header>
@@ -298,7 +298,7 @@
       </div>
 
       <!-- -----------section3 -->
-      <h2 class="heading-line" style="margin: 0 0 5px">
+      <h2 class="heading-line" style="margin: 50px 0 25px">
         <span>Your recently viewed items</span>
       </h2>
 
@@ -594,6 +594,9 @@ export default defineComponent({
         }
       }
 
+      if (dataRecentlyArr.length > 10) {
+        dataRecentlyArr = dataRecentlyArr.slice(0, 10);
+      }
       localStorage.setItem("recentlyData", JSON.stringify(dataRecentlyArr));
     };
 
