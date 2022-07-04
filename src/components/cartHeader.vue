@@ -449,12 +449,12 @@ export default defineComponent({
         const res = await deleteCustomerCart(item.id);
         await getData();
         toast.info(`DeleteSuccess`, {
-          timeout: 2000,
+          timeout: 3000,
           hideProgressBar: true,
         });
       } catch (e) {
         toast.error(`${e.response ? e.response.data.message : e}`, {
-          timeout: 2000,
+          timeout: 3000,
           hideProgressBar: true,
         });
       }

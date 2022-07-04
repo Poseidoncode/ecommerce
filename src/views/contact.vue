@@ -31,9 +31,9 @@
         >
           Contact Us
         </h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-center mb-4">
+        <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-center mb-4">
           Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.
-        </p>
+        </p> -->
 
         <v-form
           class="contact-form-section"
@@ -108,12 +108,15 @@
 
             <error-message name="message" class="invalid-feedback"></error-message>
           </div>
+          <button id="v-form-submit" hidden>Submit</button>
+          <button id="v-form-reset" type="reset" hidden>Reset</button>
         </v-form>
 
         <div class="flex flex-wrap -m-2">
           <div class="p-2 w-full">
             <button
               class="flex mx-auto text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg"
+              @click="onSubmitClick"
             >
               Submit
             </button>
@@ -196,7 +199,8 @@
 </template>
 
 <script>
-import { inject, ref, defineComponent } from "vue";
+import { inject, ref, defineComponent, nextTick } from "vue";
+import { useToast } from "vue-toastification";
 
 export default defineComponent({
   props: {
@@ -206,12 +210,22 @@ export default defineComponent({
     // },
   },
   setup(props, { emit }) {
-    // emit("update:modelValue", _newValues);
+    const toast = useToast();
+
     const user = ref({});
-    const onSubmit = () => {
-      console.log(user.value);
+    const onSubmit = async () => {
+      toast.info(`Send Message Successfully!`, {
+        timeout: 5000,
+        hideProgressBar: true,
+      });
+      await nextTick();
+      document.getElementById("v-form-reset").click();
     };
-    return { user, onSubmit };
+
+    const onSubmitClick = () => {
+      document.getElementById("v-form-submit").click();
+    };
+    return { user, onSubmit, onSubmitClick };
   },
 });
 </script>
