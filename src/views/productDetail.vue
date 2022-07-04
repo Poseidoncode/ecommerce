@@ -465,7 +465,7 @@ export default defineComponent({
       }
     };
 
-    const setRecentlyView = (item) => {
+    const setRecentlyViewData = (item) => {
       console.log("setRecentlyView");
       let dataRecentlyArr = [];
       const existRecentlyArr = !!localStorage.getItem("recentlyData");
@@ -481,9 +481,9 @@ export default defineComponent({
 
         if (isExistThisRecent) {
           dataRecentlyArr = dataRecentlyArr.filter((s) => s != productId);
-          dataRecentlyArr.push(productId);
+          dataRecentlyArr.unshift(productId);
         } else {
-          dataRecentlyArr.push(productId);
+          dataRecentlyArr.unshift(productId);
         }
       }
 
@@ -493,13 +493,13 @@ export default defineComponent({
     onMounted(async () => {
       await getData();
       setThumbsSwiper();
-      setRecentlyView();
+      setRecentlyViewData();
     });
 
     return {
       product,
       getData,
-      setRecentlyView,
+      setRecentlyViewData,
 
       thumbsSwiper,
       setThumbsSwiper,
