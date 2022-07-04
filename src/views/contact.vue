@@ -26,11 +26,14 @@
 
     <div class="text-gray-600 body-font container px-5 py-2 mx-auto">
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
-        <h1
+        <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color7 text-center">
+          Contact Us
+        </h1>
+        <!-- <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
         >
           Contact Us
-        </h1>
+        </h1> -->
         <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-center mb-4">
           Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.
         </p> -->

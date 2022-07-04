@@ -37,13 +37,13 @@
           />
           <Button
             icon="pi pi-search"
-            class="p-button-warning"
+            class="p-button-primary"
             style="margin: 0 5px 0 0"
             @click="getData"
           />
           <Button
             icon="pi pi-replay"
-            class="p-button-primary"
+            class="p-button-warning"
             @click="clearData"
             v-tooltip.top="'Reset Data'"
           />
@@ -155,7 +155,10 @@
       </div>
       <div class="flex-1 lg:pl-12 py-6 px-6 lg:px-0">
         <div class="mt-12">
-          <h1 class="text-3xl font-bold">Recommended For You</h1>
+          <!-- <h1 class="text-3xl font-bold">Recommended For You</h1> -->
+          <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color7">
+            Recommended For You
+          </h1>
           <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
             <div
               href="#"

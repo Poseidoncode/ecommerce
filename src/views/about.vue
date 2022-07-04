@@ -27,7 +27,7 @@
     <section class="text-gray-600 body-font">
       <div class="container pt-16 mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium theme-color7">
             We’re Listening
           </h1>
           <p class="mb-8 leading-relaxed">
@@ -61,7 +61,7 @@
             />
           </div>
           <div class="md:7/12 lg:w-6/12">
-            <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">
+            <h2 class="text-2xl theme-color7 font-bold md:text-4xl">
               Finest Authentic Products
             </h2>
             <p class="mt-6 text-gray-600">
@@ -95,7 +95,9 @@
           </div>
 
           <div class="lg:py-24">
-            <h2 class="text-3xl font-bold sm:text-4xl">Premier Customer Service</h2>
+            <h2 class="text-3xl font-bold sm:text-4xl theme-color7">
+              Premier Customer Service
+            </h2>
 
             <p class="mt-4 text-gray-600">
               One of the points that make Vigilero unique in the world of on-line trading
