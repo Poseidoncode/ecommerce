@@ -131,8 +131,15 @@ $modalBlue: #1f3fb3;
 .theme-color8 {
   color: #f1b82b !important;
 }
-.theme-color1 {
+.theme-color9 {
   color: #454f68 !important;
+}
+.theme-color10 {
+  color: #38bdf8 !important;
+}
+
+.theme-color11 {
+  color: #6d7da0 !important;
 }
 
 .theme-bg-color1 {
@@ -174,4 +181,8 @@ $modalBlue: #1f3fb3;
 
 .invalid-feedback {
   color: #eb0600;
+}
+
+.theme-bg {
+  background: #03112e url("/public/assets/bgSwirl.svg") repeat 0 0/52px;
 }

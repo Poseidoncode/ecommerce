@@ -929,8 +929,9 @@ $coupon-radius-size: 12px;
 .allcoupons {
   // margin-top: 20px;
   margin-bottom: 20px;
-  background: $coupon-background-color;
-  padding: 20px;
+  // background: $coupon-background-color;
+  background: #03112e url("/public/assets/bgSwirl.svg") repeat 0 0/52px;
+  padding: 42px;
   display: grid;
   justify-content: center;
 
@@ -941,7 +942,7 @@ $coupon-radius-size: 12px;
 
   .word-two {
     font-size: 18px;
-    color: #aaa;
+    color: #6d7da0;
   }
 
   .coupon-item {
@@ -969,7 +970,7 @@ $coupon-radius-size: 12px;
       }
 
       ul {
-        color: #aaa;
+        color: #6d7da0;
         padding-left: 20px;
       }
 
