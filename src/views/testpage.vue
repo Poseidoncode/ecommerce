@@ -37,14 +37,12 @@
     <!-- Simple tooltip using attr() -->
     <h1>HTML/CSS tooltip</h1>
     <p>
-      Hover <span class="tooltip" tooltip-data="Tooltip Content">Here</span> to
-      see the tooltip.
+      Hover <span class="tooltip" tooltip-data="Tooltip Content">Here</span> to see the
+      tooltip.
     </p>
     <p>
       You can also hover
-      <span class="tooltip" tooltip-data="This is another Tooltip Content"
-        >here</span
-      >
+      <span class="tooltip" tooltip-data="This is another Tooltip Content">here</span>
       to see another example.
     </p>
     <!-- Checklist in pure CSS -->
@@ -103,10 +101,9 @@
       <!-- Letter dropcap using first-letter -->
       <div class="content-section">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-          doloremque illo quo beatae id pariatur, temporibus vero exercitationem
-          harum? Aspernatur sequi quaerat, nisi et error aut nemo porro sit
-          deserunt.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod doloremque illo
+          quo beatae id pariatur, temporibus vero exercitationem harum? Aspernatur sequi
+          quaerat, nisi et error aut nemo porro sit deserunt.
         </p>
       </div>
       <!-- Add an icon before buttons using ::before -->
@@ -141,18 +138,16 @@
       </div>
 
       <!-- Hover underline animation -->
-      <p class="hover-underline-animation my-12">
-        Hover this text to see the effect!
-      </p>
+      <p class="hover-underline-animation my-12">Hover this text to see the effect!</p>
     </main>
   </section>
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch } from 'vue';
-import { getCustomerSingleProduct } from 'Service/apis.js';
-import { useToast } from 'vue-toastification';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, ref, onMounted, watch } from "vue";
+import { getCustomerSingleProduct } from "Service/apis.js";
+import { useToast } from "vue-toastification";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   props: {},
@@ -250,8 +245,7 @@ export default defineComponent({
 
 .card-image-cursor {
   background-color: #d11a5a;
-  cursor: url(https://stackdiary.com/tools/assets/img/tools/html-beautifier.svg),
-    auto;
+  cursor: url(https://stackdiary.com/tools/assets/img/tools/html-beautifier.svg), auto;
 }
 
 .card-emoji-cursor {
@@ -286,7 +280,7 @@ export default defineComponent({
 }
 
 .tooltip:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 75%;
   left: 50%;
@@ -327,7 +321,7 @@ export default defineComponent({
   font-size: 24px;
   cursor: pointer;
 }
-.checklist input[type='checkbox'] {
+.checklist input[type="checkbox"] {
   -webkit-appearance: none;
 }
 .checklist i {
@@ -338,7 +332,7 @@ export default defineComponent({
   height: 25px;
   border: 2px solid #fff;
 }
-.checklist input[type='checkbox']:checked ~ i {
+.checklist input[type="checkbox"]:checked ~ i {
   top: 1px;
   height: 15px;
   width: 25px;
@@ -352,7 +346,7 @@ export default defineComponent({
   transition: 0.5s;
 }
 .checklist span:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
@@ -363,12 +357,12 @@ export default defineComponent({
   transform-origin: left;
   transition: transform 0.5s;
 }
-.checklist input[type='checkbox']:checked ~ span:before {
+.checklist input[type="checkbox"]:checked ~ span:before {
   transform: translateY(-50%) scaleX(1);
   transform-origin: right;
   transition: transform 0.5s;
 }
-.checklist input[type='checkbox']:checked ~ span {
+.checklist input[type="checkbox"]:checked ~ span {
   color: #154e6b;
 }
 // Accordion dropdown using keyframes
@@ -409,12 +403,12 @@ details[open] summary ~ * {
 }
 details > summary::after {
   position: absolute;
-  content: '+';
+  content: "+";
   right: 20px;
 }
 details[open] > summary::after {
   position: absolute;
-  content: '-';
+  content: "-";
   right: 20px;
 }
 details > summary::-webkit-details-marker {
@@ -481,7 +475,7 @@ p {
 // }
 
 ::v-deep(.btn-primary .btn-docu:before) {
-  content: '\0000a0';
+  content: "\0000a0";
   display: inline-flex;
   height: 24px;
   width: 24px;
@@ -490,8 +484,7 @@ p {
   position: relative;
   top: 0px;
   left: 0px;
-  background: url(https://stackdiary.com/docu.svg) no-repeat left center
-    transparent;
+  background: url(https://stackdiary.com/docu.svg) no-repeat left center transparent;
   background-size: 100% 100%;
 }
 
@@ -508,7 +501,7 @@ p {
 .button:after {
   border: 0 solid transparent;
   transition: all 0.25s;
-  content: '';
+  content: "";
   height: 24px;
   position: absolute;
   width: 24px;
@@ -530,28 +523,5 @@ p {
 .button:hover:after {
   height: 100%;
   width: 100%;
-}
-
-// Hover underline animation
-.hover-underline-animation {
-  display: inline-block;
-  position: relative;
-  color: #0087ca;
-}
-.hover-underline-animation::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #0087ca;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-.hover-underline-animation:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
 }
 </style>

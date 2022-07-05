@@ -55,8 +55,7 @@
                 @submit="onSubmit(errors)"
               >
                 <div>
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                  <label class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Name
                     <v-field
                       name="Name"
@@ -64,23 +63,20 @@
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['Name'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Name'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                          'Name'
+                        ],
                       }"
                       placeholder="Please enter Name"
                       rules="required"
                       v-model="user.name"
                     ></v-field>
                   </label>
-                  <error-message
-                    name="Name"
-                    class="invalid-feedback"
-                  ></error-message>
+                  <error-message name="Name" class="invalid-feedback"></error-message>
                 </div>
 
                 <div class="mb-3">
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                  <label class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Email
                     <v-field
                       name="Email"
@@ -88,8 +84,9 @@
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['Email'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Email'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                          'Email'
+                        ],
                       }"
                       placeholder="Please enter  Email"
                       rules="email|required"
@@ -98,15 +95,11 @@
                     </v-field>
                   </label>
 
-                  <error-message
-                    name="Email"
-                    class="invalid-feedback"
-                  ></error-message>
+                  <error-message name="Email" class="invalid-feedback"></error-message>
                 </div>
 
                 <div>
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                  <label class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Phone
                     <v-field
                       name="Phone"
@@ -114,23 +107,20 @@
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['Phone'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Phone'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                          'Phone'
+                        ],
                       }"
                       placeholder="Please enter  Phone"
                       rules="numeric|required"
                       v-model="user.phone"
                     ></v-field>
                   </label>
-                  <error-message
-                    name="Phone"
-                    class="invalid-feedback"
-                  ></error-message>
+                  <error-message name="Phone" class="invalid-feedback"></error-message>
                 </div>
 
                 <div>
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                  <label class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Address
                     <v-field
                       name="Address"
@@ -138,23 +128,20 @@
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['Address'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Address'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                          'Address'
+                        ],
                       }"
                       placeholder="Please enter Address"
                       rules="required"
                       v-model="user.address"
                     ></v-field>
                   </label>
-                  <error-message
-                    name="Address"
-                    class="invalid-feedback"
-                  ></error-message>
+                  <error-message name="Address" class="invalid-feedback"></error-message>
                 </div>
 
                 <div class="mb-3" style="grid-column: 1 / -1">
-                  <label
-                    class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
+                  <label class="form-label text-gray-600 font-semibold text-sm mb-2 ml-1"
                     >Message
                     <v-field
                       name="Message"
@@ -162,8 +149,9 @@
                       class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 transition-colors"
                       :class="{
                         'is-invalid': errors['Message'],
-                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ':
-                          !errors['Message'],
+                        'focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 ': !errors[
+                          'Message'
+                        ],
                       }"
                       placeholder="Please enter  Message"
                       rules="required"
@@ -174,10 +162,7 @@
                     </v-field>
                   </label>
 
-                  <error-message
-                    name="Message"
-                    class="invalid-feedback"
-                  ></error-message>
+                  <error-message name="Message" class="invalid-feedback"></error-message>
                 </div>
 
                 <button id="v-form-button" hidden>Submit</button>
@@ -189,9 +174,7 @@
               >
                 <div class="w-full flex mb-3 items-center">
                   <div class="w-full">
-                    <span class="text-gray-600 font-semibold text-2xl"
-                      >Your Order</span
-                    >
+                    <span class="text-gray-600 font-semibold text-2xl">Your Order</span>
                   </div>
                 </div>
                 <div class="w-full cart-content">
@@ -203,7 +186,7 @@
                   </div>
                 </div>
                 <div
-                  class="w-full cart-content theme-color1"
+                  class="w-full cart-content theme-color9"
                   v-for="(itemData, i) in items"
                   :key="`itemData${i}`"
                 >
@@ -211,9 +194,7 @@
                     {{ itemData.product.title || "" }} x
                     {{ itemData.qty || "" }}
                   </div>
-                  <div>
-                    ${{ itemData.total ? itemData.total.toFixed(2) : "" }}
-                  </div>
+                  <div>${{ itemData.total ? itemData.total.toFixed(2) : "" }}</div>
                   <hr class="col-span-full my-3" />
                 </div>
                 <div class="w-full mb-2 cart-content">
@@ -249,9 +230,7 @@
                   </div>
                   <div>
                     <span class="font-semibold"
-                      >${{
-                        itemsFinalTotal ? itemsFinalTotal.toFixed(2) : ""
-                      }}</span
+                      >${{ itemsFinalTotal ? itemsFinalTotal.toFixed(2) : "" }}</span
                     >
                   </div>
                 </div>
@@ -360,8 +339,7 @@ export default defineComponent({
         itemsTotal.value = res.data?.data?.total;
         itemsFinalTotal.value = res.data?.data?.final_total;
         itemsDiscount.value = (
-          +res.data?.data?.total.toFixed(2) -
-          +res.data?.data?.final_total.toFixed(2)
+          +res.data?.data?.total.toFixed(2) - +res.data?.data?.final_total.toFixed(2)
         ).toFixed(2);
 
         store.commit("m_setCartData", items.value);

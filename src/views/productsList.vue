@@ -134,7 +134,7 @@
                 <button
                   name="reset"
                   type="button"
-                  class="text-xs font-medium text-gray-600 underline rounded"
+                  class="text-xs font-medium theme-color5 underline rounded"
                   @click="clearData"
                 >
                   Reset All

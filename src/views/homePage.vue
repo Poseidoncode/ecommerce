@@ -95,10 +95,10 @@
                   Canton of Geneva and the Vallée de Joux.
                 </p>
                 <button
-                  class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
+                  class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded focus:outline-none"
                   @click="goShop"
                 >
-                  <span>Shop Now</span>
+                  <span class="hover-underline-animation">Shop Now</span>
                   <svg
                     class="h-5 w-5 mx-2"
                     fill="none"
@@ -128,10 +128,10 @@
                   purpose and aesthetic appeal.
                 </p>
                 <button
-                  class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none"
+                  class="flex items-center mt-4 text-white text-sm uppercase font-medium rounded focus:outline-none"
                   @click="goShop"
                 >
-                  <span>Shop Now</span>
+                  <span class="hover-underline-animation">Shop Now</span>
                   <svg
                     class="h-5 w-5 mx-2"
                     fill="none"

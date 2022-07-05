@@ -186,3 +186,26 @@ $modalBlue: #1f3fb3;
 .theme-bg {
   background: #03112e url("/public/assets/bgSwirl.svg") repeat 0 0/52px;
 }
+
+// Hover underline animation
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+}
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
