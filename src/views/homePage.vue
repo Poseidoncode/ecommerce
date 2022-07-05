@@ -206,7 +206,7 @@
             :spaceBetween="30"
             :loop="true"
             :speed="1200"
-            :centeredSlides="true"
+            :centeredSlides="isMobile"
             :lazy="true"
             :navigation="{
               nextEl: '.arrow-next',
@@ -790,7 +790,9 @@ export default {
         arr = arr.filter((s) => s.title != "測試的產品s");
 
         items.value = [...arr];
-        itemsClassic.value = arr.filter((s) => s.category == "Mens");
+        itemsClassic.value = arr.filter(
+          (s) => s.category == "Mens" || s.category == "Ceramic"
+        );
 
         sessionStorage.setItem("needs", JSON.stringify(arr));
       } catch (e) {
@@ -872,6 +874,10 @@ export default {
     onMounted(async () => {
       getData();
     });
+
+    const isMobile = computed(() => {
+      return +window?.outerWidth < 600;
+    });
     return {
       showDetail,
       getData,
@@ -882,6 +888,7 @@ export default {
       copyCoupon,
       modules: [Pagination, Navigation],
       modules2: [Keyboard, Mousewheel, Pagination, Navigation],
+      isMobile,
     };
   },
 };
