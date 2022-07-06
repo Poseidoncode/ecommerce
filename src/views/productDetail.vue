@@ -174,7 +174,8 @@
             </div>
             <div class="flex-1">
               <div class="flex">
-                <p class="old-price">${{ product.origin_price || "" }}</p>
+                $
+                <p class="old-price ml-1">{{ product.origin_price || "" }}</p>
                 <p class="theme-color5 text-xl font-semibold">
                   Save
                   {{

@@ -36,13 +36,12 @@
             This Week News
           </h1> -->
           <h1 class="mb-6 text-xl font-bold md:text-4xl theme-color7 text-center">
-            This Week News
+            This Week Watches News
           </h1>
           <p
-            class="text-base leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12"
+            class="text-xl leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12"
           >
-            If you're looking for random paragraphs, you've come to the right place. When
-            a random word or a random sentence isn't quite enough
+            All About Watches And Good Life!
           </p>
         </div>
         <div class="lg:flex items-stretch md:mt-12 mt-8">
@@ -328,7 +327,7 @@
         class="heading-line text-4xl font-semibold leading-9 text-center text-gray-800 dark:text-gray-50 my-10"
         style="margin: 0 0 5px"
       >
-        <span>Latest News</span>
+        <span>Popular News</span>
       </h1>
       <div class="news-content">
         <div
@@ -370,13 +369,13 @@
         </div>
       </div>
     </div>
-    <footer class="grid grid-flow-col auto-cols-max justify-center">
+    <!-- <footer class="grid grid-flow-col auto-cols-max justify-center">
       <Paginator
         v-model:first="offset"
         v-model:rows="rows"
         :totalRecords="totalItemsCount"
       ></Paginator>
-    </footer>
+    </footer> -->
   </div>
 </template>
 

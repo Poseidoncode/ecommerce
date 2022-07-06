@@ -1,7 +1,7 @@
 <template>
   <section class="main-section px-3">
     <section class="search-block">
-      <h5 class="big-title">NewsManagement</h5>
+      <h5 class="big-title">News Management</h5>
     </section>
 
     <header class="ecommerce-grid my-dark">
@@ -19,11 +19,7 @@
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="
-        idx % 2 == 0
-          ? 'background-color:#ffffff ;'
-          : 'background-color:#e7f2f3;'
-      "
+      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -56,13 +52,13 @@
       <div class="content" :title="item.timeforshow">
         {{ item.timeforshow || "" }}
       </div>
-
+      <div class="content" :title="item.category">
+        {{ item.category || "" }}
+        <!-- <Checkbox :binary="true" v-model="item.isPublic" @change="setStatus(item)" /> -->
+      </div>
       <div class="content" :title="item.isPublic">
-        <Checkbox
-          :binary="true"
-          v-model="item.isPublic"
-          @change="setStatus(item)"
-        />
+        {{ item.isPublic ? "Public" : "Private" }}
+        <!-- <Checkbox :binary="true" v-model="item.isPublic" @change="setStatus(item)" /> -->
       </div>
     </main>
     <main
@@ -92,16 +88,12 @@
     >
       <template #header>
         <h3>
-          {{
-            nowType == 1 ? "AddNews" : nowType == 2 ? "EditNews" : "DeleteNews"
-          }}
+          {{ nowType == 1 ? "AddNews" : nowType == 2 ? "EditNews" : "DeleteNews" }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
-          Delete This News?
-        </h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">Delete This News?</h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">Title</span>
           <InputText
@@ -168,6 +160,15 @@
             v-model="modalItem.isPublic"
           />
         </div>
+        <div class="p-inputgroup mt-2">
+          <span class="p-inputgroup-addon">Category</span>
+
+          <InputText
+            v-model.trim="modalItem.category"
+            class="custom-search"
+            :disabled="nowType == 3"
+          />
+        </div>
         <div class="p-inputgroup mt-2" style="grid-column: 1/-1">
           <Editor
             class="w-full custom-search"
@@ -180,11 +181,7 @@
 
       <template #footer>
         <Button label="Confirm" @click="saveEditModal" />
-        <Button
-          label="Cancel"
-          class="p-button-success"
-          @click="editModal = false"
-        />
+        <Button label="Cancel" class="p-button-success" @click="editModal = false" />
       </template>
     </Dialog>
   </section>
@@ -221,6 +218,7 @@ export default defineComponent({
       { name: "Tag", key: "tag", sortDesc: null }, //必填
       { name: "Author", key: "author", sortDesc: null }, //必填
       { name: "CreateTime", key: "timeforshow", sortDesc: null }, //必填
+      { name: "Category", key: "category", sortDesc: null },
       { name: "IsPublic", key: "isPublic", sortDesc: null },
     ]);
 
@@ -245,9 +243,7 @@ export default defineComponent({
         // let { Items, Count } = ;
         let arr = [...res.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format(
-            "YYYY/MM/DD HH:mm:ss"
-          );
+          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
           return s;
         });
         items.value = [...arr];
@@ -319,7 +315,7 @@ export default defineComponent({
         toast.info(
           `${
             nowType.value == 1 ? "Add" : nowType.value == 2 ? "Edit" : "Delete"
-          }Success`,
+          } Success`,
           {
             timeout: 2000,
             hideProgressBar: true,
@@ -431,7 +427,7 @@ export default defineComponent({
 
 .ecommerce-grid {
   display: grid;
-  grid-template-columns: 180px repeat(5, 1fr);
+  grid-template-columns: 180px repeat(6, 1fr);
 
   text-align: center;
 
