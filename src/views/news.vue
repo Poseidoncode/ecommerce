@@ -52,7 +52,7 @@
                   <p
                     class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                   >
-                    12 April 2021
+                    {{ weeks[0]?.timeforshow || "" }}
                   </p>
                   <div class="absolute bottom-0 left-0 p-6">
                     <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
@@ -83,11 +83,7 @@
                     </a>
                   </div>
                 </div>
-                <img
-                  src="https://i.ibb.co/DYxtCJq/img-1.png"
-                  class="w-full"
-                  alt="chair"
-                />
+                <img :src="weeks[0]?.image" class="w-full" alt="chair" />
               </div>
               <div class="sm:w-1/2 sm:mt-0 mt-4 relative">
                 <div>
@@ -125,11 +121,7 @@
                     </a>
                   </div>
                 </div>
-                <img
-                  src="https://i.ibb.co/3C5HvxC/img-2.png"
-                  class="w-full"
-                  alt="wall design"
-                />
+                <img src="https://i.ibb.co/3C5HvxC/img-2.png" class="w-full" />
               </div>
             </div>
             <div class="relative">
@@ -332,7 +324,7 @@
       <div class="news-content">
         <div
           class="main-content"
-          v-for="(item, i) in items.slice(0, 4)"
+          v-for="(item, i) in popular.slice(0, 4)"
           :key="`news${i}`"
         >
           <div
@@ -396,20 +388,26 @@ export default defineComponent({
     const rows = ref(10);
     const totalItemsCount = ref(1);
     const items = ref([]);
+    const popular = ref([]);
+    const weeks = ref([]);
     const getData = async () => {
       try {
-        const page = +offset.value / +rows.value + +1;
-        const skip = (page - 1) * rows.value;
-        const top = rows.value;
-        const res = await getCustomerArticle(`?page=${page}`);
+        // const page = +offset.value / +rows.value + +1;
+        // const skip = (page - 1) * rows.value;
+        // const top = rows.value;
+        const res1 = await getCustomerArticle(`?page=1`);
+        const res2 = await getCustomerArticle(`?page=2`);
 
-        let arr = [...res.data?.articles];
+        let arr = [...res1.data?.articles, ...res2.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
+          // s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
+          s.timeforshow = dayjs(new Date(+s.create_at)).format("D MMMM, YYYY");
           return s;
         });
-        items.value = [...arr];
-        totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
+        popular.value = arr.filter((s) => s.category == "Popular");
+        weeks.value = arr.filter((s) => s.category == "Weeks");
+        // items.value = [...arr];
+        // totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
         toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
@@ -440,6 +438,8 @@ export default defineComponent({
       items,
       getData,
       showDetail,
+      popular,
+      weeks,
     };
   },
 });
