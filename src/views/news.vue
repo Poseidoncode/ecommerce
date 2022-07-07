@@ -138,22 +138,21 @@
                 />
               </div>
             </div>
-            <div class="relative">
-              <div>
+            <div class="relative content-block content-block2 mt-8">
+              <div class="content-block-inside">
                 <p
                   class="md:p-10 p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                 >
                   {{ weeks[2]?.timeforshow || "" }}
                 </p>
                 <div class="absolute bottom-0 left-0 md:p-10 p-6">
-                  <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                  <h2 class="text-xl font-semibold text-white title-outline2">
                     {{ weeks[2]?.title || "" }}
                   </h2>
                   <p class="text-base leading-4 text-white mt-2 title-outline2">
                     {{ weeks[2]?.outline || "" }}
                   </p>
                   <a
-                    href="javascript:void(0)"
                     class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
                     @click.prevent="showDetail(weeks[2])"
                   >
@@ -177,15 +176,16 @@
                   </a>
                 </div>
               </div>
+
               <img
-                src="https://i.ibb.co/Ms4qyXp/img-3.png"
-                alt="sitting place"
-                class="w-full mt-8 md:mt-6 hidden sm:block"
+                :src="weeks[2]?.image"
+                class="w-full hidden sm:block content-block-img"
+                @click.prevent="showDetail(weeks[2])"
               />
               <img
-                class="w-full mt-4 sm:hidden"
-                src="https://i.ibb.co/6XYbN7f/Rectangle-29.png"
-                alt="sitting place"
+                class="w-full sm:hidden content-block-img"
+                :src="weeks[2]?.image"
+                @click.prevent="showDetail(weeks[2])"
               />
             </div>
           </div>
@@ -559,5 +559,9 @@ export default defineComponent({
       cursor: pointer;
     }
   }
+}
+.content-block2 {
+  height: 590px;
+  overflow: hidden;
 }
 </style>
