@@ -47,21 +47,24 @@
         <div class="lg:flex items-stretch md:mt-12 mt-8">
           <div class="lg:w-1/2">
             <div class="sm:flex items-center justify-between xl:gap-x-8 gap-x-6">
-              <div class="sm:w-1/2 relative">
-                <div>
+              <div class="sm:w-1/2 relative content-block">
+                <div class="content-block-inside">
                   <p
                     class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                   >
                     {{ weeks[0]?.timeforshow || "" }}
                   </p>
                   <div class="absolute bottom-0 left-0 p-6">
-                    <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
-                    <p class="text-base leading-4 text-white mt-2">
-                      Dive into minimalism
+                    <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                      {{ weeks[0]?.title || "" }}
+                    </h2>
+                    <p class="text-base leading-4 text-white mt-2 title-outline2">
+                      {{ weeks[0]?.outline || "" }}
                     </p>
                     <a
                       href="javascript:void(0)"
                       class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                      @click.prevent="showDetail(weeks[0])"
                     >
                       <p class="pr-2 text-sm font-medium leading-none">Read More</p>
                       <svg
@@ -83,23 +86,30 @@
                     </a>
                   </div>
                 </div>
-                <img :src="weeks[0]?.image" class="w-full" alt="chair" />
+                <img
+                  :src="weeks[0]?.image"
+                  class="w-full content-block-img"
+                  @click.prevent="showDetail(weeks[0])"
+                />
               </div>
-              <div class="sm:w-1/2 sm:mt-0 mt-4 relative">
+              <div class="sm:w-1/2 sm:mt-0 mt-4 relative content-block">
                 <div>
                   <p
                     class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                   >
-                    12 April 2021
+                    {{ weeks[1]?.timeforshow || "" }}
                   </p>
                   <div class="absolute bottom-0 left-0 p-6">
-                    <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
-                    <p class="text-base leading-4 text-white mt-2">
-                      Dive into minimalism
+                    <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                      {{ weeks[1]?.title || "" }}
+                    </h2>
+                    <p class="text-base leading-4 text-white mt-2 title-outline2">
+                      {{ weeks[1]?.outline || "" }}
                     </p>
                     <a
                       href="javascript:void(0)"
                       class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                      @click.prevent="showDetail(weeks[1])"
                     >
                       <p class="pr-2 text-sm font-medium leading-none">Read More</p>
                       <svg
@@ -121,7 +131,11 @@
                     </a>
                   </div>
                 </div>
-                <img src="https://i.ibb.co/3C5HvxC/img-2.png" class="w-full" />
+                <img
+                  :src="weeks[1]?.image"
+                  class="w-full content-block-img"
+                  @click.prevent="showDetail(weeks[1])"
+                />
               </div>
             </div>
             <div class="relative">
@@ -129,14 +143,19 @@
                 <p
                   class="md:p-10 p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                 >
-                  12 April 2021
+                  {{ weeks[2]?.timeforshow || "" }}
                 </p>
                 <div class="absolute bottom-0 left-0 md:p-10 p-6">
-                  <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
-                  <p class="text-base leading-4 text-white mt-2">Dive into minimalism</p>
+                  <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                    {{ weeks[2]?.title || "" }}
+                  </h2>
+                  <p class="text-base leading-4 text-white mt-2 title-outline2">
+                    {{ weeks[2]?.outline || "" }}
+                  </p>
                   <a
                     href="javascript:void(0)"
                     class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                    @click.prevent="showDetail(weeks[2])"
                   >
                     <p class="pr-2 text-sm font-medium leading-none">Read More</p>
                     <svg
@@ -492,12 +511,21 @@ export default defineComponent({
     background-position: 102% 74%;
   }
 }
+
 .title-outline {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.title-outline2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .wrapper-outline {
   .content-outline {
     overflow: hidden;
@@ -516,6 +544,19 @@ export default defineComponent({
     transition: transform 0.5s;
     &:hover {
       transform: scale(1.1);
+    }
+  }
+}
+.content-block {
+  height: 324px;
+  overflow: hidden;
+  .content-block-img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
     }
   }
 }
