@@ -95,8 +95,12 @@
       </div>
 
       <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
-        <div class="specifications-content" v-html="news.contentreplace"></div>
-        <span class="tage-data" v-for="(itemtag, it) in news.tag" :key="`articles${it}`">
+        <div class="specifications-content mb-2" v-html="news.contentreplace"></div>
+        <span
+          class="tage-data theme-color7"
+          v-for="(itemtag, it) in news.tag"
+          :key="`articles${it}`"
+        >
           <span class="cursor-pointer" @click="editTag(itemtag, 2)"
             >&nbsp;#{{ itemtag }}&nbsp;&nbsp;&nbsp;</span
           >
@@ -184,4 +188,8 @@ export default defineComponent({
     background-position: 102% 74%;
   }
 }
+
+// .specifications-content {
+//   color: #454f68 !important;
+// }
 </style>

@@ -192,19 +192,24 @@
           <div
             class="lg:w-1/2 xl:ml-8 lg:ml-4 lg:mt-0 md:mt-6 mt-4 lg:flex flex-col justify-between"
           >
-            <div class="relative">
-              <div>
+            <div class="relative content-block content-block2">
+              <div class="content-block-inside">
                 <p
                   class="md:p-10 p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                 >
-                  12 April 2021
+                  {{ weeks[3]?.timeforshow || "" }}
                 </p>
                 <div class="absolute bottom-0 left-0 md:p-10 p-6">
-                  <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
-                  <p class="text-base leading-4 text-white mt-2">Dive into minimalism</p>
+                  <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                    {{ weeks[3]?.title || "" }}
+                  </h2>
+                  <p class="text-base leading-4 text-white mt-2 title-outline2">
+                    {{ weeks[3]?.outline || "" }}
+                  </p>
                   <a
                     href="javascript:void(0)"
                     class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                    @click.prevent="showDetail(weeks[3])"
                   >
                     <p class="pr-2 text-sm font-medium leading-none">Read More</p>
                     <svg
@@ -227,34 +232,37 @@
                 </div>
               </div>
               <img
-                src="https://i.ibb.co/6Wfjf2w/img-4.png"
-                alt="sitting place"
-                class="w-full sm:block hidden"
+                :src="weeks[3]?.image"
+                class="w-full sm:block hidden content-block-img"
+                @click.prevent="showDetail(weeks[3])"
               />
               <img
-                class="w-full sm:hidden"
-                src="https://i.ibb.co/dpXStJk/Rectangle-29.png"
-                alt="sitting place"
+                class="w-full sm:hidden content-block-img"
+                :src="weeks[3]?.image"
+                @click.prevent="showDetail(weeks[3])"
               />
             </div>
             <div
               class="sm:flex items-center justify-between xl:gap-x-8 gap-x-6 md:mt-6 mt-4"
             >
-              <div class="relative w-full">
-                <div>
+              <div class="relative w-full content-block">
+                <div class="content-block-inside">
                   <p
                     class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                   >
-                    12 April 2021
+                    {{ weeks[4]?.timeforshow || "" }}
                   </p>
                   <div class="absolute bottom-0 left-0 p-6">
-                    <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
-                    <p class="text-base leading-4 text-white mt-2">
-                      Dive into minimalism
+                    <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                      {{ weeks[4]?.title || "" }}
+                    </h2>
+                    <p class="text-base leading-4 text-white mt-2 title-outline2">
+                      {{ weeks[4]?.outline || "" }}
                     </p>
                     <a
                       href="javascript:void(0)"
                       class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                      @click.prevent="showDetail(weeks[4])"
                     >
                       <p class="pr-2 text-sm font-medium leading-none">Read More</p>
                       <svg
@@ -277,26 +285,29 @@
                   </div>
                 </div>
                 <img
-                  src="https://i.ibb.co/3yvZBpm/img-5.png"
-                  class="w-full"
-                  alt="chair"
+                  :src="weeks[4]?.image"
+                  class="w-full content-block-img"
+                  @click.prevent="showDetail(weeks[4])"
                 />
               </div>
-              <div class="relative w-full sm:mt-0 mt-4">
-                <div>
+              <div class="relative w-full sm:mt-0 mt-4 content-block">
+                <div class="content-block-inside">
                   <p
                     class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0"
                   >
-                    12 April 2021
+                    {{ weeks[5]?.timeforshow || "" }}
                   </p>
                   <div class="absolute bottom-0 left-0 p-6">
-                    <h2 class="text-xl font-semibold 5 text-white">The Decorated Ways</h2>
-                    <p class="text-base leading-4 text-white mt-2">
-                      Dive into minimalism
+                    <h2 class="text-xl font-semibold 5 text-white title-outline2">
+                      {{ weeks[5]?.title || "" }}
+                    </h2>
+                    <p class="text-base leading-4 text-white mt-2 title-outline2">
+                      {{ weeks[0]?.outline || "" }}
                     </p>
                     <a
                       href="javascript:void(0)"
                       class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                      @click.prevent="showDetail(weeks[5])"
                     >
                       <p class="pr-2 text-sm font-medium leading-none">Read More</p>
                       <svg
@@ -319,9 +330,9 @@
                   </div>
                 </div>
                 <img
-                  src="https://i.ibb.co/gDdnJb5/img-6.png"
-                  class="w-full"
-                  alt="wall design"
+                  :src="weeks[5]?.image"
+                  class="w-full content-block-img"
+                  @click.prevent="showDetail(weeks[5])"
                 />
               </div>
             </div>
@@ -380,13 +391,6 @@
         </div>
       </div>
     </div>
-    <!-- <footer class="grid grid-flow-col auto-cols-max justify-center">
-      <Paginator
-        v-model:first="offset"
-        v-model:rows="rows"
-        :totalRecords="totalItemsCount"
-      ></Paginator>
-    </footer> -->
   </div>
 </template>
 
