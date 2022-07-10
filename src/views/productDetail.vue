@@ -137,9 +137,9 @@
 
             <swiper
               :style="{
-                '--swiper-navigation-color': 'gray',
-                '--swiper-pagination-color': 'gray',
-                '--swiper-navigation-size': '32px',
+                '--swiper-navigation-color': '#072260',
+                '--swiper-pagination-color': '#072260',
+                '--swiper-navigation-size': '26px',
               }"
               :loop="false"
               :spaceBetween="10"
