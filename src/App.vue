@@ -10,7 +10,7 @@
 <script>
 import headercontent from "@/components/cartHeader.vue";
 import footercontent from "@/components/footer.vue";
-import loading from "@/components/loadingSecond.vue";
+import loading from "@/components/loadingThird.vue";
 
 export default {
   components: { headercontent, footercontent, loading },
