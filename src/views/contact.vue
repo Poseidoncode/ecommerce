@@ -29,14 +29,6 @@
         <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color7 text-center">
           Contact Us
         </h1>
-        <!-- <h1
-          class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
-        >
-          Contact Us
-        </h1> -->
-        <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-center mb-4">
-          Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.
-        </p> -->
 
         <v-form
           class="contact-form-section"
@@ -49,6 +41,8 @@
               <v-field
                 name="name"
                 type="name"
+                ref="nameRef"
+                id="nameRef"
                 class="form-control w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 :class="{
                   'is-invalid': errors['name'],
@@ -116,12 +110,18 @@
         </v-form>
 
         <div class="flex flex-wrap -m-2">
-          <div class="p-2 w-full">
+          <div class="p-2 w-full flex justify-center">
             <button
-              class="flex mx-auto text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg"
+              class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg mr-2"
               @click="onSubmitClick"
             >
               Submit
+            </button>
+            <button
+              class="text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg"
+              @click="clearClick"
+            >
+              Clear
             </button>
           </div>
           <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
@@ -228,7 +228,13 @@ export default defineComponent({
     const onSubmitClick = () => {
       document.getElementById("v-form-submit").click();
     };
-    return { user, onSubmit, onSubmitClick };
+
+    const nameRef = ref(null);
+    const clearClick = () => {
+      document.getElementById("v-form-reset").click();
+      document.getElementById("nameRef").focus();
+    };
+    return { user, onSubmit, onSubmitClick, clearClick, nameRef };
   },
 });
 </script>
