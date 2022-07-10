@@ -13,7 +13,8 @@ import { inject, ref } from "vue";
 import headercontent from "@/components/cartHeader.vue";
 import footercontent from "@/components/footer.vue";
 // import loading from "@/components/loadingThird.vue";
-import loading from "@/components/loadingSecond.vue";
+// import loading from "@/components/loadingSecond.vue";
+import loading from "@/components/loadingFinal.vue";
 
 export default {
   components: { headercontent, footercontent, loading },
