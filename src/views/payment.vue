@@ -394,8 +394,6 @@ export default defineComponent({
         }
         const res = await getCustomerSingleOrder(orderId);
         order.value = { ...res.data?.order };
-
-        console.log("order", order.value, res.data.order);
       } catch (e) {
         toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
@@ -417,14 +415,12 @@ export default defineComponent({
         const orderId = route?.params?.datakey || dataKeyData;
         // const res = await postCustomerPay(orderId);
 
-        console.log("orderId", orderId);
-
         router.push({
           name: "thanksEnd",
           params: { datakey: `${orderId}` },
         });
 
-        toast.info(`Order Update Success`, {
+        toast.info(`Payment Update Success`, {
           timeout: 2000,
           hideProgressBar: true,
         });
@@ -439,7 +435,6 @@ export default defineComponent({
     const showConfirmMessage = ref(false);
 
     onBeforeRouteLeave(async (to, from, next) => {
-      console.log("to", to, "from", from);
       if (to.name == "thanksEnd") {
         sessionStorage.clear();
         next();

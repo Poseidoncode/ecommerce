@@ -47,7 +47,11 @@
         </div>
         <div class="flex items-center mb-6 space-x-2">
           <p class="text-gray-600">Share this article</p>
-          <a href="#" class="text-gray-600 hover:text-gray-900">
+          <a
+            href="#"
+            class="text-gray-600 hover:text-gray-900"
+            @click.prevent="sharwLink('facebook')"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -61,7 +65,11 @@
               />
             </svg>
           </a>
-          <a href="#" class="text-gray-600 hover:text-gray-900">
+          <a
+            href="#"
+            class="text-gray-600 hover:text-gray-900"
+            @click.prevent="sharwLink('twitter')"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -75,7 +83,11 @@
               />
             </svg>
           </a>
-          <a href="#" class="text-gray-600 hover:text-gray-900">
+          <a
+            href="#"
+            class="text-gray-600 hover:text-gray-900"
+            @click.prevent="sharwLink('linkin')"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -116,6 +128,7 @@ import { useToast } from "vue-toastification";
 import { useRoute, useRouter } from "vue-router";
 import { getCustomerSingleArticle } from "Service/apis.js";
 import dayjs from "dayjs";
+import { confirmed } from "@vee-validate/rules";
 
 export default defineComponent({
   props: {},
@@ -140,8 +153,6 @@ export default defineComponent({
         obj.contentreplace = obj.content.replace(/\n/g, "<br>");
 
         news.value = { ...obj };
-
-        console.log("news.value", news.value);
       } catch (e) {
         toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,
@@ -150,12 +161,24 @@ export default defineComponent({
       }
     };
 
+    const sharwLink = (data) => {
+      const url = window.location.href;
+
+      if (data == "facebook") {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+      } else if (data == "twitter") {
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=`);
+      } else {
+        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}`);
+      }
+    };
+
     onMounted(async () => {
       emitter.emit("toggleLoader");
       await getData();
       emitter.emit("toggleLoader");
     });
-    return { news };
+    return { news, sharwLink };
   },
 });
 </script>

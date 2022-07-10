@@ -174,10 +174,7 @@
                 class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex"
                 type="button"
                 style="background: #0d4a9e"
-                @click="
-                  cartOpen = false;
-                  $router.push('/checkout');
-                "
+                @click="redirectPage('checkout')"
               >
                 <span>Chechout</span>
                 <svg
@@ -318,11 +315,22 @@ export default defineComponent({
       }
     };
 
+    const redirectPage = (place) => {
+      window.scrollTo({
+        top: 390,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      router.push(`/${place}`);
+    };
+
     onMounted(async () => {
       await getData();
     });
 
     return {
+      redirectPage,
       stepItems,
       items,
       itemsTotal,

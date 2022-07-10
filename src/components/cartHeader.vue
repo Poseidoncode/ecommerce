@@ -298,10 +298,7 @@
     <div>
       <div
         class="cursor-pointer flex items-center justify-center px-3 py-2 bg-yellow-400 text-white text-sm uppercase font-medium rounded hover:bg-yellow-300 focus:outline-none focus:bg-yellow-300 mt-3"
-        @click="
-          cartOpen = false;
-          $router.push('/cart');
-        "
+        @click="redirectPage('cart')"
       >
         <span>Cart</span>
         <svg
@@ -318,10 +315,7 @@
       </div>
       <div
         class="cursor-pointer flex items-center justify-center mt-2 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
-        @click="
-          cartOpen = false;
-          $router.push('/checkout');
-        "
+        @click="redirectPage('checkout')"
       >
         <span>Chechout</span>
         <svg
@@ -495,6 +489,16 @@ export default defineComponent({
       return +window?.outerWidth < 600;
     });
 
+    const redirectPage = (place) => {
+      window.scrollTo({
+        top: 390,
+        left: 0,
+        behavior: "smooth",
+      });
+      cartOpen.value = false;
+      router.push(`/${place}`);
+    };
+
     onMounted(async () => {
       if (window.scrollY < 50) {
         scrollIsZero.value = true;
@@ -526,6 +530,7 @@ export default defineComponent({
 
       favoriteTotal,
       getFavoriteData,
+      redirectPage,
     };
   },
 });

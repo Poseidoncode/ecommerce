@@ -57,9 +57,7 @@
                   </div>
                   <div>
                     <span class="font-semibold text-gray-600 text-xl">$210</span
-                    ><span class="font-semibold text-gray-600 text-sm"
-                      >.00</span
-                    >
+                    ><span class="font-semibold text-gray-600 text-sm">.00</span>
                   </div>
                 </div>
               </div>
@@ -132,9 +130,7 @@
                 </div>
                 <div class="w-full flex items-center">
                   <div class="w-32">
-                    <span class="text-gray-600 font-semibold"
-                      >Billing Address</span
-                    >
+                    <span class="text-gray-600 font-semibold">Billing Address</span>
                   </div>
                   <div class="flex-grow pl-3">
                     <span>123 George Street, Sydney, NSW 2000 Australia</span>
@@ -162,8 +158,7 @@
                   </div>
                   <div>
                     <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Name on card</label
                       >
                       <div>
@@ -175,8 +170,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label
-                        class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                         >Card number</label
                       >
                       <div>
@@ -189,8 +183,7 @@
                     </div>
                     <div class="mb-3 -mx-2 flex items-end">
                       <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                           >Expiration date</label
                         >
                         <div>
@@ -229,8 +222,7 @@
                         </select>
                       </div>
                       <div class="px-2 w-1/4">
-                        <label
-                          class="text-gray-600 font-semibold text-sm mb-2 ml-1"
+                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1"
                           >Security code</label
                         >
                         <div>
@@ -323,18 +315,9 @@ export default defineComponent({
       try {
         const dataKeyData = sessionStorage.getItem("ordnow");
         const orderId = route?.params?.datakey || dataKeyData;
-        // if (!route?.params?.datakey && !dataKeyData) {
-        //   toast.error(`There's no order!`, {
-        //     timeout: 2000,
-        //     hideProgressBar: true,
-        //   });
-        //   router.push("/");
-        //   return;
-        // }
+
         const res = await getCustomerSingleOrder(orderId);
         order.value = { ...res.data?.order };
-
-        console.log("order", order.value, res.data.order);
       } catch (e) {
         toast.error(`${e.response ? e.response.data.message : e}`, {
           timeout: 2000,

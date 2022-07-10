@@ -187,16 +187,6 @@ const routes = [
     },
     component: () => import("@/views/paymentbackup.vue"),
   },
-  {
-    path: "/testpage",
-    name: "testpage",
-    meta: {
-      title: "testpage",
-      needNav: false,
-      needFooter: false,
-    },
-    component: () => import("@/views/testpage.vue"),
-  },
 ];
 
 const router = createRouter({

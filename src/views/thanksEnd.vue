@@ -5,24 +5,71 @@
     <div class="container mx-auto">
       <div class="flex justify-center px-6 my-12">
         <!-- Row -->
-        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex flex-wrap">
           <!-- Col -->
           <div
-            class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
+            class="w-full h-60 lg:h-auto bg-gray-400 lg:w-1/2 bg-cover rounded-l-lg"
             style="
               background-image: url('https://images.unsplash.com/photo-1565718253569-3156836e2ec0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80');
+              background-position: 0% 11%;
             "
           ></div>
           <!-- Col -->
-          <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+          <div
+            class="w-full mx-auto border border-gray-200 text-gray-800 font-light lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none"
+            style="height: 360px"
+            v-if="hasData"
+          >
+            <div class="w-full flex mb-3 items-center">
+              <div class="w-full">
+                <span class="text-gray-600 font-semibold text-2xl">Your Receipt</span>
+              </div>
+            </div>
+            <div class="w-full cart-content">
+              <div>
+                <span class="text-gray-600 font-semibold">Contact</span>
+              </div>
+              <div class="flex-grow pl-3 text-gray-800">
+                <span>{{ order.user?.name }}</span>
+              </div>
+              <div>
+                <span class="text-gray-600 font-semibold">Phone</span>
+              </div>
+              <div class="flex-grow pl-3 text-gray-800">
+                <span>{{ order.user?.tel }}</span>
+              </div>
+              <div>
+                <span class="text-gray-600 font-semibold">Email</span>
+              </div>
+              <div class="flex-grow pl-3 text-gray-800">
+                <span>{{ order.user?.email }}</span>
+              </div>
+              <div>
+                <span class="text-gray-600 font-semibold">Billing Address</span>
+              </div>
+              <div class="flex-grow pl-3 text-gray-800">
+                <span>{{ order.user?.address }}</span>
+              </div>
+            </div>
+            <hr class="col-span-full my-3" />
+            <div class="w-full cart-content">
+              <div>
+                <span class="text-gray-600 font-semibold">Final Total</span>
+              </div>
+              <div class="flex-grow pl-3 text-gray-800">
+                <span>${{ order?.total ? order?.total.toFixed(2) : "" }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none" v-else>
             <div class="px-8 mb-4 text-center">
-              <h3 class="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
+              <h3 class="pt-4 mb-2 text-2xl">Forgot Your Order?</h3>
               <p class="mb-4 text-sm text-gray-700">
                 We get it, stuff happens. Just enter your email address below and we'll
-                send you a link to reset your password!
+                send you a link to tell you!
               </p>
             </div>
-            <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+            <form class="px-8 pt-6 pb-2 mb-2 bg-white rounded">
               <div class="mb-4">
                 <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                   Email
@@ -39,25 +86,25 @@
                   class="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
                   type="button"
                 >
-                  Reset Password
+                  Send Message
                 </button>
               </div>
               <hr class="mb-6 border-t" />
-              <div class="text-center">
-                <a
-                  class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                  href="./register.html"
+              <div class="otherplace">
+                <button
+                  class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                  type="button"
+                  @click="redirectPage('')"
                 >
-                  Create an Account!
-                </a>
-              </div>
-              <div class="text-center">
-                <a
-                  class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                  href="./index.html"
+                  Home
+                </button>
+                <button
+                  class="w-full px-4 py-2 font-bold text-white bg-green-500 rounded-full hover:bg-green-700 focus:outline-none focus:shadow-outline"
+                  type="button"
+                  @click="redirectPage('productslist')"
                 >
-                  Already have an account? Login!
-                </a>
+                  Shop
+                </button>
               </div>
             </form>
           </div>
@@ -84,21 +131,6 @@ import { useStore } from "vuex";
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
-    // emit("update:modelValue", _newValues);
-    const stepItems = ref([
-      {
-        label: "Cart",
-        to: "/cart",
-      },
-      {
-        label: "Checkout",
-        to: "/checkout",
-      },
-      {
-        label: "Payment",
-        to: "/payment",
-      },
-    ]);
     const emitter = inject("emitter"); // Inject `emitter`
     const router = useRouter();
     const route = useRoute();
@@ -110,10 +142,20 @@ export default defineComponent({
     const itemsTotal = ref("");
     const itemsFinalTotal = ref("");
     const itemsDiscount = ref("");
+    const hasData = ref(false);
 
     const getData = async () => {
       try {
+        const orderId = route?.params?.datakey || "";
+
+        if (!orderId) {
+          hasData.value = false;
+          return;
+        }
+        emitter.emit("toggleLoader");
         const res = await getCustomerSingleOrder(orderId);
+        emitter.emit("toggleLoader");
+        hasData.value = true;
         order.value = { ...res.data?.order };
       } catch (e) {
         toast.error(`${e.response ? e.response.data.message : e}`, {
@@ -126,54 +168,25 @@ export default defineComponent({
     const user = ref({});
 
     const myForm = ref(null);
-    const onSubmitClick = () => {
-      document.getElementById("v-form-button").click();
+
+    const redirectPage = (place) => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      router.push(`/${place}`);
     };
-
-    const onSubmit = async () => {
-      try {
-        const obj = {
-          user: {
-            name: user.value?.name,
-            email: user.value?.email,
-            tel: user.value?.phone,
-            address: user.value?.address,
-          },
-          message: user.value?.message,
-        };
-
-        const res = await postCustomerOrder({ data: obj });
-        emitter.emit("getCartData");
-        console.log("res");
-
-        emitter.emit("getCartData");
-        router.push({
-          name: "payment",
-          params: { datakey: `${res.data.orderId}` },
-        });
-
-        sessionStorage.setItem("ordnow", `${res.data.orderId}`);
-
-        toast.info(`Order Update Success`, {
-          timeout: 2000,
-          hideProgressBar: true,
-        });
-      } catch (e) {
-        toast.error(`${e.response ? e.response.data.message : e}`, {
-          timeout: 2000,
-          hideProgressBar: true,
-        });
-      }
-    };
-
-    const payType = ref("visa");
 
     onMounted(async () => {
+      hasData.value = false;
       await getData();
     });
 
     return {
-      stepItems,
+      hasData,
+
       order,
       itemsTotal,
       itemsFinalTotal,
@@ -182,9 +195,7 @@ export default defineComponent({
       user,
 
       myForm,
-      onSubmit,
-      onSubmitClick,
-      payType,
+      redirectPage,
     };
   },
 });
@@ -236,11 +247,6 @@ export default defineComponent({
   }
 }
 
-.main-checkout-content {
-  width: 90%;
-  margin: 0 auto;
-}
-
 ::v-deep(.p-disabled) {
   background-color: #ffffff;
 }
@@ -251,19 +257,16 @@ export default defineComponent({
   grid-row-gap: 7px;
 }
 
-.code-field {
-  position: relative;
-  .spec-error {
-    position: absolute;
-    left: 0;
-    bottom: -22px;
-    width: 360px;
-  }
-}
 .main-section-thanks {
   width: 100vw;
   height: 100vh;
   position: absolute;
   top: 0;
+}
+
+.otherplace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
 }
 </style>

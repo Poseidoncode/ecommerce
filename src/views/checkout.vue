@@ -260,10 +260,7 @@
                   class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex mr-3"
                   type="button"
                   style="background: #f1b82b"
-                  @click="
-                    cartOpen = false;
-                    $router.push('/cart');
-                  "
+                  @click="redirectPage('cart')"
                 >
                   <span style="transform: scaleX(-1)">
                     <svg
@@ -369,12 +366,16 @@ export default defineComponent({
           },
           message: user.value?.message,
         };
-
+        emitter.emit("toggleLoader");
         const res = await postCustomerOrder({ data: obj });
-        emitter.emit("getCartData");
-        console.log("res");
+        emitter.emit("toggleLoader");
 
         emitter.emit("getCartData");
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
         router.push({
           name: "payment",
           params: { datakey: `${res.data.orderId}` },
@@ -393,12 +394,22 @@ export default defineComponent({
         });
       }
     };
+    const redirectPage = (place) => {
+      window.scrollTo({
+        top: 390,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      router.push(`/${place}`);
+    };
 
     onMounted(async () => {
       await getData();
     });
 
     return {
+      redirectPage,
       stepItems,
       items,
       itemsTotal,
