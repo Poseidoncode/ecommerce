@@ -234,9 +234,18 @@
               </svg>
             </div>
 
-            <button
+            <!-- <button
               type="button"
               class="h-14 px-6 py-2 font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white"
+              @click.stop="addToCart(product)"
+            >
+              Add to Cart
+            </button> -->
+
+            <button
+              class="font-bold uppercase text-base px-6 py-2 shadow outline-none focus:outline-none custom-search"
+              type="button"
+              :style="`background: #001F60;color:#FFFFFF;border: 1px solid white;outline: 1px solid #001F60;`"
               @click.stop="addToCart(product)"
             >
               Add to Cart
