@@ -233,7 +233,7 @@
           <!-- {{ itemData.qty }} -->
           <div class="mr-2">
             <select
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               v-model="itemData.qty"
               @change="putData(itemData)"
             >
@@ -295,8 +295,44 @@
         </button>
       </form>
     </div> -->
-    <div>
-      <div
+    <div class="flex mt-3 justify-end">
+      <button
+        class="font-bold uppercase text-base px-6 py-2 shadow outline-none focus:outline-none custom-search flex items-center mr-4"
+        type="button"
+        :style="`background: #001F60;color:#FFFFFF;border: 2px solid white;`"
+        @click="redirectPage('cart')"
+      >
+        Cart<svg
+          class="h-5 w-5 mx-2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </button>
+      <button
+        class="font-bold uppercase text-base px-6 py-2 shadow outline-none focus:outline-none custom-search flex items-center"
+        type="button"
+        :style="`background: #f1b82b;color:#FFFFFF;border: 2px solid white;`"
+        @click="redirectPage('checkout')"
+      >
+        checkout<svg
+          class="h-5 w-5 mx-2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </button>
+      <!-- <div
         class="cursor-pointer flex items-center justify-center px-3 py-2 bg-yellow-400 text-white text-sm uppercase font-medium rounded hover:bg-yellow-300 focus:outline-none focus:bg-yellow-300 mt-3"
         @click="redirectPage('cart')"
       >
@@ -329,7 +365,7 @@
         >
           <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

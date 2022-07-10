@@ -8,7 +8,7 @@
         <div class="w-full xl:w-3/4 lg:w-11/12 flex flex-wrap">
           <!-- Col -->
           <div
-            class="w-full h-60 lg:h-auto bg-gray-400 lg:w-1/2 bg-cover rounded-l-lg"
+            class="w-full h-60 lg:h-auto bg-gray-400 lg:w-1/2 bg-cover rounded-none lg:rounded-l"
             style="
               background-image: url('https://images.unsplash.com/photo-1565718253569-3156836e2ec0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80');
               background-position: 0% 11%;
@@ -16,7 +16,7 @@
           ></div>
           <!-- Col -->
           <div
-            class="w-full mx-auto border border-gray-200 text-gray-800 font-light lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none"
+            class="w-full mx-auto border border-gray-200 text-gray-800 font-light lg:w-1/2 bg-white p-5 rounded-none lg:rounded-r"
             style="height: 360px"
             v-if="hasData"
           >

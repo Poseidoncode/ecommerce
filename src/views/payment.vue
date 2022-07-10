@@ -247,8 +247,39 @@
                   </div>
                 </div>
               </div>
+              <div class="flex mt-3 justify-end">
+                <button
+                  class="font-bold uppercase text-base px-6 py-2 shadow outline-none focus:outline-none custom-search flex items-center mr-4"
+                  type="button"
+                  :style="`background: #001F60;color:#FFFFFF;border: 2px solid white;`"
+                  @click="
+                    cartOpen = false;
+                    $router.push('/cart');
+                  "
+                >
+                  Cancel Order
+                </button>
+                <button
+                  class="font-bold uppercase text-base px-6 py-2 shadow outline-none focus:outline-none custom-search flex items-center"
+                  type="button"
+                  :style="`background: #f1b82b;color:#FFFFFF;border: 2px solid white;`"
+                  @click="onSubmitClick"
+                >
+                  Pay<svg
+                    class="h-5 w-5 mx-2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </button>
+              </div>
 
-              <div>
+              <!-- <div>
                 <button
                   class="text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mb-1 text-sm float-right flex"
                   type="button"
@@ -277,23 +308,11 @@
                     $router.push('/cart');
                   "
                 >
-                  <!-- <span style="transform: scaleX(-1)">
-                    <svg
-                      class="h-5 w-5 mx-2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                  </span> -->
+                
 
                   <span>Cancel Order</span>
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

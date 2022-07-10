@@ -198,12 +198,12 @@
           <div class="flex py-4 space-x-4">
             <div class="relative">
               <div
-                class="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold"
+                class="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-600 tracking-wide font-semibold"
               >
                 Qty
               </div>
               <select
-                class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1"
+                class="cursor-pointer appearance-none rounded border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1"
                 v-model="selectedQty"
               >
                 <option>1</option>
@@ -245,7 +245,7 @@
             <button
               class="font-bold uppercase text-base px-6 py-2 shadow outline-none focus:outline-none custom-search"
               type="button"
-              :style="`background: #001F60;color:#FFFFFF;border: 1px solid white;outline: 1px solid #001F60;`"
+              :style="`background: #001F60;color:#FFFFFF;border: 1px solid white;outline: 1px solid #001F60;height: 50px;margin-top: 3px;`"
               @click.stop="addToCart(product)"
             >
               Add to Cart
