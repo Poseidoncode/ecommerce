@@ -120,6 +120,7 @@ import dayjs from "dayjs";
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
+    const emitter = inject("emitter");
     const toast = useToast();
     const route = useRoute();
     const router = useRouter();
@@ -128,10 +129,13 @@ export default defineComponent({
     const getData = async () => {
       try {
         const res = await getCustomerSingleArticle(`${route.params.newsId}`);
-        console.log(res);
+
         let obj = { ...res.data?.article };
-        console.log("obj", obj);
-        obj.timeforshow = dayjs(new Date(+obj.create_at)).format("YYYY/MM/DD HH:mm:ss");
+
+        obj.timeforshow =
+          obj.category == "Weeks"
+            ? dayjs(new Date()).subtract(8, "hour").format("YYYY/MM/DD HH:mm:ss")
+            : dayjs(new Date(+obj.create_at)).format("YYYY/MM/DD HH:mm:ss");
 
         obj.contentreplace = obj.content.replace(/\n/g, "<br>");
 
@@ -147,7 +151,9 @@ export default defineComponent({
     };
 
     onMounted(async () => {
+      emitter.emit("toggleLoader");
       await getData();
+      emitter.emit("toggleLoader");
     });
     return { news };
   },

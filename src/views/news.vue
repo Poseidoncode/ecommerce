@@ -404,6 +404,7 @@ import { useRoute, useRouter } from "vue-router";
 export default defineComponent({
   props: {},
   setup(props, { emit }) {
+    const emitter = inject("emitter");
     const router = useRouter();
     const route = useRoute();
     const toast = useToast();
@@ -418,13 +419,18 @@ export default defineComponent({
         // const page = +offset.value / +rows.value + +1;
         // const skip = (page - 1) * rows.value;
         // const top = rows.value;
+
         const res1 = await getCustomerArticle(`?page=1`);
         const res2 = await getCustomerArticle(`?page=2`);
 
         let arr = [...res1.data?.articles, ...res2.data?.articles];
         arr = arr.map((s) => {
           // s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
-          s.timeforshow = dayjs(new Date(+s.create_at)).format("D MMMM, YYYY");
+
+          s.timeforshow =
+            s.category == "Weeks"
+              ? dayjs(new Date()).subtract(8, "hour").format("D MMMM, YYYY")
+              : dayjs(new Date(+s.create_at)).format("D MMMM, YYYY");
           return s;
         });
         popular.value = arr.filter((s) => s.category == "Popular");
@@ -452,7 +458,9 @@ export default defineComponent({
     };
 
     onMounted(async () => {
+      emitter.emit("toggleLoader");
       await getData();
+      emitter.emit("toggleLoader");
     });
     return {
       offset,
