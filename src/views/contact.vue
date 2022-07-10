@@ -128,7 +128,10 @@
             <a class="text-blue-500">posidomhu@gmail.com</a>
             <p class="leading-normal my-5">49 Smith St. <br />Saint Cloud, MN 56301</p>
             <span class="inline-flex">
-              <a class="text-gray-500">
+              <a
+                class="text-gray-500 cursor-pointer"
+                @click.prevent="redirectPage('type1')"
+              >
                 <svg
                   fill="currentColor"
                   stroke-linecap="round"
@@ -142,7 +145,10 @@
                   ></path>
                 </svg>
               </a>
-              <a class="ml-4 text-gray-500">
+              <a
+                class="ml-4 text-gray-500 cursor-pointer"
+                @click.prevent="redirectPage('type2')"
+              >
                 <svg
                   fill="currentColor"
                   stroke-linecap="round"
@@ -156,7 +162,10 @@
                   ></path>
                 </svg>
               </a>
-              <a class="ml-4 text-gray-500">
+              <a
+                class="ml-4 text-gray-500 cursor-pointer"
+                @click.prevent="redirectPage('type1')"
+              >
                 <svg
                   fill="none"
                   stroke="currentColor"
@@ -172,7 +181,10 @@
                   ></path>
                 </svg>
               </a>
-              <a class="ml-4 text-gray-500">
+              <a
+                class="ml-4 text-gray-500 cursor-pointer"
+                @click.prevent="redirectPage('type2')"
+              >
                 <svg
                   fill="currentColor"
                   stroke-linecap="round"
@@ -234,7 +246,15 @@ export default defineComponent({
       document.getElementById("v-form-reset").click();
       document.getElementById("nameRef").focus();
     };
-    return { user, onSubmit, onSubmitClick, clearClick, nameRef };
+
+    const redirectPage = (data) => {
+      if (data == "type1") {
+        window.open(`https://www.cakeresume.com/poseidon`);
+      } else {
+        window.open(`https://github.com/Poseidoncode`);
+      }
+    };
+    return { user, onSubmit, onSubmitClick, clearClick, nameRef, redirectPage };
   },
 });
 </script>
