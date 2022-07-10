@@ -269,6 +269,17 @@
                 />
               </svg>
             </button>
+            <div class="speeddial-circle-demo mt-2">
+              <SpeedDial
+                :model="itemsSpeed"
+                :radius="120"
+                direction="down-right"
+                type="quarter-circle"
+                buttonClass="p-button-primary p-button-sm"
+                showIcon="pi pi-share-alt"
+                hideIcon="pi pi-times"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -662,6 +673,45 @@ export default defineComponent({
       }
     );
 
+    const itemsSpeed = ref([
+      {
+        label: "Facebook",
+        icon: "pi pi-facebook",
+        command: () => {
+          toast.add({ severity: "info", summary: "Add", detail: "Data Added" });
+        },
+      },
+      {
+        label: "Twitter",
+        icon: "pi pi-twitter",
+        command: () => {
+          toast.add({
+            severity: "success",
+            summary: "Update",
+            detail: "Data Updated",
+          });
+        },
+      },
+      {
+        label: "Linkedin",
+        icon: "pi pi-linkedin",
+        command: () => {
+          toast.add({
+            severity: "error",
+            summary: "Delete",
+            detail: "Data Deleted",
+          });
+        },
+      },
+      {
+        label: "Github",
+        icon: "pi pi-github",
+        command: () => {
+          this.$router.push("fileupload");
+        },
+      },
+    ]);
+
     onMounted(async () => {
       emitter.emit("toggleLoader");
       await getData();
@@ -687,6 +737,7 @@ export default defineComponent({
       addToFavorite,
       addToCart,
       selectedQty,
+      itemsSpeed,
     };
   },
 });
@@ -864,5 +915,9 @@ export default defineComponent({
       }
     }
   }
+}
+::v-deep(.p-speeddial-button.p-button.p-button-icon-only) {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 </style>

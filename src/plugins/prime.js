@@ -29,8 +29,10 @@ import BadgeDirective from "primevue/badgedirective";
 import Editor from "primevue/editor";
 import Slider from "primevue/slider";
 import Steps from "primevue/steps";
+import SpeedDial from "primevue/speeddial";
 
 export default (app) => {
+  app.component("SpeedDial", SpeedDial);
   app.component("InputText", InputText);
   app.component("InputSwitch", InputSwitch);
   app.component("Button", Button);
