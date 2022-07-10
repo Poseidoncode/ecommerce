@@ -148,23 +148,55 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .p-panelmenu {
-//   width: 22rem;
-// }
 .main-content {
-  // display: flex;
   .left-bar {
     height: 100%;
     position: fixed;
     top: 0;
     z-index: 999;
     left: 0;
-    // background: black;
+    background: #303030;
     box-shadow: 0px 10px 40px rgb(41 50 65 / 6%);
   }
 
   .right-content {
     padding-left: 160px;
   }
+}
+
+::v-deep(.p-panelmenu .p-panelmenu-panel .p-panelmenu-header > a) {
+  background: #303030;
+  color: #dde0e0;
+}
+::v-deep(.p-panelmenu .p-panelmenu-content) {
+  background: #303030;
+  color: #dde0e0;
+}
+::v-deep(.p-panelmenu
+    .p-panelmenu-content
+    .p-menuitem
+    .p-menuitem-link
+    .p-menuitem-text) {
+  background: #303030;
+  color: #dde0e0;
+  &:hover {
+    background: #303030;
+    color: #dde0e0;
+  }
+}
+::v-deep(.p-panelmenu
+    .p-panelmenu-content
+    .p-menuitem
+    .p-menuitem-link
+    .p-menuitem-icon) {
+  background: #303030;
+  color: #dde0e0;
+}
+::v-deep(.p-panelmenu
+    .p-panelmenu-content
+    .p-menuitem
+    .p-menuitem-link:not(.p-disabled):hover) {
+  background: #303030;
+  color: #dde0e0 !important;
 }
 </style>

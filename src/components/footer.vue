@@ -139,21 +139,44 @@
                 <h6 class="text-lg font-medium text-white">Products</h6>
                 <ul class="list-inside mt-4 space-y-4">
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Certified Pre-Owned</a
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="goSpecialCategory('Mens')"
+                      >Mens</a
                     >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Sell Your Watch</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="goSpecialCategory('Womens')"
+                      >Womens</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Quality Service</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="goSpecialCategory('Dive')"
+                      >Dive</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="goSpecialCategory('Classic')"
+                      >Classic</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="goSpecialCategory('Ceramic')"
+                      >Ceramic</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -241,7 +264,7 @@
         <!-- <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
           >Vigilero</a
         > -->
-        <p class="py-2 text-white sm:py-0 text-sm">
+        <p class="py-2 text-white sm:py-0 text-sm" style="padding: 8px 0">
           <a href="#">
             Copyright © 2022 Vigilero All rights resevered. Images are for educational use
             only, no commercial use.
@@ -255,6 +278,7 @@
 <script>
 import { inject, ref, defineComponent, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup(props, { emit }) {
@@ -310,7 +334,26 @@ export default defineComponent({
       }
     };
 
-    return { faqRedirect, redirctPage };
+    const store = useStore();
+
+    const goSpecialCategory = (cat) => {
+      store.commit("m_setSearchData", {
+        category: cat,
+        title: "",
+        price: "",
+      });
+      window.scrollTo({
+        top: 400,
+        left: 0,
+        behavior: "smooth",
+      });
+      router.push({
+        name: "productslist",
+        params: { nowTime: Date.now() },
+      });
+    };
+
+    return { faqRedirect, redirctPage, goSpecialCategory };
   },
 });
 </script>

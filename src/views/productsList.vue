@@ -460,6 +460,15 @@ export default defineComponent({
       }
     };
 
+    watch(
+      () => route.params.nowTime,
+      async (pv, prev) => {
+        if (pv) {
+          await getData();
+        }
+      }
+    );
+
     onMounted(async () => {
       await getData();
     });
