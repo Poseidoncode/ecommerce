@@ -91,22 +91,47 @@
           <div>
             <div class="pb-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
               <div>
-                <h6 class="text-lg font-medium text-white">Contact</h6>
+                <h6 class="text-lg font-medium text-white">Main</h6>
                 <ul class="list-inside mt-4 space-y-4">
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">About</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="redirctPage('home')"
+                      >Home</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="redirctPage('productslist')"
+                      >Shop</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="redirctPage('contact')"
+                      >Contact</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="redirctPage('news')"
+                      >News</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="redirctPage('about')"
+                      >About</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -114,13 +139,15 @@
                 <h6 class="text-lg font-medium text-white">Products</h6>
                 <ul class="list-inside mt-4 space-y-4">
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">About</a>
+                    <a href="#" class="hover:text-cyan-400 transition"
+                      >Certified Pre-Owned</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Sell Your Watch</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Quality Service</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Partners</a>
@@ -131,22 +158,31 @@
                 </ul>
               </div>
               <div>
-                <h6 class="text-lg font-medium text-white">Ressources</h6>
+                <h6 class="text-lg font-medium text-white">ORDERS & RETURNS</h6>
                 <ul class="list-inside mt-4 space-y-4">
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">About</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="faqRedirect('orderssection')"
+                      >Orders</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="faqRedirect('deliverysection')"
+                      >Delivery</a
+                    >
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
-                  </li>
-                  <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
-                  </li>
-                  <li>
-                    <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
+                    <a
+                      href="#"
+                      class="hover:text-cyan-400 transition"
+                      @click.prevent="faqRedirect('returnssection')"
+                      >Returns</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -217,18 +253,64 @@
 </template>
 
 <script>
-import { inject, ref, defineComponent } from "vue";
+import { inject, ref, defineComponent, nextTick } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
-  props: {
-    // specColum: {
-    //   type: String,
-    //   default: "",
-    // },
-  },
   setup(props, { emit }) {
+    const router = useRouter();
+    const route = useRouter();
+    const emitter = inject("emitter"); // Inject `emitter`
     // emit("update:modelValue", _newValues);
-    return {};
+    const faqRedirect = async (data) => {
+      router.push({
+        name: "faq",
+        params: { scrollplace: `orderssection` },
+      });
+      await nextTick();
+      setTimeout(() => {
+        emitter.emit("scrollFaqPlace", data);
+      }, 100);
+    };
+
+    const redirctPage = (page = "home") => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        // behavior: "smooth",
+      });
+      const expr = page;
+      switch (expr) {
+        case "home":
+          router.push({ name: "home" });
+          break;
+        case "productslist":
+          router.push({ name: "productslist" });
+          break;
+        case "faq":
+          router.push({ name: "faq" });
+          break;
+        case "news":
+          router.push({ name: "news" });
+          break;
+        case "contact":
+          router.push({ name: "contact" });
+          break;
+        case "about":
+          router.push({ name: "about" });
+          break;
+        case "about":
+          router.push({ name: "about" });
+          break;
+        case "favourite":
+          router.push({ name: "favourite" });
+          break;
+        default:
+          console.log(`Sorry, no data`);
+      }
+    };
+
+    return { faqRedirect, redirctPage };
   },
 });
 </script>

@@ -27,12 +27,10 @@
       <h1 class="mb-6 text-xl font-bold md:text-3xl theme-color7">
         Frequently Asked Questions
       </h1>
-      <h1 class="mb-6 text-xl font-bold md:text-2xl theme-color-main">
+      <h1 id="orderssection" class="mb-6 text-xl font-bold md:text-2xl theme-color-main">
         Orders
       </h1>
-      <div
-        class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200"
-      >
+      <div class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
         <div>
           <button
             @click="open.q11 = !open.q11"
@@ -62,9 +60,9 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q11"
           >
-            It's really easy to place an order with Vigilero, simply select your
-            item/s and add to basket. You can select from checking out using our
-            secure payment site or using PayPal.
+            It's really easy to place an order with Vigilero, simply select your item/s
+            and add to basket. You can select from checking out using our secure payment
+            site or using PayPal.
           </div>
         </div>
         <div>
@@ -96,9 +94,8 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q12"
           >
-            You cannot cancel or change an order after it has been placed.
-            However, if you return the item(s) within 30 days of purchase, we
-            can offer a full refund.
+            You cannot cancel or change an order after it has been placed. However, if you
+            return the item(s) within 30 days of purchase, we can offer a full refund.
           </div>
         </div>
 
@@ -108,8 +105,7 @@
             class="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
             role="button"
           >
-            Are the items genuine and will they be received in official brand
-            packaging?
+            Are the items genuine and will they be received in official brand packaging?
             <svg
               :class="{ 'rotate-45': open.q13 }"
               class="flex-none w-4 h-4 ml-4 transition transform"
@@ -132,10 +128,10 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q13"
           >
-            Vigilero are authorised dealers of all the brands we sell. All
-            watches are brand new and come with full manufacturer's warranty,
-            certification and packaging. You can confirm this by finding us on
-            manufacturers' websites where we are listed as Vigilero.
+            Vigilero are authorised dealers of all the brands we sell. All watches are
+            brand new and come with full manufacturer's warranty, certification and
+            packaging. You can confirm this by finding us on manufacturers' websites where
+            we are listed as Vigilero.
           </div>
         </div>
 
@@ -168,9 +164,9 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q14"
           >
-            If for any reason we are unable to fulfill your original order, the
-            Customer Care team will contact you and help you select an
-            alternative item or arrange for a refund.
+            If for any reason we are unable to fulfill your original order, the Customer
+            Care team will contact you and help you select an alternative item or arrange
+            for a refund.
           </div>
         </div>
 
@@ -180,8 +176,8 @@
             class="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
             role="button"
           >
-            I have seen a watch but it does not appear on your website, can you
-            get it for me?
+            I have seen a watch but it does not appear on your website, can you get it for
+            me?
             <svg
               :class="{ 'rotate-45': open.q15 }"
               class="flex-none w-4 h-4 ml-4 transition transform"
@@ -204,19 +200,20 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q15"
           >
-            Yes, as authorised dealers we will contact the manufacturer and
-            determine availability, and our customer care team will keep you
-            informed every step of the way.
+            Yes, as authorised dealers we will contact the manufacturer and determine
+            availability, and our customer care team will keep you informed every step of
+            the way.
           </div>
         </div>
       </div>
       <!-- section-2 -->
-      <h1 class="mb-6 text-xl font-bold md:text-2xl mt-8 theme-color-main">
+      <h1
+        id="deliverysection"
+        class="mb-6 text-xl font-bold md:text-2xl mt-8 theme-color-main"
+      >
         Delivery
       </h1>
-      <div
-        class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200"
-      >
+      <div class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
         <div>
           <button
             @click="open.q21 = !open.q21"
@@ -246,8 +243,8 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q21"
           >
-            Once your order has been dispatched you will receive a shipment
-            email providing a Royal Mail tracking reference.
+            Once your order has been dispatched you will receive a shipment email
+            providing a Royal Mail tracking reference.
           </div>
         </div>
         <div>
@@ -279,9 +276,8 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q22"
           >
-            All items ordered before 4pm Monday-Friday will be dispatched same
-            day. Orders placed after 4pm Friday-before 4pm Monday will be
-            dispatched on Monday.
+            All items ordered before 4pm Monday-Friday will be dispatched same day. Orders
+            placed after 4pm Friday-before 4pm Monday will be dispatched on Monday.
           </div>
         </div>
 
@@ -314,11 +310,10 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q23"
           >
-            Yes, we can deliver to an alternative address, please include this
-            information when placing your order. Parcels will be delivered via
-            Royal Mail post. Before placing an order to be delivered to your
-            work address, please ensure you are happy where and who will be
-            signing for this.
+            Yes, we can deliver to an alternative address, please include this information
+            when placing your order. Parcels will be delivered via Royal Mail post. Before
+            placing an order to be delivered to your work address, please ensure you are
+            happy where and who will be signing for this.
           </div>
         </div>
 
@@ -351,10 +346,10 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q24"
           >
-            To change your delivery address, simply enter the new address before
-            you complete checkout – such as your work address, or a friend’s
-            house. Please note that you can’t change your delivery address for
-            an order you’ve already made.
+            To change your delivery address, simply enter the new address before you
+            complete checkout – such as your work address, or a friend’s house. Please
+            note that you can’t change your delivery address for an order you’ve already
+            made.
           </div>
         </div>
 
@@ -393,12 +388,13 @@
       </div>
 
       <!-- section-3 -->
-      <h1 class="mb-6 text-xl font-bold md:text-2xl mt-8 theme-color-main">
+      <h1
+        id="returnssection"
+        class="mb-6 text-xl font-bold md:text-2xl mt-8 theme-color-main"
+      >
         Returns
       </h1>
-      <div
-        class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200"
-      >
+      <div class="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
         <div>
           <button
             @click="open.q31 = !open.q31"
@@ -428,13 +424,13 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q31"
           >
-            We offer a 30 day return policy on all items. If you are not
-            entirely satisfied, you can either exchange for an alternative item
-            or have a full refund. We do ask, whilst you are deciding if you
-            would like to keep your order, please take care not to damage the
-            item or branded packaging it arrives in. Please note we do not
-            accept returns of any goods that have been personalised or adjusted
-            by a third party. This does not affect your statutory rights.
+            We offer a 30 day return policy on all items. If you are not entirely
+            satisfied, you can either exchange for an alternative item or have a full
+            refund. We do ask, whilst you are deciding if you would like to keep your
+            order, please take care not to damage the item or branded packaging it arrives
+            in. Please note we do not accept returns of any goods that have been
+            personalised or adjusted by a third party. This does not affect your statutory
+            rights.
           </div>
         </div>
         <div>
@@ -466,10 +462,9 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q32"
           >
-            We process returns on the day they are received. We do advise
-            refunds can take up to 7 days to reach your account, depending on
-            your card provider. Exchanges will be received within 3 working
-            days.
+            We process returns on the day they are received. We do advise refunds can take
+            up to 7 days to reach your account, depending on your card provider. Exchanges
+            will be received within 3 working days.
           </div>
         </div>
 
@@ -479,8 +474,7 @@
             class="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
             role="button"
           >
-            How will I know my item has been received and a return has been
-            processed?
+            How will I know my item has been received and a return has been processed?
             <svg
               :class="{ 'rotate-45': open.q33 }"
               class="flex-none w-4 h-4 ml-4 transition transform"
@@ -503,10 +497,9 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q33"
           >
-            When we receive your returned item, we will send you an email to
-            confirm. Once your request has been processed, we will contact you
-            advising your exchange is on its way or that your refund has been
-            completed.
+            When we receive your returned item, we will send you an email to confirm. Once
+            your request has been processed, we will contact you advising your exchange is
+            on its way or that your refund has been completed.
           </div>
         </div>
 
@@ -516,8 +509,7 @@
             class="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
             role="button"
           >
-            My item is faulty, but is outside the returns policy, what should I
-            do?
+            My item is faulty, but is outside the returns policy, what should I do?
             <svg
               :class="{ 'rotate-45': open.q34 }"
               class="flex-none w-4 h-4 ml-4 transition transform"
@@ -541,9 +533,9 @@
             v-show="open.q34"
           >
             If the repair is not covered by the manufacturer’s warranty (such as
-            accidental damage or wear and tear), we will contact you as soon as
-            any estimate is provided. This repair will not be completed until
-            agreement and payment has been provided by you.
+            accidental damage or wear and tear), we will contact you as soon as any
+            estimate is provided. This repair will not be completed until agreement and
+            payment has been provided by you.
           </div>
         </div>
 
@@ -576,8 +568,8 @@
             class="pb-5 pr-0 text-gray-500 md:pr-40"
             v-show="open.q35"
           >
-            If you received a free gift and wish to return your item, you will
-            also be required to return the free gift.
+            If you received a free gift and wish to return your item, you will also be
+            required to return the free gift.
           </div>
         </div>
       </div>
@@ -586,16 +578,14 @@
 </template>
 
 <script>
-import { inject, ref } from "vue";
+import { inject, ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
-  props: {
-    // specColum: {
-    //   type: String,
-    //   default: "",
-    // },
-  },
+  props: {},
   setup(props, { emit }) {
+    const router = useRouter();
+    const route = useRouter();
     const open = ref({
       q11: false,
       q12: false,
@@ -614,7 +604,23 @@ export default {
       q35: false,
     });
     // emit("update:modelValue", _newValues);
-    return { open };
+    const emitter = inject("emitter");
+    emitter.on("scrollFaqPlace", (value) => {
+      scrollPlace(value);
+    });
+
+    const scrollPlace = (data) => {
+      console.log("data", data);
+      const el = document.getElementById(data);
+      window.scrollTo({
+        top: el.offsetTop - 150,
+        left: 0,
+        behavior: "smooth",
+      });
+      // el.scrollIntoView({ behavior: "smooth" });
+    };
+
+    return { open, scrollPlace };
   },
 };
 </script>
