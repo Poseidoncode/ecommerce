@@ -52,12 +52,14 @@
             <p class="text-gray-800 text-center text-xl font-bold mb-5">
               404 - Not Found
             </p>
-            <button
-              class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded ml-24"
-              @click="$router.push('/')"
-            >
-              Take Me Back To Home
-            </button>
+            <div class="flex justify-center">
+              <button
+                class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                @click="$router.push('/')"
+              >
+                Take Me Back To Home
+              </button>
+            </div>
           </div>
         </div>
       </div>

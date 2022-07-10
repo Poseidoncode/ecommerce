@@ -35,11 +35,13 @@
           >
             This Week News
           </h1> -->
-          <h1 class="mb-6 text-xl font-bold md:text-4xl theme-color7 text-center">
+          <h1
+            class="mb-1 md:mb-6 text-2xl font-bold md:text-4xl theme-color7 text-center"
+          >
             This Week Watches News
           </h1>
           <p
-            class="text-xl leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12"
+            class="text-lg md:text-xl leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12"
           >
             All About Watches And Good Life!
           </p>

@@ -3,7 +3,7 @@
     <!-- component -->
 
     <section class="bg-white dark:bg-gray-900">
-      <div class="container px-6 py-10 mx-auto">
+      <div class="container px-6 py-6 md:py-10 mx-auto">
         <div
           class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3"
         >
@@ -22,9 +22,7 @@
                 />
               </svg>
 
-              <h1
-                class="ml-1 text-xl font-semibold text-gray-800 dark:text-white"
-              >
+              <h1 class="ml-1 text-xl font-semibold text-gray-800 dark:text-white">
                 Up to 4 Years Interest Free Credit
               </h1>
             </main>
@@ -48,9 +46,7 @@
                 />
               </svg>
 
-              <h1
-                class="ml-1 text-xl font-semibold text-gray-800 dark:text-white"
-              >
+              <h1 class="ml-1 text-xl font-semibold text-gray-800 dark:text-white">
                 Free Next Day Delivery Until 9PM
               </h1>
             </main>
@@ -75,9 +71,7 @@
                 />
               </svg>
 
-              <h1
-                class="ml-1 text-xl font-semibold text-gray-800 dark:text-white"
-              >
+              <h1 class="ml-1 text-xl font-semibold text-gray-800 dark:text-white">
                 Click & Collect Service
               </h1>
             </main>
@@ -92,14 +86,10 @@
 
     <!-- <div class="pt-8 bg-gradient-to-b from-gray-100 to-sky-900 md:pt-20"> -->
     <div class="pt-8 theme-bg">
-      <div
-        class="container m-auto px-6 space-y-8 theme-color11 md:px-12 lg:px-20"
-      >
+      <div class="container m-auto px-6 space-y-8 theme-color11 md:px-12 lg:px-20">
         <div>
           <div>
-            <div
-              class="pb-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5"
-            >
+            <div class="pb-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
               <div>
                 <h6 class="text-lg font-medium text-white">Contact</h6>
                 <ul class="list-inside mt-4 space-y-4">
@@ -107,19 +97,13 @@
                     <a href="#" class="hover:text-cyan-400 transition">About</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Customers</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Enterprise</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Partners</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
@@ -133,19 +117,13 @@
                     <a href="#" class="hover:text-cyan-400 transition">About</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Customers</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Enterprise</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Partners</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
@@ -159,19 +137,13 @@
                     <a href="#" class="hover:text-cyan-400 transition">About</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Customers</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Customers</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Enterprise</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
                   </li>
                   <li>
-                    <a href="#" class="hover:text-cyan-400 transition"
-                      >Partners</a
-                    >
+                    <a href="#" class="hover:text-cyan-400 transition">Partners</a>
                   </li>
                   <li>
                     <a href="#" class="hover:text-cyan-400 transition">Jobs</a>
@@ -182,9 +154,7 @@
                 <h6 class="text-lg font-medium text-white">Contact</h6>
                 <ul class="list-inside mt-4 space-y-4">
                   <li>
-                    <a
-                      href="tel:+243996660436"
-                      class="hover:text-cyan-400 transition"
+                    <a href="tel:+243996660436" class="hover:text-cyan-400 transition"
                       >+243 996 660 436</a
                     >
                   </li>
@@ -213,9 +183,7 @@
                           title="Submit"
                           class="absolute right-0 w-max py-3 px-6 text-center rounded-r-xl transition bg-cyan-400 hover:bg-cyan-300 active:bg-cyan-600 focus:bg-cyan-300"
                         >
-                          <span class="text-gray-900 font-semibold">
-                            Send
-                          </span>
+                          <span class="text-gray-900 font-semibold"> Send </span>
                         </button>
                       </div>
                     </form>
@@ -239,8 +207,8 @@
         > -->
         <p class="py-2 text-white sm:py-0 text-sm">
           <a href="#">
-            Copyright © 2022 Vigilero All rights resevered. Images are for
-            educational use only, no commercial use.
+            Copyright © 2022 Vigilero All rights resevered. Images are for educational use
+            only, no commercial use.
           </a>
         </p>
       </div>

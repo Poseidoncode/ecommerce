@@ -923,6 +923,14 @@ export default {
   }
 }
 
+@media (max-width: 575px) {
+  .featrue-word {
+    .featrue-word-content {
+      display: none;
+    }
+  }
+}
+
 //coupon
 $coupon-background-color: #011a45;
 $coupon-radius-size: 12px;
