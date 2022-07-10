@@ -1,5 +1,6 @@
 <template>
-  <div class="loader-body">
+  <div class="loader-body" v-if="isShowLoading">
+    <!-- <div class="loader-body" v-if="true"> -->
     <figure>
       <div class="dot white"></div>
       <div class="dot"></div>
@@ -10,9 +11,22 @@
   </div>
 </template>
 
-<script setup>
-import { watch } from "vue";
-import _ from "lodash";
+<script>
+import { watch, inject, ref } from "vue";
+export default {
+  setup() {
+    const emitter = inject("emitter");
+    const isShowLoading = ref(false);
+    const toggleLoading = () => {
+      isShowLoading.value = !isShowLoading.value;
+    };
+
+    emitter.on("toggleLoader", (value) => {
+      toggleLoading();
+    });
+    return { isShowLoading, toggleLoading };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -26,7 +40,8 @@ import _ from "lodash";
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background: rgba(#000, 0.7);
+  // background: rgba(#000, 0.7);
+  background: #050b1f;
   display: grid;
   place-items: center;
   color: white;
@@ -65,28 +80,32 @@ import _ from "lodash";
   top: 0;
   bottom: 0;
   left: 0;
-  background: #ff4444;
+  // background: #ff4444;
+  background: #e7e9f0;
   animation: dotsY 2.4s linear infinite;
 }
 .dot:nth-child(3) {
   left: 0;
   right: 0;
   top: 0;
-  background: #ffbb33;
+  // background: #ffbb33;
+  background: #051945;
   animation: dotsX 2.4s linear infinite;
 }
 .dot:nth-child(4) {
   top: 0;
   bottom: 0;
   right: 0;
-  background: #99cc00;
+  // background: #99cc00;
+  background: #53607f;
   animation: dotsY 2.4s linear infinite;
 }
 .dot:nth-child(5) {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #33b5e5;
+  // background: #33b5e5;
+  background: #072260;
   animation: dotsX 2.4s linear infinite;
 }
 

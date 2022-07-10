@@ -1,6 +1,7 @@
 <template>
-  <headercontent v-if="$route.meta.needNav"></headercontent>
   <loading />
+  <headercontent v-if="$route.meta.needNav"></headercontent>
+
   <div class="all-content">
     <router-view />
   </div>
@@ -8,9 +9,11 @@
 </template>
 
 <script>
+import { inject, ref } from "vue";
 import headercontent from "@/components/cartHeader.vue";
 import footercontent from "@/components/footer.vue";
-import loading from "@/components/loadingThird.vue";
+// import loading from "@/components/loadingThird.vue";
+import loading from "@/components/loadingSecond.vue";
 
 export default {
   components: { headercontent, footercontent, loading },

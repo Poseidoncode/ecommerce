@@ -643,18 +643,22 @@ export default defineComponent({
       () => route.params.productId,
       async (pv, prev) => {
         if (pv) {
+          emitter.emit("toggleLoader");
           await getData();
           await setThumbsSwiper();
           await setRecentlyViewData();
+          emitter.emit("toggleLoader");
           getRecentlyViewData();
         }
       }
     );
 
     onMounted(async () => {
+      emitter.emit("toggleLoader");
       await getData();
       await setThumbsSwiper();
       await setRecentlyViewData();
+      emitter.emit("toggleLoader");
       getRecentlyViewData();
     });
 

@@ -1,12 +1,26 @@
 <template>
-  <div class="loader-body">
+  <!-- <div class="loader-body" v-if="isShowLoading"> -->
+  <div class="loader-body" v-if="true">
     <div class="Loader"></div>
   </div>
 </template>
 
-<script setup>
-import { watch } from "vue";
-import _ from "lodash";
+<script>
+// import { watch, inject, ref } from "vue";
+// export default {
+//   setup() {
+//     const emitter = inject("emitter");
+//     const isShowLoading = ref(false);
+//     const toggleLoading = () => {
+//       isShowLoading.value = !isShowLoading.value;
+//     };
+
+//     emitter.on("toggleLoader", (value) => {
+//       toggleLoading();
+//     });
+//     return { isShowLoading, toggleLoading };
+//   },
+// };
 </script>
 
 <style lang="scss">
@@ -24,7 +38,8 @@ $Loader-timing: ease-in-out;
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background: rgba(#000, 0.7);
+  // background: rgba(#000, 0.7);
+  background: #050b1f;
   display: grid;
   place-items: center;
   color: white;
@@ -36,8 +51,8 @@ $Loader-timing: ease-in-out;
     justify-content: center;
     width: 100%;
     max-width: $Loader-size;
-    margin-top: $Loader-size/2;
-    margin-bottom: $Loader-size/2;
+    margin-top: calc($Loader-size / 2);
+    margin-bottom: calc($Loader-size / 2);
     &:before,
     &:after {
       content: "";
@@ -46,7 +61,7 @@ $Loader-timing: ease-in-out;
       animation-duration: 1.8s;
       animation-iteration-count: infinite;
       animation-timing-function: $Loader-timing;
-      filter: drop-shadow(0 0 $Loader-offset/2.25 rgba($Loader-color, 0.75));
+      filter: drop-shadow(0 0 calc($Loader-offset / 2.25) rgba($Loader-color, 0.75));
     }
     &:before {
       width: 100%;

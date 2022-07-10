@@ -64,6 +64,5 @@ const app = usePrime(createApp(App).use(store).use(router).use(Toast, options));
 app.component("VForm", Form);
 app.component("VField", Field);
 app.component("ErrorMessage", ErrorMessage);
-
-app.mount("#app");
 app.provide("emitter", emitter);
+app.mount("#app");
