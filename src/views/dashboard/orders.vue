@@ -227,8 +227,6 @@ export default defineComponent({
 
         const res = await getOrders(`?page=${page}`);
 
-        console.log("res", res);
-
         items.value = [...res.data?.orders];
         totalItemsCount.value = +res.data?.pagination?.total_pages * 10;
       } catch (e) {
@@ -369,7 +367,6 @@ export default defineComponent({
 
         form.append("File", currentFile);
         const res = await addFileImage(form);
-        console.log("res", res);
 
         if (res.data?.info) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;

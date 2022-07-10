@@ -19,7 +19,11 @@
       v-for="(item, idx) in items"
       :key="`content${idx}`"
       style="color: #39312e"
-      :style="idx % 2 == 0 ? 'background-color:#ffffff ;' : 'background-color:#e7f2f3;'"
+      :style="
+        idx % 2 == 0
+          ? 'background-color:#ffffff ;'
+          : 'background-color:#e7f2f3;'
+      "
     >
       <div class="content" style="cursor: pointer; padding-top: 3px">
         <button
@@ -88,12 +92,16 @@
     >
       <template #header>
         <h3>
-          {{ nowType == 1 ? "AddNews" : nowType == 2 ? "EditNews" : "DeleteNews" }}
+          {{
+            nowType == 1 ? "AddNews" : nowType == 2 ? "EditNews" : "DeleteNews"
+          }}
         </h3>
       </template>
       <section class="modal-main-content">
         <!-- {{ modalItem }} -->
-        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">Delete This News?</h2>
+        <h2 v-if="nowType == 3" class="mb-2 font-black text-xl">
+          Delete This News?
+        </h2>
         <div class="p-inputgroup mt-2 col-span-full">
           <span class="p-inputgroup-addon red-star">Title</span>
           <InputText
@@ -181,7 +189,11 @@
 
       <template #footer>
         <Button label="Confirm" @click="saveEditModal" />
-        <Button label="Cancel" class="p-button-success" @click="editModal = false" />
+        <Button
+          label="Cancel"
+          class="p-button-success"
+          @click="editModal = false"
+        />
       </template>
     </Dialog>
   </section>
@@ -238,12 +250,13 @@ export default defineComponent({
         const top = rows.value;
 
         const res = await getArticles(`?page=${page}`);
-        console.log("res", res);
 
         // let { Items, Count } = ;
         let arr = [...res.data?.articles];
         arr = arr.map((s) => {
-          s.timeforshow = dayjs(new Date(+s.create_at)).format("YYYY/MM/DD HH:mm:ss");
+          s.timeforshow = dayjs(new Date(+s.create_at)).format(
+            "YYYY/MM/DD HH:mm:ss"
+          );
           return s;
         });
         items.value = [...arr];

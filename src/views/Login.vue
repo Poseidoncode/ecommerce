@@ -13,9 +13,7 @@
         </h1>
 
         <div class="typing">
-          <div class="typing-effect">
-            Capture your personal memory in unique time.
-          </div>
+          <div class="typing-effect">Capture your personal memory in unique time.</div>
         </div>
       </div>
       <div
@@ -127,9 +125,7 @@
               placeholder="Password"
             />
           </div>
-          <div
-            class="text-right text-gray-400 hover:underline hover:text-gray-100"
-          >
+          <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
             <a href="#">Forgot your password?</a>
           </div>
           <div class="px-4 pb-2 pt-4">
@@ -191,16 +187,18 @@
 </template>
 
 <script>
-import { ref, defineComponent } from "vue";
+import { inject, ref, defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
-// import { useToast } from "primevue/usetoast";
+
+import { useToast } from "vue-toastification";
 export default {
   name: "Login",
   components: {},
   setup() {
+    const emitter = inject("emitter");
     const router = useRouter();
-    // const toast = useToast();
+    const toast = useToast();
     const account = ref("");
     const password = ref("");
 
@@ -212,24 +210,21 @@ export default {
         password: password.value,
       };
       try {
+        emitter.emit("toggleLoader");
         const res = await axios.post(`${baseUrl}/admin/signin`, obj);
         const isFail = res.data.message == "登入失敗" ? true : false;
-        console.log("res", res);
 
         if (isFail) {
-          //   toast.add({
-          //     severity: "error",
-          //     summary: "登入失敗",
-          //     detail: "帳號或密碼錯誤，請重新輸入",
-          //     life: 3000,
-          //   });
+          toast.error(`Login Fail`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
         } else {
-          //   toast.add({
-          //     severity: "success",
-          //     summary: "登入Success",
-          //     detail: "Message Content",
-          //     life: 3000,
-          //   });
+          toast.info(`Login Successfully!`, {
+            timeout: 2000,
+            hideProgressBar: true,
+          });
+
           const token = res.data.token;
           const expired = res.data.expired;
           document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
@@ -237,13 +232,12 @@ export default {
           router.push("/dashboard");
         }
       } catch (e) {
-        // toast.add({
-        //   severity: "error",
-        //   summary: "Error Message",
-        //   detail: `${e}`,
-        //   life: 3000,
-        // });
+        toast.error(`Login Fail`, {
+          timeout: 2000,
+          hideProgressBar: true,
+        });
       }
+      emitter.emit("toggleLoader");
     };
     return {
       account,

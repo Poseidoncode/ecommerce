@@ -784,8 +784,9 @@ export default {
           itemsClassic.value = arr.filter((s) => s.category == "Mens");
           return;
         }
-
+        emitter.emit("toggleLoader");
         const res = await getCustomerProductAll(``);
+        emitter.emit("toggleLoader");
         let arr = [...res.data?.products];
         arr = arr.filter((s) => s.title != "測試的產品s");
 

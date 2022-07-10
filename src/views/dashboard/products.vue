@@ -684,7 +684,6 @@ export default defineComponent({
 
         form.append("File", currentFile);
         const res = await addFileImage(form);
-        console.log("res", res);
 
         if (res.data?.info) {
           modalItem.value.imagesArr[0].url = res.data.imageUrl;
