@@ -42,15 +42,10 @@
 
     <div class="py-16 bg-white">
       <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
-        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
-          <div class="md:5/12 lg:w-5/12">
-            <!-- <img
-              src="https://tailus.io/sources/blocks/left-image/preview/images/startup.png"
-              alt="image"
-              loading="lazy"
-              width=""
-              height=""
-            /> -->
+        <div
+          class="space-y-6 md:space-y-0 md:flex flex-wrap md:gap-6 lg:items-center lg:gap-12"
+        >
+          <div class="md:12/12 lg:w-5/12">
             <img
               class="rounded-lg"
               src="https://images.unsplash.com/photo-1519153017650-55aad829d4e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -82,7 +77,9 @@
     </div>
 
     <section>
-      <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+      <div
+        class="container m-auto px-4 py-16 mx-auto sm:px-6 lg:px-8 container text-gray-600 md:px-12 xl:px-6"
+      >
         <div class="grid grid-cols-1 gap-8 lg:gap-16 lg:grid-cols-2">
           <div
             class="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full lg:order-last"
@@ -133,7 +130,7 @@
       </div>
     </section>
     <section
-      class="max-w-screen-xl p-4 bg-white dark:bg-gray-800 mx-auto px-4 sm:px-6 lg:px-8 relative py-26"
+      class="container m-auto p-4 bg-white dark:bg-gray-800 mx-auto px-4 sm:px-6 lg:px-8 relative py-26 container m-auto text-gray-600 md:px-12 xl:px-6"
     >
       <div class="relative">
         <div
