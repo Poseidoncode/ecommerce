@@ -55,7 +55,7 @@
             </button>
 
             <button
-              @click="$router.push('/favourite')"
+              @click="redirctPage('favourite')"
               class="focus:outline-none"
               :class="!scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'"
               v-if="!favoriteTotal"
@@ -70,7 +70,7 @@
               </svg>
             </button>
             <button
-              @click="$router.push('/favourite')"
+              @click="redirctPage('favourite')"
               class="focus:outline-none"
               :class="!scrollIsZero || isMobile ? 'theme-color3' : 'theme-color1'"
               v-badge.warning="`${favoriteTotal}`"
@@ -406,6 +406,12 @@ export default defineComponent({
           break;
         case "about":
           router.push({ name: "about" });
+          break;
+        case "about":
+          router.push({ name: "about" });
+          break;
+        case "favourite":
+          router.push({ name: "favourite" });
           break;
         default:
           console.log(`Sorry, no data`);

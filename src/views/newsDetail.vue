@@ -50,7 +50,7 @@
           <a
             href="#"
             class="text-gray-600 hover:text-gray-900"
-            @click.prevent="sharwLink('facebook')"
+            @click.prevent="shareLink('facebook')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@
           <a
             href="#"
             class="text-gray-600 hover:text-gray-900"
-            @click.prevent="sharwLink('twitter')"
+            @click.prevent="shareLink('twitter')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@
           <a
             href="#"
             class="text-gray-600 hover:text-gray-900"
-            @click.prevent="sharwLink('linkin')"
+            @click.prevent="shareLink('linkin')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,10 @@
       </div>
 
       <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
-        <div class="specifications-content mb-2" v-html="news.contentreplace"></div>
+        <div
+          class="specifications-content mb-2"
+          v-html="news.contentreplace"
+        ></div>
         <span
           class="tage-data theme-color7"
           v-for="(itemtag, it) in news.tag"
@@ -147,7 +150,9 @@ export default defineComponent({
 
         obj.timeforshow =
           obj.category == "Weeks"
-            ? dayjs(new Date()).subtract(8, "hour").format("YYYY/MM/DD HH:mm:ss")
+            ? dayjs(new Date())
+                .subtract(8, "hour")
+                .format("YYYY/MM/DD HH:mm:ss")
             : dayjs(new Date(+obj.create_at)).format("YYYY/MM/DD HH:mm:ss");
 
         obj.contentreplace = obj.content.replace(/\n/g, "<br>");
@@ -161,7 +166,7 @@ export default defineComponent({
       }
     };
 
-    const sharwLink = (data) => {
+    const shareLink = (data) => {
       const url = window.location.href;
 
       if (data == "facebook") {
@@ -169,7 +174,9 @@ export default defineComponent({
       } else if (data == "twitter") {
         window.open(`https://twitter.com/intent/tweet?url=${url}&text=`);
       } else {
-        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}`);
+        window.open(
+          `https://www.linkedin.com/shareArticle?mini=true&url=${url}`
+        );
       }
     };
 
@@ -178,7 +185,7 @@ export default defineComponent({
       await getData();
       emitter.emit("toggleLoader");
     });
-    return { news, sharwLink };
+    return { news, shareLink };
   },
 });
 </script>
