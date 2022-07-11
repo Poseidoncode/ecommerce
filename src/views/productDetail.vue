@@ -269,7 +269,7 @@
                 />
               </svg>
             </button>
-            <div class="speeddial-circle-demo mt-2">
+            <div class="speeddial-circle-demo mt-3" title="share product">
               <SpeedDial
                 :model="itemsSpeed"
                 :radius="120"
@@ -278,6 +278,7 @@
                 buttonClass="p-button-primary p-button-sm"
                 showIcon="pi pi-share-alt"
                 hideIcon="pi pi-times"
+                class="share-btn"
               />
             </div>
           </div>
@@ -673,41 +674,46 @@ export default defineComponent({
       }
     );
 
+    const openShareLink = (data) => {
+      const url = window.location.href;
+      if (data == "facebook") {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+      } else if (data == "twitter") {
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=`);
+      } else if (data == "linkedin") {
+        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}`);
+      } else {
+        window.open(`https://github.com/Poseidoncode`);
+      }
+    };
+
     const itemsSpeed = ref([
       {
         label: "Facebook",
         icon: "pi pi-facebook",
         command: () => {
-          toast.add({ severity: "info", summary: "Add", detail: "Data Added" });
+          openShareLink("facebook");
         },
       },
       {
         label: "Twitter",
         icon: "pi pi-twitter",
         command: () => {
-          toast.add({
-            severity: "success",
-            summary: "Update",
-            detail: "Data Updated",
-          });
+          openShareLink("twitter");
         },
       },
       {
         label: "Linkedin",
         icon: "pi pi-linkedin",
         command: () => {
-          toast.add({
-            severity: "error",
-            summary: "Delete",
-            detail: "Data Deleted",
-          });
+          openShareLink("linkedin");
         },
       },
       {
         label: "Github",
         icon: "pi pi-github",
         command: () => {
-          this.$router.push("fileupload");
+          openShareLink("github");
         },
       },
     ]);
@@ -917,7 +923,17 @@ export default defineComponent({
   }
 }
 ::v-deep(.p-speeddial-button.p-button.p-button-icon-only) {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+::v-deep(button.p-button.p-component.p-button-icon-only.p-speeddial-button.p-button-rounded.p-button-primary.p-button-sm) {
+  background-color: transparent;
+  color: #255eb9;
+  border: 0px;
+}
+
+::v-deep(.p-button:focus) {
+  box-shadow: 0 0 0 0rem #a6d5fa;
 }
 </style>
