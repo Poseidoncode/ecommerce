@@ -273,7 +273,7 @@
               <SpeedDial
                 :model="itemsSpeed"
                 :radius="120"
-                direction="down-right"
+                :direction="isMobile ? 'down-left' : 'down-right'"
                 type="quarter-circle"
                 buttonClass="p-button-primary p-button-sm"
                 showIcon="pi pi-share-alt"
@@ -435,7 +435,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, watch, inject } from "vue";
+import { defineComponent, ref, onMounted, watch, inject, computed } from "vue";
 import {
   getCustomerSingleProduct,
   postCustomerCart,
@@ -718,6 +718,10 @@ export default defineComponent({
       },
     ]);
 
+    const isMobile = computed(() => {
+      return +window?.outerWidth < 600;
+    });
+
     onMounted(async () => {
       emitter.emit("toggleLoader");
       await getData();
@@ -728,6 +732,7 @@ export default defineComponent({
     });
 
     return {
+      isMobile,
       product,
       getData,
       setRecentlyViewData,
