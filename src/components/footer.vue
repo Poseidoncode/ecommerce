@@ -260,14 +260,14 @@
     </div>
 
     <div class="theme-bg" style="font-family: Microsoft JhengHei, Helvetica">
-      <div class="container mx-auto px-6 py-3 flex justify-center items-center">
+      <div class="container mx-auto px-6 py-3 pb-2 flex justify-center items-center">
         <!-- <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
           >Vigilero</a
         > -->
         <p class="py-2 text-white sm:py-0 text-sm" style="padding: 8px 0">
           <a href="#">
-            Copyright © 2022 Vigilero All rights resevered. Images are for educational use
-            only, no commercial use.
+            Copyright © 2022 Vigilero All rights resevered. Images are are for an
+            educational purpose, no commercial purpose.
           </a>
         </p>
       </div>
