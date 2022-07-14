@@ -2,7 +2,7 @@
 
 > watches線上商店
 
-  ![image](https://i.imgur.com/WAgvPH7.png)
+  ![image](https://i.imgur.com/xGaPpep.png)
   
 > 商品後台管理介面
 
