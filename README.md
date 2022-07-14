@@ -1,9 +1,25 @@
-# Vue 3 + Vite
+# 手錶電子商務網站實作
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> watches線上商店
 
-## Recommended IDE Setup
+  ![image](https://i.imgur.com/WAgvPH7.png)
+  
+> 商品後台管理介面
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+  ![image](https://i.imgur.com/GJbBaSv.png)  
+  
+- 說明
 
- https://poseidoncode.github.io/ecommerce/
+  使用最新的Vue 3 Composition API方式為使用者並界接API，並以CSR方式為使用者帶來最佳的購物體驗。
+
+- 技術
+
+  Vue 3 (Composition API) + Vite + Tailwind + PrimeFaces
+
+- GitHub Pages
+
+  https://poseidoncode.github.io/ecommerce/
+
+- 備註
+
+  圖片僅做學習使用，無用於商業用途。Images are for educational useonly, no commercial use.
