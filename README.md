@@ -10,7 +10,7 @@
   
 - 說明
 
-  使用最新的Vue 3 Composition API方式為使用者並界接API，並以CSR方式為使用者帶來最佳的購物體驗。
+  使用最新的Vue 3 Composition API方式並介接RESTful API，以CSR方式為使用者帶來最佳的購物體驗。
 
 - 技術
 
