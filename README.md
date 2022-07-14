@@ -22,4 +22,4 @@
 
 - 備註
 
-  圖片僅做學習使用，無用於商業用途。Images are for educational useonly, no commercial use.
+  圖片僅做學習使用，無用於商業用途。Images are are for an educational purpose, no commercial purpose.
