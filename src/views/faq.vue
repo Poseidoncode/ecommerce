@@ -638,7 +638,7 @@ export default {
 
 .bg-setting-local {
   padding: 200px 0 120px 0;
-  background: url("https://images.unsplash.com/photo-1618215649907-b51d8accb1ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80");
+  background: url("https://images.unsplash.com/photo-1617317376997-8748e6862c01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
   background-position: 50% 65%;
   background-size: cover;
 }
