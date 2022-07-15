@@ -1,6 +1,6 @@
 # 手錶電子商務網站
 
-> watches線上商店
+> Online Watch Store
 
   ![image](https://i.imgur.com/xGaPpep.png)
   
