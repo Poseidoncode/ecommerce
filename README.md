@@ -14,7 +14,7 @@
 
 - 技術
 
-  Vue 3 (Composition API) + Vite + Tailwind + PrimeFaces
+  Vue 3 (Composition API) + Vite +  Vuex +Tailwind + PrimeFaces
 
 - GitHub Pages
 
