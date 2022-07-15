@@ -12,17 +12,11 @@
 
   使用最新的Vue 3 Composition API方式並介接RESTful API，以CSR方式為使用者帶來最佳的購物體驗。
 
-- 核心技術
+- 核心技術 : Vue 3 (Composition API) + Vite +  Vuex   
 
-  Vue 3 (Composition API) + Vite +  Vuex +
-
-- UI Framework
-
-  Tailwind + PrimeFaces
-  
-- CI/CD
-
-  Github Actions    
+- UI Framework : Tailwind + PrimeFaces
+    
+- CI/CD : Github Actions 
 
 - GitHub Pages
 
