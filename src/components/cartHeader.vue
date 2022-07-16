@@ -630,8 +630,10 @@ export default defineComponent({
 
 .scroll-btn-item {
   position: fixed;
-  bottom: 150px;
-  right: 50px;
+  // bottom: 150px;
+  // right: 50px;
+  bottom: 10vh;
+  right: 4.5vw;
   border-bottom: 0.25rem solid;
   border-right: 0.25rem solid;
   display: inline-block;
