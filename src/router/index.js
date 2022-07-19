@@ -188,6 +188,16 @@ const routes = [
     component: () => import("@/views/paymentbackup.vue"),
   },
   {
+    path: "/blank",
+    name: "blank",
+    meta: {
+      title: "paper page",
+      needNav: false,
+      needFooter: false,
+    },
+    component: () => import("@/views/blank.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () => import("@/views/notFound.vue"),
