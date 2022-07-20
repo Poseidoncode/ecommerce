@@ -1,1 +1,0 @@
-import{d as t,i as o,b as r,e as a,f as n,u as p,k as u,j as c}from"./vendor.fab3f04c.js";import{_ as i}from"./index.39282a79.js";const f=t({props:{},setup(e,{emit:s}){return o("emitter"),r(),a(),n(),p(),{}}});function d(e,s,m,_,l,j){return c(),u("div",null,"123")}var $=i(f,[["render",d]]);export{$ as default};
