@@ -379,7 +379,7 @@
           <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
             <div
               class="h-56 w-full product-background"
-              :style="itemCat.imageUrl ? `background:url(${itemCat.imageUrl})` : ''"
+              :style="!!itemCat?.imageUrl ? `background:url(${itemCat.imageUrl})` : ''"
             >
               <button
                 class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 cart-btn"
@@ -421,10 +421,10 @@
             </div>
             <div class="px-5 py-3 mt-2">
               <h3 class="uppercase text-center theme-color7">
-                {{ itemCat.title || "" }}
+                {{ itemCat?.title || "" }}
               </h3>
               <h4 class="text-black-500 mt-2 text-center theme-color7">
-                ${{ itemCat.price }}
+                ${{ itemCat?.price || "" }}
               </h4>
             </div>
           </div>
