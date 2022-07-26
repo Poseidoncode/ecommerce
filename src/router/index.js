@@ -198,6 +198,16 @@ const routes = [
     component: () => import("@/views/blank.vue"),
   },
   {
+    path: "/blank2",
+    name: "blank2",
+    meta: {
+      title: "paper page",
+      needNav: false,
+      needFooter: false,
+    },
+    component: () => import("@/views/blank2.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () => import("@/views/notFound.vue"),
