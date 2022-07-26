@@ -17,9 +17,9 @@
     </section>
     <section class="main-reply" v-for="(itemData, i) in allDatas" :key="`itemData${i}`">
       <div class="main-reply-label">Comment {{ +allDatas.length - i }}</div>
-      <label class="main-reply-commentData" :for="`itemDataReply${i}`">{{
-        itemData.commentData || ""
-      }}</label>
+      <label class="main-reply-commentData" :for="`itemDataReply${i}`">
+        <div v-html="itemData.commentData"></div>
+      </label>
 
       <textarea
         :id="`itemDataReply${i}`"
@@ -44,14 +44,14 @@
         v-for="(itemReply, ireply) in itemData.replys"
         :key="`itemReplys${ireply}`"
       >
-        {{ itemReply }}
+        <div v-html="itemReply"></div>
       </div>
     </section>
   </main>
 </template>
 
 <script>
-import { inject, ref } from "vue";
+import { inject, ref, onMounted } from "vue";
 
 export default {
   components: {},
@@ -59,24 +59,40 @@ export default {
     const allDatas = ref([]);
     const nowComment = ref("");
 
+    const setLcalData = () => {
+      localStorage.setItem("messageBoardData", JSON.stringify(allDatas.value));
+    };
+    const getLcalData = () => {
+      const messageArr = localStorage.getItem("messageBoardData")
+        ? JSON.parse(localStorage.getItem("messageBoardData"))
+        : [];
+      allDatas.value = [...messageArr];
+    };
+
+    onMounted(async () => {
+      getLcalData();
+    });
+
     const addNewComment = (newData) => {
       if (!newData) {
         return;
       }
       allDatas.value.unshift({
-        commentData: newData,
+        commentData: `${newData}`.replace(/\n/g, "<br>"),
         replys: [],
         nowReply: "",
       });
       nowComment.value = "";
+      setLcalData();
     };
 
     const addNewReply = (item) => {
       if (!item.nowReply) {
         return;
       }
-      item.replys.unshift(item.nowReply);
+      item.replys.unshift(`${item.nowReply}`.replace(/\n/g, "<br>"));
       item.nowReply = "";
+      setLcalData();
     };
 
     return { allDatas, addNewComment, addNewReply, nowComment };
@@ -93,6 +109,7 @@ export default {
   .button-area {
     display: flex;
     justify-content: flex-end;
+    padding-right: 5px;
   }
 
   label,
@@ -136,14 +153,16 @@ export default {
       margin-bottom: 20px;
     }
     .main-reply-commentData {
-      font-size: 17px;
+      font-size: 18px;
       margin-top: 5px;
       margin-bottom: 20px;
+      color: #555;
     }
     .main-reply-data {
       font-size: 17px;
       border-bottom: 1.5px solid #d8d8d8;
       padding-bottom: 5px;
+      color: #555;
     }
   }
 }
